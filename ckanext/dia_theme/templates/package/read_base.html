@@ -1,8 +1,5 @@
 {% ckan_extends %}
 
 {% block links %}
-   {{ super() }}
-   {% with endpoint=h.dcat_get_endpoint('dataset')  %}
-      <link rel="alternate" type="application/rdf+xml" href="{{ h.url_for(endpoint, _id=pkg.id, _format='xml', qualified=True) }}"/>
-   {% endwith %}
+  
 {% endblock %}
