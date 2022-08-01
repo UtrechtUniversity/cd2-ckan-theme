@@ -1,0 +1,23 @@
+{% ckan_extends %}
+
+{% block primary %}
+    <article class="module">
+        <div class="module-content">
+            {#
+            There is no good way to override the template that the user
+            controller uses for the error without patching core, and
+            I can't find a way to detect what the original controller was
+            before it gets bounced to the error controller.
+            #}
+
+            {% if "Unauthorized to register" in content %}
+                {% snippet "snippets/user_reg_disabled.html" %}
+            {% else %}
+                {% if name %}
+                    <h1>{{ code }} {{ name }}</h1>
+                {% endif %}
+                {{ content }}
+            {% endif %}
+        </div>
+    </article>
+{% endblock %}
