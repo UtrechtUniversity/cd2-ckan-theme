@@ -13,7 +13,6 @@ dia_script:
   output: dia_theme/dia_custom.js
   contents:
     - dia_custom.js
-    - banner.js
 
 dia_style:
   output: dia_theme/dia_custom.css
