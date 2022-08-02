@@ -4170,30 +4170,7 @@ td {
   .site-footer__copyright {
     background-color: #fff;
     padding: 2.375rem 0; }
-  @media screen and (min-width: 1200px) {
-    .site-footer__style-1 {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #182B46;
-      width: calc(50% - 305px); }
-      .site-footer__style-1:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        right: -100%;
-        bottom: 0;
-        left: 0;
-        background-color: #182B46;
-        -webkit-transform: skewX(-45deg);
-        -ms-transform: skewX(-45deg);
-        transform: skewX(-45deg);
-        -webkit-transform-origin: top right;
-        -ms-transform-origin: top right;
-        transform-origin: top right; } }
+
 
 .site-footer--minimal {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.1); }
