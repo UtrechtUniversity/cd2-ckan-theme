@@ -2,9 +2,7 @@
 
     {% set hide_empty = hide_empty or false %}
 
-	{% set subdomain = h.get_request_param('msl_subdomain', default=None) %}
-
-    {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
+    {% with items = items or h.get_facet_items_dict('study') %}
 
 	{% if items or not hide_empty %}
 		{% set hide_sub_facet = False %}
