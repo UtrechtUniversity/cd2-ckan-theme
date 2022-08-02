@@ -12,10 +12,11 @@
       </button>
     </div>
   </form>
+  <p></p>
   <div class="tags">
     <h3>{{ _('Popular tags') }}</h3>
     {% for tag in tags %}
-      <a class="tag" href="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+      <a class="tag" href="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search', tags=tag.name %}">{{ h.truncate(label.display_name, 22) }}</a>
     {% endfor %}
   </div>
 </div>
