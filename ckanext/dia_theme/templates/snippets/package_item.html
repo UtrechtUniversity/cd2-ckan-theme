@@ -44,7 +44,7 @@
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
               {% endblock %}
             </h2>
-            <span class="dataset-subheading"><ul>{{package.organization.title}}</ul></span>
+            <span class="dataset-subheading">{{package.organization.title}}</span>
           {% endblock %}
           {% block banner %}
             {% if banner %}
