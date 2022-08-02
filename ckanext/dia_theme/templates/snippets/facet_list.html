@@ -1,7 +1,5 @@
 {% block facet_list %}
 
-
-
     {% set hide_empty = hide_empty or false %}
 
 	{% set subdomain = h.get_request_param('msl_subdomain', default=None) %}
@@ -11,7 +9,7 @@
 	{% if items or not hide_empty %}
 		{% set hide_sub_facet = False %}
 		{% if subdomain != 'rock_physics' %}
-			{% if title == 'Inferred deformation behavior' or title == 'Pore fluid' or title == 'Ancillary equipment' or title == 'Apparatus' or title == 'Measured property' %}
+			{% if title == 'Type' %}
 				{% set hide_sub_facet = True %}
 			{% endif %}
 		{% endif %}
