@@ -77,7 +77,7 @@
 					    <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="read-more">More ...</a>
 					{% endif %}
 				    {% else %}
-					<a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{ _('Show Only Popular {facet_type}').format(facet_type=title) }}</a>
+					<a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{ _('Show Only Popular {facet_type}s').format(facet_type=title) }}</a>
 				    {% endif %}
 				</p>
 			    {% else %}
