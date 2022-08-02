@@ -1,4 +1,4 @@
-{% set tags = h.get_facet_items_dict('tags', limit=3) %}
+{% set labels = h.get_facet_items_dict('labels', limit=3) %}
 {% set placeholder = _('E.g. environment') %}
 
 <div class="module module-search module-narrow module-shallow box">
@@ -12,12 +12,11 @@
       </button>
     </div>
   </form>
-</div>
-
+  
   <div class="tags">
     <h3>{{ _('Popular labels') }}</h3>
     {% for label in labels %}
       <a class="tag" href="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search', tags=tag.name %}">{{ h.truncate(label.display_name, 22) }}</a>
     {% endfor %}
   </div>
-
+</div>
