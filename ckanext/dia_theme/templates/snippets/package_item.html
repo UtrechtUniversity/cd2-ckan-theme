@@ -50,8 +50,8 @@
                Mode of collection: <span class="label">{{ package.dc_mode_of_collection }}</span>
             
                <ul class="dataset-resources list-unstyled">
-            {% for waves in package.wave %}
                 <li>Available measurements: </li>
+            {% for waves in package.wave %}
               <li><span class="label">{{ waves.wave_title }}</span></li>
             {% endfor %}
           </ul>
