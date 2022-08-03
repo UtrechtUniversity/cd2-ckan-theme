@@ -4,11 +4,11 @@
   <ul class="dataset-resources list-unstyled">
   {% set labels = pkg_dict.dc_labels %}
   {% for label in labels  %}
-    {% if label.length is not 0 %}
+    
     <li>
       <a href="" class="label">{{label["dc_label"]}}</a>
   </li>
-    {% endif %}
+
   {% endfor %}
   </ul>
 
