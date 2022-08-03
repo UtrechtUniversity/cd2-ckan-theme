@@ -41,12 +41,13 @@
           </td>
         </tr>
         </tbody>
-
+        
       </div>
-
+    </table>
       {% endif %}
   {%- endfor -%}
 
+  <table class="table table-striped table-bordered table-condensed">
     <tbody>
       {% block package_additional_info %}
         {% if pkg_dict.url %}
