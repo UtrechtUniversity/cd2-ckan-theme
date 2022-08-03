@@ -1,15 +1,13 @@
 <section class="additional-info">
 
+  <ul class="dataset-resources list-unstyled">
   {% set labels = pkg_dict.dc_labels %}
   {% for label in labels  %}
-  
-  <ul class="dataset-resources list-unstyled">
     <li>
       <a href="#" class="label" data-format="xls">{{label}}</a>
   </li>
-  </ul>
-
   {% endfor %}
+  </ul>
 
   <h2>Raw</h2>
   <code>{{ pkg_dict }}</code>
