@@ -28,7 +28,7 @@
 
   {% block package_additional_info %}
   {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name == 'wave' %}
+   
       <tr>
         <th scope="row" class="dataset-label">
             {{ h.scheming_language_text(field.label) }}
@@ -38,7 +38,7 @@
             {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
         </td>
       </tr>
-    {%- endif -%}
+
   {%- endfor -%}
 {% endblock %}
 
