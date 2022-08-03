@@ -44,8 +44,9 @@
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
               {% endblock %}
             </h2>
-            <span class="dataset-subheading"><span>{{package.organization.title|upper}}</span>
-          
+            <span class="dataset-subheading"><span><i class="fa fa-map-pin" aria-hidden="true"></i>
+               {{package.organization.title}}</span>
+               <span>&nbsp;&nbsp;</span>
             {% for waves in package.wave %}
               <span class="label">{{ waves.wave_title }}</span>
             {% endfor %}
