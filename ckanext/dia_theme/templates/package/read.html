@@ -48,7 +48,7 @@
 
 
   {% block package_tags %}
-    {% if pkg.type == 'data-publication' %}
+   
     {% set tags = pkg.tags %}
 
     {% set ns = namespace(previous=[]) %}
@@ -82,9 +82,7 @@
       
     </ul>
 
-    {% else %}
-      {% snippet "package/snippets/tags.html", tags=pkg.tags %}
-    {% endif %}
+   
   {% endblock %}
 
   {% block package_additional_info %}
