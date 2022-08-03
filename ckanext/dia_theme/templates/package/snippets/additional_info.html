@@ -24,27 +24,27 @@
   {% endfor %}
   </ul>
   
-  <h4>Waves</h4>
+
   {%- for field in schema.dataset_fields -%}
     {% if field.field_name == 'wave'%}
-    <p>
-      <a class="btn btn-primary" data-toggle="collapse" href="#{{ h.scheming_language_text(field.label) }}" role="button" aria-expanded="false" aria-controls="collapseExample">
-        {{ h.scheming_language_text(field.label) }}
-      </a>
-    </p>
-    <div class="collapse" id="{{ h.scheming_language_text(field.label) }}">
-      <div class="card card-body">
+    <table class="table table-striped table-bordered table-condensed">
+      <a class="btn btn-primary" data-toggle="collapse" href="#collapseWaves" role="button" aria-expanded="false" aria-controls="collapseExample"><thead><td>Waves</td></thead></a>
+      <div class="collapse" id="collapseExample">
+      <tbody>
+      <tr>
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
             {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-        </td>  
+        </td>
+      </tr>
+      </tbody>
       </div>
-    </div>
+    </table>
       {% endif %}
   {%- endfor -%}
 
 
-
+ 
 
 <p>&nbsp;</p>
   <table class="table table-striped table-bordered table-condensed">
