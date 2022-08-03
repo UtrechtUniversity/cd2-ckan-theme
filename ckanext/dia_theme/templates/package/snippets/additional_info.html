@@ -27,15 +27,12 @@
   <h4>Waves</h4>
   {%- for field in schema.dataset_fields -%}
     {% if field.field_name == 'wave'%}
-
-
     <p>
-      <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="btn btn-primary" data-toggle="collapse" href="#{{ h.scheming_language_text(field.label) }}" role="button" aria-expanded="false" aria-controls="collapseExample">
         {{ h.scheming_language_text(field.label) }}
       </a>
-     
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="{{ h.scheming_language_text(field.label) }}">
       <div class="card card-body">
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
@@ -43,7 +40,6 @@
         </td>  
       </div>
     </div>
-
       {% endif %}
   {%- endfor -%}
 
