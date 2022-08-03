@@ -49,38 +49,6 @@
 
   {% block package_tags %}
    
-    {% set tags = pkg.tags %}
-
-    {% set ns = namespace(previous=[]) %}
-
-    <ul class="tag-list well">
-      {% for tag in tags %}
-        {% if not tag.display_name in ns.previous %}
-        <li>
-          <a class="tag" href="{% url_for 'data-publication.search', tags=tag.name %}">{{ tag.display_name }}</a>
-        </li>
-        {% set ns.previous = ns.previous + [tag.display_name] %}
-        {% endif %}
-      {% endfor %}
-      {# process materials #}
-      {% for i in range(0, pkg.msl_materials|length) %}
-        {% if pkg.msl_materials[i].msl_material_1 %}
-          {% set split = null %}
-          {% set split = pkg.msl_materials[i].msl_material_1.split('>') %}
-          {% if split %}
-            {% if not split[split|length-1] in ns.previous %}
-              <li>
-                <a class="tag" href="{% url_for 'data-publication.search', msl_material_1=split[split|length-1] %}">{{ split[split|length-1] }}</a>
-              </li>
-              {% set ns.previous = ns.previous + [split[split|length-1]] %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-        
-      {% endfor %}
-
-      
-    </ul>
 
    
   {% endblock %}
