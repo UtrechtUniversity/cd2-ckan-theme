@@ -46,7 +46,7 @@
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
   {% endblock %}
 
-  {{ pkg.type }}
+  {{ h.render_markdown(h.get_translated(pkg, 'type')) }}
 
   {% block package_tags %}
     {% if pkg.type == 'data-publication' %}
