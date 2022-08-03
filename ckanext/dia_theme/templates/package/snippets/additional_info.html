@@ -13,7 +13,7 @@
         {% if label.length != 0 %}
         {% set labelname = label["dc_label"] %}
         <li>
-          <a href="{% url_for 'data-publication.search', dc_label=labelname %}" class="label">{{label["dc_label"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_label=labelname %}" class="label">{{label["dc_label"]}}</a>
       </li>
         {% endif %}
       {% endfor %}
@@ -28,8 +28,9 @@
       {% set constructs = pkg_dict.dc_constructs %}
       {% for construct in constructs  %}
       {% if construct.length != 0 %}
+      {% set constructname = construct["dc_construct"] %}
         <li>
-          <a href="#" class="label">{{construct["dc_construct"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label">{{construct["dc_construct"]}}</a>
       </li>
         {% endif %}
       {% endfor %}
