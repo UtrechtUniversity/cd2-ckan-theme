@@ -28,11 +28,11 @@
   {%- for field in schema.dataset_fields -%}
     {% if field.field_name == 'wave'%}
     <table class="table table-striped table-bordered table-condensed">
-      <thead><td data-toggle="collapse" href="#collapseWaves">Waves</td></thead>
-      </table>
+      <tr><td data-toggle="collapse" href="#collapseWaves">Waves</td></tr>
+
       
       <div class="collapse" id="collapseWaves">
-        <table class="table table-striped table-bordered table-condensed">
+
         <tbody>
         <tr>
           <td class="dataset-details"{%
@@ -41,17 +41,11 @@
           </td>
         </tr>
         </tbody>
-      </table>
+
       </div>
 
       {% endif %}
   {%- endfor -%}
-
-
- 
-
-<p>&nbsp;</p>
-  <table class="table table-striped table-bordered table-condensed">
 
     <tbody>
       {% block package_additional_info %}
