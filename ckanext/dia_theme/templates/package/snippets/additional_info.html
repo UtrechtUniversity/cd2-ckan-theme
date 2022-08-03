@@ -27,28 +27,26 @@
   <h4>Waves</h4>
   {%- for field in schema.dataset_fields -%}
     {% if field.field_name == 'wave'%}
-      <tr>
+
+
+    <p>
+      <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        {{ h.scheming_language_text(field.label) }}
+      </a>
+     
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
             {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-        </td>
-      </tr>
+        </td>  
+      </div>
+    </div>
+
       {% endif %}
   {%- endfor -%}
 
-  <p>
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-      Link with href
-    </a>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      Button with data-target
-    </button>
-  </p>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-    </div>
-  </div>
 
 
 
