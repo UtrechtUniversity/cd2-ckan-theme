@@ -12,7 +12,7 @@
       {% for label in labels  %}
         {% if label.length != 0 %}
         <li>
-          <a href="" class="label">{{label["dc_label"]}}</a>
+          <a href="{% url_for 'data-publication.search', dc_label=label['dc_label'] %}" class="label">{{label["dc_label"]}}</a>
       </li>
         {% endif %}
       {% endfor %}
