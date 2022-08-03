@@ -1,42 +1,55 @@
 <section class="additional-info">
 
-  <h4>Labels</h4>
-  <ul class="dataset-resources list-unstyled">
-  {% set labels = pkg_dict.dc_labels %}
-  {% for label in labels  %}
-    {% if label.length != 0 %}
-    <li>
-      <a href="" class="label">{{label["dc_label"]}}</a>
-  </li>
-    {% endif %}
-  {% endfor %}
-  </ul>
-
-  <h4>Constructs</h4>
-  <ul class="dataset-resources list-unstyled">
-  {% set constructs = pkg_dict.dc_constructs %}
-  {% for construct in constructs  %}
-  {% if construct.length != 0 %}
-    <li>
-      <a href="#" class="label">{{construct["dc_construct"]}}</a>
-  </li>
-    {% endif %}
-  {% endfor %}
-  </ul>
 
 
-  <h4>Waves</h4>
-  <ul class="dataset-resources list-unstyled">
-  {% set waves = pkg_dict.wave %}
-  {% for wave in waves  %}
-    <li>
-      <a href="#" class="label">{{wave["wave_title"]}}</a>
-  </li>
-  {% endfor %}
-  </ul>
-
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-striped table-condensed">
     <tbody>
+    <tr>
+      <td>Labels</td>
+      <td>
+      <ul class="dataset-resources list-unstyled">
+      {% set labels = pkg_dict.dc_labels %}
+      {% for label in labels  %}
+        {% if label.length != 0 %}
+        <li>
+          <a href="" class="label">{{label["dc_label"]}}</a>
+      </li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Constructs</td>
+      <td>
+      <ul class="dataset-resources list-unstyled">
+      {% set constructs = pkg_dict.dc_constructs %}
+      {% for construct in constructs  %}
+      {% if construct.length != 0 %}
+        <li>
+          <a href="#" class="label">{{construct["dc_construct"]}}</a>
+      </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    </td>
+    </tr>
+
+    <tr>
+      <td>Waves</td>
+      <td>
+      <ul class="dataset-resources list-unstyled">
+      {% set waves = pkg_dict.wave %}
+      {% for wave in waves  %}
+        <li>
+          <a href="#" class="label">{{wave["wave_title"]}}</a>
+      </li>
+      {% endfor %}
+      </ul>
+      </td>
+      </tr>
+      
       {% block package_additional_info %}
        
 
