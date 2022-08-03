@@ -20,6 +20,7 @@
 
   {% block package_item %}
     <li class="{{ item_class or "dataset-item" }}">
+      {{ package }}
       {% block content %}
         <div class="dataset-content">
           {% block heading %}
@@ -44,7 +45,7 @@
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
               {% endblock %}
             </h2>
-            <span class="dataset-subheading">{{package.organization.title}} bla</span>
+            <span class="dataset-subheading"><span class="label">{{package.organization.title}}</span><span class="label"></span></span>
           {% endblock %}
           {% block banner %}
             {% if banner %}
