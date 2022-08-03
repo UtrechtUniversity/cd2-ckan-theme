@@ -44,8 +44,18 @@
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
               {% endblock %}
             </h2>
-            <span class="dataset-subheading">Study: <span class="label">{{package.dc_cohort}}</span></span>
-            <span class="dataset-subheading">Mode of collection: <span class="label">{{ package.dc_mode_of_collection }}</span></span>
+
+            <table class="table table-condensed">
+            <tbody>
+              <tr><td width="30%">Study:</td><td><span class="label">{{package.dc_cohort}}</span></td></tr> 
+              <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span></td></tr>
+              <tr><td>Available measurements:</td><td>
+                {% for waves in package.wave %}
+                  <span class="label">{{ waves.wave_title }}</span>
+                {% endfor %}
+              </td></tr>
+              </tbody>
+              </table>
           {% endblock %}
           {% block banner %}
             {% if banner %}
@@ -63,12 +73,6 @@
               <span class='dataset-date-separator'>&bull;</span>
               <span class='dataset-date-updated'>Updated {{ h.render_datetime(package.metadata_modified) }}</span>
             </span>
-            <ul class="dataset-resources list-unstyled">
-              <li>Available measurements: </li>
-          {% for waves in package.wave %}
-            <li><span class="label">{{ waves.wave_title }}</span></li>
-          {% endfor %}
-        </ul>
           {% endblock %}
         </div>
         {% block resources %}
