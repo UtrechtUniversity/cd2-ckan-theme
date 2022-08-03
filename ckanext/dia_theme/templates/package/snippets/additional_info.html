@@ -34,26 +34,6 @@
   </li>
   {% endfor %}
   </ul>
-  
-  {%- for field in schema.dataset_fields -%}
-    {% if field.field_name == 'wave'%}
-    <table class="table table-striped table-bordered table-condensed">
-      <tr><td data-toggle="collapse" href="#collapseWaves">Waves</td></tr>
-      
-      <div class="collapse" id="collapseWaves">
-        <tbody>
-        <tr>
-          <td class="dataset-details"{%
-            if field.display_property %} property="{{ field.display_property }}"{% endif %}>
-              {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-          </td>
-        </tr>
-        </tbody>
-        
-      </div>
-    </table>
-      {% endif %}
-  {%- endfor -%}
 
   <table class="table table-striped table-bordered table-condensed">
     <tbody>
