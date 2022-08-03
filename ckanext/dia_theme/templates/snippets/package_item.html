@@ -48,11 +48,12 @@
                {{package.dc_cohort}}</span>
                <span>&nbsp;&nbsp;</span>
                <span class="label">{{ package.dc_mode_of_collection }}</span>
-               <span>&nbsp;&nbsp;</span>
+            
+               <ul class="dataset-resources list-unstyled">
             {% for waves in package.wave %}
-              <span class="label">{{ waves.wave_title }}</span>
+              <li><span class="label">{{ waves.wave_title }}</span></li>
             {% endfor %}
-          
+          </ul>
           </span>
           {% endblock %}
           {% block banner %}
