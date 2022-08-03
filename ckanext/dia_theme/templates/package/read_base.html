@@ -1,7 +1,5 @@
 {% extends "package/base.html" %}
 
-{% set default_group_type = h.default_group_type('group') %}
-
 {% block subtitle %}{{ h.dataset_display_name(pkg) }} {{ g.template_title_delimiter }} {{ super() }}{% endblock %}
 
 {% block head_extras -%}
@@ -12,37 +10,76 @@
 {% endblock -%}
 
 {% block content_action %}
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-    {% link_for _('Manage'), named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-light', icon='wrench' %}
+  {% if not is_activity_archive %}
+    {% if h.check_access('package_update', {'id':pkg.id }) %}
+      {% link_for _('Manage'), named_route=pkg.type ~ '.edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
 {% block content_primary_nav %}
-  {{ h.build_nav_icon(dataset_type ~ '.read', _('Dataset'),  id=pkg.name, icon='sitemap') }}
-  {{ h.build_nav_icon(dataset_type ~ '.groups', h.humanize_entity_type('group', default_group_type, 'content tab') or _('Groups'), id=pkg.name, icon='users') }}
+  {{ h.build_nav_icon(dataset_type ~ '.read', _('Dataset'), id=pkg.id if is_activity_archive else pkg.name, icon='sitemap') }}
+  {#
+  {{ h.build_nav_icon(dataset_type ~ '.groups', _('Groups'), id=pkg.id if is_activity_archive else pkg.name, icon='users') }}
+  {{ h.build_nav_icon(dataset_type ~ '.activity', _('Activity Stream'), id=pkg.id if is_activity_archive else pkg.name, icon='clock-o') }}
+  #}
 {% endblock %}
 
 {% block secondary_content %}
-
   {% block secondary_help_content %}{% endblock %}
 
-  {% block package_info %}
-    {% snippet 'package/snippets/info.html', pkg=pkg %}
-  {% endblock %}
-
-  {% block package_organization %}
-    {% if pkg.organization %}
-      {% set org = h.get_organization(pkg.organization.id) %}
-      {% snippet "snippets/organization.html", organization=org, has_context_title=true %}
+  {% if pkg.type == 'data-publication' %}
+    {% if pkg.msl_downloads|length > 0 %}
+      <div class="module module-narrow module-shallow context-info">
+        <h2 class="module-heading"><i class="fa fa-file-o"></i> Downloads</h2>
+        <section class="module-content">
+          <ul class="fa-ul">
+            {% for i in range(0, pkg.msl_downloads|length) %}
+              {% if pkg.msl_downloads[i].msl_file_name %}
+                <li>
+                  <i class="fa-li fa fa-file-text"></i><a href="{{ pkg.msl_downloads[i].msl_download_link }}" title="{{ pkg.msl_downloads[i].msl_file_name }}">{{ pkg.msl_downloads[i].msl_file_name }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
     {% endif %}
-  {% endblock %}
 
-  {% block package_social %}
-    {% snippet "snippets/social.html" %}
-  {% endblock %}
+    {% if pkg.msl_laboratories|length > 0 %}
+      <div class="module module-narrow module-shallow context-info">
+        <h2 class="module-heading"><i class="fa fa-building-o"></i> Labs</h2>
+        <section class="module-content">
+          <ul class="fa-ul">
+            {% for i in range(0, pkg.msl_laboratories|length) %}
+              {% if pkg.msl_laboratories[i].msl_lab_name %}
+                <li>
+                  <i class="fa-li fa fa-university"></i><a href="../lab/{{ pkg.msl_laboratories[i].msl_lab_id }}" title="{{ pkg.msl_laboratories[i].msl_lab_name }}">{{ pkg.msl_laboratories[i].msl_lab_name }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    {% endif %}
+  {% else %}
+    {% block package_info %}
+      {% snippet 'package/snippets/info.html', pkg=pkg %}
+    {% endblock %}
 
-  {% block package_license %}
-    {% snippet "snippets/license.html", pkg_dict=pkg %}
-  {% endblock %}
+    {% block package_organization %}
+      {% if pkg.organization %}
+        {% set org = h.get_organization(pkg.organization.id) %}
+        {% snippet "snippets/organization.html", organization=org, has_context_title=true %}
+      {% endif %}
+    {% endblock %}
 
+    {% block package_social %}
+      {% snippet "snippets/social.html" %}
+    {% endblock %}
+
+    {% block package_license %}
+      {% snippet "snippets/license.html", pkg_dict=pkg %}
+    {% endblock %}
+  {% endif %}
 {% endblock %}
