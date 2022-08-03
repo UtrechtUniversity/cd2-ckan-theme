@@ -43,10 +43,10 @@
   {% endblock %}
 
   {% block package_resources %}
-    
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
-
   {% endblock %}
+
+  {{ pkg.type }}
 
   {% block package_tags %}
     {% if pkg.type == 'data-publication' %}
