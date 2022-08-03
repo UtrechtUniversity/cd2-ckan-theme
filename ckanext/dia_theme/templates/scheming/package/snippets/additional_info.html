@@ -8,6 +8,9 @@
     'tag_string',
     'license_id',
     'owner_org',
+    'wave',
+    'dc_labels',
+    'dc_onstructs',
     ] -%}
 
 {% block package_additional_info %}
@@ -17,7 +20,6 @@
         and pkg_dict[field.field_name]|length -%}
       <tr>
         <th scope="row" class="dataset-label">
-          fuck
             {{ h.scheming_language_text(field.label) }}
         </th>
         <td class="dataset-details"{%
