@@ -25,9 +25,16 @@
   </ul>
 
 
-  {{ pkg_dict }}
+  <h4>Waves</h4>
+  <ul class="dataset-resources list-unstyled">
+  {% set waves = pkg_dict.wave %}
+  {% for wave in waves  %}
+    <li>
+      <a href="#" class="label">{{wave["wave_title"]}}</a>
+  </li>
+  {% endfor %}
+  </ul>
   
-
   {%- for field in schema.dataset_fields -%}
     {% if field.field_name == 'wave'%}
     <table class="table table-striped table-bordered table-condensed">
