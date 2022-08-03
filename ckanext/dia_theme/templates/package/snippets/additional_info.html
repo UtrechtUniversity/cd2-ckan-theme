@@ -1,10 +1,21 @@
 <section class="additional-info">
 
+  <h4>Labels</h4>
   <ul class="dataset-resources list-unstyled">
   {% set labels = pkg_dict.dc_labels %}
   {% for label in labels  %}
     <li>
-      <a href="#" class="label" data-format="xls">{{label}}</a>
+      <a href="#" class="label" data-format="xls">{{label["dc_label"]}}</a>
+  </li>
+  {% endfor %}
+  </ul>
+
+  <h4>Constructs</h4>
+  <ul class="dataset-resources list-unstyled">
+  {% set constructs = pkg_dict.dc_constructs %}
+  {% for construct in constructs  %}
+    <li>
+      <a href="#" class="label" data-format="xls">{{construct["dc_construct"]}}</a>
   </li>
   {% endfor %}
   </ul>
