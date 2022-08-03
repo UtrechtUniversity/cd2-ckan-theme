@@ -30,7 +30,6 @@
           [{{ _('Deleted') }}]
         {% endif %}
       {% endblock %}
-      test
     </h1>
     {% block package_notes %}
       {% if pkg.notes %}
@@ -44,9 +43,9 @@
   {% endblock %}
 
   {% block package_resources %}
-    {% if pkg.type != 'data-publication' and pkg.type != 'lab' %}
+    
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
-    {% endif %}
+
   {% endblock %}
 
   {% block package_tags %}
