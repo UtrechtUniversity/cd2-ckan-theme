@@ -51,8 +51,5 @@ def _modify(coord):
 
 
 def fetch_api(words):
-    ##r = requests.get(url)
-    ##plist_resources = r.json()
-    ##print(len(plist_resources['result']))
     return words
 
