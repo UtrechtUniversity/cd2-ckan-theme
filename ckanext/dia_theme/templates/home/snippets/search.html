@@ -1,6 +1,14 @@
-{% set labels = h.get_facet_items_dict('dc_labels', limit=3) %}
+<script>
+  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
+fetch(url)
+  .then(function (response) {
+    // The JSON data will arrive here
+  })
+  .catch(function (err) {
+    // If an error occured, you will catch it here
+});
+</script>
 
-{{ labels }}
 
 <div class="module module-search module-narrow module-shallow box">
   <form class="module-content search-form" method="get" action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
