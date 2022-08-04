@@ -54,7 +54,7 @@
       for (const result of data.result.results) {
         console.log(result)
           div.innerHTML += `<div class="col-sm-6 col-lg-4">
-                          <a href="" class="link-tile" title="" data-mh="recently-updated-tiles">
+                          <a href="{% url_for 'dataset.search' %}`+ result.id +`" class="link-tile" title="" data-mh="recently-updated-tiles">
                             <span class="link-tile__header">
                               <span class="link-tile__header-text">` +  result.dc_instrument_name + `</span>
                               <span class="link-tile__icon ri ri-arrow-right"></span>
