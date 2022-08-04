@@ -8,7 +8,7 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
     console.log(data.result.facets.dc_label)
     const keys = Object.keys(data.result.facets.dc_label);
     for (const key of keys) {
-        div.innerHTML += '<a href="{% url_for 'dataset.search' %}/?q='+ key +'" class="label">' + key + '</a>';
+        div.innerHTML += '<a href="{% url_for 'dataset.search' %}?q='+ key +'" class="tag">' + key + '</a>';
            if (keys.indexOf(key) == 8) {
               break;
             }
@@ -29,9 +29,9 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
       </button>
     </div>
   </form>
-  
-  <div class="tag">
+  </div>
+  <div class="tags">
     <h3>Popular labels</h3>
     <div id="label-pit"></div>
   </div>
-</div>
+
