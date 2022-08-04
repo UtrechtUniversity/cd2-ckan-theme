@@ -50,6 +50,4 @@ def _modify(coord):
     return [lat, long]
 
 
-def fetch_api(words):
-    return words
 
