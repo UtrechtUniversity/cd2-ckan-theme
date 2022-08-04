@@ -1,6 +1,7 @@
 <script>
 // little bit of dirty javascript to get popular labels
-url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
+
+url = "{% url_for('home.index') %}/api/3/action/package_search?facet.field=[%22dc_label%22]"
   fetch(url)
   .then(res => res.json())
   .then(data => {
