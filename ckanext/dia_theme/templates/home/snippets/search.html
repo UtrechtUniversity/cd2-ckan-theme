@@ -7,12 +7,14 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
     var div = document.getElementById('label-pit');
     console.log(data.result.facets.dc_label)
     const keys = Object.keys(data.result.facets.dc_label);
+    div.innerHTML += '<ul>'
     for (const key of keys) {
-        div.innerHTML += ' <a href="{% url_for 'dataset.search' %}" class="label">' + key + '</a> ';
+        div.innerHTML += '<li><a href="{% url_for 'dataset.search' %}'+ key +'" class="label">' + key + '</a></li>';
            if (keys.indexOf(key) == 8) {
               break;
             }
       }
+      div.innerHTML += '</ul>'
     });
 </script>
   
