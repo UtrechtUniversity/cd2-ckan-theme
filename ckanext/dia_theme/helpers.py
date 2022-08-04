@@ -13,7 +13,7 @@ def parent_site_url():
     return config.get('ckan.parent_site_url', toolkit.h.url('home'))
 
 
-def modify_geojson(geojson_string):
+def fetch_api(geojson_string):
     """
     Returns 'fixed' geojson if the input is a Polygon or MultiPolygon type.
     Valid geojson should be within the -180, 180 range, but for most datasets
@@ -50,9 +50,9 @@ def _modify(coord):
     return [lat, long]
 
 
-def fetch_api(url):
+def fetch_api(words):
     ##r = requests.get(url)
     ##plist_resources = r.json()
     ##print(len(plist_resources['result']))
-    return url
+    return words
 
