@@ -1,9 +1,6 @@
 =============
 ckanext-dia_theme
 =============
-
-Frontend CKAN theme for data.govt.nz written in LESS
-
 ------------
 Requirements
 ------------
