@@ -43,48 +43,38 @@
 
  <div class="margin-b-lg">
   <h2>Recently updated</h2>
-  <div class="row">
+
+
+  <script>
+    url = "http://131.211.12.40/api/3/action/package_search"
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      var div = document.getElementById('recently-updated');
+      for (const result of data.result.results) {
+        console.log(result)
+          div.innerHTML += `<div class="col-sm-6 col-lg-4">
+                          <a href="" class="link-tile" title="" data-mh="recently-updated-tiles">
+                            <span class="link-tile__header">
+                              <span class="link-tile__header-text">` +  result.dc_instrument_name + `</span>
+                              <span class="link-tile__icon ri ri-arrow-right"></span>
+                            </span>
+                            <span class="link-tile__content">` +  result.dc_cohort + `
+                              <br>
+                              <small>`+result.metadata_modified+`</small>
+                            </span>
+                          </a>
+                          </div>`
+         if (data.result.results.indexOf(result) == 3) {
+                  break;
+            }
+        }
+      });
+    </script>
+     <div class="row" id="recently-updated">
     
-      
-        <div class="col-sm-6 col-lg-4">
-          <a href="" class="link-tile" title="" data-mh="recently-updated-tiles">
-            <span class="link-tile__header">
-              <span class="link-tile__header-text"></span>
-              <span class="link-tile__icon ri ri-arrow-right"></span>
-            </span>
-            <span class="link-tile__content">
-              <br>
-              <small></small>
-            </span>
-          </a>
-        </div>
-      
-        <div class="col-sm-6 col-lg-4">
-          <a href="" class="link-tile" title="" data-mh="recently-updated-tiles">
-            <span class="link-tile__header">
-              <span class="link-tile__header-text"></span>
-              <span class="link-tile__icon ri ri-arrow-right"></span>
-            </span>
-            <span class="link-tile__content">
-              <br>
-              <small></small>
-            </span>
-          </a>
-        </div>
-      
-        <div class="col-sm-6 col-lg-4">
-          <a href="" class="link-tile" title="" data-mh="recently-updated-tiles">
-            <span class="link-tile__header">
-              <span class="link-tile__header-text"></span>
-              <span class="link-tile__icon ri ri-arrow-right"></span>
-            </span>
-            <span class="link-tile__content">
-              <br>
-              <small></small>
-            </span>
-          </a>
-        </div>
-  </div>
+    
+     </div>
 </div>
 
 </div>
