@@ -51,8 +51,8 @@ def _modify(coord):
 
 
 def fetch_api(url):
-    r = requests.get(url)
-    plist_resources = r.json()
-    print(len(plist_resources['result']))
-
+    ##r = requests.get(url)
+    ##plist_resources = r.json()
+    ##print(len(plist_resources['result']))
+    return url
 

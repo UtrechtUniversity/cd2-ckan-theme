@@ -1,3 +1,7 @@
+{%  test = h.fetch_api('google.com') %}
+{{ test }}
+
+
 <div class="module module-search module-narrow module-shallow box">
   <form class="module-content search-form" method="get" action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
     <h3 class="heading"><label for="searchbox">{{ _("Search data") }}</label></h3>
