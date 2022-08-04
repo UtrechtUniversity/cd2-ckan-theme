@@ -48,3 +48,11 @@ def _modify(coord):
     if lat < 0:
         lat = lat + 360
     return [lat, long]
+
+
+def fetch_api(url):
+    r = requests.get(url)
+    plist_resources = r.json()
+    print(len(plist_resources['result']))
+
+
