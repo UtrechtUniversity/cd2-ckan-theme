@@ -7,14 +7,12 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
     var div = document.getElementById('label-pit');
     console.log(data.result.facets.dc_label)
     const keys = Object.keys(data.result.facets.dc_label);
-    div.innerHTML += '<ul>'
     for (const key of keys) {
-        div.innerHTML += '<li><a href="{% url_for 'dataset.search' %}/?q='+ key +'" class="label">' + key + '</a></li>';
+        div.innerHTML += '<a href="{% url_for 'dataset.search' %}/?q='+ key +'" class="label">' + key + '</a>';
            if (keys.indexOf(key) == 8) {
               break;
             }
       }
-      div.innerHTML += '</ul>'
     });
 </script>
   
@@ -29,8 +27,10 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
         <i class="icon-search"></i>
         <span>{{ _('Search') }}</span>
       </button>
-    </div>
-  </form>
-  <h3>Popular labels</h3>
+
+
+  <h3>Popular keywords</h3>
   <div id="label-pit"></div>
+</div>
+</form>
 </div>
