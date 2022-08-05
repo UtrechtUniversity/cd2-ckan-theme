@@ -1,23 +1,4 @@
-<script>
-// little bit of dirty javascript to get popular labels
 
-url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
-  fetch(url)
-  .then(res => res.json())
-  .then(data => {
-    var div = document.getElementById('label-pit');
-    console.log(data.result.facets.dc_label)
-    const keys = Object.keys(data.result.facets.dc_label);
-    div.innerHTML += '<li>Popular keywords:</li>&nbsp;'
-    for (const key of keys) {
-        div.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_label='+ key +'" class="tag tag-frontpage">' + key + '</a></li>';
-           if (keys.indexOf(key) == 8) {
-              break;
-            }
-      }
-      
-    });
-</script>
 <div class="module module-search module-narrow module-shallow box">
   <form class="module-content search-form" method="get" action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
     <h3 class="heading"><label for="searchbox">{{ _("Search data") }}</label></h3>
@@ -30,7 +11,5 @@ url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label
     </div>
   </form>
   </div>
-  <div class="tags" style="margin-bottom:30px;margin-top:-40px;">
-    <div id="label-pit"></div>
-  </div>
+ 
 
