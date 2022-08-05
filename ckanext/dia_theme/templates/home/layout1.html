@@ -1,11 +1,68 @@
-<div role="main" class="hero">
+<script>
+  url = "http://131.211.12.40/api/3/action/package_search"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      var div = document.getElementById('recently-updated');
+      for (const result of data.result.results) {
+        console.log(result)
+        div.innerHTML += `<div class="col-sm-6 col-lg-4">
+                        <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile" title="" data-mh="recently-updated-tiles">
+                          <span class="link-tile__header">
+                            <span class="link-tile__header-text">` + result.dc_instrument_name + `</span>
+                            <span class="link-tile__icon ri ri-arrow-right"></span>
+                          </span>
+                          <span class="link-tile__content">` + result.dc_cohort + `
+                            <br>
+                            <small>`+ result.metadata_modified + `</small>
+                          </span>
+                        </a>
+                        </div>`
+        if (data.result.results.indexOf(result) == 2) {
+          break;
+        }
+      }
+    });
 
+  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      var ulLabel = document.getElementById('label-pit');
+      const keys = Object.keys(data.result.facets.dc_label);
+      for (const key of keys) {
+        ulLabel.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
+        if (keys.indexOf(key) == 8) {
+          break;
+        }
+      }
+    });
+
+  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_construct%22]"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      var ulCon = document.getElementById('construct-pit');
+      console.log(data.result.facets.dc_label)
+      const keys = Object.keys(data.result.facets.dc_label);
+      for (const key of keys) {
+        ulCon.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
+        if (keys.indexOf(key) == 8) {
+          break;
+        }
+      }
+
+    });
+</script>
+
+
+<div role="main" class="hero">
   {% snippet 'home/snippets/stats.html' %}
-    <div class="container">
+  <div class="container">
     <div class="row row1">
       <div class="span12 col1">
         {% block search %}
-          {% snippet 'home/snippets/search.html' %}
+        {% snippet 'home/snippets/search.html' %}
         {% endblock %}
       </div>
     </div>
@@ -13,101 +70,54 @@
 </div>
 <div role="main" id="content">
   <div class="container">
+
+    <div class="margin-b-sm">
+      <h2>Popular dataset labels</h2>
+      <div class="row">
+        <ul class="menu blog-filter-menu" id="label-pit">
+        </ul>
+      </div>
+    </div>
+    <div class="margin-b-sm">
+      <h2>Popular dataset constructs</h2>
+      <div class="row">
+        <ul class="menu blog-filter-menu" id="construct-pit">
+        </ul>
+      </div>
+    </div>
+    <div class="margin-b-lg">
+      <h2>Recently updated</h2>
+      <div class="row" id="recently-updated">
+      </div>
+    </div>
+
+
     <div class="row margin-b-lg">
       <div class="col-md-6 col-lg-4">
         <div class="card" data-mh="card">
-            
-              <img src="https://www.uu.nl/sites/default/files/styles/image_370x245/public/Bouw.png" alt="" class="card__image">
-              <h2 class="card__title">
-                  Test Environment for CD<sup>2</sup>
-              </h2>
-            </a>
-            <div class="excerpt">
-              <p><span>Welcome to the testing environment for the project "Connecting Data in Child Development".</span></p>
-            </div>
-            <div class="margin-t-sm">
-              <span class="author">
+          <img src="https://www.uu.nl/sites/default/files/styles/image_370x245/public/Bouw.png" alt=""
+            class="card__image">
+          <h2 class="card__title">
+            Test Environment for CD<sup>2</sup>
+          </h2>
+          </a>
+          <div class="excerpt">
+            <p><span>Welcome to the testing environment for the project "Connecting Data in Child Development".</span>
+            </p>
+          </div>
+          <div class="margin-t-sm">
+            <span class="author">
               By
               Pascal Pas
-              </span>
-              <time class="datetime" datetime="2022-08-02 16:11:08">August 2nd 2022</time>
-              <hr class="padding-t-md">
-              <small class="padding-t-md">
+            </span>
+            <time class="datetime" datetime="2022-08-02 16:11:08">August 2nd 2022</time>
+            <hr class="padding-t-md">
+            <small class="padding-t-md">
               <a class="card__blogpg-link" href="/blog">...</a>
-              </small>
-            </div>
+            </small>
+          </div>
         </div>
       </div>
-  </div>
-
-
- <div class="margin-b-lg">
-  <h2>Recently updated</h2>
-
-
-  <script>
-    url = "http://131.211.12.40/api/3/action/package_search"
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      var div = document.getElementById('recently-updated');
-      for (const result of data.result.results) {
-        console.log(result)
-          div.innerHTML += `<div class="col-sm-6 col-lg-4">
-                          <a href="{% url_for 'dataset.search' %}`+ result.id +`" class="link-tile" title="" data-mh="recently-updated-tiles">
-                            <span class="link-tile__header">
-                              <span class="link-tile__header-text">` +  result.dc_instrument_name + `</span>
-                              <span class="link-tile__icon ri ri-arrow-right"></span>
-                            </span>
-                            <span class="link-tile__content">` +  result.dc_cohort + `
-                              <br>
-                              <small>`+result.metadata_modified+`</small>
-                            </span>
-                          </a>
-                          </div>`
-         if (data.result.results.indexOf(result) == 2) {
-                  break;
-            }
-        }
-      });
-    </script>
-     
-     <div class="row" id="recently-updated">
-     </div>
-</div>
-
-
-<script>
-  // little bit of dirty javascript to get popular labels
-  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      var ulEl = document.getElementById('label-pit');
-      console.log(data.result.facets.dc_label)
-      const keys = Object.keys(data.result.facets.dc_label);
-      for (const key of keys) {
-          ulEl.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_label='+ key +'" class="category-select">' + key + '</a></li>';
-             if (keys.indexOf(key) == 8) {
-                break;
-              }
-        }
-        
-      });
-  </script>
-
-<div class="margin-b-sm">
-  <h2>Popular dataset labels</h2>
-    <div class="row">
-      <ul class="menu blog-filter-menu" id="label-pit">
-          
-      </ul>
     </div>
+  </div>
 </div>
-
-
-
-</div>
-</div>
-
-
