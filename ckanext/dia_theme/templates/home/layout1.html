@@ -5,7 +5,7 @@
   // Javascript to fetch json from CKAN API and add content to homepage
   // Todo: rewrite in Python and call as CKAN plugin
 
-  url = "{{ h.parent_site_url() }} api/3/action/package_search"
+  url = "{% url_for 'dataset.search' %} api/3/action/package_search"
   fetch(url)
     .then(res => res.json())
     .then(data => {
