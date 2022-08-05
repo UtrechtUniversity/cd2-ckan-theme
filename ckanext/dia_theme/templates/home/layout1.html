@@ -5,7 +5,7 @@
   // Javascript to fetch json from CKAN API and add content to homepage
   // Todo: rewrite in Python and call as CKAN plugin
 
-  url = "http://131.211.12.40/api/3/action/package_search"
+  url = "{{ h.parent_site_url() }} api/3/action/package_search"
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -30,7 +30,7 @@
       }
     });
 
-  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_label%22]"
+  url = "{{ h.parent_site_url() }} api/3/action/package_search?facet.field=[%22dc_label%22]"
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -44,7 +44,7 @@
       }
     });
 
-  url = "http://131.211.12.40/api/3/action/package_search?facet.field=[%22dc_construct%22]"
+  url = "{{ h.parent_site_url() }} api/3/action/package_search?facet.field=[%22dc_construct%22]"
   fetch(url)
     .then(res => res.json())
     .then(data => {
