@@ -43,15 +43,14 @@
     .then(res => res.json())
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
-      console.log(data.result.facets.dc_label)
-      const keys = Object.keys(data.result.facets.dc_label);
+      console.log(data.result.facets.dc_construct)
+      const keys = Object.keys(data.result.facets.dc_construct);
       for (const key of keys) {
         ulCon.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
         if (keys.indexOf(key) == 8) {
           break;
         }
       }
-
     });
 </script>
 
