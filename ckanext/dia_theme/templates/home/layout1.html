@@ -1,4 +1,7 @@
 <script>
+  // Javascript to fetch json from CKAN API and add content to homepage
+  // Todo: rewrite in Python and call as CKAN plugin
+
   url = "http://131.211.12.40/api/3/action/package_search"
   fetch(url)
     .then(res => res.json())
@@ -92,13 +95,14 @@
     </div>
 
     <div class="margin-b-lg">
-      <h2>Recently updated</h2>
+      <h4><i class="fa fa-clock-o" aria-hidden="true"></i> Recently updated</h4>
       <div class="row" id="recently-updated">
       </div>
     </div>
 
 
     <div class="row margin-b-lg">
+      <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i> News</h4>
       <div class="col-md-6 col-lg-4">
         <div class="card" data-mh="card">
           <img src="https://www.uu.nl/sites/default/files/styles/image_370x245/public/Bouw.png" alt=""
