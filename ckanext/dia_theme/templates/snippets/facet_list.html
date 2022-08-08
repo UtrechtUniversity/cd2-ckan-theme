@@ -21,7 +21,6 @@
 	    {% block facet_list_item %}
 		{% block facet_list_heading %}
 
-		<style>.hidden { display:none } </style>
 			<script>
 				document.addEventListener("DOMContentLoaded", function(event) { 
 				$('#filter{{ title }}').on('keyup', function () {
@@ -31,6 +30,8 @@
 						a = this;			
 						this.hidden = false; 
 						if (showAll == false) {
+							console.log(a.innerText)
+							console.log(this)
 							if (a.innerText.includes(search) > 0 ) {this.hidden = false} else {this.hidden = true}
 						}
 					}); 
