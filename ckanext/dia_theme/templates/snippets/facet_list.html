@@ -20,11 +20,30 @@
 	    {% endif %}
 	    {% block facet_list_item %}
 		{% block facet_list_heading %}
+
+
+			<script>
+				document.addEventListener("DOMContentLoaded", function(event) { 
+				$('#filter{{ title }}').on('keyup', function () {
+					var search = this.value;  
+					if( search.length < 2) { var showAll = true } else { showAll = false } 
+					$('.element').each(function() {
+						a = this;			
+						this.hidden = false; 
+						if (showAll == false) {
+							if (a[0].innerText.includes(search) > 0 ) {this.hidden = false} else {this.hidden = true}
+						}
+					}); 
+				})
+			});
+			</script>
+
+
 			<h2 class="module-heading" style="margin-bottom:-20px">
 			    <i class="fa fa-filter"></i>
 			    {{ title }}
 			<br />
-			<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter" style="font-size: 14px;margin-top: 10px;"></h2>
+			<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter" style="font-size:14px;margin-top:10px;margin-left:-10%;width:120%;"></h2>
 		    {% endblock %}
 		<section class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
 		    
