@@ -124,20 +124,6 @@
                                 <label for="{$LabelPrefix}-field-sitewide-search">
                                     {{ _('Search for') }}:
                                 </label>
-                                <div class="context-switch">
-                                    <div class="field field--inline-label">
-                                        <input id="{$LabelPrefix}-search-for-website-content" type="radio" class="search-form-context" name="header-search-context" value="content" />
-                                        <label for="{$LabelPrefix}-search-for-website-content">
-                                            {{ _('Website content') }}
-                                        </label>
-                                    </div>
-                                    <div class="field field--inline-label">
-                                        <input id="{$LabelPrefix}-search-for-datasets" type="radio" class="search-form-context" name="header-search-context" value="datasets" checked="checked" />
-                                        <label for="{$LabelPrefix}-search-for-datasets">
-                                            {{ _('Datasets') }}
-                                        </label>
-                                    </div>
-                                </div>
                                 <div class="field search-input">
                                     <input class="ss-search-url" value="{{ h.parent_site_url() }}/search/SearchForm" type="hidden">
                                     <input class="ckan-search-url" value="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}" type="hidden">
