@@ -44,8 +44,9 @@
       <ul class="dataset-resources list-unstyled">
       {% set waves = pkg_dict.wave %}
       {% for wave in waves  %}
+      {% set wavename = wave["wave_title"] %}
         <li>
-          <a href="#" class="label">{{wave["wave_title"]}}</a>
+          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label">{{wave["wave_title"]}}</a>
       </li>
       {% endfor %}
       </ul>
