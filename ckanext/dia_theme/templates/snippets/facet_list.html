@@ -28,16 +28,18 @@
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
 			    {% if items %}
 
-				{% if title == 'Waves' %}
-
-					{{ items }}
-
-				{% endif %}
-
 				<nav aria-label="{{ title }}">
 				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 					{% for item in items %}
-					    {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+
+					{% if title !=study %}
+
+					<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter">
+
+					{% endif %}
+
+					 
+					{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
 					    {% set label = label_function(item) if label_function else item.display_name %}
 					    {% set label_truncated = label|truncate(22) if not label_function else label %}
 					    {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
