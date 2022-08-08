@@ -26,24 +26,6 @@
 			    {{ title }}
 			</h2>
 
-			{% if title != 'study' %}
-
-				<script>
-				$('#filter{{ title }}').on('keyup', function () {
-					var search = this.value;  
-					if( search.length < 2) { var showAll = true } else { showAll = false } 
-					$('.element').each(function() {
-						a = this; 
-						this.hidden = false; 
-						if (showAll == false) {
-							if (a[0].innerText.includes(search) > 0 ) {this.hidden = false} else {this.hidden = true}
-						}
-					}); 
-				})
-				</script>
-				<input type="text" style="font-size:14px" class="form-control" id="filter {{ title }}" placeholder="Filter">
-			{% endif %}
-
 		    {% endblock %}
 		    {% block facet_list_items %}
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
