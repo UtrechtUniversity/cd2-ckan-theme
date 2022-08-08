@@ -1,5 +1,7 @@
 {% block facet_list %}
 
+
+
     {% set hide_empty = hide_empty or false %}
 
     {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
@@ -23,8 +25,23 @@
 			    <i class="fa fa-filter"></i>
 			    {{ title }}
 			</h2>
+
 			{% if title != 'study' %}
-				<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter">
+
+				<script>
+				$('#filter{{ title }}').on('keyup', function () {
+					var search = this.value;  
+					if( search.length < 2) { var showAll = true } else { showAll = false } 
+					$('.element').each(function() {
+						a = this; 
+						this.hidden = false; 
+						if (showAll == false) {
+							if (a[0].innerText.includes(search) > 0 ) {this.hidden = false} else {this.hidden = true}
+						}
+					}); 
+				})
+				</script>
+				<input type="text" style="font-size:14px" class="form-control" id="filter {{ title }}" placeholder="Filter">
 			{% endif %}
 
 		    {% endblock %}
@@ -33,7 +50,7 @@
 			    {% if items %}
 
 				<nav aria-label="{{ title }}">
-				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
+				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }} element">
 					{% for item in items %}
 
 					{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
