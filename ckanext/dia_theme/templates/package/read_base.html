@@ -28,41 +28,6 @@
 {% block secondary_content %}
   {% block secondary_help_content %}{% endblock %}
 
-  {% if pkg.type == 'data-publication' %}
-    {% if pkg.msl_downloads|length > 0 %}
-      <div class="module module-narrow module-shallow context-info">
-        <h2 class="module-heading"><i class="fa fa-file-o"></i> Downloads</h2>
-        <section class="module-content">
-          <ul class="fa-ul">
-            {% for i in range(0, pkg.msl_downloads|length) %}
-              {% if pkg.msl_downloads[i].msl_file_name %}
-                <li>
-                  <i class="fa-li fa fa-file-text"></i><a href="{{ pkg.msl_downloads[i].msl_download_link }}" title="{{ pkg.msl_downloads[i].msl_file_name }}">{{ pkg.msl_downloads[i].msl_file_name }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </section>
-      </div>
-    {% endif %}
-
-    {% if pkg.msl_laboratories|length > 0 %}
-      <div class="module module-narrow module-shallow context-info">
-        <h2 class="module-heading"><i class="fa fa-building-o"></i> Labs</h2>
-        <section class="module-content">
-          <ul class="fa-ul">
-            {% for i in range(0, pkg.msl_laboratories|length) %}
-              {% if pkg.msl_laboratories[i].msl_lab_name %}
-                <li>
-                  <i class="fa-li fa fa-university"></i><a href="../lab/{{ pkg.msl_laboratories[i].msl_lab_id }}" title="{{ pkg.msl_laboratories[i].msl_lab_name }}">{{ pkg.msl_laboratories[i].msl_lab_name }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </section>
-      </div>
-    {% endif %}
-  {% else %}
     {% block package_info %}
       {% snippet 'package/snippets/info.html', pkg=pkg %}
     {% endblock %}
@@ -81,5 +46,5 @@
     {% block package_license %}
       {% snippet "snippets/license.html", pkg_dict=pkg %}
     {% endblock %}
-  {% endif %}
+
 {% endblock %}
