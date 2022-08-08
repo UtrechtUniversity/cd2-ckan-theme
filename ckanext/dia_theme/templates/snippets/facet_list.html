@@ -2,12 +2,13 @@
 
     {% set hide_empty = hide_empty or false %}
 
-	{% set subdomain = h.get_request_param('msl_subdomain', default=None) %}
-
     {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
 
 	{% if items or not hide_empty %}
 		{% set hide_sub_facet = False %}
+		{% if name == 'type' %}
+			{% set hide_sub_facet = True %}
+		{% endif %}
 
 	{% if not hide_sub_facet %}
 	    {% if within_tertiary %}
@@ -57,7 +58,7 @@
 				    {% endif %}
 				</p>
 			    {% else %}
-				<p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
+				<p class="module-content empty">{{ _('There are no {facet_type}s that match this search').format(facet_type=title) }}</p>
 			    {% endif %}
 			{% endwith %}
 		    {% endblock %}

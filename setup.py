@@ -16,17 +16,17 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='3.0.3',
+    version='3.0.4',
 
-    description='''DIA Theme for CKAN''',
+    description='''Ported NZ-DIA Theme for CKAN''',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/data-govt-nz/ckanext-dia_theme',
+    url='https://github.com/UtrechtUniversity/ckanext-dia_theme',
 
     # Author details
-    author='''Data.govt.nz''',
-    author_email='''info@data.govt.nz''',
+    author='''CD2''',
+    author_email='''info@cd2.nl''',
 
     # Choose your license
     license='AGPL',
