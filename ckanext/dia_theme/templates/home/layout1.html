@@ -11,7 +11,6 @@
     .then(data => {
       var div = document.getElementById('recently-updated');
       for (const result of data.result.results) {
-        console.log(result)
         div.innerHTML += `<div class="col-sm-6 col-lg-4">
                         <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile" title="" data-mh="recently-updated-tiles">
                           <span class="link-tile__header">
@@ -49,7 +48,6 @@
     .then(res => res.json())
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
-      console.log(data.result.facets.dc_construct)
       const keys = Object.keys(data.result.facets.dc_construct);
       for (const key of keys) {
         ulCon.innerHTML += '<li><a href="{% url_for 'dataset.search' %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
@@ -103,9 +101,8 @@
       </div>
     </div>
 
-
     <div class="row margin-b-lg">
-      <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i> News</h4>
+      <h4>News</h4>
       <div class="col-md-6 col-lg-4">
         <div class="card" data-mh="card">
           <img src="https://www.uu.nl/sites/default/files/styles/image_370x245/public/Bouw.png" alt=""
