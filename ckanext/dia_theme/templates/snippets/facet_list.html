@@ -23,6 +23,10 @@
 			    <i class="fa fa-filter"></i>
 			    {{ title }}
 			</h2>
+			{% if title !== study %}
+				<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter">
+			{% endif %}
+
 		    {% endblock %}
 		    {% block facet_list_items %}
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
@@ -32,13 +36,6 @@
 				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 					{% for item in items %}
 
-					{% if title !=study %}
-
-					<input type="text" class="form-control" id="filter {{ title }}" placeholder="Filter">
-
-					{% endif %}
-
-					 
 					{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
 					    {% set label = label_function(item) if label_function else item.display_name %}
 					    {% set label_truncated = label|truncate(22) if not label_function else label %}
