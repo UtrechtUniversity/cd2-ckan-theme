@@ -26,7 +26,7 @@
 				$('#filter{{ title }}').on('keyup', function () {
 					var search = this.value;  
 					if( search.length < 2) { var showAll = true } else { showAll = false } 
-					$('#element').each(function() {
+					$('.{{ title }}_element').each(function() {
 						a = this;			
 						this.hidden = false; 
 						if (showAll == false) {
@@ -61,14 +61,15 @@
 					    {% set label_truncated = label|truncate(22) if not label_function else label %}
 					    {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
-
-					    <li id="element" class="element {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+						<span class="{{ title }}_element">
+					    <li class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 						    <span class="item-label">{{ label_truncated }}</span>
 						    <span class="hidden separator"> - </span>
 						    <span class="item-count badge">{{ count }}</span>
 						</a>
 					    </li>
+						</span>
 					{% endfor %}
 				    </ul>
 				</nav>
