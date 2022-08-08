@@ -1,21 +1,20 @@
 =============
 ckanext-dia_theme
 =============
+
+Cloned from /data-govt-nz/ckanext-dia_theme and adapted for CD2
+
 ------------
 Requirements
 ------------
 
 CKAN 2.9.x
 
-Possibly also CKAN 2.8.x, untested
-
-If using CKAN 2.7.x, checkout this repo at tag 2.1.1
-
 ------------
 Installation
 ------------
 
-To install ckanext-dia_theme:
+To install the theme:
 
 1. Activate your CKAN virtual environment, for example::
 
@@ -27,7 +26,7 @@ To install ckanext-dia_theme:
 
 3. Add ``dia_theme`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
-   ``/etc/ckan/default/production.ini``).
+   ``/etc/ckan/default/ckan.ini``).
 
 4. Restart CKAN. For example if you've deployed CKAN with Nginx on Ubuntu::
 
