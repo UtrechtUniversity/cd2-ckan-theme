@@ -28,6 +28,12 @@
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
 			    {% if items %}
 
+				{% if title == 'Waves' %}
+
+				{{ items }}
+
+				{% endif% }
+
 				<nav aria-label="{{ title }}">
 				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 					{% for item in items %}
