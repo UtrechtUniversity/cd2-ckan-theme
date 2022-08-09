@@ -28,9 +28,9 @@
 					if( search.length < 2) { var showAll = true } else { showAll = false } 
 					$('.{{ title }}_element').each(function() {
 						a = this;			
-						this.style.display = "inline-block"; 
+						this.style.display = "block"; 
 						if (showAll == false) {
-							if (a.innerText.includes(search) > 0 ) {this.style.display = "inline-block";} else {this.style.display = "none";}
+							if (a.innerText.includes(search) > 0 ) {this.style.display = "block";} else {this.style.display = "none";}
 						}
 					}); 
 				})
