@@ -35,9 +35,9 @@
 					}); 
 				});
 				liElements = document.getElementsByClassName('element_{{ title }}');
-				maxWidth = (liElements.length * 30) + 90;
-				if (maxWidth < 300) { maxWidth = 300 }
-				document.getElementById('section_{{ title }}').style.width = maxWidth + 'px';
+				maxHeight = (liElements.length * 30) + 90;
+				if (maxHeight > 300) { maxHeight = 300 }
+				document.getElementById('section_{{ title }}').style.height = maxHeight + 'px';
 
 			});
 			</script>
