@@ -23,10 +23,10 @@
 
 			<script>
 				document.addEventListener("DOMContentLoaded", function(event) { 
-				$('#filter{{ title }}').on('keyup', function () {
+				$('#filter_{{ title }}').on('keyup', function () {
 					var search = this.value;  
 					if( search.length < 2) { var showAll = true } else { showAll = false } 
-					$('.{{ title }}_element').each(function() {
+					$('.element_{{ title }}').each(function() {
 						a = this;			
 						this.style.display = "block"; 
 						if (showAll == false) {
@@ -42,9 +42,9 @@
 			    <i class="fa fa-filter"></i>
 			    {{ title }}
 			<br />
-			<input type="text" class="form-control" id="filter{{ title }}" placeholder="Filter" style="font-size:14px;margin-top:10px;margin-left:-10%;width:120%;"></h2>
+			<input type="text" class="form-control" id="filter_{{ title }}" placeholder="Filter" style="font-size:14px;margin-top:10px;margin-left:-10%;width:120%;"></h2>
 		    {% endblock %}
-		<section class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+			<section id="section_{{ title }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
 		    
 		    {% block facet_list_items %}
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
@@ -60,7 +60,7 @@
 					    {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
 					
-					    <li class="{{ title }}_element nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+					    <li class="element_{{ title }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 						    <span class="item-label">{{ label_truncated.lower() }}</span>
 						    <span class="hidden separator"> - </span>
