@@ -28,11 +28,9 @@
 					if( search.length < 2) { var showAll = true } else { showAll = false } 
 					$('.{{ title }}_element').each(function() {
 						a = this;			
-						this.hidden = false; 
+						this.style.display = "inline-block"; 
 						if (showAll == false) {
-							console.log(a.innerText)
-							console.log(this)
-							if (a.innerText.includes(search) > 0 ) {this.hidden = false} else {this.hidden = true}
+							if (a.innerText.includes(search) > 0 ) {this.style.display = "inline-block";} else {this.style.display = "none";}
 						}
 					}); 
 				})
@@ -55,21 +53,21 @@
 				<nav aria-label="{{ title }}">
 				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 					{% for item in items %}
-					<span class="{{ title }}_element">
+
 					{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
 					    {% set label = label_function(item) if label_function else item.display_name %}
 					    {% set label_truncated = label|truncate(22) if not label_function else label %}
 					    {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
 					
-					    <li class="nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+					    <li class="{{ title }}_element nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 						    <span class="item-label">{{ label_truncated.lower() }}</span>
 						    <span class="hidden separator"> - </span>
 						    <span class="item-count badge">{{ count }}</span>
 						</a>
 					    </li>
-						</span>
+				
 					{% endfor %}
 				    </ul>
 				</nav>
