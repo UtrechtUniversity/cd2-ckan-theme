@@ -22,7 +22,7 @@
 		{% block facet_list_heading %}
 
 			<script>
-				document.addEventListener("DOMContentLoaded", function(event) { 
+			document.addEventListener("DOMContentLoaded", function(event) { 
 				$('#filter_{{ title }}').on('keyup', function () {
 					var search = this.value;  
 					if( search.length < 2) { var showAll = true } else { showAll = false } 
@@ -33,7 +33,12 @@
 							if (a.innerText.includes(search) > 0 ) {this.style.display = "block";} else {this.style.display = "none";}
 						}
 					}); 
-				})
+				});
+				liElements = document.getElementsByClassName('element_{{ title }}');
+				maxWidth = (liElements.length * 30) + 90;
+				if (maxWidth < 300) { maxWidth = 300 }
+				document.getElementById('section_{{ title }}').style.width = maxWidth + 'px';
+
 			});
 			</script>
 
