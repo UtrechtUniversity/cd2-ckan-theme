@@ -23,6 +23,7 @@
       {% block content %}
         <div class="dataset-content">
           {% block heading %}
+          <img src="{{ package.organization.img_url }}" style="width:40px; float:right">
             <h2 class="dataset-heading">
               {% block heading_private %}
               {% if package.private %}
