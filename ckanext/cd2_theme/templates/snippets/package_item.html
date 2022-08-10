@@ -49,7 +49,7 @@
             <table class="table table-condensed">
             <tbody>
               <tr><td width="30%">Study:</td><td><span class="label">{{package.dc_cohort}}</span></td></tr> 
-              <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span></td></tr>
+              <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
               <tr><td>Available measurements:</td><td>
                 {% for waves in package.wave %}
                   <span class="label">{{ waves.wave_title }}</span>
