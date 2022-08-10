@@ -1,7 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-from ckanext.dia_theme import helpers
+from ckanext.cd2_theme import helpers
 
 
 class CD2_ThemePlugin(plugins.SingletonPlugin):
