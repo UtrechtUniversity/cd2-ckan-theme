@@ -4,7 +4,7 @@ import ckan.plugins.toolkit as toolkit
 from ckanext.dia_theme import helpers
 
 
-class Dia_ThemePlugin(plugins.SingletonPlugin):
+class CD2_ThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
 
