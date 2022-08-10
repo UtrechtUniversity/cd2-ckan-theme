@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='''ckanext-dia_theme''',
+    name='''ckanext-cd2_theme''',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -22,11 +22,11 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/UtrechtUniversity/ckanext-dia_theme',
+    url='https://github.com/UtrechtUniversity/ckanext-cd2_theme',
 
     # Author details
     author='''CD2''',
-    author_email='''info@cd2.nl''',
+    author_email='''p.pas@uu.nl''',
 
     # Choose your license
     license='AGPL',
