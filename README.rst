@@ -1,5 +1,5 @@
 =============
-ckanext-dia_theme
+ckanext-cd2_theme
 =============
 
 Cloned from /data-govt-nz/ckanext-dia_theme and adapted for CD2
@@ -18,13 +18,14 @@ To install the theme:
 
 1. Activate your CKAN virtual environment, for example::
 
+     sudo -s
      . /usr/lib/ckan/default/bin/activate
 
-2. Install the ckanext-dia_theme Python package into your virtual environment::
+2. Install the ckanext-cd2_theme Python package into your virtual environment::
 
-     pip install ckanext-dia_theme
+     pip install ckanext-cd2_theme
 
-3. Add ``dia_theme`` to the ``ckan.plugins`` setting in your CKAN
+3. Add ``cd2_theme`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/ckan.ini``).
 
@@ -51,7 +52,7 @@ Alternatively the LESS files were previously compiled with these steps:
 
  - Install LESS Compiler
  - Make changes in LESS files as required
- - Open console and cd to /path/to/ckanext-dia_theme
- - Compile the LESS files by running " lessc less/main.less fanstatic/dia_custom.css "
+ - Open console and cd to /path/to/ckanext-cd2_theme
+ - Compile the LESS files by running " lessc less/main.less fanstatic/cd2_custom.css "
  - The CSS changes will now show up in the browser
 
