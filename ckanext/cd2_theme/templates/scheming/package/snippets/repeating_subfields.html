@@ -3,9 +3,6 @@
 {% block subfield_display %}
   {% for field_data in fields %}
     <div class="panel panel-default">
-        <header class="panel-heading">
-          {{ h.scheming_language_text(field.repeating_label or field.label) }} {{ loop.index }}
-        </header>
       <div class="panel-body">
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
@@ -37,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         doiResult = regpattern.exec(a.innerText);		
         console.log(doiResult);
         if (doiResult != null) {
-            a.innerHTML = a.innerHTML + '<a href="https://doi.org/' + doiResult[1].replace('doi: ', '') + '">' + doiResult[1] + '</a>';
+            if (doiResult.slice(-1) == '.') {
+                doiResult = doiResult.slice(0, -1);
+            }
+            doiURL = '<a href="https://doi.org/' + doiResult[1].replace('doi: ', '') + '">' + doiResult[1] + '</a>';
+            a.innerHTML = a.innerHTML.replace(doiResult[1], doiURL);
         }
     }); 
-
 });
-
-
-
 </script>
