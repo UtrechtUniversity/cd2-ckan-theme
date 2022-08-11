@@ -3875,7 +3875,7 @@ td {
       transition: 0.3s all ease;
       border-radius: 100px; }
     .site-header__menu-item:focus, .site-header__menu-item:hover {
-      color: #194875; }
+      color: #13385b; }
     .site-header__menu-item.current:after, .site-header__menu-item.section:after, .site-header__menu-item:focus:after, .site-header__menu-item:hover:after {
       width: calc(100% - 1.875rem);
       opacity: 1; }
