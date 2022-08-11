@@ -13,7 +13,7 @@
         {% if label.length != 0 %}
         {% set labelname = label["dc_label"] %}
         <li>
-          <a href="{% url_for 'dataset.search', dc_label=labelname %}" class="label label.info">{{label["dc_label"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_label=labelname %}" class="label label-info">{{label["dc_label"]}}</a>
       </li>
         {% endif %}
       {% endfor %}
@@ -30,7 +30,7 @@
       {% if construct.length != 0 %}
       {% set constructname = construct["dc_construct"] %}
         <li>
-          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label.info">{{construct["dc_construct"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info">{{construct["dc_construct"]}}</a>
       </li>
         {% endif %}
       {% endfor %}
@@ -46,7 +46,7 @@
       {% for wave in waves  %}
       {% set wavename = wave["wave_title"] %}
         <li>
-          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label.info">{{wave["wave_title"]}}</a>
+          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label-info">{{wave["wave_title"]}}</a>
       </li>
       {% endfor %}
       </ul>
