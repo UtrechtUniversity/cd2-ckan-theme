@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         doiResult = regpattern.exec(a.innerText);		
         console.log(doiResult);
         if (doiResult != null) {
-            if (doiResult.slice(-1) == '.') {
-                doiResult = doiResult.slice(0, -1);
+            if (doiResult[1].slice(-1) == '.') {
+                doiResult[1] = doiResult[1].slice(0, -1);
             }
             doiURL = '<a href="https://doi.org/' + doiResult[1].replace('doi: ', '') + '">' + doiResult[1] + '</a>';
             a.innerHTML = a.innerHTML.replace(doiResult[1], doiURL);
