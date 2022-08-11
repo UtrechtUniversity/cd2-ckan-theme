@@ -18,7 +18,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
                           </span>
                           <span class="link-tile__content">` + result.dc_cohort + `
                             <br>
-                            <small>`+ result.metadata_modified + `</small>
+                            <small>`+ result.metadata_modified.substr(0,10) + `</small>
                           </span>
                         </a>
                         </div>`
