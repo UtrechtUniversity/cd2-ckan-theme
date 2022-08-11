@@ -50,8 +50,8 @@
             <tbody>
               <tr><td width="30%">Study:</td><td><span class="label">{{package.dc_cohort}}</span></td></tr> 
               <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span>
-                {% if package.dc_mode_of_collection %}
-                %nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>%nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
+                {% if package.dc_mode_of_collection_sub %}
+                &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
                 {% endif %}
                 <tr><td>Available measurements:</td><td>
                 {% for waves in package.wave %}
