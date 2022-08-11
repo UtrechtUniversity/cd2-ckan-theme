@@ -21,7 +21,7 @@
 
   <script>
     document.getElementById('site-search-wrap').style.display = 'none';
-      // Javascript to fetch json from CKAN API 
+      // Javascript to fetch json from CKAN API and build list of studies for selection
       url = "/api/3/action/organization_list?all_fields=true"
       fetch(url)
         .then(res => res.json())
