@@ -30,7 +30,7 @@
         .then(res => res.json())
         .then(data => {
           var div = document.getElementById('search-dropdown');
-          for (const result of data.result.results) {
+          for (const result of data.result) {
             div.innerHTML += `<option>`+ result + `</option>`
           }
         });
