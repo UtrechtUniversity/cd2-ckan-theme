@@ -22,13 +22,13 @@
   <script>
     document.getElementById('site-search-wrap').style.display = 'none';
       // Javascript to fetch json from CKAN API 
-      url = "/api/3/action/organization_list"
+      url = "/api/3/action/organization_list?all_fields=true"
       fetch(url)
         .then(res => res.json())
         .then(data => {
           var div = document.getElementById('search-dropdown');
           for (const result of data.result) {
-            div.innerHTML += `<option>`+ result + `</option>`
+            div.innerHTML += `<option value=`+ result.name +`>`+ result.title + `</option>`
           }
         });
 </script>    
