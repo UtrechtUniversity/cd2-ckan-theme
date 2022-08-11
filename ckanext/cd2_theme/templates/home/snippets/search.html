@@ -1,11 +1,11 @@
 
 <div class="module module-search module-narrow module-shallow box">
   <form class="module-content search-form" method="get" action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
-    <h3 class="heading"><label for="searchbox">Search datasets</label></h3>
+    <h3 class="heading"><label for="searchbox" style="margin: 8px 0">Search datasets</label></h3>
 
-    <select id="dropdown" type="text" class="search search-giant" name="organization" value="" autocomplete="off" placeholder="" style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
+    <select id="search-dropdown" type="text" class="search search-giant" name="organization" value="" autocomplete="off" placeholder="" style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
       <option selected="" disabled="disabled">Select Study...</option>
-       <option>youth</option>
+
        </select>
 
     <div class="search-input control-group search-giant">
@@ -19,3 +19,19 @@
   </div>
  
 
+
+  <script>
+    document.getElementById('site-search-wrap').style.display = 'none';
+    
+      // Javascript to fetch json from CKAN API 
+    
+      url = "/api/3/action/organization_list"
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          var div = document.getElementById('search-dropdown');
+          for (const result of data.result.results) {
+            div.innerHTML += `<option>`+ result + `</option>`
+          }
+        });
+</script>    
