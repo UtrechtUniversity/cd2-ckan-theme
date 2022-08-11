@@ -93,7 +93,8 @@
 				    {% endif %}
 				</p>
 			    {% else %}
-				<p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
+				<p class="module-content empty"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+				</p>
 			    {% endif %}
 			{% endwith %}
 		    {% endblock %}
