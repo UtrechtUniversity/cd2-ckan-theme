@@ -25,6 +25,7 @@
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
             {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+            {{ pkg_dict }}
         </td>
       </tr>
     {%- endif -%}
