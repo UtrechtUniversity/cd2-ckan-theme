@@ -39,7 +39,7 @@
 
 				// Resize the search box to fit the height of the facet list
 				liElements = document.getElementsByClassName('element_{{ title.replace(" ","_") }}');
-				maxHeight = (liElements.length * 30) + 60;
+				maxHeight = (liElements.length * 30) + 70;
 				if (maxHeight > 300) { maxHeight = 300 }
 				document.getElementById('section_{{ title.replace(" ","_")  }}').style.height = maxHeight + 'px';
 				
@@ -93,7 +93,7 @@
 				    {% endif %}
 				</p>
 			    {% else %}
-				<p class="module-content empty">{{ _('There are no {facet_type}s that match this search').format(facet_type=title) }}</p>
+				<p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
 			    {% endif %}
 			{% endwith %}
 		    {% endblock %}
