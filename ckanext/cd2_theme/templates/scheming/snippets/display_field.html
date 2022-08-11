@@ -4,7 +4,7 @@
 
 {%- if not display_snippet -%}
   {%- if field.repeating_subfields -%}
-    {%- set display_snippet = '../package/snippets/repeating_subfields.html' -%}
+    {%- set display_snippet = 'scheming/package/snippets/repeating_subfields.html' -%}
   {%- elif h.scheming_field_choices(field) -%}
     {%- set display_snippet = 'select.html' -%}
   {%- else -%}
