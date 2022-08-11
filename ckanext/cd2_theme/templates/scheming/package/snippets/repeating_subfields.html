@@ -27,8 +27,11 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) { 
-    // get DOI and create links
-    regpattern = new RegExp('(doi: [^ ]*)','gi');
+  // get DOI and create links
+  regpatterns = ['(doi: [^ ]*)']
+  regpatterns.forEach(function(pattern) {
+    console.log(pattern);
+    regpattern = new RegExp(pattern,'gi');
     $('.scheming-subfield-list').each(function() {
         a = this;
         doiResult = regpattern.exec(a.innerText);		
@@ -41,5 +44,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             a.innerHTML = a.innerHTML.replace(doiResult[1], doiURL);
         }
     }); 
+  });
 });
 </script>

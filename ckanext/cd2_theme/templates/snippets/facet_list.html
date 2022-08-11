@@ -55,7 +55,7 @@
 			
 			<input type="text" class="form-control" id="filter_{{ title }}" placeholder="Filter" style="font-size:14px;margin-top:5px"></h2>
 		    {% endblock %}
-			<section id="section_{{ title.replace(" ","_")  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+			<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
 		    
 		    {% block facet_list_items %}
 			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
