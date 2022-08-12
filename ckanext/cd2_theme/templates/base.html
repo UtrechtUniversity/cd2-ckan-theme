@@ -21,17 +21,17 @@
 
 
 <script>
-    // Capitalize 'and' and 'not' to be functional parameters
-    var input_a = document.getElementById('searchbox');
-    input_a.addEventListener('keyup', do_replace);
-    
-    function do_replace() {
-        var value_a = input_a.value;
-        var replaced_a = value_a.replace('not', 'NOT');
-        var replaced_a = replaced_a.replace('and', 'AND');
-        document.getElementById('searchbox').value = replaced_a;
-    };
-    </script>
+// Capitalize 'and' and 'not' to be functional parameters
+var input_text = document.getElementById('searchbox');
+input_text.addEventListener('keyup', do_replace);
+
+function do_replace() {
+    var input_text = input_text.value;
+    var replaced_text = input_text.replace('not', 'NOT');
+    var replaced_text = replaced_text.replace('and', 'AND');
+    document.getElementById('searchbox').value = replaced_text;
+};
+</script>
 
 {% endblock scripts %}
 
