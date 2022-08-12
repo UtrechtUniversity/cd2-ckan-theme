@@ -80,15 +80,3 @@
 
 </div>
 
-<script>
-    // Capitalize 'and' and 'not' to be functional parameters
-    var input_a = document.getElementById('searchbox');
-  input_a.addEventListener('keyup', do_replace);
-
-  function do_replace() {
-    var value_a = input_a.value;
-    var replaced_a = value_a.replace('not', 'NOT');
-    var replaced_a = value_a.replace('and', 'AND');
-    document.getElementById('searchbox').value = replaced_a;
-  };
-</script>
