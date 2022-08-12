@@ -35,12 +35,10 @@ To install the theme:
 
 
 ----------------------------------------
-CSS Styling of dia_theme
+CSS Styling
 ----------------------------------------
 
-Any CSS styling changes to the dia_theme should be done in the LESS files and NOT directly in the CSS files.
-
-We'll be replacing these styles with the rua pattern library, however for now we have both.
+Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files.3
 
 You can use npm to install and build the LESS files with `npm i` and `npm run css`
 
