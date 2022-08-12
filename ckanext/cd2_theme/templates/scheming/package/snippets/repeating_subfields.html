@@ -28,23 +28,20 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) { 
   // get DOI and create links
-  regpatterns = ['(doi: [^ ]*)']
+  regpatterns = ['(http[^ ]*)']
   regpatterns.forEach(function(pattern) {
-    console.log(pattern);
     regpattern = new RegExp(pattern,'gi');
     $('.scheming-subfield-list').each(function() {
+      $(this).find('dd').each(function() {
+        console.log(this);
         a = this;
         doiResult = regpattern.exec(a.innerText);		
-        console.log(doiResult);
         if (doiResult != null) {
-            if (doiResult[1].slice(-1) == '.') {
-                doiResult[1] = doiResult[1].slice(0, -1);
-            }
-            doiURL = '<a href="https://doi.org/' + doiResult[1].replace('doi: ', '') + '">' + doiResult[1] + '</a>';
+            doiURL = '<a href="' + doiResult[1] + '" target="blank">' + doiResult[1] + '</a>';
             a.innerHTML = a.innerHTML.replace(doiResult[1], doiURL);
         }
+      }); 
     }); 
   });
 });
-
 </script>
