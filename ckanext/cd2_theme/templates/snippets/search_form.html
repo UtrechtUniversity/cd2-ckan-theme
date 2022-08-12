@@ -66,6 +66,7 @@
               </span>
             {% endfor %}
           {% endfor %}
+          <span class="facet">Query:</span><span class="filtered pill">{{ query }}  <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a></span>
         </p>
       {% endif %}
     {% endblock %}
