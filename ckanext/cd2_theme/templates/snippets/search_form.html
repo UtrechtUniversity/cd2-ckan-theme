@@ -10,7 +10,7 @@
   <form {% if form_id %}id="{{ form_id }}" {% endif %}class="clearfix search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get" data-module="select-switch">
     {% block search_input %}
       <div class="search-input control-group {{ search_class }}">
-        <input type="text" class="search" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}">
+        <input type="text" id="searchbox" class="search" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}">
         {% block search_input_button %}
         <button type="submit" value="search">
           <i class="fa fa-search icon-search" aria-hidden="true"></i>
@@ -79,3 +79,16 @@
   </form>
 
 </div>
+
+<script>
+    // Capitalize 'and' and 'not' to be functional parameters
+    var input_a = document.getElementById('searchbox');
+  input_a.addEventListener('keyup', do_replace);
+
+  function do_replace() {
+    var value_a = input_a.value;
+    var replaced_a = value_a.replace('not', 'NOT');
+    var replaced_a = value_a.replace('and', 'AND');
+    document.getElementById('searchbox').value = replaced_a;
+  };
+</script>
