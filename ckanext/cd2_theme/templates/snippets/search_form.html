@@ -52,6 +52,10 @@
       {% if facets %}
         <a class="show-filters button">{{ _('Add Filter') }}</a>
         <p class="filter-list">
+          {% if query %}
+          {% link_href = _('{site}/search/SearchForm?Search=') %}
+          <span class="facet">Query: </span><span class="filtered pill">{{ query }}<a href="{{ link_href }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a></span>
+          {% endif %}
           {% for field in facets.fields %}
             {% set search_facets_items = facets.search.get(field)['items'] %}
             <span class="facet">{{ facets.titles.get(field) }}:</span>
@@ -66,8 +70,7 @@
               </span>
             {% endfor %}
           {% endfor %}
-          <span class="facet">Query:</span><span class="filtered pill">{{ query }}  <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a></span>
-        </p>
+       </p>
       {% endif %}
     {% endblock %}
 
