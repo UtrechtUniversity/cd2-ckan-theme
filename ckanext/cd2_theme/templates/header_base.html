@@ -127,7 +127,7 @@
                                 <div class="field search-input">
                                     <input class="ss-search-url" value="{{ h.parent_site_url() }}/search/SearchForm" type="hidden">
                                     <input class="ckan-search-url" value="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}" type="hidden">
-                                    <input id="{$LabelPrefix}-field-sitewide-search" name="q" placeholder="E.g. environment" type="text" aria-label="Search term">
+                                    <input class="searchbox" id="{$LabelPrefix}-field-sitewide-search" name="q" placeholder="E.g. IQ" type="text" aria-label="Search term">
                                 </div>
                                 <button id="{$LabelPrefix}-search" class="button">
                                     <span class="ri ri-search"></span>
