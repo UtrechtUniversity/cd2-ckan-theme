@@ -3,14 +3,14 @@
 {% block styles %}
     {{ super()  }}
     {% if h.check_ckan_version('2.9') %}
-        {% asset 'cd2_theme/dia_style' %}
         {% asset 'cd2_theme/rua_style' %}
+        {% asset 'cd2_theme/dia_style' %}
     {% else %}
-        {% resource 'cd2_theme/dia_custom.css' %}
-        {% resource 'cd2_theme/dia_custom.js' %}
         {% resource 'cd2_theme/rua/css/rua-font.css' %}
         {% resource 'cd2_theme/rua/css/rua.css' %}
         {% resource 'cd2_theme/rua/js/rua.js' %}
+        {% resource 'cd2_theme/dia_custom.css' %}
+        {% resource 'cd2_theme/dia_custom.js' %}
     {% endif %}
 {% endblock %}
 
