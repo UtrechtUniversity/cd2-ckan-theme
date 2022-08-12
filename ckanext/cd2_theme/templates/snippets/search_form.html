@@ -53,7 +53,7 @@
         <a class="show-filters button">{{ _('Add Filter') }}</a>
         <p class="filter-list">
           {% if query %}
-          {% link_href = _('{site}/search/SearchForm?Search=') %}
+          {% set link_href = _('{site}/search/SearchForm?Search={query}') %}
           <span class="facet">Query: </span><span class="filtered pill">{{ query }}<a href="{{ link_href }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a></span>
           {% endif %}
           {% for field in facets.fields %}
@@ -76,7 +76,7 @@
 
     {% block search_form_bottom_links %}
       {% if query %}
-        {% set link_href = _('{site}/search/SearchForm?Search={query}') %}
+       
      
       {%- endif -%}
     {% endblock %}
