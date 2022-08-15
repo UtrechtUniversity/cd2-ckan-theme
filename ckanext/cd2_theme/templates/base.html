@@ -23,14 +23,24 @@
 <script>
 // Capitalize 'and' and 'not' to be functional parameters
 var input_q = document.getElementById('searchbox');
-input_q.addEventListener('keyup', do_replace);
 
+input_q.addEventListener('keyup', do_search);
+function do_search() {
+    var value_q = input_q.value;
+    if (value_q.includes('not') || value_q.includes('and')) {
+        $('#searchbox').tooltip('show');
+    };
+};
+
+
+
+/*input_q.addEventListener('keyup', do_replace);
 function do_replace() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('not', 'NOT');
     var replaced_q = replaced_q.replace('and', 'AND');
     document.getElementById('searchbox').value = replaced_q;
-};
+};*/
 </script>
 
 {% endblock scripts %}
