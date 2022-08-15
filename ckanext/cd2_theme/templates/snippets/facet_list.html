@@ -112,17 +112,30 @@
 </section>
 
 {% if title == 'cohort' %}
-<h2 class="module-heading" style="margin-bottom: 10px; padding: 10px">
+<h2 class="module-heading" style="margin-bottom: -20px; padding: 10px">
 	<i class="fa fa-filter"></i>
 	Median age range
 </h2>
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height: 100px;overflow-y: scroll;overflow-x: hidden;">
-	<input type="text" class="form-control filter-box" placeholder="Minimum (in months)" style="font-size:14px;">
-	<input type="text" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;">
+	<form id="range-query-search" class="clearfix search-form" method="get" data-module="select-switch">
+	<input id="range_min" type="text" name="min" class="form-control filter-box" placeholder="Minimum (in months)" style="margin-top:10px;font-size:14px;" required>
+	<input id="range_max" type="text" name="max" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;" required>
+	<input id="range_string" type="hidden" name="q" value="">
+	</form>
 	<p class="module-footer" style="display:none">
 	</p>
 </section>
+<script>
+function createQueryString() {
+	var min = document.getElementById('range_min').value;
+	var max = document.getElementById('range_max').value;
+	var string = 'wave_median_age%3A[' + min + ' TO ' + max + ']';
+	document.getElementById('range_string').value = string;
+	docuemnt.getElementById('range-query-search').submit();
+}
+
+</script>
 {% endif %}
 
 
