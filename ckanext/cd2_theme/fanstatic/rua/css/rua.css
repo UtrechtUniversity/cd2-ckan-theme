@@ -3573,56 +3573,6 @@ td {
   .comment.even {
     background-color: #F0F2D8; }
 
-.tooltip {
-  position: absolute;
-  z-index: 1;
-  background: #fff;
-  color: #182B46;
-  font-size: 0.875rem;
-  max-width: 14.375rem;
-  border: 2px solid #01B3C4;
-  border-radius: 20px;
-  padding: 0.9375em;
-  text-align: left; }
-  .tooltip-arrow {
-    background: #fff;
-    width: 0.625rem;
-    height: 0.625rem;
-    border: 2px solid #01B3C4;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg); }
-  .tooltip[x-placement^="top"] {
-    margin-bottom: 0.625rem; }
-    .tooltip[x-placement^="top"] .tooltip-arrow {
-      border-left: none;
-      border-top: none;
-      bottom: -0.375rem;
-      left: calc(50% - rem(10)); }
-  .tooltip[x-placement^="right"] {
-    margin-left: 0.625rem; }
-    .tooltip[x-placement^="right"] .tooltip-arrow {
-      border-top: none;
-      border-right: none;
-      left: -0.375rem;
-      top: calc(50% - rem(10)); }
-  .tooltip[x-placement^="bottom"] {
-    margin-top: 0.625rem; }
-    .tooltip[x-placement^="bottom"] .tooltip-arrow {
-      border-right: none;
-      border-bottom: none;
-      top: -0.375rem;
-      left: calc(50% - rem(10)); }
-  .tooltip[x-placement^="left"] {
-    margin-right: 0.625rem; }
-    .tooltip[x-placement^="left"] .tooltip-arrow {
-      border-bottom: none;
-      border-left: none;
-      right: -0.375rem;
-      top: calc(50% - rem(10)); }
 
 .avatar {
   display: block;
