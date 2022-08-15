@@ -1,15 +1,3 @@
-<h2 class="module-heading" style="margin-bottom: 10px; padding: 10px">
-	<i class="fa fa-filter"></i>
-	Median age range
-</h2>
-<section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height: 100px;overflow-y: scroll;overflow-x: hidden;">
-	<input type="text" class="form-control filter-box" placeholder="Minimum (in months)" style="font-size:14px;">
-	<input type="text" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;">
-	<p class="module-footer" style="display:none">
-	</p>
-</section>
-
 {% block facet_list %}
 
 {% set hide_empty = hide_empty or false %}
@@ -122,6 +110,24 @@
 	{% endwith %}
 	{% endblock %}
 </section>
+
+{% if title == 'cohort' %}
+<h2 class="module-heading" style="margin-bottom: 10px; padding: 10px">
+	<i class="fa fa-filter"></i>
+	Median age range
+</h2>
+<section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
+	style="height: 100px;overflow-y: scroll;overflow-x: hidden;">
+	<input type="text" class="form-control filter-box" placeholder="Minimum (in months)" style="font-size:14px;">
+	<input type="text" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;">
+	<p class="module-footer" style="display:none">
+	</p>
+</section>
+{% endif %}
+
+
+
+
 {% endblock %}
 {% endif %}
 {% endif %}
