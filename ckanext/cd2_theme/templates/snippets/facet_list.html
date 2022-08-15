@@ -1,111 +1,129 @@
 {% block facet_list %}
 
+<h2 class="module-heading" style="margin-bottom: 10px; padding: 10px">
+	<i class="fa fa-filter"></i>
+	Median age range
+</h2>
+<section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
+	style="height: 100px;overflow-y: scroll;overflow-x: hidden;">
+	<input type="text" class="form-control filter-box" placeholder="Minimum (in months)" style="font-size:14px;">
+	<input type="text" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;">
+	<p class="module-footer" style="display:none">
+	</p>
+</section>
 
+{% set hide_empty = hide_empty or false %}
 
-    {% set hide_empty = hide_empty or false %}
+{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
 
-    {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
+{% if items or not hide_empty %}
+{% set hide_sub_facet = False %}
+{% if title == 'type' %}
+{% set hide_sub_facet = True %}
+{% endif %}
 
-	{% if items or not hide_empty %}
-		{% set hide_sub_facet = False %}
-		{% if title == 'type' %}
-			{% set hide_sub_facet = True %}
-		{% endif %}
+{% if not hide_sub_facet %}
+{% if within_tertiary %}
+{% set nav_class = 'nav nav-pills nav-stacked' %}
+{% set nav_item_class = ' ' %}
+{% set wrapper_class = 'nav-facet nav-facet-tertiary' %}
+{% endif %}
+{% block facet_list_item %}
+{% block facet_list_heading %}
 
-	{% if not hide_sub_facet %}
-	    {% if within_tertiary %}
-		{% set nav_class = 'nav nav-pills nav-stacked' %}
-		{% set nav_item_class = ' ' %}
-		{% set wrapper_class = 'nav-facet nav-facet-tertiary' %}
-	    {% endif %}
-	    {% block facet_list_item %}
-		{% block facet_list_heading %}
+<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
 
-			<script>
-			document.addEventListener("DOMContentLoaded", function(event) { 
-
-				// filter facet lists based on entered query text
-				$('#filter_{{ title.replace(" ","_")  }}').on('keyup', function () {
-					var search = this.value.toLowerCase();  
-					if( search.length < 2) { var showAll = true } else { showAll = false } 
-					$('.element_{{ title.replace(" ","_")  }}').each(function() {
-						a = this;			
-						this.style.display = "block"; 
-						if (showAll == false) {
-							if (a.innerText.toLowerCase().includes(search) > 0 ) {this.style.display = "block";} else {this.style.display = "none";}
-						}
-					}); 
-				});
-
-				// Resize the search box to fit the height of the facet list
-				liElements = document.getElementsByClassName('element_{{ title.replace(" ","_") }}');
-				maxHeight = (liElements.length * 30) + 70;
-				if (maxHeight > 300) { maxHeight = 300 }
-				document.getElementById('section_{{ title.replace(" ","_")  }}').style.height = maxHeight + 'px';
-				
+		// filter facet lists based on entered query text
+		$('#filter_{{ title.replace(" ","_")  }}').on('keyup', function () {
+			var search = this.value.toLowerCase();
+			if (search.length < 2) { var showAll = true } else { showAll = false }
+			$('.element_{{ title.replace(" ","_")  }}').each(function () {
+				a = this;
+				this.style.display = "block";
+				if (showAll == false) {
+					if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+				}
 			});
-			</script>
+		});
+
+		// Resize the search box to fit the height of the facet list
+		liElements = document.getElementsByClassName('element_{{ title.replace(" ","_") }}');
+		maxHeight = (liElements.length * 30) + 70;
+		if (maxHeight > 300) { maxHeight = 300 }
+		document.getElementById('section_{{ title.replace(" ","_")  }}').style.height = maxHeight + 'px';
+
+	});
+</script>
 
 
-			<h2 class="module-heading" style="margin-bottom:-20px;padding: 10px">
-			    <i class="fa fa-filter"></i>
-			    {{ title }}
-			<br />
+<h2 class="module-heading" style="margin-bottom:-20px;padding: 10px">
+	<i class="fa fa-filter"></i>
+	{{ title }}
+	<br />
 
-			
-			<input type="text" class="form-control filter-box" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter" style="font-size:14px;margin-top:5px"></h2>
-		    {% endblock %}
-			<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
-		    
-		    {% block facet_list_items %}
-			{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
-			    {% if items %}
 
-				<nav aria-label="{{ title }}">
-				    <ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
-					{% for item in items %}
+	<input type="text" class="form-control filter-box" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
+		style="font-size:14px;margin-top:5px">
+</h2>
+{% endblock %}
+<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
+	style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
 
-					{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
-					    {% set label = label_function(item) if label_function else item.display_name %}
-					    
-						{% if title == 'cohort' %}
-							{% set splitname = label.split('-') %}
-							{% set label = splitname[1] %}
-					 	{% endif %}
-						
-						{% set label_truncated = label|truncate(22) if not label_function else label %}
-					    {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-					
-					    <li class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-						    <span class="item-label">{{ label_truncated }}</span>
-						    <span class="hidden separator"> - </span>
-						    <span class="item-count badge">{{ count }}</span>
-						</a>
-					    </li>
-				
-					{% endfor %}
-				    </ul>
-				</nav>
+	{% block facet_list_items %}
+	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
+	{% if items %}
 
-				<p class="module-footer" style="display:none">
-				    {% if h.get_param_int('_%s_limit' % name) %}
-					{% if h.has_more_facets(name, search_facets or c.search_facets) %}
-					    <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="read-more">More ...</a>
-					{% endif %}
-				    {% else %}
-					<a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}" class="read-more">{{ _('Show Only Popular {facet_type}s').format(facet_type=title) }}</a>
-				    {% endif %}
-				</p>
-			    {% else %}
-				<p class="module-content empty"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-				</p>
-			    {% endif %}
-			{% endwith %}
-		    {% endblock %}
-		</section>
-	    {% endblock %}
+	<nav aria-label="{{ title }}">
+		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
+			{% for item in items %}
+
+			{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
+			item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
+			alternative_url=alternative_url) %}
+			{% set label = label_function(item) if label_function else item.display_name %}
+
+			{% if title == 'cohort' %}
+			{% set splitname = label.split('-') %}
+			{% set label = splitname[1] %}
+			{% endif %}
+
+			{% set label_truncated = label|truncate(22) if not label_function else label %}
+			{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+
+			<li
+				class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+				<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+					<span class="item-label">{{ label_truncated }}</span>
+					<span class="hidden separator"> - </span>
+					<span class="item-count badge">{{ count }}</span>
+				</a>
+			</li>
+
+			{% endfor %}
+		</ul>
+	</nav>
+
+	<p class="module-footer" style="display:none">
+		{% if h.get_param_int('_%s_limit' % name) %}
+		{% if h.has_more_facets(name, search_facets or c.search_facets) %}
+		<a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}"
+			class="read-more">More ...</a>
+		{% endif %}
+		{% else %}
+		<a href="{{ h.remove_url_param('_%s_limit' % name, extras=extras, alternative_url=alternative_url) }}"
+			class="read-more">{{ _('Show Only Popular {facet_type}s').format(facet_type=title) }}</a>
+		{% endif %}
+	</p>
+	{% else %}
+	<p class="module-content empty"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+	</p>
 	{% endif %}
-	{% endif %}
-    {% endwith %}
+	{% endwith %}
+	{% endblock %}
+</section>
+{% endblock %}
+{% endif %}
+{% endif %}
+{% endwith %}
 {% endblock %}
