@@ -127,19 +127,19 @@
 	</p>
 </section>
 <script>
-$( "#range_min, #range_max" ).keydown(function( event ) {
-	createQueryString();
-}
-
-function createQueryString() {
-	var min = document.getElementById('range_min').value;
+var input = document.getElementById("range-query-search");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    var min = document.getElementById('range_min').value;
 	var max = document.getElementById('range_max').value;
 	if (min.length > 0 && max.length > 0) {
 		var string = 'wave_median_age:[' + min + ' TO ' + max + ']';
 		document.getElementById('range_string').value = string;
 		document.getElementById('range-query-search').submit();
 	}
-}
+  }
+}); 
 </script>
 {% endif %}
 
