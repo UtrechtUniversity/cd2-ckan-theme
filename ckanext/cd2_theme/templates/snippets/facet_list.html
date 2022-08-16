@@ -138,7 +138,7 @@ window.onload = function() {
 		var minVal = parseInt(currentRange[0]);
 		var maxVal = parseInt(currentRange[1]);
 	} else {
-		var minVal = 5;
+		var minVal = 0;
 		var maxVal = 15;
 	}
 	
@@ -150,10 +150,14 @@ window.onload = function() {
         scale: true,
         labels: false,
         set: [minVal, maxVal],
+		var initialChange = false;
 		onChange: function (vals) {
-			vals = vals.split(",");
-            var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
-			document.getElementById('searchbox').value = string;
+			if (initialChange) {
+				vals = vals.split(",");
+            	var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
+				document.getElementById('searchbox').value = string;
+			}
+			initialChange = true;	
         }
     });
 };        
