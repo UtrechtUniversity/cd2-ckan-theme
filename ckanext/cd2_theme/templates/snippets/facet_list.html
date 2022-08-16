@@ -119,11 +119,15 @@
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height: 120px; background-color:#fff">
 	<br /><br />
-	<form id="range-query-search" class="" method="get" data-module="select-switch">
-		<input id="range_string" type="hidden" name="q" value="">
-	</form>
+
 	<input type="text" id="ageSlider" />
 	<p class="module-footer" style="display:none">
+		<form id="range-query-search" class="" method="get" data-module="select-switch">
+			<input id="range_string" type="hidden" name="q" value="">
+			<a class="btn btn-info" type="submit">
+				Apply
+			  </a>
+		</form>
 	</p>
 </section>
 <style>ins { display: none; }</style>
