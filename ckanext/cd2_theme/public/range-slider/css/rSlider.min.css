@@ -23,7 +23,7 @@
     border-radius:3px
 }
 .rs-container .rs-selected{
-    background-color:#15496c;
+    background-color:#275f84;
     border:1px solid #2c4d78;
     transition:all .2s linear;
     width:0
@@ -96,7 +96,7 @@
 }
 .rs-container .rs-scale span ins{
     color:#333;
-    display:none;
+    display:inline-block;
     font-size:12px;
     margin-top:20px;
     text-decoration:none
