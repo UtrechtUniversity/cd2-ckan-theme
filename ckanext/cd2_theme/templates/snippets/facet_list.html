@@ -132,8 +132,7 @@ window.onload = function() {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const currentQuery = urlParams.get('q');
-	var findQuery = currentQuery.match(/wave_median_age/);
-	if (findQuery) {
+	if (currentQuery) {
 		var currentRange = currentQuery.match(/\d+/g);
 		var minVal = parseInt(currentRange[0]);
 		var maxVal = parseInt(currentRange[1]);
