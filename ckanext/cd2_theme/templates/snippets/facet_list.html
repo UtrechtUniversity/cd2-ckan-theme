@@ -127,8 +127,9 @@
 	<p class="module-footer" style="display:none">
 	</p>
 </section>
-<script defer>
-var mySlider = new rSlider({
+<script>
+window.onload = function() {
+	var mySlider = new rSlider({
         target: '#ageSlider',
         values: [0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100],
         range: true,
@@ -137,6 +138,7 @@ var mySlider = new rSlider({
         labels: true,
         set: [0, 15]
     });
+};
             
 
 var input = document.getElementById("range-query-search");
