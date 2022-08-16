@@ -117,20 +117,18 @@
 	Median age range
 </h2>
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height: 120px; background-color:#fff">
+	style="height: 140px; background-color:#fff">
 	<br /><br />
 
 	<input type="text" id="ageSlider" />
 	<p class="module-footer" style="display:none">
-		<form id="range-query-search" class="" method="get" data-module="select-switch">
-			<input id="range_string" type="hidden" name="q" value="">
-			<a style="margin-top:10px" class="btn btn-primary" onclick="document.getElementById('range-query-search').submit();">
-				Apply
-			  </a>
-		</form>
+	
+	<a style="margin-top:10px" class="btn btn-primary" onclick="document.getElementById('dataset-search-form').submit();">
+		Apply
+		</a>
+
 	</p>
 </section>
-<style>ins { display: none; }</style>
 <script>
 window.onload = function() {
 	var mySlider = new rSlider({
@@ -144,11 +142,10 @@ window.onload = function() {
 		onChange: function (vals) {
 			vals = vals.split(",");
             var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
-			document.getElementById('range_string').value = string;
+			document.getElementById('searchbox').value = string;
         }
     });
-};
-            
+};        
 </script>
 
 
