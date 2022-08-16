@@ -117,7 +117,7 @@
 	Median age range
 </h2>
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height: 120px;overflow-y: scroll;overflow-x: hidden;">
+	style="height: 120px; background-color:#fff">
 	<br /><br />
 	<form id="range-query-search" class="" method="get" data-module="select-switch">
 		<input id="range_string" type="hidden" name="q" value="">
@@ -130,7 +130,7 @@
 window.onload = function() {
 	var mySlider = new rSlider({
         target: '#ageSlider',
-        values: [0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100],
+        values: [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 60],
         range: true,
         tooltip: true,
         scale: true,
