@@ -135,8 +135,8 @@ window.onload = function() {
 	if (currentQuery) {
 		var currentRange = currentQuery.match(/\d+/g);
 		console.log(currentRange);
-		var minVal = currentRange[0];
-		var maxVal = currentRange[1];
+		var minVal = parseInt(currentRange[0]);
+		var maxVal = parseInt(currentRange[1]);
 	} else {
 		var minVal = 0;
 		var maxVal = 15;
