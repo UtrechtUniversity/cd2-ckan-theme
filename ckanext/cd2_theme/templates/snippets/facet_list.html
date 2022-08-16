@@ -131,11 +131,13 @@
 window.onload = function() {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
-	const currentQuery = urlParams.get('q');
-	if (currentQuery) {
-		var currentRange = currentQuery.match(/\d+/g);
-		var minVal = parseInt(currentRange[0]);
-		var maxVal = parseInt(currentRange[1]);
+	if (urlParams) {
+		const currentQuery = urlParams.get('q');
+		if (currentQuery) {
+			var currentRange = currentQuery.match(/\d+/g);
+			var minVal = parseInt(currentRange[0]);
+			var maxVal = parseInt(currentRange[1]);
+		}
 	} else {
 		var minVal = 0;
 		var maxVal = 60;
