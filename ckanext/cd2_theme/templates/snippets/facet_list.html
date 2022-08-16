@@ -126,6 +126,7 @@
 	<p class="module-footer" style="display:none">
 	</p>
 </section>
+<style>ins { display: none; }</style>
 <script>
 window.onload = function() {
 	var mySlider = new rSlider({
@@ -137,7 +138,8 @@ window.onload = function() {
         labels: false,
         set: [0, 15],
 		onChange: function (vals) {
-            var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[2] + ']';
+			vals = vals.split(",");
+            var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 			document.getElementById('range_string').value = string;
         }
     });
