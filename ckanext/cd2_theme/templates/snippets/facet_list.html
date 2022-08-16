@@ -134,9 +134,10 @@ window.onload = function() {
         range: true,
         tooltip: true,
         scale: true,
-        labels: true,
+        labels: false,
         set: [0, 15],
 		onChange: function (vals) {
+			console.log(vals);
             var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 			document.getElementById('range_string').value = string;
         }
