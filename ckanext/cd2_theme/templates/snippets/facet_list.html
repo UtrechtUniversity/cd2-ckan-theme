@@ -154,12 +154,11 @@ window.onload = function() {
 			vals = vals.split(",");
             var qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
         }
-		function addQueryToField() {
-			document.getElementById('searchbox').value = qstring;
-			document.getElementById('dataset-search-form').submit();
-		}
     });
-	function 
+	function addQueryToField() {
+		document.getElementById('searchbox').value = qstring;
+		document.getElementById('dataset-search-form').submit();
+	} 
 };        
 </script>
 
