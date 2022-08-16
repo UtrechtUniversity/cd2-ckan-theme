@@ -125,11 +125,22 @@
 	<a style="margin-top:10px" class="btn btn-primary" onclick="document.getElementById('dataset-search-form').submit();">
 		Apply</a>
 	<p class="module-footer" style="display:none">
-
 	</p>
 </section>
 <script>
 window.onload = function() {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const currentQuery = urlParams.get('q');
+	var currentRange = currentQuery.match(/\d+/g);
+	if (currentRange) {
+		minVal = currentRange[0];
+		maxVal = currentRange[1]
+	} else {
+		minVal = 0;
+		maxVal = 15;
+	}
+	
 	var mySlider = new rSlider({
         target: '#ageSlider',
         values: [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 60],
@@ -137,7 +148,7 @@ window.onload = function() {
         tooltip: true,
         scale: true,
         labels: false,
-        set: [0, 15],
+        set: [minVal, maxVal],
 		onChange: function (vals) {
 			vals = vals.split(",");
             var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
