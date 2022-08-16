@@ -123,10 +123,22 @@
 	<input id="range_max" type="text" class="form-control filter-box" placeholder="Maximum (in months)" style="font-size:14px;" required>
 	<input id="range_string" type="hidden" name="q" value="">
 	</form>
+	<input type="text" id="ageSlider" />
 	<p class="module-footer" style="display:none">
 	</p>
 </section>
 <script>
+var mySlider = new rSlider({
+        target: '#ageSlider',
+        values: [0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100],
+        range: true,
+        tooltip: true,
+        scale: true,
+        labels: true,
+        set: [0, 15]
+    });
+            
+
 var input = document.getElementById("range-query-search");
 input.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
@@ -141,6 +153,11 @@ input.addEventListener("keypress", function(event) {
   }
 }); 
 </script>
+
+
+<link rel="stylesheet" href="/range-slider/css/rSlider.min.css">
+<script src="range-slider/js/rSlider.min.js"></script>
+            
 {% endif %}
 
 
