@@ -137,8 +137,7 @@ window.onload = function() {
         labels: false,
         set: [0, 15],
 		onChange: function (vals) {
-			console.log(vals);
-            var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
+            var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[2] + ']';
 			document.getElementById('range_string').value = string;
         }
     });
