@@ -135,8 +135,10 @@ window.onload = function() {
 		const currentQuery = urlParams.get('q');
 		if (currentQuery) {
 			var currentRange = currentQuery.match(/\d+/g);
-			var minVal = parseInt(currentRange[0]);
-			var maxVal = parseInt(currentRange[1]);
+			if (currentRange) {
+				var minVal = parseInt(currentRange[0]);
+				var maxVal = parseInt(currentRange[1]);
+			}
 		}
 	} else {
 		var minVal = 0;
