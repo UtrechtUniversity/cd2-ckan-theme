@@ -134,11 +134,12 @@ window.onload = function() {
 	const currentQuery = urlParams.get('q');
 	var currentRange = currentQuery.match(/\d+/g);
 	if (currentRange) {
-		minVal = currentRange[0];
-		maxVal = currentRange[1]
+		console.log(currentRange);
+		var minVal = currentRange[0];
+		var maxVal = currentRange[1];
 	} else {
-		minVal = 0;
-		maxVal = 15;
+		var minVal = 0;
+		var maxVal = 15;
 	}
 	
 	var mySlider = new rSlider({
