@@ -115,6 +115,7 @@
 <h2 class="module-heading" style="margin-bottom: -20px; padding: 10px">
 	<i class="fa fa-filter"></i>
 	Median age range
+	<a id="applyRange" class="btn btn-primary btn-sm" style="margin-left:20px;display:none" onclick="document.getElementById('dataset-search-form').submit();">Apply</a>
 </h2>
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height: 140px; background-color:#fff">
@@ -122,8 +123,6 @@
 
 	<input type="text" id="ageSlider" />
 
-	<a style="margin-top:10px" class="btn btn-primary" onclick="document.getElementById('dataset-search-form').submit();">
-		Apply</a>
 	<p class="module-footer" style="display:none">
 	</p>
 </section>
@@ -154,6 +153,8 @@ window.onload = function() {
 			vals = vals.split(",");
             var string = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 			document.getElementById('searchbox').value = string;
+			document.getElementById('applyRange').style.display = 'block';
+		}
         }
     });
 };        
