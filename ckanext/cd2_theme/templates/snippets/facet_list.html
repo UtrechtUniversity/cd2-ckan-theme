@@ -45,7 +45,7 @@
 </script>
 
 
-<h2 class="module-heading" style="margin-bottom:-20px;padding: 10px">
+<h2 class="module-heading" style="margin-bottom:-20px;padding:10px">
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<br />
@@ -56,7 +56,7 @@
 </h2>
 {% endblock %}
 <section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+	style="height:300px;overflow-y:scroll;overflow-x: hidden;">
 
 	{% block facet_list_items %}
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
