@@ -49,10 +49,10 @@
 
 
     {% block search_facets %}
-      {% if facets %}
+      
         <a class="show-filters button">{{ _('Add Filter') }}</a>
-        <p class="filter-list">
-
+        <p class="filter-list" id="filter-list">
+          {% if facets %}
           {% for field in facets.fields %}
             {% set search_facets_items = facets.search.get(field)['items'] %}
             <span class="facet">{{ facets.titles.get(field) }}:</span>
@@ -68,7 +68,7 @@
             {% endfor %}
           {% endfor %}
        </p>
-      {% endif %}
+      
 
       <script>
         window.onload = function() {
@@ -77,21 +77,22 @@
           if (urlParams) {
             const currentQuery = urlParams.get('q');
             if (currentQuery) {
-              var currentRange = currentQuery.match(/\d+/g);
               var isRangeSelect = currentQuery.match(/wave_median_age/g);
-              if (currentRange && isRangeSelect) {
-                var minVal = parseInt(currentRange[0]);
-                var maxVal = parseInt(currentRange[1]);
+              if (isRangeSelect) {
+                var rangeValue = currentQuery;
+                document.getElementById('facet-range-value').value = rangeValue;
+                document.getElementByID('filter-list').innerHTMl = `<span class="facet">Median age range: </span>
+                                                <span class="filtered pill">
+                                                <a href="#" class="remove" title="Remove"><i class="fa fa-times"></i></a>
+                                                </span>
+                                                <input type="hidden" id="facet-range-value" value=""/>`
               };
             };
           };
         };
         </script>
-
-        <span class="facet">Median age range: </span>
-        <span class="filtered pill">
-        <a href="#" class="remove" title="Remove"><i class="fa fa-times"></i></a>
-        </span>
+    {% endif %}
+       
 
     {% endblock %}
 
