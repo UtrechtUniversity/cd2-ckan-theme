@@ -128,6 +128,7 @@
 	</p>
 </section>
 <script>
+// Get url paramters of current range selection and update slider
 window.onload = function() {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -158,7 +159,8 @@ window.onload = function() {
             qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
         }
     });
-};    
+};
+// add query to field and submit search form 
 function addQueryToField() {
 	document.getElementById('searchbox').value = qstring;
 	document.getElementById('dataset-search-form').submit();
