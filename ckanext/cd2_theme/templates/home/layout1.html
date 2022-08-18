@@ -56,7 +56,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (const key of keys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
         if (keys.indexOf(key) == 8) {
-          <li><a href="#" class="category-select">more...</a></li>
+          ulLabel.innerHTML += '<li><a href="#" class="category-select">more...</a></li>';
           break;
         }
       }
@@ -71,7 +71,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (const key of keys) {
         ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
         if (keys.indexOf(key) == 8) {
-          <li><a href="#" class="category-select">more...</a></li>
+          ulCon.innerHTML += '<li><a href="#" class="category-select">more...</a></li>';
           break;
         }
       }
