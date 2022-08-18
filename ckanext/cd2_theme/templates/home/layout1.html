@@ -56,7 +56,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (const key of labelKeys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
         if (labelKeys.indexOf(key) == 8) {
-          ulLabel.innerHTML += '<li><a onclick="$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
+          ulLabel.innerHTML += '<li><a onclick="fillModal(\'label\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
           break;
         }
       }
@@ -79,8 +79,12 @@ document.getElementById('site-search-wrap').style.display = 'none';
 
     function fillModal(facet) {
         if (facet == 'construct') {
-          document.getElementById('modalTitle').innerHTML = 'Constucts';
+          document.getElementById('modalTitle').innerHTML = 'Popular constucts';
           document.getElementById('modalBody').innerHTML = conKeys;
+        } else {
+          document.getElementById('modalTitle').innerHTML = 'Popular labels';
+          document.getElementById('modalBody').innerHTML = labelKeys;  
+
         }
     }
 
