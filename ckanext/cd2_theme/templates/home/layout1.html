@@ -77,14 +77,21 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
+    function createFacetPills(facets,facetType) {
+      var labelPit = "";
+      for (const facet of facets) {
+        labelPit += '<li><a href="{% url_for "dataset.search" %}?'+facetType+'=' + facet + '" class="category-select">' + facet + '</a></li>';
+      }
+      return labelPit;
+    }
+
     function fillModal(facet) {
         if (facet == 'construct') {
           document.getElementById('modalTitle').innerHTML = 'Popular constucts';
-          document.getElementById('modalBody').innerHTML = conKeys;
+          document.getElementById('modalBody').innerHTML = createFacetPills(conKeys,'dc_construct');
         } else {
           document.getElementById('modalTitle').innerHTML = 'Popular labels';
-          document.getElementById('modalBody').innerHTML = labelKeys;  
-
+          document.getElementById('modalBody').innerHTML = createFacetPills(labelKeys,'dc_label');  
         }
     }
 
