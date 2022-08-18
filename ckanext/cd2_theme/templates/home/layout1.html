@@ -52,10 +52,10 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(res => res.json())
     .then(data => {
       var ulLabel = document.getElementById('label-pit');
-      const keys = Object.keys(data.result.facets.dc_label);
-      for (const key of keys) {
+      const labelKeys = Object.keys(data.result.facets.dc_label);
+      for (const key of labelKeys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
-        if (keys.indexOf(key) == 8) {
+        if (labelKeys.indexOf(key) == 8) {
           ulLabel.innerHTML += '<li><a onclick="$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
           break;
         }
@@ -67,15 +67,22 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(res => res.json())
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
-      const keys = Object.keys(data.result.facets.dc_construct);
-      for (const key of keys) {
+      const conKeys = Object.keys(data.result.facets.dc_construct);
+      for (const key of conKeys) {
         ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
-        if (keys.indexOf(key) == 8) {
-          ulCon.innerHTML += '<li><a onclick="$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
+        if (conKeys.indexOf(key) == 8) {
+          ulCon.innerHTML += '<li><a onclick="fillModal(\'construct\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
           break;
         }
       }
     });
+
+    function fillModal(facet) {
+        if (facet == 'construct') {
+          document.getElementById('modalTitle').innerHTML = 'Constucts';
+          document.getElementById('modalBody').innerHTML = conKeys;
+        }
+    }
 
 </script>
 
