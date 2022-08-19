@@ -22,9 +22,12 @@
 
 <script>
 // Enable tooltips site-wide
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+window.addEventListener("load", myInit, true); function myInit(){  
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+ };
+
 
 
 // Capitalize 'and' and 'not' to be functional parameters
