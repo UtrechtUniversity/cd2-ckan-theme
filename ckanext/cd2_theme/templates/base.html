@@ -35,7 +35,7 @@ function do_search() {
 input_q.addEventListener('keyup', do_replace);
 function do_replace() {
     var value_q = input_q.value;
-    var replaced_q = value_q.replace('and', '&');
+    var replaced_q = value_q.replace('AND', '&');
     document.getElementById('searchbox').value = replaced_q;
 };
 </script>
