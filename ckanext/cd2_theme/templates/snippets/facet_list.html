@@ -162,7 +162,8 @@ window.onload = function() {
 };
 // add query to field and submit search form 
 function addQueryToField() {
-	document.getElementById('searchbox').value = queryString + ' & ' + qstring;
+	queryString = window.location.search
+	document.getElementById('searchbox').value = queryString + ' & '  qstring;
 	document.getElementById('dataset-search-form').submit();
 }     
 </script>
