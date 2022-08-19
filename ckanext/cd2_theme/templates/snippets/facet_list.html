@@ -159,10 +159,11 @@ window.onload = function() {
         }
     });
 };
-// add query to field and submit search form 
+// add range query to field and submit search form 
 function addQueryToField() {
 	currentString = window.location.search;
 	currentParams = new URLSearchParams(currentString);
+	// check if there is an existing query to replace or append
 	if (currentParams.get('q') != null) {
 		cleanQuery = currentParams.get('q').replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
 		if (cleanQuery != "") {
@@ -170,7 +171,6 @@ function addQueryToField() {
 		} else {
 			newString = qstring;
 		}
-		
 	} else {
 		newString = qstring;
 	}

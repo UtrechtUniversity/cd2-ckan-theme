@@ -32,10 +32,12 @@ function do_search() {
     };
 };
 
+// change functional parameters into symbols for clarity
 input_q.addEventListener('keyup', do_replace);
 function do_replace() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND', '&');
+    var replaced_q = replaced_q.replace('NOT ', '-');
     document.getElementById('searchbox').value = replaced_q;
 };
 </script>

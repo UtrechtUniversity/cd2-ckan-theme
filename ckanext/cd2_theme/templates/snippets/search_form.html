@@ -73,6 +73,8 @@
 
       <script>
         // TODO: perhaps create python plugin to handle this as a facet instead of query-parameter
+
+        // Create pill from selected age range, with ability to remove from query string
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           if (urlParams) {
@@ -90,7 +92,7 @@
           };
 
           function removeRange(currentQuery) {
-            newQuery = currentQuery.replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
+            newQuery = currentQuery.replace(/[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*/,"");
             document.getElementById('searchbox').value = newQuery;
             document.getElementById('dataset-search-form').submit();
           }
