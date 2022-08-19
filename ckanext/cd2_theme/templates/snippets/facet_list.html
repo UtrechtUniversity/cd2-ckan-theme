@@ -130,7 +130,7 @@
 <script>
 // Get url paramters of current range selection and update slider
 window.onload = function() {
-	const queryString = window.location.search;
+	queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	if (urlParams) {
 		const currentQuery = urlParams.get('q');
@@ -162,7 +162,7 @@ window.onload = function() {
 };
 // add query to field and submit search form 
 function addQueryToField() {
-	document.getElementById('searchbox').value = qstring;
+	document.getElementById('searchbox').value = queryString + ' & ' + qstring;
 	document.getElementById('dataset-search-form').submit();
 }     
 </script>
