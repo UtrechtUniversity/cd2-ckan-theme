@@ -92,7 +92,8 @@
           function removeRange(currentQuery) {
             newQuery = currentQuery.replace(/wave_median_age:\[\d+\sTO\s\d+\]/,"");
             document.getElementByID('searchbox').value = newQuery;
-            document.getElementById('dataset-search-form').submit();
+            console.log(newQuery);
+            //document.getElementById('dataset-search-form').submit();
           }
       </script>
     {% endif %}
