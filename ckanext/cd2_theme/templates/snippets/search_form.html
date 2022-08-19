@@ -83,11 +83,17 @@
               if (isRangeSelect) {
                 filterList = document.getElementById('filter-list');
                 filterList.innerHTML += `<span class="facet">Median age range: </span>
-                                                <span class="filtered pill">` + currentRange[0] + ' TO ' + currentRange[1] + ` <a href="#" class="remove" title="Remove"><i class="fa fa-times"></i></a>
+                                                <span class="filtered pill">` + currentRange[0] + ' TO ' + currentRange[1] + ` <a href="" onclick="removeRange(currentQuery)" class="remove" title="Remove"><i class="fa fa-times"></i></a>
                                                 </span><input type="hidden" id="facet-range-value" value="`+currentQuery+`"/>`
               };
             };
           };
+
+          function removeRange(currentQuery) {
+            newQuery = currentQuery.replace(/wave_median_age:\[\d+\sTO\s\d+\]/,"");
+            document.getElementByID('searchbox').value = newQuery;
+            document.getElementById('dataset-search-form').submit();
+          }
       </script>
     {% endif %}
        
