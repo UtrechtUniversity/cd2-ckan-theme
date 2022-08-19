@@ -163,7 +163,8 @@ window.onload = function() {
 // add query to field and submit search form 
 function addQueryToField() {
 	currentString = window.location.search;
-	document.getElementById('searchbox').value = currentString + ' & ' + qstring;
+	currentParams = new URLSearchParams(currentString);
+	document.getElementById('searchbox').value = currentParams.get('q') + ' & ' + qstring;
 	document.getElementById('dataset-search-form').submit();
 }     
 </script>
