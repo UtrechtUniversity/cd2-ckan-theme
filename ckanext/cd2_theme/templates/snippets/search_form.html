@@ -89,8 +89,8 @@
             };
           };
 
-          function removeRange(queryString) {
-            newQuery = queryString.replace(/wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
+          function removeRange(currentQuery) {
+            newQuery = currentQuery.replace(/wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
             document.getElementById('searchbox').value = newQuery;
             document.getElementById('dataset-search-form').submit();
           }
