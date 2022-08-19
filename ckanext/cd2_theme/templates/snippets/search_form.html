@@ -90,10 +90,9 @@
           };
 
           function removeRange(currentQuery) {
-            newQuery = currentQuery.replace(/wave_median_age:\[\d+\sTO\s\d+\]/,"");
-            document.getElementByID('searchbox').value = newQuery;
-            console.log(newQuery);
-            //document.getElementById('dataset-search-form').submit();
+            newQuery = currentQuery.replace(/wave_median_age:\[\d+\sTO\s\d+\][\s&]/,"");
+            document.getElementById('searchbox').value = newQuery;
+            document.getElementById('dataset-search-form').submit();
           }
       </script>
     {% endif %}
