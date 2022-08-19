@@ -84,6 +84,141 @@
 
 
 //==============================================
+// Custom styles
+//==============================================
+
+.hide-on-mobile {
+  @media (max-width: @media-tablet) {
+    display: none;
+  }
+  @media (max-width: @media-phone) {
+    display: none;
+  }
+}
+
+.dataset-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+}
+
+.link-tile {
+  height: 180px;
+}
+
+.filters {
+  padding-top: 25px;
+}
+.search-dropdown {
+  @media (max-width: @media-tablet) {
+    display: none;
+  }
+  @media (max-width: @media-phone) {
+    display: none;
+  }
+}
+
+.filter-box {
+  @media (max-width: @media-tablet) {
+    display: none;
+  }
+  @media (max-width: @media-phone) {
+    display: none;
+  }
+}
+
+body { background-color: #fff; }
+.secondary-three .site-header__menu-item::after {
+    background-color: #296a82;
+}
+.secondary-three hr {
+  border-color: #296a82;
+}
+.secondary-three .site-header__menu-item:focus, .secondary-three .site-header__menu-item:hover {
+  color: #296a82;
+}
+body .site-footer hr {
+  border-color: #296a82;
+}
+
+.secondary-three .site-banner__breadcrumbs .ri-home {
+  color: #296a82;
+}
+
+.hero { background: url('https://individualdevelopment.nl/wp-content/uploads/sites/99/2016/02/cropped-maxresdefault.jpg'); }
+.homepage .hero .module-search .module-content h3, .homepage .hero .module-search .tags h3 {
+  color: #333; }
+.homepage .hero .module-search .search-giant input { border: solid 2px #888; border-radius: 50px;}
+.homepage .hero .module-search .module-content .heading, .homepage .hero .module-search .tags .heading {
+  color: #333; }
+.homepage .hero .module-search .module-content, .homepage .hero .module-search .tags {
+  background-color: #fff;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 0;
+  margin: 0px;
+  clear: both;
+  width: 100%; }
+
+.homepage .hero .module-search {
+  opacity: 0.7;
+  margin-bottom: 140px; }
+
+.dataset-item {
+  padding-bottom: 30px;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 25px 0px 25px 25px;
+  background-color: #f6f6f6;
+}
+
+.table-condensed { margin: 0.8em 0; }
+
+.label, .badge {
+  padding: 2px 5px;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 14px;
+  vertical-align: baseline;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.label-info {
+  line-height: 24px;
+}
+
+body { background-color: #fff;}
+
+.site-header {
+  .site-header__menu-item:focus, .site-header__menu-item:hover {
+    color: #13385b; }
+  .site-header__menu-item {
+    padding: 1.25rem 0.9375rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #344553;
+    position: relative; }
+    .site-header__menu-item:after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+      height: 4px;
+      width: 0;
+      opacity: 0;
+      background-color: #1f3e67;
+      transition: 0.3s all ease;
+      border-radius: 100px; }
+    }
+
+//==============================================
 // Base
 //==============================================
 
@@ -1345,138 +1480,3 @@ body li {
     padding-right: 0;
   }
 }
-
-//==============================================
-// Custom styles
-//==============================================
-
-.hide-on-mobile {
-  @media (max-width: @media-tablet) {
-    display: none;
-  }
-  @media (max-width: @media-phone) {
-    display: none;
-  }
-}
-
-.dataset-item:last-of-type {
-  border-bottom: none;
-  margin-bottom: 10px;
-  padding-bottom: 20px;
-}
-
-.link-tile {
-  height: 180px;
-}
-
-.filters {
-  padding-top: 25px;
-}
-.search-dropdown {
-  @media (max-width: @media-tablet) {
-    display: none;
-  }
-  @media (max-width: @media-phone) {
-    display: none;
-  }
-}
-
-.filter-box {
-  @media (max-width: @media-tablet) {
-    display: none;
-  }
-  @media (max-width: @media-phone) {
-    display: none;
-  }
-}
-
-body { background-color: #fff; }
-.secondary-three .site-header__menu-item::after {
-    background-color: #296a82;
-}
-.secondary-three hr {
-  border-color: #296a82;
-}
-.secondary-three .site-header__menu-item:focus, .secondary-three .site-header__menu-item:hover {
-  color: #296a82;
-}
-body .site-footer hr {
-  border-color: #296a82;
-}
-
-.secondary-three .site-banner__breadcrumbs .ri-home {
-  color: #296a82;
-}
-
-.hero { background: url('https://individualdevelopment.nl/wp-content/uploads/sites/99/2016/02/cropped-maxresdefault.jpg'); }
-.homepage .hero .module-search .module-content h3, .homepage .hero .module-search .tags h3 {
-  color: #333; }
-.homepage .hero .module-search .search-giant input { border: solid 2px #888; border-radius: 50px;}
-.homepage .hero .module-search .module-content .heading, .homepage .hero .module-search .tags .heading {
-  color: #333; }
-.homepage .hero .module-search .module-content, .homepage .hero .module-search .tags {
-  background-color: #fff;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding: 0;
-  margin: 0px;
-  clear: both;
-  width: 100%; }
-
-.homepage .hero .module-search {
-  opacity: 0.7;
-  margin-bottom: 140px; }
-
-.dataset-item {
-  padding-bottom: 30px;
-  border: 1px solid #eee;
-  padding: 20px;
-  border-radius: 25px 0px 25px 25px;
-  background-color: #f6f6f6;
-}
-
-.table-condensed { margin: 0.8em 0; }
-
-.label, .badge {
-  padding: 2px 5px;
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 14px;
-  vertical-align: baseline;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-
-.label-info {
-  line-height: 24px;
-}
-
-body { background-color: #fff;}
-
-.site-header {
-  .site-header__menu-item:focus, .site-header__menu-item:hover {
-    color: #13385b; }
-  .site-header__menu-item {
-    padding: 1.25rem 0.9375rem;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #344553;
-    position: relative; }
-    .site-header__menu-item:after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
-      height: 4px;
-      width: 0;
-      opacity: 0;
-      background-color: #1f3e67;
-      transition: 0.3s all ease;
-      border-radius: 100px; }
-    }
