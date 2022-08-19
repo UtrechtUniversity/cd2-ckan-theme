@@ -1,4 +1,7 @@
 {% ckan_extends %}
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Studies'), named_route=group_type+'.index' %}</li>
+{% endblock %}
 
 {% block organizations_search_form %}
     {% snippet 'snippets/search_form.html', form_id='organization-search-form', type=group_type, query=q, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search cohort studies...'), show_empty=request.args, no_bottom_border=true if page.items, sorting = [(_('Name Ascending'), 'title asc'), (_('Name Descending'), 'title desc')] %}
