@@ -49,7 +49,7 @@
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<br />
-	<input type="text" class="form-control filter-box" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
+	<input type="text" class="form-control filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
 		style="font-size:14px;margin-top:5px">
 </h2>
 {% endblock %}
@@ -110,14 +110,14 @@
 </section>
 
 {% if title == 'cohort' %}
-<h2 class="module-heading" style="margin-bottom: -20px; padding: 10px" data-toggle="tooltip" data-placement="top" title="Median age of the measurement wave">
+<h2 class="module-heading hide-on-mobile" style="margin-bottom: -20px; padding: 10px" data-toggle="tooltip" data-placement="top" title="Median age of the measurement wave">
 	<i class="fa fa-filter"></i>
 	Median age range
 	<a id="applyRange" class="btn btn-primary btn-sm"
 		style="margin-left:20px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;"
 		onclick="addQueryToField()">Apply</a>
 </h2>
-<section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
+<section id="section_age" class="hide-on-mobile {{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height: 140px; background-color:#fff">
 	<br /><br />
 
