@@ -19,8 +19,6 @@
 {% block facet_list_item %}
 {% block facet_list_heading %}
 
-{{ packages }}
-
 <script>
 	// TODO: add generic function instead of repeating code for each facet
 	document.addEventListener("DOMContentLoaded", function (event) {
@@ -146,6 +144,7 @@
 		} else {
 			var minVal = 0;
 			var maxVal = 25;
+			document.getElementsByClassName('rs-selected')[0].style.display = "none";
 		}
 
 		var mySlider = new rSlider({
