@@ -11,6 +11,7 @@
     {% block search_input %}
       <div class="search-input control-group {{ search_class }}">
         <input type="text" id="searchbox" class="search" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>">
+        <input type="hidden" id="rangeParam">
         {% block search_input_button %}
         <button type="submit" value="search">
           <i class="fa fa-search icon-search" aria-hidden="true"></i>

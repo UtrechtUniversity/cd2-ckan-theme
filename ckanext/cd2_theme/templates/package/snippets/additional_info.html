@@ -43,12 +43,14 @@
       {% for wave in waves  %}
       {% set wavename = wave["wave_title"] %}
         <li>
-          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label-info">{{wave["wave_title"]}}</a>
+          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label-info"  data-toggle="tooltip" data-original-title="{{wave["wave_median_age"]}}">{{wave["wave_title"]}}</a>
       </li>
       {% endfor %}
       </ul>
       </td>
     </tr>
+
+ 
     
   
       {% block package_additional_info %}
