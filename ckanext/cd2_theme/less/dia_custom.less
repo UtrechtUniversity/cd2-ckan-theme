@@ -85,6 +85,15 @@
 // Custom styles
 //==============================================
 
+.hide-on-mobile {
+  @media (max-width: @media-tablet) {
+    display: none;
+  }
+  @media (max-width: @media-phone) {
+    display: none;
+  }
+}
+
 .dataset-item:last-of-type {
   border-bottom: none;
   margin-bottom: 10px;
