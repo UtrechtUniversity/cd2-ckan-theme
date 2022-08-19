@@ -166,7 +166,12 @@ function addQueryToField() {
 	currentParams = new URLSearchParams(currentString);
 	if (currentParams.get('q') != null) {
 		cleanQuery = currentParams.get('q').replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
-		newString = cleanQuery + ' & ' + qstring;
+		if (cleanQuery != "") {
+			newString = cleanQuery + ' & ' + qstring;
+		} else {
+			newString = qstring;
+		}
+		
 	} else {
 		newString = qstring;
 	}
