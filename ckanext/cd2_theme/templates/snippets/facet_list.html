@@ -139,12 +139,12 @@
 				if (currentRange) {
 					var minVal = parseInt(currentRange[0]);
 					var maxVal = parseInt(currentRange[1]);
+					document.getElementsByClassName('rs-selected')[0].style.display = "inherit";
 				}
 			}
 		} else {
 			var minVal = 0;
 			var maxVal = 25;
-			document.getElementsByClassName('rs-selected')[0].style.display = "none";
 		}
 
 		var mySlider = new rSlider({
@@ -160,6 +160,7 @@
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 			}
 		});
+		document.getElementsByClassName('rs-selected')[0].style.display = "none";
 	};
 	// add range query to field and submit search form 
 	function addQueryToField() {
