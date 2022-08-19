@@ -31,10 +31,11 @@ function do_search() {
         $('#searchbox').tooltip('show');
     };
 };
+
 input_q.addEventListener('keyup', do_replace);
 function do_replace() {
     var value_q = input_q.value;
-    var replaced_q = replaced_q.replace('and', '&');
+    var replaced_q = value_q.replace('and', '&');
     document.getElementById('searchbox').value = replaced_q;
 };
 </script>
