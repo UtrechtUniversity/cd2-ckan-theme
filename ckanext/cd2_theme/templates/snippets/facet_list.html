@@ -19,7 +19,10 @@
 {% block facet_list_item %}
 {% block facet_list_heading %}
 
+{{ name }}
+
 <script>
+	// TODO: add generic function instead of repeating code for each facet
 	document.addEventListener("DOMContentLoaded", function (event) {
 		// filter facet lists based on entered query text
 		$('#filter_{{ title.replace(" ","_")  }}').on('keyup', function () {
@@ -48,8 +51,6 @@
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<br />
-
-
 	<input type="text" class="form-control filter-box" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
 		style="font-size:14px;margin-top:5px">
 </h2>
