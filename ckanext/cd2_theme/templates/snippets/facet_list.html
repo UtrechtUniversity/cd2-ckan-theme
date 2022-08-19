@@ -19,7 +19,6 @@
 {% block facet_list_item %}
 {% block facet_list_heading %}
 
-{{ name }}
 
 <script>
 	// TODO: add generic function instead of repeating code for each facet
@@ -115,7 +114,9 @@
 <h2 class="module-heading" style="margin-bottom: -20px; padding: 10px">
 	<i class="fa fa-filter"></i>
 	Median age range
-	<a id="applyRange" class="btn btn-primary btn-sm" style="margin-left:20px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;" onclick="addQueryToField()">Apply</a>
+	<a id="applyRange" class="btn btn-primary btn-sm"
+		style="margin-left:20px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;"
+		onclick="addQueryToField()">Apply</a>
 </h2>
 <section id="section_age" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height: 140px; background-color:#fff">
@@ -128,67 +129,63 @@
 	</p>
 </section>
 <script>
-// Get url paramters of current range selection and update slider
-window.onload = function() {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	if (urlParams) {
-		const currentQuery = urlParams.get('q');
-		if (currentQuery) {
-			var currentRange = currentQuery.match(/\d+/g);
-			if (currentRange) {
-				var minVal = parseInt(currentRange[0]);
-				var maxVal = parseInt(currentRange[1]);
+	// Get url paramters of current range selection and update slider
+	window.onload = function () {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		if (urlParams) {
+			const currentQuery = urlParams.get('q');
+			if (currentQuery) {
+				var currentRange = currentQuery.match(/\d+/g);
+				if (currentRange) {
+					var minVal = parseInt(currentRange[0]);
+					var maxVal = parseInt(currentRange[1]);
+				}
 			}
+		} else {
+			var minVal = 0;
+			var maxVal = 25;
 		}
-	} else {
-		var minVal = 0;
-		var maxVal = 25;
-	}
-	
-	var mySlider = new rSlider({
-        target: '#ageSlider',
-        values: [0, 1, 2, 3, 4, 5, 10, 12, 14, 16, 18, 20, 25],
-        range: true,
-        tooltip: true,
-        scale: true,
-        labels: false,
-        set: [minVal, maxVal],
-		onChange: function (vals) {
-			vals = vals.split(",");
-            qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
-        }
-    });
-};
-// add range query to field and submit search form 
-function addQueryToField() {
-	currentString = window.location.search;
-	currentParams = new URLSearchParams(currentString);
-	// check if there is an existing query to replace or append
-	if (currentParams.get('q') != null) {
-		cleanQuery = currentParams.get('q').replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/,"");
-		if (cleanQuery != "") {
-			newString = cleanQuery + ' & ' + qstring;
+
+		var mySlider = new rSlider({
+			target: '#ageSlider',
+			values: [0, 1, 2, 3, 4, 5, 10, 12, 14, 16, 18, 20, 25],
+			range: true,
+			tooltip: true,
+			scale: true,
+			labels: false,
+			set: [minVal, maxVal],
+			onChange: function (vals) {
+				vals = vals.split(",");
+				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
+			}
+		});
+	};
+	// add range query to field and submit search form 
+	function addQueryToField() {
+		currentString = window.location.search;
+		currentParams = new URLSearchParams(currentString);
+		// check if there is an existing query to replace or append
+		if (currentParams.get('q') != null) {
+			cleanQuery = currentParams.get('q').replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/, "");
+			if (cleanQuery != "") {
+				newString = cleanQuery + ' & ' + qstring;
+			} else {
+				newString = qstring;
+			}
 		} else {
 			newString = qstring;
 		}
-	} else {
-		newString = qstring;
-	}
-	document.getElementById('searchbox').value = newString;
-	document.getElementById('dataset-search-form').submit();
-}     
+		document.getElementById('searchbox').value = newString;
+		document.getElementById('dataset-search-form').submit();
+	}     
 </script>
 
 
 <link rel="stylesheet" href="../range-slider/css/rSlider.min.css">
 <script src="../range-slider/js/rSlider.min.js"></script>
-            
+
 {% endif %}
-
-
-
-
 {% endblock %}
 {% endif %}
 {% endif %}
