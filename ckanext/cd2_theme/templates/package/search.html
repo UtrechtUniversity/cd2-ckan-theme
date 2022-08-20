@@ -46,7 +46,7 @@
 
   {% block search_title %}
     {% if not c.query_error %}
-      <h2>{% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='dataset' %}</h2>
+      <h2 style="margin-top:0px">{% snippet 'snippets/search_result_text.html', query=c.q, count=c.page.item_count, type='dataset' %}</h2>
     {% else %}
       <h2>Error</h2>
     {% endif %}
