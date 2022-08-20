@@ -20,14 +20,13 @@
 {% block facet_list_heading %}
 <script>
 	document.addEventListener("DOMContentLoaded", function (event) {
-
+		// Toggle facets via input filter
 		toggleFacet('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}');
 
 		// Resize the search box to fit the height of the facet list
 		facetResize('element_{{ title.replace(" ","_") }}','section_{{ title.replace(" ","_")  }}');
 	});
 </script>
-
 
 <h2 class="module-heading" style="margin-bottom:-20px;padding:10px">
 	<i class="fa fa-filter"></i>
@@ -129,6 +128,10 @@
 		});
 		{% endif %}
 
+		// --------------------------------------------
+		// ------------- AGE RANGE SLIDER -------------
+		// --------------------------------------------
+
 		// Get url parameters of current range selection and update slider accordingly
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
@@ -162,6 +165,7 @@
 			}
 		});
 	};
+
 	// Add range query to field and submit search form 
 	function addQueryToField() {
 		currentString = window.location.search;
