@@ -74,10 +74,8 @@
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
 				{% set margin = 'margin-left:20px' %}
-				<li class="cohort_parent nav-custom {% if item.active %} active{% endif %}">
-					<a title="Cohort Study">
-						<span class="item-label">{{ studyname }}</span>
-					</a>
+				<li style="padding:6px" class="cohort_parent nav-custom {% if item.active %} active{% endif %}">
+					<span class="item-label">{{ studyname }}</span>
 				</li>
 			{% endif %}
 
