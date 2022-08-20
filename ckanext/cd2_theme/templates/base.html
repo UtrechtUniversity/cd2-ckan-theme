@@ -29,6 +29,7 @@ window.addEventListener("load", myInit, true); function myInit(){
     })
  };
 
+// toggle facets via input filter
 function toggleFacet(facet_input,facet_element) {
         $(facet_input).on('keyup', function () {
             var search = this.value.toLowerCase();
@@ -42,6 +43,8 @@ function toggleFacet(facet_input,facet_element) {
             });
         });
     }
+
+// resize facet div based on content
 function facetResize (liElements,sectionElement) {
     liElements = document.getElementsByClassName(liElements);
     maxHeight = (liElements.length * 30) + 70;
@@ -50,9 +53,8 @@ function facetResize (liElements,sectionElement) {
 
 }
 
-// Capitalize 'and' and 'not' to be functional parameters
+// Suggest turning 'and' and 'not' into functional parameters
 var input_q = document.getElementById('searchbox');
-
 input_q.addEventListener('keyup', do_search);
 function do_search() {
     var value_q = input_q.value;
