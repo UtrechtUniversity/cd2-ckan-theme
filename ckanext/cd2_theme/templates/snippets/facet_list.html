@@ -77,6 +77,7 @@
 						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 							<span class="item-label">{{ studyname }}</span>
 							<span class="hidden separator"> - </span> 
+							{{ prevname }}
 						</a>
 					</li>
 					{% set prevname = studyname %}
