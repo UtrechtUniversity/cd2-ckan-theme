@@ -55,18 +55,7 @@
 {% endblock %}
 <section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height:300px;overflow-y:scroll;overflow-x: hidden;">
-	{% if title == 'cohort' %}
-	<script>
-		$('.cohort_parent').each(function () {
-			a = this;
-			console.log(a.innerText);
-		});
-	</script>
-	{% endif %}
-	
 
-
-	{% set prevname = '' %}
 	{% block facet_list_items %}
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
 	{% if items %}
@@ -86,7 +75,7 @@
 				{% set label = splitname[1] %}
 				{% set margin = 'margin-left:20px' %}
 				<li class="cohort_parent nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-					<a title="{{ label if label != label_truncated else '' }}">
+					<a title="Cohort Study">
 						<span class="item-label">{{ studyname }}</span>
 					</a>
 				</li>
@@ -145,6 +134,19 @@
 <script>
 	// Get url parameters of current range selection and update slider
 	window.onload = function () {
+
+		{% if title == 'cohort' %}
+		prev_cohort_parent = '';
+		$('.cohort_parent').each(function () {
+			a = this;
+			if (prev_cohort_parent == a.innerText) {
+				a.style.display = "none";
+			} else {
+				prev_cohort_parent = a.innerText;
+			}			
+		});
+		{% endif %}
+
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		if (urlParams) {
