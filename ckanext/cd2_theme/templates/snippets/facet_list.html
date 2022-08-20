@@ -1,30 +1,5 @@
 {% block facet_list %}
 
-<script>
-document.addEventListener("DOMContentLoaded", function (event) {
-	function toggleFacet(facet_input,facet_element) {
-			$(facet_input).on('keyup', function () {
-				var search = this.value.toLowerCase();
-				if (search.length < 2) { var showAll = true } else { showAll = false }
-				$(facet_element).each(function () {
-					a = this;
-					this.style.display = "block";
-					if (showAll == false) {
-						if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
-					}
-				});
-			});
-		}
-	function facetResize (liElements,sectionElement) {
-		liElements = document.getElementsByClassName(liElements);
-		maxHeight = (liElements.length * 30) + 70;
-		if (maxHeight > 300) { maxHeight = 300 }
-		document.getElementById(sectionElement).style.height = maxHeight + 'px';
-
-	}
-});
-</script>
-
 {% set hide_empty = hide_empty or false %}
 
 {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
@@ -43,9 +18,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
 {% endif %}
 {% block facet_list_item %}
 {% block facet_list_heading %}
-
 <script>
 	document.addEventListener("DOMContentLoaded", function (event) {
+		function toggleFacet(facet_input,facet_element) {
+				$(facet_input).on('keyup', function () {
+					var search = this.value.toLowerCase();
+					if (search.length < 2) { var showAll = true } else { showAll = false }
+					$(facet_element).each(function () {
+						a = this;
+						this.style.display = "block";
+						if (showAll == false) {
+							if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+						}
+					});
+				});
+			}
+		function facetResize (liElements,sectionElement) {
+			liElements = document.getElementsByClassName(liElements);
+			maxHeight = (liElements.length * 30) + 70;
+			if (maxHeight > 300) { maxHeight = 300 }
+			document.getElementById(sectionElement).style.height = maxHeight + 'px';
+	
+		}
+
 		toggleFacet('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}');
 
 		// Resize the search box to fit the height of the facet list
