@@ -62,7 +62,7 @@
 
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
-			{% prevname = '' %}
+			{% set prevname = '' %}
 			{% for item in items %}
 			{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
 			item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
@@ -73,7 +73,7 @@
 				{% set splitname = label.split('-') %}
 				{% set studyname = splitname[0] %}
 				{% if studyname != prevname %}
-				{% prevname = studyname %}
+					{% set prevname = studyname %}
 					<li class="nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 						<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 							<span class="item-label">{{ studyname }}</span>
