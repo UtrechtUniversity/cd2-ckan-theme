@@ -55,6 +55,17 @@
 {% endblock %}
 <section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height:300px;overflow-y:scroll;overflow-x: hidden;">
+	{% if title == 'cohort' %}
+	<script>
+		$('.cohort_parent').each(function () {
+			a = this;
+			console.log(a.innerText);
+		});
+	</script>
+	{% endif %}
+	
+
+
 	{% set prevname = '' %}
 	{% block facet_list_items %}
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
@@ -74,7 +85,7 @@
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
 				{% set margin = 'margin-left:20px' %}
-				<li id="cohort_parent" class="nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+				<li class="cohort_parent nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a title="{{ label if label != label_truncated else '' }}">
 						<span class="item-label">{{ studyname }}</span>
 					</a>
