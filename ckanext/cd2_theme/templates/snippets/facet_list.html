@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		document.getElementById(sectionElement).style.height = maxHeight + 'px';
 
 	}
-}
+});
 </script>
 
 {% set hide_empty = hide_empty or false %}
@@ -45,21 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 {% block facet_list_heading %}
 
 <script>
- 	// TODO: add generic function instead of repeating code for each facet
 	document.addEventListener("DOMContentLoaded", function (event) {
-		// filter facet lists based on entered query text
-		/**$('#filter_{{ title.replace(" ","_")  }}').on('keyup', function () {
-			var search = this.value.toLowerCase();
-			if (search.length < 2) { var showAll = true } else { showAll = false }
-			$('.element_{{ title.replace(" ","_")  }}').each(function () {
-				a = this;
-				this.style.display = "block";
-				if (showAll == false) {
-					if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
-				}
-			});
-		});**/
-
 		toggleFacet('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}');
 
 		// Resize the search box to fit the height of the facet list
