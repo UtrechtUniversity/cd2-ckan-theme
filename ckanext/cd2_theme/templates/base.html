@@ -27,29 +27,28 @@ window.addEventListener("load", myInit, true); function myInit(){
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-
-    function toggleFacet(facet_input,facet_element) {
-				$(facet_input).on('keyup', function () {
-					var search = this.value.toLowerCase();
-					if (search.length < 2) { var showAll = true } else { showAll = false }
-					$(facet_element).each(function () {
-						a = this;
-						this.style.display = "block";
-						if (showAll == false) {
-							if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
-						}
-					});
-				});
-			}
-		function facetResize (liElements,sectionElement) {
-			liElements = document.getElementsByClassName(liElements);
-			maxHeight = (liElements.length * 30) + 70;
-			if (maxHeight > 300) { maxHeight = 300 }
-			document.getElementById(sectionElement).style.height = maxHeight + 'px';
-	
-		}
  };
 
+function toggleFacet(facet_input,facet_element) {
+        $(facet_input).on('keyup', function () {
+            var search = this.value.toLowerCase();
+            if (search.length < 2) { var showAll = true } else { showAll = false }
+            $(facet_element).each(function () {
+                a = this;
+                this.style.display = "block";
+                if (showAll == false) {
+                    if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+                }
+            });
+        });
+    }
+function facetResize (liElements,sectionElement) {
+    liElements = document.getElementsByClassName(liElements);
+    maxHeight = (liElements.length * 30) + 70;
+    if (maxHeight > 300) { maxHeight = 300 }
+    document.getElementById(sectionElement).style.height = maxHeight + 'px';
+
+}
 
 // Capitalize 'and' and 'not' to be functional parameters
 var input_q = document.getElementById('searchbox');
