@@ -37,6 +37,20 @@
 			});
 		});**/
 
+		function toggleFacet(facet_input,facet_element) {
+			$(facet_input).on('keyup', function () {
+				var search = this.value.toLowerCase();
+				if (search.length < 2) { var showAll = true } else { showAll = false }
+				$(facet_element).each(function () {
+					a = this;
+					this.style.display = "block";
+					if (showAll == false) {
+						if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+					}
+				});
+			});
+		}
+
 		toggleFacet('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}');
 
 		// Resize the search box to fit the height of the facet list
@@ -135,20 +149,6 @@
 </section>
 <script>
 	window.onload = function () {
-
-		function toggleFacet(facet_input,facet_element) {
-			$(facet_input).on('keyup', function () {
-				var search = this.value.toLowerCase();
-				if (search.length < 2) { var showAll = true } else { showAll = false }
-				$(facet_element).each(function () {
-					a = this;
-					this.style.display = "block";
-					if (showAll == false) {
-						if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
-					}
-				});
-			});
-		}
 
 		{% if title == 'cohort' %}
 		// because jinja2 does not allow updating of variables in a loop, I had to hide repeating study-headers in the cohort list manually afterwards
