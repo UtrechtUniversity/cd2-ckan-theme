@@ -130,10 +130,10 @@
 	</p>
 </section>
 <script>
-	// Get url parameters of current range selection and update slider
 	window.onload = function () {
 
 		{% if title == 'cohort' %}
+		// because jinja2 does not allow updating of variables in a loop, I had to hide repeating study-headers in the cohort list manually afterwards
 		prev_cohort_parent = '';
 		$('.cohort_parent').each(function () {
 			a = this;
@@ -145,6 +145,7 @@
 		});
 		{% endif %}
 
+		// Get url parameters of current range selection and update slider accordingly
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		if (urlParams) {
@@ -157,6 +158,7 @@
 				}
 			}
 		} else {
+			// Default slider values
 			var minVal = 0;
 			var maxVal = 25;
 		}
@@ -170,16 +172,17 @@
 			labels: false,
 			set: [minVal, maxVal],
 			onChange: function (vals) {
+				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 			}
 		});
 	};
-	// add range query to field and submit search form 
+	// Add range query to field and submit search form 
 	function addQueryToField() {
 		currentString = window.location.search;
 		currentParams = new URLSearchParams(currentString);
-		// check if there is an existing query to replace or append
+		// Check if there is an existing query to replace or append
 		if (currentParams.get('q') != null) {
 			cleanQuery = currentParams.get('q').replace(/[&\s]*wave_median_age:\[\d+\sTO\s\d+\][\s&]*/, "");
 			if (cleanQuery != "") {
