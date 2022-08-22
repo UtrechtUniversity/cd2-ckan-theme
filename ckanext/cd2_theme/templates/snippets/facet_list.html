@@ -46,6 +46,7 @@
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
+			{{ items }}
 			{% for item in items %}
 			{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
 			item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
