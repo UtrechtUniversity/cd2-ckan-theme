@@ -55,7 +55,7 @@
                 {% endif %}
                 <tr><td>Available measurements:</td><td>
                 {% for waves in package.wave %}
-                  <span class="label">{{ waves.wave_title }}</span>
+                  <span class="label"  data-toggle="tooltip" data-placement="bottom" title="around {{wave["waves.wave_median_age"]}} years">{{ waves.wave_title }}</span>
                 {% endfor %}
               </td></tr>
               </tbody>
