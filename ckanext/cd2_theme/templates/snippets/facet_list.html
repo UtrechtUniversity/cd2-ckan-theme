@@ -47,14 +47,12 @@
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
 			{% if title == 'cohort' %}
-			{% for item in items|sort(attribute='name') %}
-			{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
-			item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
-			alternative_url=alternative_url) %}
-			{% set label = label_function(item) if label_function else item.display_name %}
-			{% set margin = 'margin-left:0px' %}
-			
-	
+				{% for item in items|sort(attribute='name') %}
+				{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
+				item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
+				alternative_url=alternative_url) %}
+				{% set label = label_function(item) if label_function else item.display_name %}
+				{% set margin = 'margin-left:0px' %}
 				{% set splitname = label.split('-') %}
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
@@ -62,41 +60,39 @@
 				<li style="padding:6px" class="cohort_parent nav-custom {% if item.active %} active{% endif %}">
 					<span class="item-label">{{ studyname }}</span>
 				</li>
-			
+				
+				{% set label_truncated = label|truncate(22) if not label_function else label %}
+				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
-			{% set label_truncated = label|truncate(22) if not label_function else label %}
-			{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+				<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+						<span class="item-label">{{ label_truncated }}</span>
+						<span class="hidden separator"> - </span>
+						<span class="item-count badge">{{ count }}</span>
+					</a>
+				</li>
 
-			<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-				<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-					<span class="item-label">{{ label_truncated }}</span>
-					<span class="hidden separator"> - </span>
-					<span class="item-count badge">{{ count }}</span>
-				</a>
-			</li>
-
-			{% endfor %}
+				{% endfor %}
 			{% else %}
+				{% for item in items %}
+				{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
+				item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
+				alternative_url=alternative_url) %}
+				{% set label = label_function(item) if label_function else item.display_name %}
+				{% set margin = 'margin-left:0px' %}
+				
+				{% set label_truncated = label|truncate(22) if not label_function else label %}
+				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
-			{% for item in items %}
-			{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
-			item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
-			alternative_url=alternative_url) %}
-			{% set label = label_function(item) if label_function else item.display_name %}
-			{% set margin = 'margin-left:0px' %}
-			
-			{% set label_truncated = label|truncate(22) if not label_function else label %}
-			{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+				<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+						<span class="item-label">{{ label_truncated }}</span>
+						<span class="hidden separator"> - </span>
+						<span class="item-count badge">{{ count }}</span>
+					</a>
+				</li>
 
-			<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-				<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-					<span class="item-label">{{ label_truncated }}</span>
-					<span class="hidden separator"> - </span>
-					<span class="item-count badge">{{ count }}</span>
-				</a>
-			</li>
-
-			{% endfor %}
+				{% endfor %}
 			{% endif %}
 
 		</ul>
@@ -162,12 +158,12 @@
 		const urlParams = new URLSearchParams(queryString);
 		if (urlParams) {
 			const currentQuery = urlParams.get('q');
-			if (currentQuery) {
-				var currentRange = currentQuery.match(/\d+/g);
-				if (currentRange) {
-					var minVal = parseInt(currentRange[0]);
-					var maxVal = parseInt(currentRange[1]);
-				}
+			if (currentQuery == null) { return; }
+			var isRangeDefined = currentQuery.match(/wave_median_age/g);
+			var currentRange = currentQuery.match(/\d+/g);
+			if (currentRange && isRangeDefined) {
+				var minVal = parseInt(currentRange[0]);
+				var maxVal = parseInt(currentRange[1]);
 			}
 		} else {
 			// Default slider values
