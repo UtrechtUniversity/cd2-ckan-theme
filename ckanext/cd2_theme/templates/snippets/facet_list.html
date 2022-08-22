@@ -158,12 +158,13 @@
 		const urlParams = new URLSearchParams(queryString);
 		if (urlParams) {
 			const currentQuery = urlParams.get('q');
-			if (currentQuery == null) { break; }
-			var isRangeDefined = currentQuery.match(/wave_median_age/g);
-			var currentRange = currentQuery.match(/\d+/g);
-			if (currentRange && isRangeDefined) {
-				var minVal = parseInt(currentRange[0]);
-				var maxVal = parseInt(currentRange[1]);
+			if (currentQuery) { 
+				var isRangeDefined = currentQuery.match(/wave_median_age/g);
+				var currentRange = currentQuery.match(/\d+/g);
+				if (currentRange && isRangeDefined) {
+					var minVal = parseInt(currentRange[0]);
+					var maxVal = parseInt(currentRange[1]);
+				}
 			}
 		} else {
 			// Default slider values
