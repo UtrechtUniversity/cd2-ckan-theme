@@ -72,29 +72,31 @@
       
 
       <script>
-        // TODO: perhaps create python plugin to handle this as a facet instead of query-parameter
+      // TODO: perhaps create python plugin to handle this as a facet instead of query-parameter
 
-        // Create pill from selected age range, with ability to remove from query string
-          const queryString = window.location.search;
-          const urlParams = new URLSearchParams(queryString);
-          if (urlParams) {
-            currentQuery = urlParams.get('q');
-            if (currentQuery == null) { return; }
-            var isRangeSelect = currentQuery.match(/wave_median_age/g);
-            var currentRange = currentQuery.match(/\d+/g);
-            if (isRangeSelect) {
-              filterList = document.getElementById('filter-list');
-              filterList.innerHTML += `<span class="facet">Median age range: </span>
-                                              <span class="filtered pill">` + currentRange[0] + ' to ' + currentRange[1] + ` years <a onclick="removeRange(currentQuery)" class="remove" title="Remove"><i class="fa fa-times"></i></a>
-                                              </span><input type="hidden" id="facet-range-value" value="`+currentQuery+`"/>`
-            };
-          };
+      // Create pill from selected age range, with ability to remove from query string
+      function createRangePill() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams == null) { return; }
+        currentQuery = urlParams.get('q');
+        if (currentQuery == null) { return; }
+        var isRangeSelect = currentQuery.match(/wave_median_age/g);
+        var currentRange = currentQuery.match(/\d+/g);
+        if (isRangeSelect == null) { return; }
+        filterList = document.getElementById('filter-list');
+        filterList.innerHTML += `<span class="facet">Median age range: </span>
+                                          <span class="filtered pill">` + currentRange[0] + ' to ' + currentRange[1] + ` years <a onclick="removeRange(currentQuery)" class="remove" title="Remove"><i class="fa fa-times"></i></a>
+                                          </span><input type="hidden" id="facet-range-value" value="`+currentQuery+`"/>`
+      };
+      createRangePill();
 
-          function removeRange(currentQuery) {
-            newQuery = currentQuery.replace(/[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*/,"");
-            document.getElementById('searchbox').value = newQuery;
-            document.getElementById('dataset-search-form').submit();
-          }
+      // Remove current range from query string before adding new range
+      function removeRange(currentQuery) {
+        newQuery = currentQuery.replace(/[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*/,"");
+        document.getElementById('searchbox').value = newQuery;
+        document.getElementById('dataset-search-form').submit();
+      }
       </script>
     {% endif %}
        
