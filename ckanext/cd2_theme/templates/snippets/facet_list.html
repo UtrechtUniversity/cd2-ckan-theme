@@ -6,7 +6,7 @@
 
 {% if items or not hide_empty %}
 {% set hide_sub_facet = False %}
-{% if title == 'type' %}
+{% if title == 'type' || title == 'Organizations' || title == 'Formats' || title == 'Licenses' %}
 {% set hide_sub_facet = True %}
 {% endif %}
 
