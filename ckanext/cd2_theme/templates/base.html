@@ -35,18 +35,18 @@ window.addEventListener("load", myInit, true); function myInit(){
 
 // toggle facets via input filter
 function toggleFacet(facet_input,facet_element) {
-        $(facet_input).on('keyup', function () {
-            var search = this.value.toLowerCase();
-            if (search.length < 2) { var showAll = true } else { showAll = false }
-            $(facet_element).each(function () {
-                a = this;
-                this.style.display = "block";
-                if (showAll == false) {
-                    if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
-                }
-            });
+    $(facet_input).on('keyup', function () {
+        var search = this.value.toLowerCase();
+        if (search.length < 2) { var showAll = true } else { showAll = false }
+        $(facet_element).each(function () {
+            a = this;
+            this.style.display = "block";
+            if (showAll == false) {
+                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+            }
         });
-    }
+    });
+}
 
 // resize facet div based on content
 function facetResize (liElements,sectionElement) {
@@ -99,6 +99,7 @@ function removeRange(currentQuery) {
     document.getElementById('dataset-search-form').submit();
 }
 
+// Create styled elements from facets
 function createFacetPills(facets,facetType) {
     var labelPit = "";
     for (const facet of facets) {
@@ -107,6 +108,7 @@ function createFacetPills(facets,facetType) {
     return labelPit;
 }
 
+// Create modal for constructs or labels on frontpage
 function fillModal(facet) {
     if (facet == 'construct') {
         document.getElementById('modalTitle').innerHTML = 'Available constucts';
