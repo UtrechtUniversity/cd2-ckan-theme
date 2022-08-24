@@ -103,6 +103,8 @@ function createRangePill(facetName,facetMeasure) {
 function removeRange(currentQuery,facetName) {
     var regEx = '/[\s&-]*' + facetName + ':\[\d+\sTO\s\d+\][\s&-]*/'
     newQuery = currentQuery.replace(regEx, "");
+    console.log(newQuery);
+    return;
     document.getElementById('searchbox').value = newQuery;
     document.getElementById('dataset-search-form').submit();
 }
