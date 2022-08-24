@@ -22,6 +22,10 @@
 
 
 <script>
+// -------------------------------
+// CD2 custom JS
+// -------------------------------
+
 // Enable tooltips site-wide
 window.addEventListener("load", myInit, true); function myInit(){  
     $(function () {
@@ -87,13 +91,30 @@ function createRangePill() {
                                         <span class="filtered pill">` + currentRange[0] + ' to ' + currentRange[1] + ` years <a onclick="removeRange(currentQuery)" class="remove" title="Remove"><i class="fa fa-times"></i></a>
                                         </span><input type="hidden" id="facet-range-value" value="`+currentQuery+`"/>`
 };
-createRangePill();
 
 // Remove current range from query string before adding new range
 function removeRange(currentQuery) {
     newQuery = currentQuery.replace(/[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*/,"");
     document.getElementById('searchbox').value = newQuery;
     document.getElementById('dataset-search-form').submit();
+}
+
+function createFacetPills(facets,facetType) {
+    var labelPit = "";
+    for (const facet of facets) {
+    labelPit += '<li><a href="{% url_for "dataset.search" %}?'+facetType+'=' + facet + '" class="category-select">' + facet + '</a></li>';
+    }
+    return labelPit;
+}
+
+function fillModal(facet) {
+    if (facet == 'construct') {
+        document.getElementById('modalTitle').innerHTML = 'Available constucts';
+        document.getElementById('modalBody').innerHTML = createFacetPills(conKeys,'dc_construct');
+    } else {
+        document.getElementById('modalTitle').innerHTML = 'Available labels';
+        document.getElementById('modalBody').innerHTML = createFacetPills(labelKeys,'dc_label');  
+    }
 }
 </script>
 
