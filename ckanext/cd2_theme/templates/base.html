@@ -101,10 +101,8 @@ function createRangePill(facetName,facetMeasure) {
 
 // // Remove current range from query string before adding new range
 function removeRange(currentQuery,facetName) {
-    var regEx = '/[\s&-]*' + facetName + ':\[\d+\sTO\s\d+\][\s&-]*/'
-    newQuery = currentQuery.replace(regEx, "");
-    console.log(newQuery);
-    return;
+    //var re = new RegExp('[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*');
+    newQuery = currentQuery.replace(/[\s&-]*wave_median_age:\[\d+\sTO\s\d+\][\s&-]*/, "");
     document.getElementById('searchbox').value = newQuery;
     document.getElementById('dataset-search-form').submit();
 }
