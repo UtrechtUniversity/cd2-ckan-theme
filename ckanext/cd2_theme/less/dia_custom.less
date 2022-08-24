@@ -10,6 +10,11 @@
 @import url(https://code.cdn.mozilla.net/fonts/fira.css);
 @layoutFontFamily: "Fira Sans", Helvetica, Arial, sans-serif;
 
+// CID colors
+@CIDColorGrey: #6A808C;
+@CIDColorGreen: #94BDAC;
+@CIDColorOrange: #D79F73;
+
 @layoutTextColor: #333333;
 @layoutBoldColor: #000;
 @layoutLinkColor: #004a61;
@@ -86,6 +91,10 @@
 //==============================================
 // Custom styles
 //==============================================
+
+.message { 
+  background-color: @CIDColorGreen;
+}
 
 .nav-facet .nav-item > a:hover::after, .nav-facet .nav-item.active > a::after {
   margin-top:-9px;
