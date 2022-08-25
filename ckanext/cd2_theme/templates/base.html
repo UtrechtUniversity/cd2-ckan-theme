@@ -39,7 +39,7 @@ window.addEventListener("load", myInit, true); function myInit() {
 
 // Facets
 // // Toggle facets via input filter
-function toggleFacet(facet_input, facet_element) {
+function facetToggle(facet_input, facet_element) {
     $(facet_input).on('keyup', function () {
         var search = this.value.toLowerCase();
         if (search.length < 2) { var showAll = true } else { showAll = false }
@@ -65,8 +65,8 @@ function facetResize(liElements, sectionElement) {
 // Search
 // // Suggest turning 'and' and 'not' into functional parameters
 var input_q = document.getElementById('searchbox');
-input_q.addEventListener('keyup', do_search);
-function do_search() {
+input_q.addEventListener('keyup', keywordSearch);
+function keywordSearch() {
     var value_q = input_q.value;
     if (value_q.includes('not') || value_q.includes('and')) {
         $('#searchbox').tooltip('show');
@@ -74,8 +74,8 @@ function do_search() {
 };
 
 // // change functional parameters into symbols for clarity
-input_q.addEventListener('keyup', do_replace);
-function do_replace() {
+input_q.addEventListener('keyup', replaceCharacters);
+function replaceCharacters() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND', '&');
     var replaced_q = replaced_q.replace('NOT ', '-');
