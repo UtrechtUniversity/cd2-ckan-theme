@@ -1,10 +1,11 @@
 from ckan.common import config
 import ckan.plugins.toolkit as toolkit
-import json
+import json, urllib
 
-def echo_bark():
-    dogSays = "bark bark"
-    return dogSays
+def custom_api_call(url):
+    response = urllib.urlopen(url)
+    data = json.loads(response.read())
+    print(data)
 
 def parent_site_url():
     """
