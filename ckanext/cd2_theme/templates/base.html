@@ -118,14 +118,9 @@ function createFacetPills(facets, facetType) {
 }
 
 // // Create modal for constructs or labels on frontpage
-function fillModal(facet) {
-    if (facet == 'construct') {
-        document.getElementById('modalTitle').innerHTML = 'Available constucts';
-        document.getElementById('modalBody').innerHTML = createFacetPills(conKeys, 'dc_construct');
-    } else {
-        document.getElementById('modalTitle').innerHTML = 'Available labels';
-        document.getElementById('modalBody').innerHTML = createFacetPills(labelKeys, 'dc_label');
-    }
+function fillModal(facetLabel,modalTitle) {
+        document.getElementById('modalTitle').innerHTML = modalTitle;
+        document.getElementById('modalBody').innerHTML = createFacetPills(conKeys, facetLabel);
 }
 </script>
 
