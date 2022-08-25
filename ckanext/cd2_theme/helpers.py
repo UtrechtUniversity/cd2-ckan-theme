@@ -3,10 +3,8 @@ import ckan.plugins.toolkit as toolkit
 import json
 
 def echo_bark():
-    """
-    bark bark
-    """
-    return "bark bark"
+    dogSays = "bark bark"
+    return dogSays
 
 def parent_site_url():
     """
