@@ -2,6 +2,12 @@ from ckan.common import config
 import ckan.plugins.toolkit as toolkit
 import json
 
+def echo_bark():
+    """
+    bark bark
+    """
+    return "bark bark"
+
 def parent_site_url():
     """
     Return the URL of the parent site (eg, if this instance
