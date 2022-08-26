@@ -61,11 +61,11 @@
                       {% if wave.wave_cohort not in waves_passed %}
                         {% do waves_passed.append(wave.wave_cohort) %}
                         {% if waves_passed|length > 1 %}
-                        ; 
+                        <span> | </span> 
                         {% endif %}
                       <li>{{ wave.wave_cohort }}</li>&nbsp;
                       {% endif %}
-                      <span class="label"  data-toggle="tooltip" data-placement="bottom" title="{{ waves.wave_cohort }}">{{ wave.wave_title }}</span>
+                      <span class="label">{{ wave.wave_title }}</span>
                   {% endfor %}  
 
               </td></tr>
