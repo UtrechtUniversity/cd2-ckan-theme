@@ -6,8 +6,18 @@
 
 {% if items or not hide_empty %}
 {% set hide_sub_facet = False %}
-{% if title == 'type' or title == 'Organizations' or title == 'Formats' or title == 'Licenses' or title == 'Groups' %}
-{% set hide_sub_facet = True %}
+
+{%- set exclude_fields = [
+    'type',
+	'Organizations',
+	'Formats',
+	'Licenses',
+	'Groups',
+	'wave'
+    ] -%}
+
+{% if title not in exclude_fields %}
+	{% set hide_sub_facet = True %}
 {% endif %}
 
 {% if not hide_sub_facet %}
