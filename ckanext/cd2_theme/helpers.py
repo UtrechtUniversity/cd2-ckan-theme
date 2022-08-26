@@ -2,10 +2,12 @@ from ckan.common import config
 import ckan.plugins.toolkit as toolkit
 import urllib.request, json 
 
-def custom_api_call(url_href):
-    with urllib.request.urlopen(url_href) as url:
+def custom_api_call():
+    """with urllib.request.urlopen(url_href) as url:
         data = json.loads(url.read().decode())
         return data
+    """
+    return 'bla'
 
 
 def parent_site_url():
