@@ -40,33 +40,15 @@
       <th scope="row" class="dataset-label">Waves</th>
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
-      {% set waves = pkg_dict.wave %}
-      {% for wave in waves  %}
-      {% set wavename = wave["wave_title"] %}
-        <li>
-          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="{{wave["wave_cohort"]}}">{{wave["wave_title"]}}</a>
-      </li>
-      {% endfor %}
-      </ul>
-      </td>
-    </tr>
-
-    <tr>
-      <th scope="row" class="dataset-label">Cohorts</th>
-      <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
-
-   
-
 
       {% set waves_passed = [] %}
       {% for wave in waves %}
           {% if wave.wave_cohort not in waves_passed %}
               {% do waves_passed.append(wave.wave_cohort) %}
               <li>{{ wave.wave_cohort }}</li>
-              <li>{{ wave.wave_title }}</li>
-          {% else %}
-              <li>{{ wave.wave_title }}</li>
+              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title]}}</a>
+         {% else %}
+              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
       {% endif %}
       {% endfor %}
 
