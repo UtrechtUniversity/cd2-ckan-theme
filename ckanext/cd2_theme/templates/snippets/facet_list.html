@@ -152,20 +152,6 @@
 </section>
 <script type='text/javascript'>
 	window.onload = function () {
-
-		{% if title == 'cohortk' %}
-		// because jinja2 does not allow updating of variables in a loop, I had to hide repeating study-headers in the cohort list manually afterwards
-		prev_cohort_parent = '';
-		$('.cohort_parent').each(function () {
-			a = this;
-			if (prev_cohort_parent == a.innerText) {
-				a.style.display = "none";
-			} else {
-				prev_cohort_parent = a.innerText;
-			}			
-		});
-		{% endif %}
-
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
