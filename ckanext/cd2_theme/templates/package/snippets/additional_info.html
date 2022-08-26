@@ -46,12 +46,12 @@
       {% for wave in waves %}
           {% if wave.wave_cohort not in waves_passed %}
               {% do waves_passed.append(wave.wave_cohort) %}
-              <li>{{ wave.wave_cohort }}</li>
+              </span><span class="cohort-spanner"><li>{{ wave.wave_cohort }}</li>
               <a href="{% url_for 'dataset.search', wave_title=bla %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
          {% else %}
               <a href="{% url_for 'dataset.search', wave_title=bla %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
       {% endif %}
-      {% endfor %}
+      {% endfor %}</span>
 
       </ul>
       </td>
