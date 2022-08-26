@@ -2,10 +2,7 @@
 
 {% block styles %}
 {{ super() }}
-{% if h.check_ckan_version('2.9') %}
-{% asset 'cd2_theme/rua_style' %}
-{% asset 'cd2_theme/dia_style' %}
-{% else %}
+
 {% resource 'cd2_theme/rua/css/rua-font.css' %}
 {% resource 'cd2_theme/rua/css/rua.css' %}
 {% resource 'cd2_theme/rua/js/rua.js' %}
@@ -24,6 +21,13 @@
 // -------------------------------
 // CD2 custom JS
 // -------------------------------
+
+// Enable tooltips site-wide
+window.addEventListener("load", myInit, true); function myInit() {
+    $(function () {
+        //$('[data-toggle="tooltip"]').tooltip()
+    })
+};
 
 // Facets
 // // Toggle facets via input filter
