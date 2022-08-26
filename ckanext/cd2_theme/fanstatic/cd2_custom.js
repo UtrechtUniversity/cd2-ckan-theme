@@ -3,11 +3,10 @@
 // -------------------------------
 
 // Enable tooltips site-wide
-window.addEventListener("load", myInit, true); function myInit() {
-    $(function () {
-        //$('[data-toggle="tooltip"]').tooltip()
-    })
-};
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 
 // Facets
 // // Toggle facets via input filter
