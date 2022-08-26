@@ -58,9 +58,17 @@
 
       {% for wave in waves|map(attribute='wave_cohort')|unique  %}
         <li>
-          <a href="" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title=""></a>{{ wave }}</li>
+          <a href="" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{ wave }}</li></a>
         </li>
       {% endfor %}
+
+
+      {% set waves_passed = [] %}
+      {% for wave in waves if wave not in waves_passed %}
+          {% do waves_passed.append(wave) %}
+          <li>{{ wave }}</li>
+      {% endfor %}
+
       </ul>
       </td>
     </tr>
