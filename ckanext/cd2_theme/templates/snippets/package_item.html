@@ -57,7 +57,7 @@
                 
                   
                   {% set waves_passed = [] %}
-                  {% for waves in package.wave %}
+                  {% for wave in package.wave %}
                       {% if wave.wave_cohort not in waves_passed %}
                         {% do waves_passed.append(wave.wave_cohort) %}
                         {% if waves_passed|length > 1 %}
