@@ -16,7 +16,7 @@
 	'wave'
     ] -%}
 
-{% if title not in exclude_fields %}
+{% if title in exclude_fields %}
 	{% set hide_sub_facet = True %}
 {% endif %}
 
