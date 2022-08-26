@@ -49,7 +49,7 @@
               {% do waves_passed.append(wave.wave_cohort) %}
               {% if waves_first > 0 %}
               <br />
-              {% waves_first = 1}
+              {% set waves_first = 1}
               {% endif %}
               <li>{{ wave.wave_cohort }}</li>&nbsp;
               <a href="{% url_for 'dataset.search', wave_title=bla %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
