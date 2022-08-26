@@ -41,6 +41,7 @@
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
 
+      {% set waves = pkg_dict.wave %}
       {% set waves_passed = [] %}
       {% for wave in waves %}
           {% if wave.wave_cohort not in waves_passed %}
