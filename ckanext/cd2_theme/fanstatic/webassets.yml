@@ -18,3 +18,8 @@ dia_style:
   output: cd2_theme/dia_custom.css
   contents:
     - dia_custom.css
+
+cd2_script:
+  output: cd2_theme/cd2_custom.js
+  contents:
+    - cd2_custom.js
