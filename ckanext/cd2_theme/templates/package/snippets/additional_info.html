@@ -56,17 +56,13 @@
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
 
-      {% for wave in waves|map(attribute='wave_cohort')|unique  %}
-        <li>
-          <a href="" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{ wave }}</li></a>
-        </li>
-      {% endfor %}
+   
 
 
       {% set waves_passed = [] %}
       {% for wave in waves %}
-          {% if wave not in waves_passed %}
-              {% do waves_passed.append(wave) %}
+          {% if wave.wave_cohort not in waves_passed %}
+              {% do waves_passed.append(wave.wave_cohort) %}
               <li>{{ wave.wave_cohort }}</li>
               <li>{{ wave.wave_title }}</li>
           {% else %}
