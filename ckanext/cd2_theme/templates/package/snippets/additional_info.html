@@ -56,9 +56,9 @@
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
 
-      {% for wave in waves|map(attribute='wave_cohort')|unique|list  %}
+      {% for wave in waves|map(attribute='wave_cohort')|unique  %}
         <li>
-          {{ wave }}
+          <a class="label label-info"  data-toggle="tooltip" data-placement="bottom" title=""></a>{{ wave }}</li>
         </li>
       {% endfor %}
       </ul>
