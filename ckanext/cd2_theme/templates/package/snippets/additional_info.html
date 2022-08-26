@@ -64,9 +64,14 @@
 
 
       {% set waves_passed = [] %}
-      {% for wave in waves if wave not in waves_passed %}
-          {% do waves_passed.append(wave) %}
-          <li>{{ wave }}</li>
+      {% for wave in waves %}
+          {% if wave not in waves_passed %}
+              {% do waves_passed.append(wave) %}
+              <li>{{ wave.wave_cohort }}</li>
+              <li>{{ wave.wave_title }}</li>
+          {% else %}
+              <li>{{ wave.wave_title }}</li>
+      {% endif %}
       {% endfor %}
 
       </ul>
