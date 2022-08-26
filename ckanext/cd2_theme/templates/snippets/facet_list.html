@@ -57,6 +57,7 @@
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
 			{% if title == 'cohort' %}
+				{% cohorts_passed = [] %}
 				{% for item in items|sort(attribute='name') %}
 				{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
 				item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
@@ -67,9 +68,15 @@
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
 				{% set margin = 'margin-left:15px' %}
+
+
+				{% if studyname not in cohorts_passed %}
+				{% do cohorts_passed.append(studyname) %}	
+
 				<li style="padding:6px" class="cohort_parent nav-custom {% if item.active %} active{% endif %}">
 					<span class="item-label">{{ studyname }}</span>
 				</li>
+				{% endif %}
 				
 				{% set label_truncated = label|truncate(22) if not label_function else label %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
@@ -146,7 +153,7 @@
 <script type='text/javascript'>
 	window.onload = function () {
 
-		{% if title == 'cohort' %}
+		{% if title == 'cohortk' %}
 		// because jinja2 does not allow updating of variables in a loop, I had to hide repeating study-headers in the cohort list manually afterwards
 		prev_cohort_parent = '';
 		$('.cohort_parent').each(function () {
