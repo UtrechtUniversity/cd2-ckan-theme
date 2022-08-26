@@ -51,7 +51,21 @@
       </td>
     </tr>
 
- 
+    <tr>
+      <th scope="row" class="dataset-label">Cohorts</th>
+      <td class="dataset-details">
+      <ul class="dataset-resources list-unstyled">
+
+      {% for wave in waves|map(attribute='wave_cohort')|unique|list  %}
+      {% set wavename = wave["wave_cohort"] %}
+        <li>
+          <a href="{% url_for 'dataset.search', wave_title=wavename %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="{{wave["wave_cohort"]}}">{{wave["wave_title"]}}</a>
+      </li>
+      {% endfor %}
+      </ul>
+      </td>
+    </tr>
+
     
   
       {% block package_additional_info %}
