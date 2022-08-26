@@ -50,9 +50,9 @@
               <br />
               {% endif %}
               <li>{{ wave.wave_cohort }}</li>&nbsp;
-              <a href="{% url_for 'dataset.search', wave_title=bla %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
+              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a>
          {% else %}
-              <a href="{% url_for 'dataset.search', wave_title=bla %}" class="label label-info"  data-toggle="tooltip" data-placement="bottom" title="">{{wave.wave_title}}</a>
+              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a>
       {% endif %}
       {% endfor %}
 
