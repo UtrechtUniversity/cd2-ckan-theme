@@ -50,10 +50,8 @@
               <br />
               {% endif %}
               <li>{{ wave.wave_cohort }}</li>&nbsp;
-              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a>
-         {% else %}
-              <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a>
-      {% endif %}
+              {% endif %}
+              <li><a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a></li>
       {% endfor %}
 
       </ul>
