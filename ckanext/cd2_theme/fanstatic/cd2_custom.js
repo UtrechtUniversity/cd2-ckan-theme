@@ -78,18 +78,4 @@ function removeRange(currentQuery,facetName) {
     document.getElementById('dataset-search-form').submit();
 }
 
-// Front-page
-// // Create styled elements from facets
-function createFacetPills(facets, facetType) {
-    var labelPit = "";
-    for (const facet of facets) {
-        labelPit += '<li><a href="{% url_for "dataset.search" %}?' + facetType + '=' + facet + '" class="category-select">' + facet + '</a></li>';
-    }
-    return labelPit;
-}
 
-// // Create modal for constructs or labels on frontpage
-function fillModal(facetLabel,modalTitle) {
-        document.getElementById('modalTitle').innerHTML = modalTitle;
-        document.getElementById('modalBody').innerHTML = createFacetPills(conKeys, facetLabel);
-}
