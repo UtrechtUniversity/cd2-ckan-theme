@@ -59,7 +59,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (const key of labelKeys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
         if (labelKeys.indexOf(key) == 8) {
-          ulLabel.innerHTML += '<li><a onclick="fillModal(\'dc_label\',\'All dataset labels\',\'labelKeys\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
+          ulLabel.innerHTML += '<li><a onclick="fillModal(\'dc_label\',\'All dataset labels\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
           break;
         }
       }
@@ -74,7 +74,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (const key of conKeys) {
         ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
         if (conKeys.indexOf(key) == 8) {
-          ulCon.innerHTML += '<li><a onclick="fillModal(\'dc_construct\',\'All dataset constructs\',\'conKeys\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
+          ulCon.innerHTML += '<li><a onclick="fillModal(\'dc_construct\',\'All dataset constructs\');$(\'#facetModal\').modal(\'toggle\')" class="btn btn-light" style="padding:20px">more...</a></li>';
           break;
         }
       }
@@ -159,7 +159,8 @@ document.getElementById('site-search-wrap').style.display = 'none';
 <script>
 // Front-page
 // // Create modal for constructs or labels on frontpage
-function fillModal(facetLabel,modalTitle,keyVal) {
+function fillModal(facetLabel,modalTitle) {
+        if (facetLabel == 'dc_label') { keyVal = labelKeys; } else { keyVal = conKeys; }
         document.getElementById('modalTitle').innerHTML = modalTitle;
         document.getElementById('modalBody').innerHTML = createFacetPills(keyVal, facetLabel);
 }
