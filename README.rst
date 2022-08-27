@@ -31,26 +31,16 @@ To install the theme:
 
 4. Restart CKAN. For example if you've deployed CKAN with Nginx on Ubuntu::
 
-     sudo service nginx restart
+     sudo supervisorctl reload && sudo service nginx restart
 
 
 ----------------------------------------
 CSS Styling
 ----------------------------------------
 
-Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files.3
-
-You can use npm to install and build the LESS files with `npm i` and `npm run css`
-
-If you are actively developing/making css changes you can run `npm run css-dev` and the .less files will be automatically compiled on save.
-
-You can use npm to update the rua pattern library styles with `npm run rua`
-
-Alternatively the LESS files were previously compiled with these steps:
+Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files.
 
  - Install LESS Compiler
- - Make changes in LESS files as required
- - Open console and cd to /path/to/ckanext-cd2_theme
- - Compile the LESS files by running " lessc less/main.less fanstatic/cd2_custom.css "
- - The CSS changes will now show up in the browser
+ - Edit LESS files
+ - Compile the LESS files by running " sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/dia_custom.css "
 
