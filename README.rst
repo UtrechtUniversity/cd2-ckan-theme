@@ -31,18 +31,14 @@ To install the theme:
 
 4. Restart CKAN. For example if you've deployed CKAN with Nginx on Ubuntu::
 
-     sudo supervisorctl reload && sudo service nginx restart
+    sudo supervisorctl reload && sudo service nginx restart
 
 
 ----------------------------------------
 CSS Styling
 ----------------------------------------
 
-Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files.
+Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files. Edit the LESS files and compile to CSS using a LESS compiler, i.e.::
 
- - Install LESS Compiler
- - Edit LESS files
- - Compile the LESS files by running 
- 
-     sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
+    sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
 
