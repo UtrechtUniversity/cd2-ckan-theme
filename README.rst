@@ -42,5 +42,7 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
 
  - Install LESS Compiler
  - Edit LESS files
- - Compile the LESS files by running " sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css "
+ - Compile the LESS files by running 
+ 
+     sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
 
