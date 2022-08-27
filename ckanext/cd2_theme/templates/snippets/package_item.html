@@ -63,7 +63,7 @@
                         {% set label = splitname[1] %}
                         {% do waves_passed.append(wave.wave_cohort) %}
                         {% if waves_passed|length > 1 %}
-                        </span> 
+                        </span><br />
                         {% endif %}
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
