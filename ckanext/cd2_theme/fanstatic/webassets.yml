@@ -15,9 +15,9 @@ dia_script:
     - dia_custom.js
 
 dia_style:
-  output: cd2_theme/dia_custom.css
+  output: cd2_theme/cd2_custom.css
   contents:
-    - dia_custom.css
+    - cd2_custom.css
 
 cd2_script:
   output: cd2_theme/cd2_custom.js
