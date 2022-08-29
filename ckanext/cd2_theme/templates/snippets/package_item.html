@@ -63,9 +63,9 @@
                         {% if waves_passed|length > 1 %}
                         </span><br />
                         {% endif %}
-                      <span class="cohort-spanner" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ label }}&nbsp;
+                      <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
-                      <span class="label">{{ wave.wave_title }}</span>
+                      <span class="label" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_title }}</span>
                   {% endfor %}  
 
               </td></tr>
