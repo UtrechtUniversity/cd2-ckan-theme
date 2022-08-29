@@ -121,18 +121,17 @@
                     <div class="container">
                         <div class="site-search__inner">
                             <form class="search-form" id="dataset-search" action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}" method="get" data-module="select-switch">
-                                <label for="{$LabelPrefix}-field-sitewide-search">
-                                    {{ _('Search for') }}:
-                                </label>
+                               
                                 <div class="field search-input">
                                     <input class="ss-search-url" value="{{ h.parent_site_url() }}/search/SearchForm" type="hidden">
                                     <input class="ckan-search-url" value="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}" type="hidden">
-                                    <input name="q" placeholder="E.g. IQ" type="text" aria-label="Search term">
+                                    <input name="q" placeholder="Search datasets..." type="text" aria-label="Search term">
+                                    <button type="submit" role="presentation" tabindex="-1">
+                                        <i class="fa fa-search" style="color:#555"></i>
+                                        <span>{{ _('Search') }}</span>
+                                      </button>
                                 </div>
-                                <button id="{$LabelPrefix}-search" class="button">
-                                    <span class="ri ri-search"></span>
-                                    <span>{{ _('Search') }}</span>
-                                </button>
+                               
                             </form>
                         </div>
                     </div>
