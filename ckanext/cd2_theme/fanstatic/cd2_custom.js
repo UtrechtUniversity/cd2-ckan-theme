@@ -9,6 +9,7 @@ $(function () {
 
 // Search
 // // change functional parameters into symbols for clarity
+var input_q = document.getElementById('searchbox');
 input_q.addEventListener('keyup', replaceCharacters);
 function replaceCharacters() {
     var value_q = input_q.value;
