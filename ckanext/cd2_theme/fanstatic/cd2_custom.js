@@ -7,9 +7,19 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
+// Search
+// // change functional parameters into symbols for clarity
+input_q.addEventListener('keyup', replaceCharacters);
+function replaceCharacters() {
+    var value_q = input_q.value;
+    var replaced_q = value_q.replace('AND', '&');
+    var replaced_q = replaced_q.replace('NOT ', '-');
+    document.getElementById('searchbox').value = replaced_q;
+};
 
 // Facets
 // // Toggle facets via input filter
+// // invoked on snippets/facet_list.html
 function facetToggle(facet_input, facet_element) {
     $(facet_input).on('keyup', function () {
         var search = this.value.toLowerCase();
@@ -25,6 +35,7 @@ function facetToggle(facet_input, facet_element) {
 }
 
 // // Resize facet div based on content
+// // invoked on snippets/facet_list.html
 function facetResize(liElements, sectionElement) {
     liElements = document.getElementsByClassName(liElements);
     maxHeight = (liElements.length * 30) + 70;
@@ -33,28 +44,9 @@ function facetResize(liElements, sectionElement) {
 
 }
 
-// Search
-// // Suggest turning 'and' and 'not' into functional parameters
-var input_q = document.getElementById('searchbox');
-input_q.addEventListener('keyup', keywordSearch);
-function keywordSearch() {
-    var value_q = input_q.value;
-    if (value_q.includes('not') || value_q.includes('and')) {
-        $('#searchbox').tooltip('show');
-    };
-};
-
-// // change functional parameters into symbols for clarity
-input_q.addEventListener('keyup', replaceCharacters);
-function replaceCharacters() {
-    var value_q = input_q.value;
-    var replaced_q = value_q.replace('AND', '&');
-    var replaced_q = replaced_q.replace('NOT ', '-');
-    document.getElementById('searchbox').value = replaced_q;
-};
-
 // Range search
 // // Create pill from selected age range, with ability to remove from query string
+// // invoked on snippets/search_form.html
 function createRangePill(facetName,facetMeasure) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -71,6 +63,7 @@ function createRangePill(facetName,facetMeasure) {
 };
 
 // // Remove current range from query string before adding new range
+// // invoked on snippets/facet_list.html
 function removeRange(currentQuery,facetName) {
     var re = new RegExp('[\\s&-]*'+ facetName +':\\[\\d+\\sTO\\s\\d+\\][\\s&-]*');
     newQuery = currentQuery.replace(re, "");
