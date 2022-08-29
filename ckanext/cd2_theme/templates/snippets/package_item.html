@@ -43,7 +43,7 @@
               <span class="label label-danger">{{ _('Deleted') }}</span>
               {% endif %}
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
-              {% endblock %}
+              {% endblock %} 
             </h2>
 
             <table class="table table-condensed">
@@ -67,7 +67,7 @@
                         {% endif %}
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
-                      <span class="label">{{ wave.wave_title }}</span>
+                      <a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}"><span class="label">{{ wave.wave_title }}</span></a>
                   {% endfor %}  
 
               </td></tr>
