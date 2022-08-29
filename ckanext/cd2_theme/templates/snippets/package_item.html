@@ -48,7 +48,7 @@
 
             <table class="table table-condensed">
             <tbody>
-              <tr><td width="30%">Study:</td><td><a href="{% url_for 'dataset.search', organization=package.organization.title %}"><span class="label">{{package.organization.title}}</span></a></td></tr> 
+              <tr><td width="30%">Study:</td><td><a href="{% url_for 'dataset.search', organization=package.organization.name %}"><span class="label">{{package.organization.title}}</span></a></td></tr> 
               <tr><td>Mode of collection:</td><td><a href="{% url_for 'dataset.search', dc_mode_of_collection=package.dc_mode_of_collection %}"><span class="label">{{ package.dc_mode_of_collection }}</span></a>
                 {% if package.dc_mode_of_collection_sub %}
                 &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<a href="{% url_for 'dataset.search', dc_mode_of_collection_sub=package.dc_mode_of_collection_sub %}"><span class="label">{{ package.dc_mode_of_collection_sub }}</span></a></td></tr>
