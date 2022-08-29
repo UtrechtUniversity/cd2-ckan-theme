@@ -12,9 +12,6 @@
     if (local) {
       return 'http://localhost:8000'
     }
-
-    var production = window.location.host.startsWith('catalogue')
-    return production ? '//data.govt.nz' : '//diadata-uat.cwp.govt.nz'
   }
 
   var getBanner = function () {
