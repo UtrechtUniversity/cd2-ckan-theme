@@ -54,8 +54,6 @@
                 &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
                 {% endif %}
                 <tr><td>Available measurements:</td><td>
-                
-                  
                   {% set waves_passed = [] %}
                   {% for wave in package.wave %}
                       {% if wave.wave_cohort not in waves_passed %}
@@ -65,7 +63,7 @@
                         {% if waves_passed|length > 1 %}
                         </span><br />
                         {% endif %}
-                      <span class="cohort-spanner">{{ label }}&nbsp;
+                      <span class="cohort-spanner" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ label }}&nbsp;
                       {% endif %}
                       <span class="label">{{ wave.wave_title }}</span>
                   {% endfor %}  
