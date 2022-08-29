@@ -49,9 +49,9 @@
               {% if waves_passed|length > 1 %}
               <br />
               {% endif %}
-              <li data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_cohort }}</li>&nbsp;
+              <li>{{ wave.wave_cohort }}</li>&nbsp;
               {% endif %}
-              <li><a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a></li>
+              <li data-toggle="tooltip" data-original-title="{{ wave.wave_description }}"><a href="{% url_for 'dataset.search', wave_title=wave.wave_title %}" class="label label-info">{{wave.wave_title}}</a></li>
       {% endfor %}
 
       </ul>
