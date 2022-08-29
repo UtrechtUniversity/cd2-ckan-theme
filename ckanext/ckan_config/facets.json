@@ -1,0 +1,20 @@
+
+{
+  "default":
+  {
+    "dataset_type": "type",
+    "organization":  "study",
+    "wave_cohort": "cohort",
+    "dc_label": "label",
+    "dc_construct": "construct",
+    "dc_mode_of_collection": "mode of collection",
+    "wave_title": "wave"
+ },
+  "cohort": {
+	  "dataset_type": "DDI block",
+	  "organization": "Study"
+  },
+  "organization": {
+  	"wave_cohort": "cohort"
+ }
+}
