@@ -42,3 +42,11 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
 
     sudo lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
 
+
+----------------------------------------
+Updating and testing
+----------------------------------------
+
+SOLR and facet configuration files are included (and config of ckanext-msl-ckan extension), can be written to the correct location using the reload.sh script
+
+
