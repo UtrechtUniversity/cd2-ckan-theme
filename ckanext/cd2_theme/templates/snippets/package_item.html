@@ -57,7 +57,7 @@
                   {% set waves_passed = [] %}
                   {% for wave in package.wave %}
                       {% if wave.wave_cohort not in waves_passed %}
-                        {% set splitname = wave.wave_cohort.split(':') %}
+                        {% set splitname = wave.wave_cohort.split('-') %}
                         {% set label = splitname[1] %}
                         {% do waves_passed.append(wave.wave_cohort) %}
                         {% if waves_passed|length > 1 %}
