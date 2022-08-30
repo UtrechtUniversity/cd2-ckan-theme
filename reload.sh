@@ -2,7 +2,7 @@
 sudo git pull &&
 
 # SOLR: search engine customization
-mv ckanext/ckan_config/schema.xlm /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
+mv ckanext/ckan_config/schema.xml /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
 
 # ckanext-msl-ckan plugin: custom facets
 mv ckanext/ckan_config/facets.json /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/config/facets.json &&
