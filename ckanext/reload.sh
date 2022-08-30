@@ -1,0 +1,21 @@
+#!/bin/bash
+sudo git pull &&
+
+# SOLR
+mv ckan_config/schema.xlm /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
+
+# custom facets
+mv ckan_config/facets.json /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/config/facets.json &&
+mv ckan_config/msl_index_fields.json /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/config/msl_index_fields.json &&
+
+# schema
+mv ckan_config/cd2_data.collection.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/cd2_data.collection.yml &&
+mv ckan_config/ddi_studyunit.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/ddi_studyunit.yml &&
+
+# compile css
+lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css &&
+
+# restart everything
+systemctl restart tomcat9 &&
+supervisorctl reload && 
+service nginx restart
