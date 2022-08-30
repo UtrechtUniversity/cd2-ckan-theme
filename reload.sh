@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo git pull &&
+git pull &&
 
 # SOLR: search engine customization
 cp ckanext/ckan_config/schema.xml /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
