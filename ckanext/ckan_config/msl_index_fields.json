@@ -1,9 +1,6 @@
 {
     "special_index_fields": [
         "dc_construct",
-        "dc_label",
-	"wave_title",
-	"wave_cohort",
-	"wave_median_age"
+        "dc_label"
     ]
 }
