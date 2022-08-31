@@ -25,6 +25,8 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
+              {%set icon-svg = 'body/blood_drop.svg' %}
+              <img src="/icons/svg/outline/{{ icon-svg }}"> 
               {% block heading_private %}
               {% if package.private %}
               <span class="dataset-private label label-inverse">
