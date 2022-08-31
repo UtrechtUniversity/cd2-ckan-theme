@@ -25,9 +25,17 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-              
+            
+              {% if package.dc_constructs is defined %}
+              {% if package.dc_constructs|length > 0 %}
+              {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
+              {% if mainConstruct == 'Physiology' %}
+                      {%set imgurl = 'body/blood_drop '%}
+              {% endif %}
+              {% endif %}
+              {% endif %}
 
-             
+              <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px">
 
               {% block heading_private %}
               {% if package.private %}
