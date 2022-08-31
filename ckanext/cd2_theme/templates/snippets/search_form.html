@@ -58,7 +58,9 @@
             {% set search_facets_items = facets.search.get(field)['items'] %}
             <span class="facet">{{ facets.titles.get(field) }}:</span>
             <script>
-             $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
+              document.addEventListener("DOMContentLoaded", function (event) {
+                $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
+              });
             </script>
 
             {% for value in facets.fields[field] %}
