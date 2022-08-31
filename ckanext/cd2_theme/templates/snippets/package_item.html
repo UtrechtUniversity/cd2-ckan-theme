@@ -25,7 +25,8 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-              <img src="/icons/svg/outline/body/blood_drop.svg"> 
+              {% set imgurl = 'body/blood_drop.svg' %}
+              <img src="/icons/svg/outline/{{imgurl}}" width="40px"> 
 
               {% block heading_private %}
               {% if package.private %}
