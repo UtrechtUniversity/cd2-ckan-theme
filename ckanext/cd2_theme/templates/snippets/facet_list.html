@@ -81,9 +81,9 @@
 				{% set label_truncated = label|truncate(20,true,'...') if not label_function else label %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
-				<li class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %} item-facet">
+				<li class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-						<span style="{{ margin }}" class="item-label">{{ label_truncated }}</span>
+						<span style="{{ margin }}" class="item-label item-facet">{{ label_truncated }}</span>
 						<span class="hidden separator"> - </span>
 						<span class="item-count badge facet-badge">{{ count }}</span>
 					</a>
