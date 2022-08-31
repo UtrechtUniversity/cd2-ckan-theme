@@ -35,6 +35,14 @@
 
 		// Resize the search box to fit the height of the facet list
 		facetResize('element_{{ title.replace(" ","_") }}','section_{{ title.replace(" ","_")  }}');
+
+		// Change facet-toggle icon 
+		$('.toggle-facet').click(function(){ 
+			$(this).text(function(i,old){
+				return old=='+' ?  '-' : '+';
+			});
+			facetResize('element_{{ title.replace(" ","_") }}','section_{{ title.replace(" ","_")  }}');
+		});
 	});
 </script>
 
@@ -151,12 +159,6 @@
 </section>
 <script type='text/javascript'>
 	window.onload = function () {
-		// Change facet-toggle icon 
-		$('.toggle-facet').click(function(){ 
-			$(this).text(function(i,old){
-				return old=='+' ?  '-' : '+';
-			});
-		});
 
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
