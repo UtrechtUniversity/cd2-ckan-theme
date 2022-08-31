@@ -57,6 +57,10 @@
           {% for field in facets.fields %}
             {% set search_facets_items = facets.search.get(field)['items'] %}
             <span class="facet">{{ facets.titles.get(field) }}:</span>
+            <script>
+             $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
+            </script>
+
             {% for value in facets.fields[field] %}
               <span class="filtered pill">
                 {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
