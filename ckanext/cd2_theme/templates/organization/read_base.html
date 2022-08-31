@@ -3,21 +3,24 @@
   <li>{% link_for  _('Studies'), named_route=group_type+'.index' %}</li>
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
-    // automatically redirect to info screen
+    // Automatically redirect to info screen
     url = '/organization/about/{{group_dict.name }}';
     current_url = window.location.href;
     if (current_url.includes(url) == false && current_url.includes('activity') == false) {
         window.location.replace(url);
     }
   
-    // change default behavior of link to datasets within organization
+    
     document.addEventListener("DOMContentLoaded", function (event) {
+      // Change default behavior of link to datasets within organization
       datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
       $(datasetLink).attr('href', '/dataset/?organization={{group_dict.name}}');
+
+      // Hide 'read more' link on main org page
+      document.getElementsByClassName('read-more')[0].style.display = 'none';
     });
 
-    // Hide 'read more' link on main org page
-    document.getElementsByClassName('read-more')[0].style.display = 'none';
+   
 
   </script>
   {% endblock %}
