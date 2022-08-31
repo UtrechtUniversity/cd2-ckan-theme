@@ -25,11 +25,7 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-              {% for construct in package.dc_constructs %}
-                {{ construct.dc_construct }}
-              {% endfor %}
-              <img src="/icons/svg/outline/{{imgurl}}" width="35px"> 
-
+              {{ package.dc_constructs[0].dc_construct }}
               {% block heading_private %}
               {% if package.private %}
               <span class="dataset-private label label-inverse">
