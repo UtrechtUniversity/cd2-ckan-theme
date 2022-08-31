@@ -88,6 +88,7 @@
 				</li>
 
 				{% endfor %}
+				
 			{% else %}
 				{% for item in items %}
 				{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
@@ -109,7 +110,7 @@
 
 				{% endfor %}
 			{% endif %}
-
+			<li class="element_cohort nav-custom nav-item">&nbsp;</li>
 		</ul>
 	</nav>
 
