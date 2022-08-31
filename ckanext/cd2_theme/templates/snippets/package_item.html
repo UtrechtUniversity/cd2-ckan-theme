@@ -29,22 +29,23 @@
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
+              {%set imgurl = 'symbols/question'%}
                 {% if mainConstruct == 'Physiology' %}
                     {%set imgurl = 'body/blood_drop'%}
                 {% elif mainConstruct == 'Mental health' %}
                     {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Cognition' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/child_cognition'%}
                 {% elif mainConstruct == 'Personality' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Parenting' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/children'%}
                 {% elif mainConstruct == 'Social and emotional development' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Relationships' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Life history' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'symbols/calendar'%}
                 {% elif mainConstruct == 'Lifestyle' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Work and school' %}
@@ -54,13 +55,11 @@
                 {% elif mainConstruct == 'Social cognition and behavior' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Language' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/speech_language_therapy'%}
                 {% elif mainConstruct == 'Infancy' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/baby_0306m'%}
                 {% elif mainConstruct == 'questionnaire' %}
-                  {%set imgurl = 'people/mental_disorders'%}
-                {% else %}
-                  {%set imgurl = 'symbols/question'%}
+                  {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                 {% endif %}
               {% endif %}
               {% endif %}
