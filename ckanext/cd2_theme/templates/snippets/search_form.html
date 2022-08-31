@@ -61,7 +61,7 @@
               document.addEventListener("DOMContentLoaded", function (event) {
                 $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
               });
-              facetResize('element_{{ facets.titles.get(field).replace(" ","_") }}','section_{{ facets.titles.get(field).replace(" ","_")  }}');
+                
             </script>
 
             {% for value in facets.fields[field] %}
