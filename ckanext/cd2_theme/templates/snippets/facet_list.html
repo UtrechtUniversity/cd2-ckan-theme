@@ -46,7 +46,7 @@
 </h2>
 {% endblock %}
 <section aria-expanded="false" id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} collapsed collapse"
-	style="height:300px;overflow-y:scroll;max-height:300px;">
+	style="height:300px;max-height:300px;overflow-y:scroll;overflow-x: visible;">
 	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
 		style="font-size:14px;margin-top:5px">
 		
@@ -111,6 +111,8 @@
 
 				{% if label == 'SelfAdministeredQuestionnaire' %}
 					{% set label = 'Self-administered questionnaire' %}
+				{% elif label == 'MeasurementsAndTests' %}
+					{% set label = 'Measurements and tests' %}
 				{% endif %}
 					
 				<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
