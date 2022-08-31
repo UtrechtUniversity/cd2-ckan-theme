@@ -41,15 +41,14 @@
 <h2 class="module-heading section-heading">
 	<i class="fa fa-filter"></i>
 	{{ title }}
-	<a class="toggle-facet" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}"><span class="fa fa-sort"></span></a>
-	<br />
-	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
-		style="font-size:14px;margin-top:5px">
+	<a class="toggle-facet" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}"><span class="fa fa-sort"></span></a>	
 </h2>
 {% endblock %}
 <section aria-expanded="false" id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} collapsed collapse"
 	style="height:300px;overflow-y:scroll;overflow-x:hidden;max-height:300px;">
-
+	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
+		style="font-size:14px;margin-top:5px">
+		
 	{% block facet_list_items %}
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
 	{% if items %}
