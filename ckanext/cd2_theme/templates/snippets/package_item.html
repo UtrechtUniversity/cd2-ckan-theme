@@ -26,7 +26,7 @@
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
               {% set imgurl = 'symbols/question' %}
-              {% set mainConstruct = 'miscellaneous' }
+              {% set mainConstruct = 'miscellaneous' %}
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
