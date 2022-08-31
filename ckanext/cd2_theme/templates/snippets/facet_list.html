@@ -39,7 +39,7 @@
 </script>
 
 
-<h2 class="module-heading section-heading" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}">
+<h2 id="header_{{ title.replace(' ','_') }}" class="module-heading section-heading" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}">
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<span class="toggle-facet"><span class="fa fa-sort"></span></span>
@@ -141,6 +141,11 @@
 		{% endif %}
 	</p>
 	{% else %}
+	<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
+		document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
+	});
+	</script>
 	<p class="module-content empty"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 	</p>
 	{% endif %}
