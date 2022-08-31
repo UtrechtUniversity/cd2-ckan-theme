@@ -41,7 +41,7 @@
 <h2 class="module-heading section-heading">
 	<i class="fa fa-filter"></i>
 	{{ title }}
-	<a class="toggle-facet" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}">+</a>
+	<a class="toggle-facet" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}"><span class="fa fa-sort"></span></a>
 	<br />
 	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
 		style="font-size:14px;margin-top:5px">
@@ -152,11 +152,11 @@
 <script type='text/javascript'>
 	window.onload = function () {
 		// Change facet-toggle icon 
-		$('.toggle-facet').click(function(){ 
+		/** $('.toggle-facet').click(function(){ 
 			$(this).text(function(i,old){
 				return old=='+' ?  '-' : '+';
 			});
-		});
+		});  **/
 
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
