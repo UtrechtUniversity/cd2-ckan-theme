@@ -26,6 +26,7 @@
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
               {% set imgurl = 'symbols/question' %}
+              {% set mainConstruct = 'miscellaneous' }
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
@@ -38,7 +39,7 @@
                 {% elif mainConstruct == 'Personality' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Parenting' %}
-                  {%set imgurl = 'people/children'%}
+                  {%set imgurl = 'people/child_care'%}
                 {% elif mainConstruct == 'Social and emotional development' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Relationships' %}
@@ -63,7 +64,7 @@
               {% endif %}
               {% endif %}
 
-              <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px">
+              <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
 
               {% block heading_private %}
               {% if package.private %}
