@@ -6,8 +6,8 @@
     // automatically redirect to info screen
     url = '/organization/about/{{group_dict.name }}';
     current_url = window.location.href;
-    if (current_url.includes(url) == false) {
-      window.location.replace(url);
+    if (current_url.includes(url) == false || current_url.includes('activity') == false) {
+        window.location.replace(url);
     }
   
     // change default behavior of link to datasets within organization
