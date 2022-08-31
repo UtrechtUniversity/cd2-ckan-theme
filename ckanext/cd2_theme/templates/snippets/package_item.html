@@ -25,9 +25,7 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-              {% for construct in package.dc_construct %}
-                {{ construct }}
-              {% endfor %}
+              {{ package }}
               <img src="/icons/svg/outline/{{imgurl}}" width="35px"> 
 
               {% block heading_private %}
