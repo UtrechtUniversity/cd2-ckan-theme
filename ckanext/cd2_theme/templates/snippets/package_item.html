@@ -25,7 +25,13 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-              {{ package.dc_constructs[0].dc_construct }}
+              {% set construct = package.dc_constructs[0].dc_construct %}
+              {% if construct == 'Physiology' %}
+              {% set imgurl = 'body/blood_drop.svg' %}
+              <img src="/icons/svg/outline/{{imgurl}}" width="35px"> 
+              {% endif %}
+             
+
               {% block heading_private %}
               {% if package.private %}
               <span class="dataset-private label label-inverse">
