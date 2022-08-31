@@ -38,16 +38,17 @@
 	});
 </script>
 
-<h2 class="module-heading" style="margin-bottom:-20px;padding:10px">
+<h2 class="module-heading" style="margin-bottom:-20px;padding:10px;margin-top:20px">
 	<i class="fa fa-filter"></i>
 	{{ title }}
+	<a data-toggle="collapse" data-target="#section_{{study}}" class="" aria-expanded="true"><span class="fa fa-minus" style="float:right"></span></a>
 	<br />
 	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter"
 		style="font-size:14px;margin-top:5px">
 </h2>
 {% endblock %}
-<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height:300px;overflow-y:scroll;overflow-x: hidden;">
+<section aria-expanded="true" id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} collapse"
+	style="height:300px;overflow-y:scroll;overflow-x:hidden;">
 
 	{% block facet_list_items %}
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
