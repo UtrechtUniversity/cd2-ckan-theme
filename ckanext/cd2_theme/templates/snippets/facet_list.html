@@ -67,8 +67,6 @@
 				{% set splitname = label.split('-') %}
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
-				{% set margin = 'margin-left:15px' %}
-
 
 				{% if studyname not in cohorts_passed %}
 				{% do cohorts_passed.append(studyname) %}	
@@ -83,9 +81,9 @@
 
 				<li class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-						<span style="{{ margin }}" class="item-label item-facet">{{ label_truncated }}</span>
+						<span style="margin-left:15px" class="item-label item-facet">{{ label_truncated }}</span>
 						<span class="hidden separator"> - </span>
-						<span class="item-count badge facet-badge">{{ count }}</span>
+						<span style="margin-top:-18px;" class="item-count badge facet-badge">{{ count }}</span>
 					</a>
 				</li>
 
