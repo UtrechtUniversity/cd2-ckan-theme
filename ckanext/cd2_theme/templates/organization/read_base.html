@@ -15,7 +15,9 @@
       datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
       $(datasetLink).attr('href', '/dataset/?organization={{group_dict.name}}');
     });
-    
+
+    // Hide 'read more' link on main org page
+    document.getElementsByClassName('read-more')[0].style.display = 'none';
 
   </script>
   {% endblock %}
