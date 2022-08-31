@@ -28,7 +28,7 @@
               {% for construct in package.dc_construct %}
                 {% if construct == 'Physiology'}
                 {% set imgurl = 'body/blood_drop.svg' %}
-                {% elif %}
+                {% else %}
                 {% set imgurl = 'people/person.svg' %}
                 {% endif %}
               {% endfor %}
