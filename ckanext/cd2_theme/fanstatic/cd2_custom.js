@@ -39,7 +39,7 @@ function facetToggle(facet_input, facet_element) {
 // // invoked on snippets/facet_list.html
 function facetResize(liElements, sectionElement) {
     liElements = document.getElementsByClassName(liElements);
-    maxHeight = (liElements.length * 30) + 30;
+    maxHeight = (liElements.length * 30) + 70;
     if (maxHeight > 300) { maxHeight = 300 }
     document.getElementById(sectionElement).style.height = maxHeight + 'px';
 }
