@@ -6,7 +6,17 @@
     url = '/organization/about/{{group_dict.name }}';
     current_url = window.location.href;
     if (current_url.includes(url) == false) {
+      //window.location.replace(url);
+    }
+
+    datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement.onclick = function() {redirectDataset()};
+
+    function redirectDataset() {
+      url = '/dataset/?organization={{group_dict.name }}';
       window.location.replace(url);
     }
+    
+    
+
   </script>
   {% endblock %}
