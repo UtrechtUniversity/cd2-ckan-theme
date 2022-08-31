@@ -3,7 +3,7 @@
   <li>{% link_for  _('Studies'), named_route=group_type+'.index' %}</li>
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
-    //url = '{% url_for "dataset.search" %}?organization={{group_dict.name }}';
-    //window.location.replace(url);
+    url = '/organization/about/{{group_dict.name }}';
+    window.location.replace(url);
   </script>
   {% endblock %}
