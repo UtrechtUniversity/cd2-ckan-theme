@@ -25,11 +25,10 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
-            
+              {% set imgurl = 'symbols/question' %}
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
-              {%set imgurl = 'symbols/question'%}
                 {% if mainConstruct == 'Physiology' %}
                     {%set imgurl = 'body/blood_drop'%}
                 {% elif mainConstruct == 'Mental health' %}
@@ -43,13 +42,13 @@
                 {% elif mainConstruct == 'Social and emotional development' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Relationships' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/group_discussion_meeting'%}
                 {% elif mainConstruct == 'Life history' %}
                   {%set imgurl = 'symbols/calendar'%}
                 {% elif mainConstruct == 'Lifestyle' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/wold_care'%}
                 {% elif mainConstruct == 'Work and school' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/wold_care'%}
                 {% elif mainConstruct == 'Demographics' %}
                   {%set imgurl = 'people/mental_disorders'%}
                 {% elif mainConstruct == 'Social cognition and behavior' %}
