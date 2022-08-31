@@ -29,9 +29,11 @@
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
-              {% if mainConstruct == 'Physiology' %}
-                      {%set imgurl = 'body/blood_drop '%}
-              {% endif %}
+                {% if mainConstruct == 'Physiology' %}
+                    {%set imgurl = 'body/blood_drop'%}
+                {% elif mainConstruct == 'Mental health' %}
+                    {%set imgurl = 'people/mental_disorders'%}
+                {% endif %}
               {% endif %}
               {% endif %}
 
