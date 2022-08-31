@@ -78,7 +78,7 @@
 				</li>
 				{% endif %}
 				
-				{% set label_truncated = label|truncate(18,true,'...') if not label_function else label %}
+				{% set label_truncated = label|truncate(20,true,'...') if not label_function else label %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
 				<li class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
@@ -98,7 +98,7 @@
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
 				
-				{% set label_truncated = label|truncate(22) if not label_function else label %}
+				{% set label_truncated = label|truncate(20,true,'...') if not label_function else label %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
 				<li style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
