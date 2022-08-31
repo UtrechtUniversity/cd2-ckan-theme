@@ -5,11 +5,8 @@
   <script>
     url = '/organization/about/{{group_dict.name }}';
     current_url = window.location.href;
-    if (current_url.includes(url) == null) {
+    if (current_url.includes(url) == false) {
       window.location.replace(url);
     }
-
-
-    
   </script>
   {% endblock %}
