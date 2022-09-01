@@ -93,8 +93,8 @@
               <!-- https://healthicons.org/ -->
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
-              {% for construct in package.dc_constructs %}
-                  {{ construct }}
+              {% for constructs in package.dc_constructs %}
+                  {% set construct == constructs.dc_construct %}
                   {% if construct == 'Physiology' %}
                     {%set imgurl = 'devices/clinical_a'%}
 
