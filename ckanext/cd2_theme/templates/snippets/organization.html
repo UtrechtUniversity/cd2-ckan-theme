@@ -35,12 +35,12 @@
       {% endblock %}
       {% if show_nums %}
       {% block nums %}
-      <div class="nums">
+      <a href="/dataset/?organization={{organization.name}}"><div class="nums">
         <dl>
           <dt>{{ _('Datasets') }}</dt>
           <dd>{{ h.SI_number_span(organization.package_count) }}</dd>
         </dl>
-      </div>
+      </div></a>
     {% endblock %}
         {% block follow %}
         
