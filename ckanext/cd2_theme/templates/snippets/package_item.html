@@ -22,8 +22,10 @@
     <li class="{{ item_class or "dataset-item" }}">
       {% block content %}
         <div class="dataset-content">
+          <div class="study-label"><img src="{{ package.organization.image_url }}"></div>
+
           {% block heading %}
-          <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
+          
             <h2 class="dataset-heading">
               {% block heading_private %}
               {% if package.private %}
