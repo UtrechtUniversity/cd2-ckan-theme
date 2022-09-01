@@ -94,7 +94,7 @@
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
-                  {% set construct == constructs.dc_construct %}
+                  {{ constructs.dc_construct }}
                   {% if construct == 'Physiology' %}
                     {%set imgurl = 'devices/clinical_a'%}
 
