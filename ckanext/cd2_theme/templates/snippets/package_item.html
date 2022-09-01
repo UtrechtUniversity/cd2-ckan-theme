@@ -26,8 +26,6 @@
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
               <!-- https://healthicons.org/ -->
-              {% set imgurl = 'symbols/question' %}
-              {% set mainConstruct = 'miscellaneous' %}
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
@@ -76,10 +74,11 @@
                 {% elif mainConstruct == 'questionnaire' %}
                   {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                 {% endif %}
+                <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
               {% endif %}
               {% endif %}
 
-              <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
+              
 
               {% block heading_private %}
               {% if package.private %}
