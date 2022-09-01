@@ -42,6 +42,7 @@ function facetResize(liElements, sectionElement) {
     maxHeight = (liElements.length * 30) + 70;
     if (maxHeight > 300) { maxHeight = 300 }
     document.getElementById(sectionElement).style.height = maxHeight + 'px';
+    console.log('element ' + sectionElement + ' resized to ' + maxHeight)
 }
 
 // Range search
