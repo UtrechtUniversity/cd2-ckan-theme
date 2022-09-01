@@ -163,9 +163,9 @@
 	style="height:140px;width:86%;margin-left:7%;background-color:#fff">
 	<br /><br />
 	<input type="text" id="ageSlider" />
-	<p class="module-footer" style="text-align: center;">
-		years<br>
-		<a id="applyRange" class="btn btn-primary btn-sm" style="margin-top:4px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;" onclick="addQueryToField()">Apply <span class="fa fa-check"></span></a>
+	<p class="module-footer" style="text-align: center; margin-top:-18px">
+		<small>years</small><br>
+		<a id="applyRange" class="btn btn-primary btn-sm btn-apply" style="margin-top:6px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;" onclick="addQueryToField()">Apply <span class="fa fa-check"></span></a>
 	</p>
 </section>
 <script type='text/javascript'>
@@ -205,7 +205,6 @@
 				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
-				$("#applyrange").css("background-color", "yellow");
 			}
 		});
 	};
