@@ -9,15 +9,15 @@
     if (current_url.includes(url) == false && current_url.includes('activity') == false) {
         window.location.replace(url);
     }
-  
     
     document.addEventListener("DOMContentLoaded", function (event) {
       // Change default behavior of link to datasets within organization
       datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
       $(datasetLink).attr('href', '/dataset/?organization={{group_dict.name}}');
 
-      // Hide 'read more' link on main org page
+      // Hide side-bar description
       document.getElementsByClassName('read-more')[0].style.display = 'none';
+      document.getElementsByClassName('description')[0].style.display = 'none';
     });
 
    
