@@ -205,6 +205,9 @@
 				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
+				$("#applyRange").fadeOut(200, function() { 
+					$("#applyRange").fadeIn(500)
+				}); 
 			}
 		});
 	};
