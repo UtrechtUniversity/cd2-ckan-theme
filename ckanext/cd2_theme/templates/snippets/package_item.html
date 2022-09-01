@@ -94,50 +94,49 @@
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
-                  {{ constructs.dc_construct }}
-                  {% if construct == 'Physiology' %}
+                  {% if constructs.dc_construct == 'Physiology' %}
                     {%set imgurl = 'devices/clinical_a'%}
 
-                  {% elif construct == 'Mental health' %}
+                  {% elif constructs.dc_construct == 'Mental health' %}
                     {%set imgurl = 'people/mental_disorders'%}
 
-                  {% elif construct == 'Cognition' %}
+                  {% elif constructs.dc_construct == 'Cognition' %}
                     {%set imgurl = 'body/neurology'%}
 
-                  {% elif construct == 'Personality' %}
+                  {% elif constructs.dc_construct == 'Personality' %}
                     {%set imgurl = 'emotions/ok'%}
 
-                  {% elif construct == 'Parenting' %}
+                  {% elif constructs.dc_construct == 'Parenting' %}
                     {%set imgurl = 'people/child_care'%}
 
-                  {% elif construct == 'Social and emotional development' %}
+                  {% elif constructs.dc_construct == 'Social and emotional development' %}
                     {%set imgurl = 'people/child_cognition'%}
                     
-                  {% elif construct == 'Relationships' %}
+                  {% elif constructs.dc_construct == 'Relationships' %}
                     {%set imgurl = 'people/group_discussion_meeting'%}
 
-                  {% elif construct == 'Life history' %}
+                  {% elif constructs.dc_construct == 'Life history' %}
                     {%set imgurl = 'symbols/calendar'%}
 
-                  {% elif construct == 'Lifestyle' %}
+                  {% elif constructs.dc_construct == 'Lifestyle' %}
                     {%set imgurl = 'people/wold_care'%}
 
-                  {% elif construct == 'Work and school' %}
+                  {% elif constructs.dc_construct == 'Work and school' %}
                     {%set imgurl = 'people/travel_alt'%}
 
-                  {% elif construct == 'Demographics' %}
+                  {% elif constructs.dc_construct == 'Demographics' %}
                     {%set imgurl = 'people/i_groups_perspective_crowd'%}
 
-                  {% elif construct == 'Social cognition and behavior' %}
+                  {% elif constructs.dc_construct == 'Social cognition and behavior' %}
                     {%set imgurl = 'people/child_cognition'%}
 
-                  {% elif construct == 'Language' %}
+                  {% elif constructs.dc_construct == 'Language' %}
                     {%set imgurl = 'people/speech_language_therapy'%}
 
-                  {% elif construct == 'Infancy' %}
+                  {% elif constructs.dc_construct == 'Infancy' %}
                     {%set imgurl = 'people/baby_0306m'%}
                     
-                  {% elif construct == 'questionnaire' %}
+                  {% elif constructs.dc_construct == 'questionnaire' %}
                     {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                   {% endif %}
                   <img style="float:right" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
