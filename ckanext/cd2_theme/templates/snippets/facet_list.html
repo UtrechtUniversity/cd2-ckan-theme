@@ -154,18 +154,18 @@
 	{% endblock %}
 </section>
 
-{% if title == 'cohort' %}
+{% if title == 'mode_of_collection' %}
 <h2 class="module-heading hide-on-mobile section-heading" data-toggle="tooltip" data-placement="left" title="median age of the measurement wave">
 	<i class="fa fa-filter"></i>
 	median age
 </h2>
 <section id="section_age" class="hide-on-mobile section-range-slider {{ wrapper_class or 'module module-narrow module-shallow' }}"
-	style="height:120px;width:86%;margin-left:7%;background-color:#fff">
+	style="height:140px;width:86%;margin-left:7%;background-color:#fff">
 	<br /><br />
 	<input type="text" id="ageSlider" />
 	<p class="module-footer" style="text-align: center;">
 		years<br>
-		<a id="applyRange" class="btn btn-primary btn-sm" style="/*! float:right; */margin-top:2px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;" onclick="addQueryToField()">Apply <span class="fa fa-check"></span></a>
+		<a id="applyRange" class="btn btn-primary btn-sm" style="margin-top:4px;background-color:#ebebeb;border-color:#a9a9a9;color:#000;" onclick="addQueryToField()">Apply <span class="fa fa-check"></span></a>
 	</p>
 </section>
 <script type='text/javascript'>
@@ -205,6 +205,7 @@
 				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
+				$("#applyrange").css("background-color", "yellow");
 			}
 		});
 	};
