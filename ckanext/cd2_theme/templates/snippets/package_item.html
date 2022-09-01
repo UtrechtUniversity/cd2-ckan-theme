@@ -25,39 +25,54 @@
           {% block heading %}
           <img src="{{ package.organization.image_url }}" style="width:60px; float:right">
             <h2 class="dataset-heading">
+              <!-- https://healthicons.org/ -->
               {% set imgurl = 'symbols/question' %}
               {% set mainConstruct = 'miscellaneous' %}
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
                 {% if mainConstruct == 'Physiology' %}
-                    {%set imgurl = 'devices/clinical_a'%}
+                  {%set imgurl = 'devices/clinical_a'%}
+
                 {% elif mainConstruct == 'Mental health' %}
-                    {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'people/mental_disorders'%}
+
                 {% elif mainConstruct == 'Cognition' %}
                   {%set imgurl = 'body/neurology'%}
+
                 {% elif mainConstruct == 'Personality' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {%set imgurl = 'emotions/ok'%}
+
                 {% elif mainConstruct == 'Parenting' %}
                   {%set imgurl = 'people/child_care'%}
+
                 {% elif mainConstruct == 'Social and emotional development' %}
                   {%set imgurl = 'people/child_cognition'%}
+                  
                 {% elif mainConstruct == 'Relationships' %}
                   {%set imgurl = 'people/group_discussion_meeting'%}
+
                 {% elif mainConstruct == 'Life history' %}
                   {%set imgurl = 'symbols/calendar'%}
+
                 {% elif mainConstruct == 'Lifestyle' %}
                   {%set imgurl = 'people/wold_care'%}
+
                 {% elif mainConstruct == 'Work and school' %}
-                  {%set imgurl = 'people/wold_care'%}
+                  {%set imgurl = 'people/travel_alt'%}
+
                 {% elif mainConstruct == 'Demographics' %}
                   {%set imgurl = 'people/i_groups_perspective_crowd'%}
+
                 {% elif mainConstruct == 'Social cognition and behavior' %}
                   {%set imgurl = 'people/child_cognition'%}
+
                 {% elif mainConstruct == 'Language' %}
                   {%set imgurl = 'people/speech_language_therapy'%}
+
                 {% elif mainConstruct == 'Infancy' %}
                   {%set imgurl = 'people/baby_0306m'%}
+                  
                 {% elif mainConstruct == 'questionnaire' %}
                   {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                 {% endif %}
