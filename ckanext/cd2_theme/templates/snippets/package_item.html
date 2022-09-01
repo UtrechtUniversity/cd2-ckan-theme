@@ -143,7 +143,7 @@
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
                     {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                   {% endif %}
-                  <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
+                  <img style="opacity:0.5" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
               {% endfor %}
               {% endif %}
               {% endif %}
