@@ -93,53 +93,54 @@
               <!-- https://healthicons.org/ -->
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
-              {% set mainConstruct =  package.dc_constructs[0].dc_construct %}
-                {% if mainConstruct == 'Physiology' %}
-                  {%set imgurl = 'devices/clinical_a'%}
+              {% for construct in package.dc_constructs %}
+                  {% if construct == 'Physiology' %}
+                    {%set imgurl = 'devices/clinical_a'%}
 
-                {% elif mainConstruct == 'Mental health' %}
-                  {%set imgurl = 'people/mental_disorders'%}
+                  {% elif construct == 'Mental health' %}
+                    {%set imgurl = 'people/mental_disorders'%}
 
-                {% elif mainConstruct == 'Cognition' %}
-                  {%set imgurl = 'body/neurology'%}
+                  {% elif construct == 'Cognition' %}
+                    {%set imgurl = 'body/neurology'%}
 
-                {% elif mainConstruct == 'Personality' %}
-                  {%set imgurl = 'emotions/ok'%}
+                  {% elif construct == 'Personality' %}
+                    {%set imgurl = 'emotions/ok'%}
 
-                {% elif mainConstruct == 'Parenting' %}
-                  {%set imgurl = 'people/child_care'%}
+                  {% elif construct == 'Parenting' %}
+                    {%set imgurl = 'people/child_care'%}
 
-                {% elif mainConstruct == 'Social and emotional development' %}
-                  {%set imgurl = 'people/child_cognition'%}
-                  
-                {% elif mainConstruct == 'Relationships' %}
-                  {%set imgurl = 'people/group_discussion_meeting'%}
+                  {% elif construct == 'Social and emotional development' %}
+                    {%set imgurl = 'people/child_cognition'%}
+                    
+                  {% elif construct == 'Relationships' %}
+                    {%set imgurl = 'people/group_discussion_meeting'%}
 
-                {% elif mainConstruct == 'Life history' %}
-                  {%set imgurl = 'symbols/calendar'%}
+                  {% elif construct == 'Life history' %}
+                    {%set imgurl = 'symbols/calendar'%}
 
-                {% elif mainConstruct == 'Lifestyle' %}
-                  {%set imgurl = 'people/wold_care'%}
+                  {% elif construct == 'Lifestyle' %}
+                    {%set imgurl = 'people/wold_care'%}
 
-                {% elif mainConstruct == 'Work and school' %}
-                  {%set imgurl = 'people/travel_alt'%}
+                  {% elif construct == 'Work and school' %}
+                    {%set imgurl = 'people/travel_alt'%}
 
-                {% elif mainConstruct == 'Demographics' %}
-                  {%set imgurl = 'people/i_groups_perspective_crowd'%}
+                  {% elif construct == 'Demographics' %}
+                    {%set imgurl = 'people/i_groups_perspective_crowd'%}
 
-                {% elif mainConstruct == 'Social cognition and behavior' %}
-                  {%set imgurl = 'people/child_cognition'%}
+                  {% elif construct == 'Social cognition and behavior' %}
+                    {%set imgurl = 'people/child_cognition'%}
 
-                {% elif mainConstruct == 'Language' %}
-                  {%set imgurl = 'people/speech_language_therapy'%}
+                  {% elif construct == 'Language' %}
+                    {%set imgurl = 'people/speech_language_therapy'%}
 
-                {% elif mainConstruct == 'Infancy' %}
-                  {%set imgurl = 'people/baby_0306m'%}
-                  
-                {% elif mainConstruct == 'questionnaire' %}
-                  {%set imgurl = 'symbols/i_exam_multiple_choice'%}
-                {% endif %}
-                <img style="float:right" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
+                  {% elif construct == 'Infancy' %}
+                    {%set imgurl = 'people/baby_0306m'%}
+                    
+                  {% elif construct == 'questionnaire' %}
+                    {%set imgurl = 'symbols/i_exam_multiple_choice'%}
+                  {% endif %}
+                  <img style="float:right" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ mainConstruct }}">
+              {% endfor %}
               {% endif %}
               {% endif %}
             
