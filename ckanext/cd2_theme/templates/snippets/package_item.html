@@ -91,6 +91,7 @@
               <span class='dataset-date-updated'>Updated {{ h.render_datetime(package.metadata_modified) }}</span>
 
               <!-- https://healthicons.org/ -->
+              <span class="construct-img">
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
@@ -142,11 +143,11 @@
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
                     {%set imgurl = 'symbols/i_exam_multiple_choice'%}
                   {% endif %}
-                  <img style="float:right" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
+                  <img src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
               {% endfor %}
               {% endif %}
               {% endif %}
-            
+              </span>
             
               </small>
             </span>
