@@ -199,8 +199,23 @@
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
-
-
+		// Get url parameters of current range selection and update slider accordingly
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		if (urlParams) {
+			const currentQuery = urlParams.get('q');
+			if (currentQuery) { 
+				var isRangeDefined = currentQuery.match(/wave_median_age/g);
+				var currentRange = currentQuery.match(/\d+/g);
+				if (currentRange && isRangeDefined) {
+					var defMinVal = parseInt(currentRange[0]);
+					var defMaxVal = parseInt(currentRange[1]);
+					if (defMinVal != getCurrentRange('min') || defMaxVal != getCurrentRange('max')) {
+						console.log('bla')
+					}
+				}
+			}
+		} 
 		defaultRange = Array.from(Array(30).keys());
 		// adjust available range based on results
 		var defaultRange = defaultRange.filter(function(item) {
