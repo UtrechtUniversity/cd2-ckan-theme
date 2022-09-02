@@ -75,8 +75,6 @@
 		{% for item in items %}
 			{% do wave_range_vals.append(item.name) %}
 		{% endfor %}
-		{% set minRange = wave_range_vals| map('int') | min %}
-		{% set maxRange = wave_range_vals| map('int') | max %}
 	{% endif %}
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
