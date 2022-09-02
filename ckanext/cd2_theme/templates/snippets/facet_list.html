@@ -69,7 +69,7 @@
 			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
 		});
 	</script>
-	{{ items }}
+	{{ items | attribute('name') | max }}
 	
 	{% endif %}
 	<nav aria-label="{{ title }}">
