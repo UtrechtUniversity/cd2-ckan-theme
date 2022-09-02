@@ -68,7 +68,12 @@
 	{% for item in items %}
 		{% do wave_range_vals.append(item.name) %}
 	{% endfor %}
-	<h1>{{ wave_range_vals | map('int') | max }}</h1>
+	<script>
+	// set range vals
+	rangeMax = {{ wave_range_vals | map('int') | max }};
+	rangeMin = {{ wave_range_vals | map('int') | min }};
+	console.log('Range max: ' + rangeMax + ', range min: ' + rangeMin)
+	</script>
 	{% endif %}
 	
 	<nav aria-label="{{ title }}">
