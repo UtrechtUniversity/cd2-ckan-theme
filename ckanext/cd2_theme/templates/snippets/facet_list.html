@@ -63,6 +63,12 @@
 	</script>
 	{% endif %}
 	
+	{% if title == 'median age' %}
+	{% set wave_range_vals = [] %}
+	{% for item in items %}
+	{% do wave_range_vals.append(item.name) %}
+	{% endfor %}
+	
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
@@ -156,7 +162,12 @@
 </section>
 
 {% if title == 'median age' %}
-
+<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
+			document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
+			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
+	});
+</script>
 
 <h2 class="module-heading hide-on-mobile section-heading" data-toggle="tooltip" data-placement="left" title="median age of the measurement wave">
 	<i class="fa fa-filter"></i>
