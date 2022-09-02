@@ -69,6 +69,7 @@
 		{% do wave_range_vals.append(item.name) %}
 	{% endfor %}
 	<script>
+	// get current range from results to update slider accordingly
 	function getCurrentRange(value) {
 		if (value == 'max') {
 			return {{ wave_range_vals | map('int') | max }};
@@ -197,26 +198,6 @@
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
-
-		// Get url parameters of current range selection and update slider accordingly
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		if (urlParams) {
-			const currentQuery = urlParams.get('q');
-			if (currentQuery) { 
-				var isRangeDefined = currentQuery.match(/wave_median_age/g);
-				var currentRange = currentQuery.match(/\d+/g);
-				if (currentRange && isRangeDefined) {
-					var minVal = parseInt(currentRange[0]);
-					var maxVal = parseInt(currentRange[1]);
-				}
-			}
-		} else {
-			// Default slider values
-			var minVal = getCurrentRange('min');
-			var maxVal = getCurrentRange('max');
-		}
-
 		var mySlider = new rSlider({
 			target: '#ageSlider',
 			values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
