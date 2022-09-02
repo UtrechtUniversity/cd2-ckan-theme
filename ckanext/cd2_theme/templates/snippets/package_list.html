@@ -11,6 +11,9 @@ Example:
   {% snippet 'snippets/package_list.html', packages=c.datasets %}
 
 #}
+<div class="alert alert-primary" role="alert">
+  <span class="fa fa-info-circle"></span> The datasets found with the selected age also contain measurements outside of this range.
+</div> 
 {% block package_list %}
   {% if packages %}
     <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
