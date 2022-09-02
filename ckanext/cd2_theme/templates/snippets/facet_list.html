@@ -210,7 +210,7 @@
 				if (currentRange && isRangeDefined) {
 					var defMinVal = parseInt(currentRange[0]);
 					var defMaxVal = parseInt(currentRange[1]);
-					if (defMinVal != getCurrentRange('min') || defMaxVal != getCurrentRange('max')) {
+					if (defMinVal > getCurrentRange('min') || defMaxVal < getCurrentRange('max')) {
 						$("#rangeInfo").fadeIn(1000);
 					}
 				}
