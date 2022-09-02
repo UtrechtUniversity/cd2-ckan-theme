@@ -9,7 +9,7 @@
     "dc_construct": "construct",
     "dc_mode_of_collection": "mode of collection",
     "wave_title": "wave",
-    "wave_median_age": "Median age"
+    "wave_median_age": "median age"
  },
   "cohort": {
 	  "dataset_type": "DDI block",

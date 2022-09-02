@@ -62,13 +62,14 @@
 	});
 	</script>
 	{% endif %}
-	{% if title == 'wave_median_age' %}
+	{% if title == 'median age' %}
 	<script>
 		document.addEventListener("DOMContentLoaded", function (event) {
 			document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
 			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
 		});
 	</script>
+	{{ items }}
 	
 	{% endif %}
 	<nav aria-label="{{ title }}">
