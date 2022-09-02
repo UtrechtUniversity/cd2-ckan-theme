@@ -72,7 +72,7 @@
 	function getCurrentRange(value) {
 		if (value == 'max') {
 			return {{ wave_range_vals | map('int') | max }};
-		else { 
+		} else { 
 			return {{ wave_range_vals | map('int') | min }};
 		}
 	}
