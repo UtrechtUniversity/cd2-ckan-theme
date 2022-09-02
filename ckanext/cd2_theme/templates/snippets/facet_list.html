@@ -13,14 +13,8 @@
 	'Formats',
 	'Licenses',
 	'Groups',
-	'wave',
-	'wave_median_age'
+	'wave'
     ] -%}
-
-{% if title == 'wave_median_age' %}
-{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
-{{ items }}
-{% endif %}
 
 {% if title in exclude_fields %}
 	{% set hide_sub_facet = True %}
@@ -67,6 +61,15 @@
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
 	});
 	</script>
+	{% endif %}
+	{% if title == 'wave_median_age' %}
+	<script>
+		document.addEventListener("DOMContentLoaded", function (event) {
+			document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
+			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
+		});
+	</script>
+	
 	{% endif %}
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
