@@ -69,6 +69,7 @@
 			{% do wave_range_vals.append(item.name) %}
 		{% endfor %}
 	{% endif %}
+	<h1>{{ wave_range_vals| map('int') | min }}</h1>
 	
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
@@ -204,8 +205,8 @@
 			}
 		} else {
 			// Default slider values
-			var minVal = {{ wave_range_vals| map('int') | min }};
-			var maxVal = {{ wave_range_vals| map('int') | max }};
+			var minVal = 0;
+			var maxVal = 30;
 		}
 
 		var mySlider = new rSlider({
