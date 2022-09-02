@@ -64,18 +64,20 @@
 	{% endif %}
 	
 	{% if title == 'median age' %}
-	{% if title == 'median age' %}
-		<script>
-		document.addEventListener("DOMContentLoaded", function (event) {
-			document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
-			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
-		});
-		</script>
-		{% set wave_range_vals = [] %}
-		{% for item in items %}
-			{% do wave_range_vals.append(item.name) %}
-		{% endfor %}
+	<script>
+			document.addEventListener("DOMContentLoaded", function (event) {
+					document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
+					document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
+			});
+	</script>
+
+	{% set wave_range_vals = [] %}
+	{% for item in items %}
+	{% do wave_range_vals.append(item.name) %}
+	{% endfor %}
+	{{ wave_range_vals| map('int') | min }}
 	{% endif %}
+
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
