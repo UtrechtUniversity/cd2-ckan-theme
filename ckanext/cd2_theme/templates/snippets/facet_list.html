@@ -69,10 +69,12 @@
 		{% do wave_range_vals.append(item.name) %}
 	{% endfor %}
 	<script>
-	// set range vals
-	rangeMax = {{ wave_range_vals | map('int') | max }};
-	rangeMin = {{ wave_range_vals | map('int') | min }};
-	console.log('Range max: ' + rangeMax + ', range min: ' + rangeMin)
+	window.onload = function () {
+		// set range vals
+		rangeMax = {{ wave_range_vals | map('int') | max }};
+		rangeMin = {{ wave_range_vals | map('int') | min }};
+		console.log('Range max: ' + rangeMax + ', range min: ' + rangeMin)
+	}
 	</script>
 	{% endif %}
 	
