@@ -13,11 +13,20 @@
 	'Formats',
 	'Licenses',
 	'Groups',
-	'wave'
+	'wave',
+	'wave_median_age'
     ] -%}
+
+{% if title == 'wave_median_age' %}
+{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, 0) %}
+
+{% endif %}
 
 {% if title in exclude_fields %}
 	{% set hide_sub_facet = True %}
+	{% if items %}
+	{{ items }}
+	{% endif% }
 {% endif %}
 
 {% if not hide_sub_facet %}
