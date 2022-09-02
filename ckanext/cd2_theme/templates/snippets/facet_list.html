@@ -199,6 +199,9 @@
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
 		defaultRange = Array.from(Array(30).keys());
+		var defaultRange = defaultRange.filter(function(item) {
+			return item > getCurrentRange('min') && item < getCurrentRange('max');
+		}); 
 		var mySlider = new rSlider({
 			target: '#ageSlider',
 			values: defaultRange,
