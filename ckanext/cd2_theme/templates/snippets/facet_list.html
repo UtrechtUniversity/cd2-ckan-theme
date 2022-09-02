@@ -63,14 +63,18 @@
 	</script>
 	{% endif %}
 	{% if title == 'median age' %}
-	<script>
-		document.addEventListener("DOMContentLoaded", function (event) {
-			document.getElementById('header_{{ title.replace(' ','_') }}').style.display = 'none';
-			document.getElementById('section_{{ title.replace(' ','_') }}').style.display = 'none';
-		});
-	</script>
-	{{ items|max(attribute='name')}}
-	
+		<script>
+				document.addEventListener("DOMContentLoaded", function (event) {
+						document.getElementById('header_{{ title.replace(' ','_>
+						document.getElementById('section_{{ title.replace(' ','>
+				});
+		</script>
+		{% set wave_range_vals = [] %}
+		{% for item in items %}
+			{% do wave_range_vals.append(item.name) %}
+		{% endfor %}
+		{% set minRange = wave_range_vals| map('int') | min %}
+		{% set maxRange = wave_range_vals| map('int') | max %}
 	{% endif %}
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
@@ -199,8 +203,8 @@
 			}
 		} else {
 			// Default slider values
-			var minVal = 0;
-			var maxVal = 30;
+			var minVal = {{minRange}};
+			var maxVal = {{maxRange}};
 		}
 
 		var mySlider = new rSlider({
