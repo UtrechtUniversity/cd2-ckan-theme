@@ -69,11 +69,12 @@
 		{% do wave_range_vals.append(item.name) %}
 	{% endfor %}
 	<script>
-	window.onload = function () {
-		// set range vals
-		rangeMax = {{ wave_range_vals | map('int') | max }};
-		rangeMin = {{ wave_range_vals | map('int') | min }};
-		console.log('Range max: ' + rangeMax + ', range min: ' + rangeMin)
+	function getCurrentRange(value) {
+		if (value == 'max') {
+			return {{ wave_range_vals | map('int') | max }};
+		else { 
+			return {{ wave_range_vals | map('int') | min }};
+		}
 	}
 	</script>
 	{% endif %}
@@ -212,8 +213,8 @@
 			}
 		} else {
 			// Default slider values
-			var minVal = rangeMin;
-			var maxVal = rangeMax;
+			var minVal = getCurrentRange(min);
+			var maxVal = getCurrentRange(max);
 		}
 
 		var mySlider = new rSlider({
