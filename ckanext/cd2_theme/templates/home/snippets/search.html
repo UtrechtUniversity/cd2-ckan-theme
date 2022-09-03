@@ -7,7 +7,7 @@
       style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
       <option selected="" disabled="disabled">All studies</option>
     </select>
-
+    {% set stats = h.get_site_statistics() %}
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q"
         value="" autocomplete="off" placeholder="Search {{ h.SI_number_span(stats.dataset_count) }} datasets" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>"/>
