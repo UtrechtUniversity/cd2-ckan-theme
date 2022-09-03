@@ -7,10 +7,9 @@
       style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
       <option selected="" disabled="disabled">All studies</option>
     </select>
-    {% set stats = h.get_site_statistics() %}
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q"
-        value="" autocomplete="off" placeholder="Search {{ stats.dataset_count }} datasets" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>"/>
+        value="" autocomplete="off" placeholder="Search datasets" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>"/>
       <button type="submit" role="presentation" tabindex="-1">
         <i class="fa fa-search" style="color:#555"></i>
         <span>{{ _('Search') }}</span>
@@ -20,6 +19,7 @@
   <p style="margin-top:-30px;font-size:14px;margin-left: 20%;"><!--<i class="fa fa-info-circle"></i> For example: <strong>mri & inhibition</strong> or
     <strong>brain -mri</strong>--></p>
 </div>
+
 
 <script>
   document.getElementById('site-search-wrap').style.display = 'none';
@@ -32,5 +32,15 @@
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
       }
+    });
+</script>
+
+{% set stats = h.get_site_statistics() %}
+<script>
+  url = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}}, from {{stats.organization_count}}, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
     });
 </script>
