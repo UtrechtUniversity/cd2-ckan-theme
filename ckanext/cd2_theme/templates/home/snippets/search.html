@@ -10,7 +10,7 @@
     {% set stats = h.get_site_statistics() %}
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q"
-        value="" autocomplete="off" placeholder="Search {{ h.SI_number_span(stats.dataset_count) }} datasets" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>"/>
+        value="" autocomplete="off" placeholder="Search {{ stats.dataset_count }} datasets" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>"/>
       <button type="submit" role="presentation" tabindex="-1">
         <i class="fa fa-search" style="color:#555"></i>
         <span>{{ _('Search') }}</span>
