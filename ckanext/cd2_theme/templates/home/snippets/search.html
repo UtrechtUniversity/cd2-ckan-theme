@@ -41,6 +41,6 @@
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}}, from {{stats.organization_count}}, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
+      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
     });
 </script>
