@@ -97,7 +97,7 @@
         
         function facetCheckbox(fieldID,facetName) {
           var tmpString = '';
-          $('#select-label').children().each( (index, element) => {
+          $(fieldID).children().each( (index, element) => {
               $(element).children().each( (index, child) => {
                   var subEl = $(child).children();
                  if (subEl[0].checked == true) {
