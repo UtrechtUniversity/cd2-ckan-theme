@@ -198,7 +198,7 @@
         dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></label></li>`;
       }
     });
-  url = "/api/3/action/package_search?facet.field=[%dc_construct%22]"
+  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
   fetch(url)
     .then(res => res.json())
     .then(data => {
