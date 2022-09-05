@@ -28,7 +28,7 @@
       </form>
       <script>
         function advancedSearch() {
-          advancedSearchString = 'dc_label:' + document.getElementById('inputLabel').value;
+          advancedSearchString = 'dc_label:"' + document.getElementById('inputLabel').value + '"';
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
         }
@@ -39,7 +39,7 @@
 </div>
 
 <div class="module module-search module-narrow module-shallow box">
-  <form style="padding: 20px" class="module-content search-form" method="get"
+  <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
     action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
     <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search hide-on-mobile"><span class="fa fa-cog"></span> Advanced Search</a>
     <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
