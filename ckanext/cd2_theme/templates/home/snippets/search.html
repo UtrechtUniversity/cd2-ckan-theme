@@ -95,7 +95,7 @@
           return query;
         }
         
-        function createSearchPills(fieldID,facetName) {
+        function facetCheckbox(fieldID,facetName) {
           tmpString = '';
           $(fieldID).children().each( (index, element) => {
               $(element).children().each( (index, child) => {
@@ -139,7 +139,7 @@
             advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
           }
 
-          advancedSearchString = createSearchPills('#select-labels','dc_label')
+          advancedSearchString = facetCheckbox('#select-labels','dc_label')
                  
           tmpString = ''
           $('#select-study').children().each( (index, element) => {
@@ -172,7 +172,8 @@
           }
 
           document.getElementById('searchbox').value = advancedSearchString;
-		      document.getElementById('dataset-search-form').submit();
+          console.log(advancedSearchString)
+		      //document.getElementById('dataset-search-form').submit();
 
 
         }
