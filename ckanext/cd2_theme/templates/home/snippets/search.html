@@ -71,7 +71,13 @@
 
         function concatString(query) {
           if (query.length > 0) {
-            query = query + ' & ';
+            var query = query + ' & ';
+          }
+          return query;
+        }
+        function appendMultiString(query) {
+          if (query.length > 0) {
+            var query = query + ' || ';
           }
           return query;
         }
@@ -89,8 +95,23 @@
             advancedSearchString = concatString(advancedSearchString);
             advancedSearchString += 'dc_construct:"' + document.getElementById('inputConstruct').value + '"'; 
           }
+         
+          tmpString = ''
+          $('#dropdown-study').children().each( (index, element) => {
+              $(element).children().each( (index, child) => {
+                  subEl = $(child).children();
+                 if (subEl[0].checked == true) {
+                  tmpString = appendMultiString(tmpString);
+                  tmpString += 'organization:"' + subEl[0].id + '"'
+                  console.log(tmpString)
+                 }
+              });
+          });
+          tmpString = concatString(advancedSearchString) + tmpString
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
+
+
         }
       </script>
       </div>
