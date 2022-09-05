@@ -37,11 +37,11 @@
           advancedSearchString = '';
           if (document.getElementById('inputLabel').value) {
             advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString = 'dc_label:"' + document.getElementById('inputLabel').value + '"'; 
+            advancedSearchString += 'dc_label:"' + document.getElementById('inputLabel').value + '"'; 
           }
           if (document.getElementById('inputConstruct').value) {
             advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString = 'dc_construct:"' + document.getElementById('inputConstruct').value + '"'; 
+            advancedSearchString += 'dc_construct:"' + document.getElementById('inputConstruct').value + '"'; 
           }
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
