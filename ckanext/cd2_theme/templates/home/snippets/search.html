@@ -63,9 +63,10 @@
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
+      if ($(window).width() < 400 ) {
+        document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
+      } else {
+        document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
+      }
     });
-    if ($('html').hasClass('w-mod-touch')){    
-      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
-    }
 </script>
