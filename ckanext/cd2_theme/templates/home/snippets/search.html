@@ -165,7 +165,7 @@
       var divDropdown = document.getElementById('select-study');
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
-        divDropdown.innerHTML += `<li class="category-select"><div class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></div></li>`; 
+        divDropdown.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
       }
     });
 </script>
@@ -189,7 +189,14 @@
       var dropdownEl = document.getElementById('select-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></li>`;
+        dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></label></li>`;
       }
     });
+
+    function checkChild(check) {
+    if ($(check).is(':checked')) {
+        var classParent = "." + $(check).attr('class');
+        $(classParent).attr("checked", true);
+    }
+    }
 </script>
