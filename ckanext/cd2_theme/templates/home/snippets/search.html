@@ -50,7 +50,7 @@
             <label class="col-sm-2 col-form-label">Label</label>
             <div class="col-sm-10">
               <div class="well" style="height:200px;padding-top:0px;overflow:scroll">
-                <input id="filter_constructs" placeholder="filter" type="text" style="margin-top: 10px;width: 50%;">
+                <input id="filter_labels" placeholder="filter" type="text" style="margin-top: 10px;width: 50%;">
                 <ul class="menu blog-filter-menu" id="select-label">
                 </ul>
               </div>
@@ -73,14 +73,15 @@
       </form>
       <script>
       window.onload = function () {
-          $('#filter_constructs').on('keyup', function () {
+          $('#filter_labels').on('keyup', function () {
                   var search = this.value.toLowerCase();
                   if (search.length < 2) { var showAll = true } else { showAll = false }
                   $('#select-label').each(function () {
                       a = this;
-                      this.style.display = "block";
+                      this.style.display = "flex";
                       if (showAll == false) {
-                          if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+                         console.log(a.innerText);
+                          if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "flex"; } else { this.style.display = "none"; }
                       }
                   });
               });
