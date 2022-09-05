@@ -105,7 +105,9 @@
                  }
               });
           });
-          advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+          if (tmpString.length > 0) {
+            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+          }
 
           tmpString = ''
           $('#select-mode_of_collection').children().each( (index, element) => {
@@ -118,7 +120,9 @@
                  }
               });
           });
-          advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+          if (tmpString.length > 0) {
+            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+          }
 
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
