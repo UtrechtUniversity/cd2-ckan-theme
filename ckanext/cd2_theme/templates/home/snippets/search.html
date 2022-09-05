@@ -8,20 +8,20 @@
         </button>
       </div>
       <div class='modal-body'>
-        <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #000;border: 1px solid #999;box-shadow: 0 6px 9px -9px #555;margin-bottom:35px;">
-          <span class="fa fa-info-circle"></span> Use <kbd>?</kbd> to match a single character (e.g., te?t will match <em>test</em> and <em>text</em>), <kbd>*</kbd> will match multiple characters. Use <kbd>~</kbd> to perform a <em>fuzzy</em> search, to find similar terms.
+        <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #555;box-shadow: 0 7px 9px -9px #555;margin-bottom:35px;">
+          <span class="fa fa-info-circle"></span> Use <strong>?</strong> to match a single character (e.g., te?t will match <em>test</em> and <em>text</em>), <strong>*</strong> will match multiple characters. Use <strong>~</strong> to perform a <em>fuzzy</em> search, to find similar terms.
         </div> 
         <form id="advancedSearchForm">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Dataset title</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputTitle" placeholder="...">
+              <input type="text" class="form-control" id="inputTitle" placeholder="title">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Dataset description</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputDescr" placeholder="...">
+              <input type="text" class="form-control" id="inputDescr" placeholder="description">
             </div>
           </div>
 
@@ -29,7 +29,7 @@
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Study</label>
             <div class="col-sm-10">
-              <div class="well search-well">
+              <div class="well search-well" style="height:70px">
                 <ul class="menu blog-filter-menu" id="select-study">
                 </ul>
               </div>
@@ -64,7 +64,7 @@
           <div class="form-group row">
               <label class="col-sm-2 col-form-label">Mode of collection</label>
               <div class="col-sm-10">
-                <div class="well search-well">
+                <div class="well search-well" style="height:140px">
                   <ul class="menu blog-filter-menu" id="select-mode_of_collection">
                   </ul>
                 </div>
