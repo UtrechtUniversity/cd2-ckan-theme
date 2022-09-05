@@ -104,10 +104,10 @@
         }
 
       function customDelim (fieldID) {
-        if (fieldID == 'select-construct') {
+        if (fieldID == '#select-construct') {
           var operator = document.getElementById('operator-construct').value;
           if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
-        } else if (fieldID = 'select-label') {
+        } else if (fieldID = '#select-label') {
           var operator = document.getElementById('operator-label').value;
           if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
         } else {
