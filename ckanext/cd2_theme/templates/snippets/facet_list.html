@@ -180,7 +180,7 @@
 	});
 </script>
 
-<h2 class="module-heading hide-on-mobile section-heading dropshadow">
+<h2 id="header_age" class="module-heading hide-on-mobile section-heading dropshadow">
 	<i class="fa fa-filter"></i>
 	Available median age
 	<span class="toggle-facet"><span class="fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="Shows the median age range of the measurement waves of the available datasets. The available range can be broader than the specified range."></span></span>
@@ -221,6 +221,11 @@
 		var defaultRange = defaultRange.filter(function(item) {
 			return item >= getCurrentRange('min') && item <= getCurrentRange('max');
 		}); 
+		if (typeof getCurrentRange != 'function') { 
+			document.getElementById('header_age').style.display = 'none';
+			document.getElementById('section_age').style.display = 'none';
+		};
+		
 		var mySlider = new rSlider({
 			target: '#ageSlider',
 			values: defaultRange,
