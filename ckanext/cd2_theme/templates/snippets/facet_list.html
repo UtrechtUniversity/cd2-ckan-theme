@@ -218,14 +218,15 @@
 		} 
 		defaultRange = Array.from(Array(30).keys());
 		// adjust available range based on results
-		var defaultRange = defaultRange.filter(function(item) {
-			return item >= getCurrentRange('min') && item <= getCurrentRange('max');
-		}); 
-		if (typeof getCurrentRange != 'function') { 
+		if (typeof getCurrentRange === 'function') { 
+			var defaultRange = defaultRange.filter(function(item) {
+				return item >= getCurrentRange('min') && item <= getCurrentRange('max');
+			}); 
+		} else {	
 			document.getElementById('header_age').style.display = 'none';
 			document.getElementById('section_age').style.display = 'none';
 		};
-		
+
 		var mySlider = new rSlider({
 			target: '#ageSlider',
 			values: defaultRange,
