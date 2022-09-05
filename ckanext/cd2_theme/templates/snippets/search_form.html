@@ -9,7 +9,7 @@
 <div class="search-form-wrap">
   <form {% if form_id %}id="{{ form_id }}" {% endif %}class="clearfix search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get" data-module="select-switch">
     {% block search_input %}
-      <div class="search-input control-group {{ search_class }}">
+      <div class="search-input control-group {{ search_class }} search-page">
         <input type="text" id="searchbox" class="search" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}" data-html="true" data-toggle="tooltip" data-original-title="<strong>Tip: capitalize <em>AND</em> and <em>NOT</em> to create specific search queries</strong>">
         <input type="hidden" id="rangeParam">
         {% block search_input_button %}
