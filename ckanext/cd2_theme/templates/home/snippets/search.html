@@ -35,7 +35,7 @@
             <label class="col-sm-2 col-form-label">Study</label>
             <div class="col-sm-10">
               <div class="well" style="height:100px;width:50%;padding-top:0px;overflow:scroll">
-                <ul class="list-unstyled" id="select-study">
+                <ul class="menu blog-filter-menu" id="select-study">
                 </ul>
               </div>
             </div>
@@ -50,9 +50,6 @@
                 </div>
               </div>
             </div>
-
-    
-
       </div>
       <div class='modal-footer'>
         <button type='button' class='btn' data-dismiss='modal'>Close</button>
@@ -168,7 +165,7 @@
       var divDropdown = document.getElementById('select-study');
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
-        divDropdown.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></div></li>`; 
+        divDropdown.innerHTML += `<li class="category-select"><div class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></div></li>`; 
       }
     });
 </script>
@@ -192,7 +189,7 @@
       var dropdownEl = document.getElementById('select-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li><a class="category-select"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></a></li>`;
+        dropdownEl.innerHTML += `<li class="category-select"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></li>`;
       }
     });
 </script>
