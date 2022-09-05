@@ -11,7 +11,7 @@
         <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #000;border: 1px solid #999;box-shadow: 0 6px 9px -9px #555;">
           <span class="fa fa-info-circle"></span> Use <kbd>?</kbd> to match a single character (e.g., te?t will match <em>test</em> and <em>text</em>), <kbd>*</kbd> will match multiple characters. Use <kbd>~</kbd> to perform a <em>fuzzy</em> search, to find similar terms.
         </div> 
-        <form>
+        <form id="advancedSearchForm">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Dataset title</label>
             <div class="col-sm-10">
@@ -36,6 +36,16 @@
         <button type='button' class='btn btn-primary' data-dismiss='modal' onclick="advancedSearch()">Search</button>
       </form>
       <script>
+        $(function() {
+            $('advancedSearchForm').each(function() {
+                $(this).find('input').keypress(function(e) {
+                    // Enter pressed?
+                    if(e.which == 10 || e.which == 13) {
+                        advancedSearch();
+                    }
+                });
+            });
+        });
         function concatString(query) {
           if (query.length > 0) {
             query = query + ' & ';
