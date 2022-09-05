@@ -34,8 +34,8 @@
           <div class="form-group row">
           <ul class="list-unstyled">
             <li class="dropdown open">
-                <a href="#" data-toggle="dropdown" aria-expanded="true" style="color: #000;font-weight: 400;" class="dropdown-toggle col-form-label">Mode of collection <span class="fa fa-caret-down"></span></a>
-                <ul id="dropdown-mode_of_collection" class="dropdown-menu" style="margin-left:20%">
+                <a href="#" data-toggle="dropdown" aria-expanded="true" style="color:#000;font-weight:400;" class="dropdown-toggle col-form-label">Mode of collection <span class="fa fa-caret-down"></span></a>
+                <ul id="dropdown-mode_of_collection" class="dropdown-menu" style="margin-left:20%;padding:10px">
                     
                 </ul>
             </li>
@@ -145,13 +145,7 @@
       var dropdownEl = document.getElementById('dropdown-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">` + key + `</input> 
-                            </label>
-                        </div>
-                    </li>`;
+        dropdownEl.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox">` + key + `</input></div></li>`;
       }
     });
 </script>
