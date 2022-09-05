@@ -210,7 +210,7 @@
       var dropdownEl = document.getElementById('select-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key.replace(/\s/g, "%20");+`>` + key + `</input></label></li>`;
+        dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key.replace(/\s/g, "%20") +`>` + key + `</input></label></li>`;
       }
     });
   url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
@@ -220,7 +220,7 @@
       var dropdownEl = document.getElementById('select-construct');
       labelKeys = Object.keys(data.result.facets.dc_construct);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key.replace(/\s/g, "%20");+`>` + key + `</input></label></li>`;
+        dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key.replace(/\s/g, "%20") +`>` + key + `</input></label></li>`;
       }
     });
 </script>
