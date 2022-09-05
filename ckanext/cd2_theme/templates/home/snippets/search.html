@@ -74,86 +74,89 @@
         <button type='button' class='btn btn-primary' data-dismiss='modal' onclick="advancedSearch()">Search</button>
       </form>
       <script>
-      window.onload = function () {
+        window.onload = function () {
+          // filter labels based in input
           $('#filter_labels').on('keyup', function () {
-              var search = this.value.toLowerCase();
-              if (search.length < 2) { var showAll = true } else { showAll = false }
-              $('.label-select').each(function () {
-                  a = this;
-                  this.style.display = "flex";
-                  if (showAll == false) {
-                      if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "flex"; } else { this.style.display = "none"; }
-                  }
-              });
+            var search = this.value.toLowerCase();
+            if (search.length < 2) { var showAll = true } else { showAll = false }
+            $('.label-select').each(function () {
+              a = this;
+              this.style.display = "flex";
+              if (showAll == false) {
+                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "flex"; } else { this.style.display = "none"; }
+              }
+            });
           });
-          $('#advancedSearchForm').each(function() {
-              $(this).find('input').keypress(function(e) {
-                  // Enter pressed?
-                  if(e.which == 10 || e.which == 13) {
-                      advancedSearch();
-                  }
-              });
+          
+          // submit form with enter
+          $('#advancedSearchForm').each(function () {
+            $(this).find('input').keypress(function (e) {
+              // Enter pressed?
+              if (e.which == 10 || e.which == 13) {
+                advancedSearch();
+              }
+            });
           });
         }
 
-        function concatString(query,delim) {
+        // combine strings with delimiter if entry exists
+        function concatString(query, delim) {
           if (query.length > 0) {
             var query = query + ' ' + delim + ' ';
           }
           return query;
         }
 
-      function customDelim (fieldID) {
-        if (fieldID == '#select-construct') {
-          var operator = document.getElementById('operator-construct').value;
-          if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
-        } else if (fieldID = '#select-label') {
-          var operator = document.getElementById('operator-label').value;
-          if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
-        } else {
-          delim = '||';
+        // set delimiter to AND/OR based on selection
+        function customDelim(fieldID) {
+          if (fieldID == '#select-construct') {
+            var operator = document.getElementById('operator-construct').value;
+            if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
+          } else if (fieldID = '#select-label') {
+            var operator = document.getElementById('operator-label').value;
+            if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
+          } else {
+            delim = '||';
+          }
+          return delim;
         }
-        return delim;
-      }
-        
-        function facetCheckbox(fieldID,facetName) {
+
+        // loop over checkboxes and combine IDs
+        function facetCheckbox(fieldID, facetName) {
           var tmpString = '';
-          $(fieldID).children().each( (index, element) => {
-              $(element).children().each( (index, child) => {
-                  var subEl = $(child).children();
-                 if (subEl[0].checked == true) {
-                  tmpString = concatString(tmpString,customDelim(fieldID));
-                  tmpString += facetName + ':"' + subEl[0].id + '"'
-                 }
-              });
+          $(fieldID).children().each((index, element) => {
+            $(element).children().each((index, child) => {
+              var subEl = $(child).children();
+              if (subEl[0].checked == true) {
+                tmpString = concatString(tmpString, customDelim(fieldID));
+                tmpString += facetName + ':"' + subEl[0].id + '"'
+              }
+            });
           });
           if (tmpString.length > 0) {
-            advancedSearchString = concatString(advancedSearchString,'+') + '(' + tmpString + ')'
+            advancedSearchString = concatString(advancedSearchString, '&') + '(' + tmpString + ')'
           }
           return advancedSearchString;
         }
 
+        // parse input from form, create query string and submit search
         function advancedSearch() {
           advancedSearchString = '';
           if (document.getElementById('inputTitle').value) {
             advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value + '"'; 
+            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value + '"';
           }
           if (document.getElementById('inputDescr').value) {
             advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value + '"'; 
+            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value + '"';
           }
+          advancedSearchString = facetCheckbox('#select-study', 'organization')
+          advancedSearchString = facetCheckbox('#select-construct', 'dc_construct')
+          advancedSearchString = facetCheckbox('#select-label', 'dc_label')
+          advancedSearchString = facetCheckbox('#select-mode_of_collection', 'dc_mode-of-collection')
 
-          advancedSearchString = facetCheckbox('#select-study','organization')
-          advancedSearchString = facetCheckbox('#select-construct','dc_construct')
-          advancedSearchString = facetCheckbox('#select-label','dc_label')
-          advancedSearchString = facetCheckbox('#select-mode_of_collection','dc_mode-of-collection')
-                
           document.getElementById('searchbox').value = advancedSearchString;
-          console.log(advancedSearchString)
-		      document.getElementById('dataset-search-form').submit();
-
-
+          document.getElementById('dataset-search-form').submit();
         }
       </script>
       </div>
