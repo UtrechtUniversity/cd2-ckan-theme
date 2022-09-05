@@ -57,7 +57,7 @@
       </form>
       <script>
       window.onload = function () {
-          $('advancedSearchForm').each(function() {
+          $('#advancedSearchForm').each(function() {
               $(this).find('input').keypress(function(e) {
                   // Enter pressed?
                   if(e.which == 10 || e.which == 13) {
@@ -196,11 +196,4 @@
         dropdownEl.innerHTML += `<li class="category-select"><label class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></label></li>`;
       }
     });
-
-    function checkChild(check) {
-    if ($(check).is(':checked')) {
-        var classParent = "." + $(check).attr('class');
-        $(classParent).attr("checked", true);
-    }
-    }
 </script>
