@@ -74,17 +74,16 @@
       <script>
       window.onload = function () {
           $('#filter_labels').on('keyup', function () {
-                  var search = this.value.toLowerCase();
-                  if (search.length < 2) { var showAll = true } else { showAll = false }
-                  $('label-select').each(function () {
-                      a = this;
-                      this.style.display = "flex";
-                      if (showAll == false) {
-                         console.log(a.innerText);
-                          if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "flex"; } else { this.style.display = "none"; }
-                      }
-                  });
+              var search = this.value.toLowerCase();
+              if (search.length < 2) { var showAll = true } else { showAll = false }
+              $('.label-select').each(function () {
+                  a = this;
+                  this.style.display = "flex";
+                  if (showAll == false) {
+                      if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "flex"; } else { this.style.display = "none"; }
+                  }
               });
+          });
           $('#advancedSearchForm').each(function() {
               $(this).find('input').keypress(function(e) {
                   // Enter pressed?
