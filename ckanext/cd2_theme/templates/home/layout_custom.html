@@ -33,7 +33,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       var div = document.getElementById('recently-updated');
       for (const result of data.result.results) {
         div.innerHTML += `<div class="col-sm-6 col-lg-4">
-                        <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile" title="" data-mh="recently-updated-tiles">
+                        <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
                           <span class="link-tile__header">
                             <span class="link-tile__header-text">` + result.title + `</span>
                             <span class="link-tile__icon ri ri-arrow-right"></span>
