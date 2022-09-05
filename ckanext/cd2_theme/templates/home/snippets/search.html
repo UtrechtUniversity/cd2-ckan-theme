@@ -129,7 +129,7 @@
     .then(res => res.json())
     .then(data => {
       var div = document.getElementById('search-dropdown');
-      var divDropdown = document.getElementById('dropdown-mode_of_collection');
+      var divDropdown = document.getElementById('dropdown-study');
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
         divDropdown.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox">` + key + `</input></div></li>`; 
