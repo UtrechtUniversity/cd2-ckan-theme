@@ -34,13 +34,22 @@
           <div class="form-group row">
           <ul class="list-unstyled">
             <li class="dropdown open">
-                <a href="#" data-toggle="dropdown" aria-expanded="true" style="color:#000;font-weight:400;" class="dropdown-toggle col-form-label">Mode of collection <span class="fa fa-caret-down"></span></a>
-                <ul id="dropdown-mode_of_collection" class="dropdown-menu" style="margin-left:20%;padding:10px">
-                    
+                <a href="#" data-toggle="dropdown-study" aria-expanded="true" style="width:100%;color:#000;font-weight:400;" class="dropdown-toggle col-form-label col-sm-2">Mode of collection <span class="fa fa-caret-down"></span></a>
+                <ul id="dropdown-study" class="dropdown-menu" style="margin-left:20%;padding:10px">  
                 </ul>
             </li>
-        </ul>
-        </div>
+          </ul>
+          </div>
+
+          <div class="form-group row">
+          <ul class="list-unstyled">
+            <li class="dropdown open">
+                <a href="#" data-toggle="dropdown-mode_of_collection" aria-expanded="true" style="width:100%;color:#000;font-weight:400;" class="dropdown-toggle col-form-label col-sm-2">Mode of collection <span class="fa fa-caret-down"></span></a>
+                <ul id="dropdown-mode_of_collection" class="dropdown-menu" style="margin-left:20%;padding:10px">  
+                </ul>
+            </li>
+          </ul>
+          </div>
 
 
       </div>
@@ -120,8 +129,10 @@
     .then(res => res.json())
     .then(data => {
       var div = document.getElementById('search-dropdown');
+      var divDropdown = document.getElementById('dropdown-mode_of_collection');
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
+        divDropdown.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox">` + key + `</input></div></li>`; 
       }
     });
 </script>
