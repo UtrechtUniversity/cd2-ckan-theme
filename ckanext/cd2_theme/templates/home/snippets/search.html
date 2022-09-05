@@ -132,7 +132,7 @@
       var divDropdown = document.getElementById('dropdown-study');
       for (const result of data.result) {
         div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
-        divDropdown.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox">` + key + `</input></div></li>`; 
+        divDropdown.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></div></li>`; 
       }
     });
 </script>
@@ -156,7 +156,7 @@
       var dropdownEl = document.getElementById('dropdown-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox">` + key + `</input></div></li>`;
+        dropdownEl.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></li>`;
       }
     });
 </script>
