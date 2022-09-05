@@ -107,7 +107,8 @@
                  }
               });
           });
-          tmpString = concatString(advancedSearchString) + tmpString
+          advancedSearchString = concatString(advancedSearchString) + tmpString
+
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
 
