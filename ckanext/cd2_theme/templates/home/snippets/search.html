@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class='modal-body'>
-        <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #000;border: 1px solid #999;box-shadow: 0 6px 9px -9px #555;">
+        <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #000;border: 1px solid #999;box-shadow: 0 6px 9px -9px #555;margin-bottom:35px;">
           <span class="fa fa-info-circle"></span> Use <kbd>?</kbd> to match a single character (e.g., te?t will match <em>test</em> and <em>text</em>), <kbd>*</kbd> will match multiple characters. Use <kbd>~</kbd> to perform a <em>fuzzy</em> search, to find similar terms.
         </div> 
         <form id="advancedSearchForm">
@@ -30,6 +30,19 @@
               <input type="text" class="form-control" id="inputConstruct" placeholder="Construct">
             </div>
           </div>
+
+          <div class="form-group row">
+          <ul class="list-unstyled">
+            <li class="dropdown open">
+                <a href="#" data-toggle="dropdown" aria-expanded="true" style="color: #000;font-weight: 400;" class="dropdown-toggle col-form-label">Mode of collection <span class="fa fa-caret-down"></span></a>
+                <ul id="dropdown-mode_of_collection" class="dropdown-menu" style="margin-left:20%">
+                    
+                </ul>
+            </li>
+        </ul>
+        </div>
+
+
       </div>
       <div class='modal-footer'>
         <button type='button' class='btn' data-dismiss='modal'>Close</button>
@@ -123,6 +136,22 @@
         document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
       } else {
         document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
+      }
+    });
+  url = "/api/3/action/package_search?facet.field=[%dc_mode_of_collection%22]"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      var dropdownEl = document.getElementById('dropdown-mode_of_collection');
+      labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
+      for (const key of labelKeys) {
+        dropdownEl.innerHTML += `<li>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">Two
+                            </label>
+                        </div>
+                    </li>`;
       }
     });
 </script>
