@@ -37,6 +37,7 @@
           </div>
 
           <div class="form-group row">
+            <select id="operator-construct" class="select-operator"><option>OR</option><option>AND</option></select>
             <label class="col-sm-2 col-form-label">Construct</label>
             <div class="col-sm-10">
               <div class="well" style="height:200px;padding-top:0px;overflow:scroll">
@@ -47,6 +48,7 @@
           </div>
 
           <div class="form-group row">
+            <select id="operator-label" class="select-operator"><option>OR</option><option>AND</option></select>
             <label class="col-sm-2 col-form-label">Label</label>
             <div class="col-sm-10">
               <div class="well" style="height:200px;padding-top:0px;overflow:scroll">
@@ -94,15 +96,9 @@
           });
         }
 
-        function concatString(query) {
+        function concatString(query,delim) {
           if (query.length > 0) {
-            var query = query + ' & ';
-          }
-          return query;
-        }
-        function appendMultiString(query) {
-          if (query.length > 0) {
-            var query = query + ' || ';
+            var query = query + ' ' + delim + ' ';
           }
           return query;
         }
@@ -113,13 +109,13 @@
               $(element).children().each( (index, child) => {
                   var subEl = $(child).children();
                  if (subEl[0].checked == true) {
-                  tmpString = appendMultiString(tmpString);
+                  tmpString = concatString(tmpString,'||');
                   tmpString += facetName + ':"' + subEl[0].id + '"'
                  }
               });
           });
           if (tmpString.length > 0) {
-            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+            advancedSearchString = concatString(advancedSearchString,'+') + '(' + tmpString + ')'
           }
           return advancedSearchString;
         }
