@@ -45,7 +45,7 @@
               <label class="col-sm-2 col-form-label">Mode of collection</label>
               <div class="col-sm-10">
                 <div class="well" style="height:100px;width:50%;padding-top:0px;overflow:scroll">
-                  <ul class="list-unstyled" id="select-mode_of_collection">
+                  <ul class="menu blog-filter-menu" id="select-mode_of_collection">
                   </ul>
                 </div>
               </div>
@@ -192,7 +192,7 @@
       var dropdownEl = document.getElementById('select-mode_of_collection');
       labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="dropdown-list"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></li>`;
+        dropdownEl.innerHTML += `<li><a class="category-select"><div class="checkbox"><input type="checkbox" id=`+key+`>` + key + `</input></div></a></li>`;
       }
     });
 </script>
