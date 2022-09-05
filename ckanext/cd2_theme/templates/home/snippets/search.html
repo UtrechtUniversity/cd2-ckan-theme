@@ -76,7 +76,7 @@
           $('#filter_labels').on('keyup', function () {
                   var search = this.value.toLowerCase();
                   if (search.length < 2) { var showAll = true } else { showAll = false }
-                  $('#select-label').each(function () {
+                  $('label-select').each(function () {
                       a = this;
                       this.style.display = "flex";
                       if (showAll == false) {
@@ -231,7 +231,7 @@
       var dropdownEl = document.getElementById('select-label');
       labelKeys = Object.keys(data.result.facets.dc_label);
       for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
+        dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
       }
     });
 </script>
