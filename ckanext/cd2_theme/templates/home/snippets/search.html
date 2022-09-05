@@ -25,6 +25,17 @@
             </div>
           </div>
 
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Study</label>
+            <div class="col-sm-10">
+              <div class="well" style="padding-top:0px;overflow:scroll">
+                <ul class="menu blog-filter-menu" id="select-study">
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Construct</label>
             <div class="col-sm-10">
@@ -40,17 +51,6 @@
             <div class="col-sm-10">
               <div class="well" style="padding-top:0px;overflow:scroll">
                 <ul class="menu blog-filter-menu" id="select-label">
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Study</label>
-            <div class="col-sm-10">
-              <div class="well" style="padding-top:0px;overflow:scroll">
-                <ul class="menu blog-filter-menu" id="select-study">
                 </ul>
               </div>
             </div>
@@ -96,14 +96,13 @@
         }
         
         function facetCheckbox(fieldID,facetName) {
-          tmpString = '';
-          $(fieldID).children().each( (index, element) => {
+          var tmpString = '';
+          $('#select-label').children().each( (index, element) => {
               $(element).children().each( (index, child) => {
-                  subEl = $(child).children();
+                  var subEl = $(child).children();
                  if (subEl[0].checked == true) {
                   tmpString = appendMultiString(tmpString);
                   tmpString += facetName + ':"' + subEl[0].id + '"'
-                  console.log(tmpString)
                  }
               });
           });
@@ -124,56 +123,14 @@
             advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value + '"'; 
           }
 
-          tmpString = ''
-          $('#select-construct').children().each( (index, element) => {
-              $(element).children().each( (index, child) => {
-                  subEl = $(child).children();
-                 if (subEl[0].checked == true) {
-                  tmpString = appendMultiString(tmpString);
-                  tmpString += 'dc_construct:"' + subEl[0].id + '"'
-                  console.log(tmpString)
-                 }
-              });
-          });
-          if (tmpString.length > 0) {
-            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
-          }
-
+          advancedSearchString = facetCheckbox('#select-study','study')
+          advancedSearchString = facetCheckbox('#select-construct','dc_construct')
           advancedSearchString = facetCheckbox('#select-labels','dc_label')
-                 
-          tmpString = ''
-          $('#select-study').children().each( (index, element) => {
-              $(element).children().each( (index, child) => {
-                  subEl = $(child).children();
-                 if (subEl[0].checked == true) {
-                  tmpString = appendMultiString(tmpString);
-                  tmpString += 'organization:"' + subEl[0].id + '"'
-                  console.log(tmpString)
-                 }
-              });
-          });
-          if (tmpString.length > 0) {
-            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
-          }
-
-          tmpString = ''
-          $('#select-mode_of_collection').children().each( (index, element) => {
-              $(element).children().each( (index, child) => {
-                  subEl = $(child).children();
-                 if (subEl[0].checked == true) {
-                  tmpString = appendMultiString(tmpString);
-                  tmpString += 'dc_mode_of_collection:"' + subEl[0].id + '"'
-                  console.log(tmpString)
-                 }
-              });
-          });
-          if (tmpString.length > 0) {
-            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
-          }
-
+          advancedSearchString = facetCheckbox('#select-mode_of_collection','dc_mode-of-collection')
+                
           document.getElementById('searchbox').value = advancedSearchString;
           console.log(advancedSearchString)
-		      //document.getElementById('dataset-search-form').submit();
+		      document.getElementById('dataset-search-form').submit();
 
 
         }
