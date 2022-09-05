@@ -109,6 +109,19 @@
           });
           advancedSearchString = concatString(advancedSearchString) + tmpString
 
+          tmpString = ''
+          $('#dropdown-mode_of_collection').children().each( (index, element) => {
+              $(element).children().each( (index, child) => {
+                  subEl = $(child).children();
+                 if (subEl[0].checked == true) {
+                  tmpString = appendMultiString(tmpString);
+                  tmpString += 'dc_mode_of_collection:"' + subEl[0].id + '"'
+                  console.log(tmpString)
+                 }
+              });
+          });
+          advancedSearchString = concatString(advancedSearchString) + tmpString
+
           document.getElementById('searchbox').value = advancedSearchString;
 		      document.getElementById('dataset-search-form').submit();
 
