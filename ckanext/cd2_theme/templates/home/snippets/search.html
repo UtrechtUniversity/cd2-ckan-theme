@@ -94,6 +94,21 @@
             advancedSearchString = concatString(advancedSearchString);
             advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value + '"'; 
           }
+
+          tmpString = ''
+          $('#select-construct').children().each( (index, element) => {
+              $(element).children().each( (index, child) => {
+                  subEl = $(child).children();
+                 if (subEl[0].checked == true) {
+                  tmpString = appendMultiString(tmpString);
+                  tmpString += 'dc_construct:"' + subEl[0].id + '"'
+                  console.log(tmpString)
+                 }
+              });
+          });
+          if (tmpString.length > 0) {
+            advancedSearchString = concatString(advancedSearchString) + '(' + tmpString + ')'
+          }
          
          
           tmpString = ''
