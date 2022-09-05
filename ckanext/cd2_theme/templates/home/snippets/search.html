@@ -28,7 +28,9 @@
       </form>
       <script>
         function advancedSearch() {
-          console.log('bla')
+          advancedSearchString = $('#inputLabel').value;
+          document.getElementById('searchbox').value = advancedSearchString;
+		      document.getElementById('dataset-search-form').submit();
         }
       </script>
       </div>
