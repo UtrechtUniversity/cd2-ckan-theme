@@ -129,14 +129,14 @@
         }
 
         // loop over checkboxes and combine IDs
-        function facetCheckbox(fieldID, facetName) {
+        function facetCheckbox(elID, facet) {
           var tmpString = '';
-          $(fieldID).children().each((index, element) => {
+          $(elID).children().each((index, element) => {
             $(element).children().each((index, child) => {
               var subEl = $(child).children();
               if (subEl[0].checked == true) {
-                tmpString = concatString(tmpString, customDelim(fieldID));
-                tmpString += facetName + ':"' + subEl[0].id + '"'
+                tmpString = concatString(tmpString, customDelim(elID));
+                tmpString += facet + ':"' + subEl[0].id + '"'
               }
             });
           });
