@@ -40,7 +40,8 @@
             <label class="col-sm-2 col-form-label">Construct</label>
             <div class="col-sm-10">
               <div class="well search-well">
-                <div class="search-toolbar"><select data-placement="right" data-toggle="tooltip" data-original-title="Choose operator when selecting multiple constructs" id="operator-construct" class="select-operator"><option>OR</option><option>AND</option></select></div>
+                <div class="search-toolbar"><select data-placement="right" data-toggle="tooltip" data-original-title="Choose operator when selecting multiple constructs" id="operator-construct" class="select-operator"><option>OR</option><option>AND</option></select>
+                  <a class="btn btn-reset" onclick="resetCheckboxes('#select-construct')"><span class="fa fa-undo" style="margin-top: 2px;"></span> Reset</a></div>
                 <ul class="menu blog-filter-menu" id="select-construct">
                 </ul>
               </div>
@@ -53,6 +54,7 @@
               <div class="well search-well">
                 <div class="search-toolbar"> 
                   <select data-toggle="tooltip" data-placement="right" data-original-title="Choose operator when selecting multiple labels" id="operator-label" class="select-operator"><option>OR</option><option>AND</option></select>
+                  <a class="btn btn-reset" onclick="resetCheckboxes('#select-label')"><span class="fa fa-undo" style="margin-top: 2px;"></span> Reset</a>
                   <input id="filter_labels" placeholder="filter" type="text" class="label-filter"></div>
                 <ul class="menu blog-filter-menu" id="select-label">
                 </ul>
@@ -138,6 +140,15 @@
             advancedSearchString = concatString(advancedSearchString, '&') + '(' + tmpString + ')'
           }
           return advancedSearchString;
+        }
+
+        // reset checkboxes
+        function resetCheckboxes(fieldID) {
+          $(fieldID).children().each((index, element) => {
+            $(element).children().each((index, child) => {
+                $(child).children().prop( "checked", false );
+            });
+          });
         }
 
         // parse input from form, create query string and submit search
