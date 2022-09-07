@@ -244,9 +244,9 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-mode_of_collection');
-      labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
-      for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
+      var labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
+      for (collection of labelKeys) {
+        dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+collection+`">` + collection + `</input></label></li>`;
       }
     });
   url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
@@ -254,9 +254,9 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-construct');
-      labelKeys = Object.keys(data.result.facets.dc_construct);
-      for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
+      var labelKeys = Object.keys(data.result.facets.dc_construct);
+      for (construct of labelKeys) {
+        dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+construct+`">` + construct + `</input></label></li>`;
       }
     });
   url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
@@ -264,24 +264,10 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-label');
-      labelKeys = Object.keys(data.result.facets.dc_label);
-      for (const key of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
+      var labelKeys = Object.keys(data.result.facets.dc_label);
+      for (label of labelKeys) {
+        dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + klabeley + `</input></label></li>`;
       }
     });
 
-    function fillSearchPillsFromAPI(apiAction,elementID,facetJSON) {
-      url = "/api/3/action/" + apiAction;
-      fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        var dropdownEl = document.getElementById(elementID);
-        labelKeys = Object.keys(facetJSON);
-        for (const key of labelKeys) {
-          //dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+key+`">` + key + `</input></label></li>`;
-          console.log(key)
-        }
-      });
-    }
-    fillSearchPillsFromAPI('package_search?facet.field=[%22dc_label%22]','select-label','data.result.facets.dc_label')
 </script>
