@@ -1,7 +1,6 @@
 {
     "special_index_fields": [
         "dc_construct",
-        "dc_label",
-        "wave_age_range_int"
+        "dc_label"
     ]
 }
