@@ -217,6 +217,7 @@
    * Fetch json from CKAN API and build content (statistics, labels, constructs, studies)
    * TODO: combine into functions
   */
+  function fillSearchModal() {
   url = "/api/3/action/organization_list?all_fields=true"
   fetch(url)
     .then(res => res.json())
@@ -244,7 +245,7 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-mode_of_collection');
-      keys = Object.keys(data.result.facets.dc_mode_of_collection);
+      let keys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (collection of keys) {
         dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+collection+`">` + collection + `</input></label></li>`;
       }
@@ -254,7 +255,7 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-construct');
-      keys = Object.keys(data.result.facets.dc_construct);
+      let keys = Object.keys(data.result.facets.dc_construct);
       for (construct of keys) {
         dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+construct+`">` + construct + `</input></label></li>`;
       }
@@ -264,10 +265,12 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-label');
-      keys = Object.keys(data.result.facets.dc_label);
+      let keys = Object.keys(data.result.facets.dc_label);
       for (label of keys) {
         dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + label + `</input></label></li>`;
       }
     });
+  }
+  fillSearchModal();
 
 </script>
