@@ -205,7 +205,10 @@
 
 <script>
   document.getElementById('site-search-wrap').style.display = 'none';
-  // Fetch json from CKAN API and build list of studies for selection
+  /**  
+   * Fetch json from CKAN API and build content (statistics, labels, constructs, studies)
+   * 
+  */
   url = "/api/3/action/organization_list?all_fields=true"
   fetch(url)
     .then(res => res.json())
@@ -217,10 +220,7 @@
         divDropdown.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
       }
     });
-</script>
-
 {% set stats = h.get_site_statistics() %}
-<script>
   url = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]"
   fetch(url)
     .then(res => res.json())

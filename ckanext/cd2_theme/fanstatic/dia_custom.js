@@ -3,11 +3,6 @@ window.dataTargetNamespace = 'rua-';
 (function ($) {
     $(document).ready(function() {
 
-        // Tooltips
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
         // Site-wide search box
         function updateSearchContext ($form) {
             var dataOrContent = $form.find('.search-form-context:checked').val()

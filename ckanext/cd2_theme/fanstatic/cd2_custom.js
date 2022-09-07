@@ -1,6 +1,7 @@
-// -------------------------------
-// CD2 custom JS
-// -------------------------------
+/**  
+ * Custom CD2 js
+ * 
+ */
 
 // Enable tooltips site-wide
 $(function () {
@@ -18,9 +19,11 @@ function replaceCharacters() {
     document.getElementById('searchbox').value = replaced_q;
 };
 
-// Facets
-// // Toggle facets via input filter
-// // invoked on snippets/facet_list.html
+/**  
+ * Toggle facets-display based on input field value
+ * @param facet_input {string} - id of input field
+ * @param facet_element {string} - class of li elements
+ */
 function facetToggle(facet_input, facet_element) {
     $(facet_input).on('keyup', function () {
         var search = this.value.toLowerCase();
@@ -35,8 +38,11 @@ function facetToggle(facet_input, facet_element) {
     });
 }
 
-// // Resize facet div based on content
-// // invoked on snippets/facet_list.html
+/**  
+ * Resize facet dropdown based on number of elements
+ * @param liElements {string} - class of li elements
+ * @param sectionElement {string} - id of section
+ */
 function facetResize(liElements, sectionElement) {
     liElements = document.getElementsByClassName(liElements);
     maxHeight = (liElements.length * 30) + 70;

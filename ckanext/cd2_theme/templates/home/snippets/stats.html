@@ -29,7 +29,10 @@
 </div>
 <script>
   document.getElementById('site-search-wrap').style.display = 'none';
-  // Fetch json from CKAN API and build list of studies for selection
+   /**  
+   * Fetch json from CKAN API and get study list 
+   * 
+  */
   url = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]"
   fetch(url)
     .then(res => res.json())
