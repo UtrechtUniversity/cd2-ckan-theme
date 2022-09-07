@@ -85,22 +85,24 @@
         /**  
         * Parse advanced search parameters and create new query string
         */
-        //
         facetToggle('#filter_labels', '.label-select','flex');
 
-       
-          // submit form with enter
-          $('#advancedSearchForm').each(function () {
-            $(this).find('input').keypress(function (e) {
-              // Enter pressed?
-              if (e.which == 10 || e.which == 13) {
-                advancedSearch();
-              }
+        // Submit form with enter
+        $('#advancedSearchForm').each(function () {
+          $(this).find('input').keypress(function (e) {
+            // Enter pressed?
+            if (e.which == 10 || e.which == 13) {
+              advancedSearch();
+            }
             });
           });
         }
 
-        // combine strings with delimiter if entry exists
+        /**  
+        * Combine strings with delimiter if entry exists
+        * @param query {string} - current querystring
+        * @param delim {string} - chosen delimiter (|| or &)
+        */
         function concatString(query, delim) {
           if (query.length > 0) {
             var query = query + ' ' + delim + ' ';
@@ -108,7 +110,10 @@
           return query;
         }
 
-        // set delimiter to AND/OR based on selection
+        /**  
+        * Set delimiter to AND/OR based on selection
+        * @param fieldID {string} - ID of select object
+        */
         function customDelim(fieldID) {
           if (fieldID == '#select-construct') {
             var operator = document.getElementById('operator-construct').value;
@@ -122,7 +127,11 @@
           return delim;
         }
 
-        // loop over checkboxes and combine IDs
+        /**  
+        * Loop over checkboxes and combine checked IDs
+        * @param elID {string} - ID of element
+        * @param facet {string} - facetname for URL concat
+        */
         function facetCheckbox(elID, facet) {
           var tmpString = '';
           $(elID).children().each((index, element) => {
@@ -140,7 +149,10 @@
           return advancedSearchString;
         }
 
-        // reset checkboxes
+        /**  
+        * Reset checkboxes when button clicked
+        * @param fieldID {string} - ID of element
+        */
         function resetCheckboxes(fieldID) {
           $(fieldID).children().each((index, element) => {
             $(element).children().each((index, child) => {
@@ -149,7 +161,9 @@
           });
         }
 
-        // parse input from form, create query string and submit search
+        /**  
+        * Parse input from all form elements, create query string and submit search
+        */
         function advancedSearch() {
           advancedSearchString = '';
           if (document.getElementById('inputTitle').value) {
