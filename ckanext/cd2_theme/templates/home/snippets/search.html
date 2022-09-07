@@ -82,7 +82,10 @@
       </form>
       <script>
         window.onload = function () {
-          // filter labels based in input
+        /**  
+        * Parse advanced search parameters and create new query string
+        */
+        //
           $('#filter_labels').on('keyup', function () {
             var search = this.value.toLowerCase();
             if (search.length < 2) { var showAll = true } else { showAll = false }

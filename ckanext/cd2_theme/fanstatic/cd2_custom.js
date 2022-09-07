@@ -26,15 +26,15 @@ function replaceCharacters() {
  * @param facet_element {string} - class of li elements
  * invoked on snippets/facet_list.html
  */
-function facetToggle(facet_input, facet_element) {
+function facetToggle(facet_input, facet_element,default_display) {
     $(facet_input).on('keyup', function () {
         var search = this.value.toLowerCase();
         if (search.length < 2) { var showAll = true } else { showAll = false }
         $(facet_element).each(function () {
             a = this;
-            this.style.display = "block";
+            this.style.display = default_display;
             if (showAll == false) {
-                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = "block"; } else { this.style.display = "none"; }
+                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = default_display; } else { this.style.display = "none"; }
             }
         });
     });

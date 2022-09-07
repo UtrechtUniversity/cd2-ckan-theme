@@ -31,7 +31,7 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function (event) {
 		// Toggle facets via input filter
-		facetToggle('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}');
+		facetToggle('#filter_{{ title.replace(" ","_")  }}', '.element_{{ title.replace(" ","_")  }}','block');
 
 		// Resize the search box to fit the height of the facet list
 		facetResize('element_{{ title.replace(" ","_") }}','section_{{ title.replace(" ","_")  }}');
