@@ -22,10 +22,10 @@
 
 <script>
 document.getElementById('site-search-wrap').style.display = 'none';
-
-  // Javascript to fetch json from CKAN API and add content to homepage
-  // Todo: rewrite in Python and call as CKAN plugin
-
+  /**
+  * Javascript to fetch json from CKAN API and add content to homepage
+  * Todo: TODO: combine into functions
+  */
   url = "/api/3/action/package_search"
   fetch(url)
     .then(res => res.json())
