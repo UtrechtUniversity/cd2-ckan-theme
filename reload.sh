@@ -2,7 +2,7 @@
 git pull &&
 
 # CKAN: ckan.ini
-cp ckanext/ckan_config/ckan.ini /etc/ckan/default/ckan.ini &&
+# cp ckanext/ckan_config/ckan.ini /etc/ckan/default/ckan.ini &&
 
 # SOLR: search engine customization
 cp ckanext/ckan_config/schema.xml /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
