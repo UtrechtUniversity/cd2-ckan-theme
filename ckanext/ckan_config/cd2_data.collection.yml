@@ -25,6 +25,11 @@ dataset_fields:
 - field_name: wave
   label: wave
   repeating_subfields:
+  - field_name: wave_age_range 
+    label: Age range
+    repeating_subfields:
+    - field_name: wave_age_range_int
+      label: Year
   - field_name: wave_title
     label: Short identifying title
   - field_name: wave_cohort
@@ -120,11 +125,6 @@ dataset_fields:
   repeating_subfields:
   - field_name: dc_construct
     label: construct
-- field_name: wave_age_range # e.g. "brain anatomy"
-  label: Age range
-  repeating_subfields:
-  - field_name: wave_age_range_int
-    label: Year
 - field_name: dc_agency # obsolete?
   label: registered agency
 - field_name: notes
