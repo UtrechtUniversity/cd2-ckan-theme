@@ -31,10 +31,6 @@ dataset_fields:
     label: Cohort
   - field_name: wave_median_age
     label: Median age of measurement
-  - field_name: wave_min_age
-    label: Minimum age of measurement
-  - field_name: wave_max_age
-    label: Maximum age of measurement
   - field_name: wave_measurement_stages # e.g. 1 month, 3 months, etc; can we somehow harmonize these accross cohorts?
     label: Stage of measurement
   - field_name: wave_description # abstract description of the wave
@@ -124,6 +120,11 @@ dataset_fields:
   repeating_subfields:
   - field_name: dc_construct
     label: construct
+- field_name: wave_age_range # e.g. "brain anatomy"
+  label: Age range
+  repeating_subfields:
+  - field_name: wave_age_range_int
+    label: Year
 - field_name: dc_agency # obsolete?
   label: registered agency
 - field_name: notes
