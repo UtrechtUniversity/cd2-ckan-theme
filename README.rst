@@ -2,7 +2,7 @@
 ckanext-cd2_theme
 =============
 
-Cloned from /data-govt-nz/ckanext-dia_theme and adapted for CD<sup>2</sup>
+Cloned from /data-govt-nz/ckanext-dia_theme and adapted for CD2
 
 ------------
 Requirements
@@ -51,10 +51,11 @@ SOLR and facet configuration files are included (and config of ckanext-msl-ckan 
 
 
 ----------------------------------------
-Specific CD<sup>2</sup> configurations
+Specific CD2 configurations
 ----------------------------------------
 
-The theme contains functionality with several references to specific elements of the CD<sup>2</sup> meta-data schema, which may cause issues with broader usage. The following pages contain direct references to the CD<sup>2</sup> meta-data schema, through either explicit HTML references or API calls.
+The theme contains functionality with several references to specific elements of the CD2 meta-data schema, which may cause issues with broader usage. The following pages contain direct references to the CD2 meta-data schema, through either explicit HTML references or API calls.
+ 
  - home/snippets/search.html
  - home/snippets/stats.html
  - home/layout_custom.html
