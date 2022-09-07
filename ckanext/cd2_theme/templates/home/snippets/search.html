@@ -228,7 +228,7 @@
         divDropdown.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
       }
     });
-{% set stats = h.get_site_statistics() %}
+  {% set stats = h.get_site_statistics() %}
   url = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]"
   fetch(url)
     .then(res => res.json())
