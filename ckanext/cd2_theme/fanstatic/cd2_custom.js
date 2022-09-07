@@ -8,8 +8,9 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
-// Search
-// // change functional parameters into symbols for clarity
+/**  
+ * Replace characters in search fields
+ */
 var input_q = document.getElementById('searchbox');
 input_q.addEventListener('keyup', replaceCharacters);
 function replaceCharacters() {
@@ -23,6 +24,7 @@ function replaceCharacters() {
  * Toggle facets-display based on input field value
  * @param facet_input {string} - id of input field
  * @param facet_element {string} - class of li elements
+ * invoked on snippets/facet_list.html
  */
 function facetToggle(facet_input, facet_element) {
     $(facet_input).on('keyup', function () {
@@ -42,6 +44,7 @@ function facetToggle(facet_input, facet_element) {
  * Resize facet dropdown based on number of elements
  * @param liElements {string} - class of li elements
  * @param sectionElement {string} - id of section
+ * invoked on snippets/facet_list.html
  */
 function facetResize(liElements, sectionElement) {
     liElements = document.getElementsByClassName(liElements);
@@ -51,9 +54,12 @@ function facetResize(liElements, sectionElement) {
     console.log('element ' + sectionElement + ' resized to ' + maxHeight)
 }
 
-// Range search
-// // Create pill from selected age range, with ability to remove from query string
-// // invoked on snippets/search_form.html
+/**  
+ * Create range pill when age-range is defined
+ * @param facetName {string} - backend name of facet 
+ * @param facetMeasure {string} - display name of facet
+ * invoked on snippets/search_form.html
+ */
 function createRangePill(facetName,facetMeasure) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -69,8 +75,12 @@ function createRangePill(facetName,facetMeasure) {
                                             </span><input type="hidden" id="facet-range-value" value="`+ currentQuery + `"/>`
 };
 
-// // Remove current range from query string before adding new range
-// // invoked on snippets/facet_list.html
+/**  
+ * Remove range in url before defining new one
+ * @param currentQuery {string} - current URL
+ * @param facetName {string} - backend name of facet
+ * invoked on snippets/facet_list.html
+ */
 function removeRange(currentQuery,facetName) {
     var re = new RegExp('[\\s&-]*'+ facetName +':\\[\\d+\\sTO\\s\\d+\\][\\s&-]*');
     newQuery = currentQuery.replace(re, "");
