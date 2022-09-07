@@ -9,6 +9,7 @@
     "dc_label": "label",
     "dc_construct": "construct",
     "dc_mode_of_collection": "mode of collection",
+    "wave_age_range": "age range",
     "wave_title": "wave"
  },
   "cohort": {
