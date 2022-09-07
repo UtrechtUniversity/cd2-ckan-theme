@@ -244,7 +244,7 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-mode_of_collection');
-      var labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
+      labelKeys = Object.keys(data.result.facets.dc_mode_of_collection);
       for (collection of labelKeys) {
         dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+collection+`">` + collection + `</input></label></li>`;
       }
@@ -254,7 +254,7 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-construct');
-      var labelKeys = Object.keys(data.result.facets.dc_construct);
+      labelKeys = Object.keys(data.result.facets.dc_construct);
       for (construct of labelKeys) {
         dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+construct+`">` + construct + `</input></label></li>`;
       }
@@ -264,9 +264,9 @@
     .then(res => res.json())
     .then(data => {
       var dropdownEl = document.getElementById('select-label');
-      var labelKeys = Object.keys(data.result.facets.dc_label);
+      labelKeys = Object.keys(data.result.facets.dc_label);
       for (label of labelKeys) {
-        dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + klabeley + `</input></label></li>`;
+        dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + label + `</input></label></li>`;
       }
     });
 
