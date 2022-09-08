@@ -222,7 +222,6 @@ schema. In this case the version should be set to the next CKAN version number.
 
 <copyField source="dc_label" dest="text"/>
 <copyField source="dc_construct" dest="text"/>
-<copyField source="wave_age_range" dest="text"/>
 <copyField source="dc_mode_of_collection" dest="text"/>
 <copyField source="dc_mode_of_collection_sub" dest="text"/>
 
