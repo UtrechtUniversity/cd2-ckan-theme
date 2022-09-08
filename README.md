@@ -1,7 +1,8 @@
 # ckanext-cd2_theme
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
     
-Theme for the CKAN CD² meta-data portal (cloned from /data-govt-nz/ckanext-dia_theme)
+Theme for the CKAN CD² meta-data portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
 
 ![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png?raw=true)
 
@@ -37,7 +38,7 @@ To install the theme in an existing environment:
 
 ## CSS Styling
 
-Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files. Edit the LESS files and compile to CSS using a LESS compiler, i.e.::
+Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files. Edit the LESS files and compile to CSS using a LESS compiler, i.e.:
 
     npm install -g less
     lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
