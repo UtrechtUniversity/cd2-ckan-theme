@@ -12,7 +12,7 @@ $(function () {
  * Replace characters in search fields
  */
 var input_q = document.getElementById('searchbox');
-input_q.addEventListener('keyup', replaceCharacters);
+if (input_q) { input_q.addEventListener('keyup', replaceCharacters); }
 function replaceCharacters() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND', '&');
