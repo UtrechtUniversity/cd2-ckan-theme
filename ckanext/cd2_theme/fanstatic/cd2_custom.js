@@ -38,7 +38,7 @@ function getDebugStatus() {
     }
 };
 if (getDebugStatus()) {
-    document.getElementsByClassName('debug').style.display = "inherit";
+    document.getElementsByClassName('debug')[0].style.display = "inherit";
 }
 
 /**  
