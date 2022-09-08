@@ -4,10 +4,6 @@ about: CD² waves are described as DDI Lifecycle 3.2 studyunits
 about_url: https://github.com/ckan/ckanext-scheming
 
 dataset_fields:
-- field_name: type
-  label: type
-  preset: type
-  
 # standard CKAN field
 # name is an internal CKAN identifier;
 # if the cohort has a DOI then possibly use hash of this
