@@ -67,10 +67,10 @@
   </table>
 
   
-    {% for element in pkg_dict %}
-    <p>
-    {{ element }}
-    </p>
-    {% endfor %}
+  {% for dict_item in pkg_dict %}
+  {% for key, value in dict_item.items() %}
+    <tr><td>{{key}}</td><td>{{value}}</td></tr>
+  {% endfor %}
+  {% endfor %}
 
 </section>
