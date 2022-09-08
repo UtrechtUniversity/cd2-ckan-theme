@@ -20,6 +20,9 @@ function replaceCharacters() {
     document.getElementById('searchbox').value = replaced_q;
 };
 
+/**  
+ * Print all data in debug mode
+ */
 function getDebugStatus() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -35,7 +38,7 @@ function getDebugStatus() {
     }
 };
 if (getDebugStatus()) {
-    document.getElementsByClassName('debug').style.display = "inherit";
+    document.getElementsByClassName('debug')[0].style.display = "inherit";
 }
 
 /**  
