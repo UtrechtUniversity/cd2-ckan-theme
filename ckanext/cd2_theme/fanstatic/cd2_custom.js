@@ -37,9 +37,11 @@ function getDebugStatus() {
         return false;
     }
 };
-if (getDebugStatus()) {
-    document.getElementsByClassName('debug')[0].style.display = "inherit";
-}
+document.addEventListener("DOMContentLoaded", function (event) {
+    if (getDebugStatus()) {
+        document.getElementsByClassName('debug')[0].style.display = "inherit";
+    }
+});
 
 /**  
  * Toggle facets-display based on input field value
