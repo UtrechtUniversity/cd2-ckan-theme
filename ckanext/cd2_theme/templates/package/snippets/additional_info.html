@@ -66,11 +66,16 @@
     </tbody>
   </table>
 
-  <h3>Raw data</h3>
-  <table class="table table-striped table-condensed">
-  {% for key, value in pkg_dict.items() %}
-    <tr><td>{{key}}</td><td>{{value}}</td></tr>
-  {% endfor %}
- </table>  
 
+
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRaw" aria-expanded="false" aria-controls="collapseRaw">
+    Raw meta-data
+  </button>
+  <div class="collapse" id="collapseRaw">
+    <table class="table table-striped table-condensed">
+      {% for key, value in pkg_dict.items() %}
+        <tr><td>{{key}}</td><td>{{value}}</td></tr>
+      {% endfor %}
+     </table>
+  </div>
 </section>
