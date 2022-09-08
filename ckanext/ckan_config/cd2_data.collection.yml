@@ -25,11 +25,6 @@ dataset_fields:
 - field_name: wave
   label: wave
   repeating_subfields:
-  - field_name: wave_age_range 
-    label: Age range
-    repeating_subfields:
-    - field_name: wave_age_range_int
-      label: Year
   - field_name: wave_title
     label: Short identifying title
   - field_name: wave_cohort
@@ -59,6 +54,11 @@ dataset_fields:
     label: End date of wave collection
   - field_name: dc_wave_coverage # note the prefix and see the model: this is actually a field that applies to a single measurement
     label: Coverage percentage of the measurement for this wave
+  - field_name: wave_age_range 
+    label: Age range
+    repeating_subfields:
+    - field_name: wave_age_range_int
+      label: Year
 
   # - field_name: wave_creators
     #   removed for wave level because these are included with the data collection itself
