@@ -5,9 +5,8 @@ ckanext-cd2_theme
     :target: https://opensource.org/licenses/AGPL-3.0
     :alt: License
     
-<img src="https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png">
-
 Theme for the CKAN CD² meta-data portal (cloned from /data-govt-nz/ckanext-dia_theme)
+
 
 ------------
 Requirements
