@@ -13,7 +13,9 @@ CKAN 2.9.x
 
 ## Installation
 
-To install the theme:
+Use [cd2-ansible](https://github.com/UtrechtUniversity/cd2-ansible) to create a fully functional CKAN environment with this theme. 
+
+To install the theme in an existing environment:
 
 1. Activate your CKAN virtual environment, for example::
 
