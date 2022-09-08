@@ -1,5 +1,6 @@
 # ckanext-cd2_theme
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
     
 Theme for the CKAN CD² meta-data portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
 
