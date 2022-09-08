@@ -1,8 +1,13 @@
 =============
 ckanext-cd2_theme
 =============
+.. image:: https://img.shields.io/badge/license-AGPL-blue.svg?style=flat
+    :target: https://opensource.org/licenses/AGPL-3.0
+    :alt: License
+    
+<img src="https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png">
 
-Cloned from /data-govt-nz/ckanext-dia_theme and adapted for CD²
+Theme for the CKAN CD² meta-data portal (cloned from /data-govt-nz/ckanext-dia_theme)
 
 ------------
 Requirements
