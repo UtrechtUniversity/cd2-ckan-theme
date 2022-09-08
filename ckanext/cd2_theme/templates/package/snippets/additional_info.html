@@ -67,11 +67,7 @@
   </table>
 
 
-
-  <button class="btn" style="float:right" type="button" data-toggle="collapse" data-target="#collapseRaw" aria-expanded="false" aria-controls="collapseRaw">
-    Raw meta-data
-  </button><br />
-  <div class="collapse" id="collapseRaw">
+  <div class="collapse debug" id="collapseRaw" style="display:none">
     <table class="table table-striped table-condensed">
       {% for key, value in pkg_dict.items() %}
         <tr><td>{{key}}</td><td>{{value}}</td></tr>

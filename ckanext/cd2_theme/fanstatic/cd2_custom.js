@@ -20,6 +20,24 @@ function replaceCharacters() {
     document.getElementById('searchbox').value = replaced_q;
 };
 
+function getDebugStatus() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams == null) { return false; }
+    currentQuery = urlParams.get('debug');
+    if (currentQuery == null) { 
+        return false; 
+    } else if (currentQuery == "true") {
+        console.log('debug mode');
+        return true;
+    } else {
+        return false;
+    }
+};
+if (getDebugStatus()) {
+    document.getElementsByClassName('debug').style.display = "inherit";
+}
+
 /**  
  * Toggle facets-display based on input field value
  * @param facet_input {string} - id of input field
