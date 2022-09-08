@@ -1,22 +1,17 @@
-=============
-ckanext-cd2_theme
-=============
-.. image:: https://img.shields.io/badge/license-AGPL-blue.svg?style=flat
-    :target: https://opensource.org/licenses/AGPL-3.0
-    :alt: License
+# ckanext-cd2_theme
+
     
 Theme for the CKAN CD² meta-data portal (cloned from /data-govt-nz/ckanext-dia_theme)
 
+![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png?raw=true)
 
-------------
-Requirements
-------------
+
+## Requirements
 
 CKAN 2.9.x
 
-------------
-Installation
-------------
+
+## Installation
 
 To install the theme:
 
@@ -38,9 +33,7 @@ To install the theme:
     sudo supervisorctl reload && sudo service nginx restart
 
 
-----------------------------------------
-CSS Styling
-----------------------------------------
+## CSS Styling
 
 Any CSS styling changes should be done in the LESS files and NOT directly in the CSS files. Edit the LESS files and compile to CSS using a LESS compiler, i.e.::
 
@@ -48,16 +41,12 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
     lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css
 
 
-----------------------------------------
-Updating and testing
-----------------------------------------
+## Updating and testing
 
 SOLR and facet configuration files are included (and config of ckanext-msl-ckan extension), can be written to the correct location using the reload.sh script
 
 
-----------------------------------------
-Specific CD² configurations
-----------------------------------------
+## Specific CD² configurations
 
 The theme contains functionality with several references to specific elements of the CD² meta-data schema, which may cause issues with broader usage. The following pages contain direct references to the CD² meta-data schema, through either explicit HTML references or API calls.
  
