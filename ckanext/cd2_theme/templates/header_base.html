@@ -14,7 +14,11 @@
                             <ul class="unstyled bg-primary">
                                 {% block header_account_logged %}
                                     {% if c.userobj.sysadmin %}
-                                    <script>document.getElementsByClassName('debug')[0].style.display = "inherit";</script>
+                                    <script>
+                                    document.addEventListener("DOMContentLoaded", function (event) {
+                                        document.getElementsByClassName('debug')[0].style.display = "inherit";
+                                    });
+                                    </script>
                                         <li>
                                             <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
                                                 <i class="fa fa-gavel" aria-hidden="true"></i>
