@@ -13,6 +13,7 @@ cp ckanext/ckan_config/msl_index_fields.json /usr/lib/ckan/default/src/ckanext-m
 
 # CKAN: schema definitions
 cp ckanext/ckan_config/cd2_data.collection.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/cd2_data.collection.yml &&
+cp ckanext/ckan_config/cd2_wave.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/cd2_wave.yml &&
 cp ckanext/ckan_config/ddi_studyunit.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/ddi_studyunit.yml &&
 
 # CD2: compile css styles
