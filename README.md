@@ -1,7 +1,7 @@
 # ckanext-cd2_theme
 
     
-Theme for the CKAN CD² meta-data portal (cloned from /data-govt-nz/ckanext-dia_theme)
+Theme for the CKAN CD² meta-data portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
 
 ![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png?raw=true)
 
