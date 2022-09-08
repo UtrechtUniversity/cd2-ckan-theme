@@ -67,6 +67,10 @@
   </table>
 
   
-    {{ pkg_dict }}
+    {% for element in pkg_dict %}
+    <p>
+    {{ element }}
+    </p>
+    {% endfor %}
 
 </section>
