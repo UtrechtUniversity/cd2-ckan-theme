@@ -96,52 +96,52 @@
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
                   {% if constructs.dc_construct|lower == 'physiology' %}
-                    {%set imgurl = 'src="/icons/svg/outline/devices/clinical_a.svg"'%}
+                    {%set imgurl = 'src="/icons/svg/outline/devices/clinical_a.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'mental health' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/mental_disorders.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/mental_disorders.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'cognition' %}
-                    {%set imgurl = 'src="/icons/svg/outline/body/neurology.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/body/neurology.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'personality' %}
-                    {%set imgurl = 'src="/icons/svg/outline/emotions/ok.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/emotions/ok.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'parenting' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/child_care.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/child_care.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'social and emotional development' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/child_program.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/child_program.svg'%}
                     
                   {% elif constructs.dc_construct|lower == 'relationships' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/group_discussion_meeting.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/group_discussion_meeting.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'life history' %}
-                    {%set imgurl = 'src="/icons/svg/outline/symbols/calendar.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/symbols/calendar.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'lifestyle' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/wold_care.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/wold_care.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'work and school' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/travel_alt.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/travel_alt.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'demographics' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/i_groups_perspective_crowd.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/i_groups_perspective_crowd.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'social cognition and behavior' or constructs.dc_construct|lower == 'social cognition and behaviour' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/child_cognition.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/child_cognition.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'language' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/speech_language_therapy.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/speech_language_therapy.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'infancy' %}
-                    {%set imgurl = 'src="/icons/svg/outline/people/baby_0306m.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/people/baby_0306m.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'physical health' %}
-                    {%set imgurl = 'src="/icons/svg/outline/body/body.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/body/body.svg'%}
                     
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
-                    {%set imgurl = 'src="/icons/svg/outline/symbols/i_exam_multiple_choice.svg"'%}
+                    {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
                   {% endif %}
                   <img style="opacity:0.5" {{imgurl}} width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
               {% endfor %}
