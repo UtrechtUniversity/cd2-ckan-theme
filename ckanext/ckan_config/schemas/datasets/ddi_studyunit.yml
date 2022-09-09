@@ -128,3 +128,21 @@ dataset_fields:
   label: Version
   validators: ignore_missing unicode package_version_validator
   form_placeholder: '1.0'
+
+resource_fields:
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+
+- field_name: name
+  label: Title
+  form_placeholder: Descriptive name of the resource.
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Summary explanation of file contents, purpose, origination, methods and usage guidance.
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete
