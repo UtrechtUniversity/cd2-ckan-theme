@@ -87,8 +87,7 @@
     datasetLink.innerHTML = '<span class="fa fa-folder-o"></span> Wave'
   });
 </script>
-{% endif %}
-{% if pkg_dict.type == 'cohort' %}
+{% elif pkg_dict.type == 'cohort' %}
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
     // Change default behavior of link to datasets within organization

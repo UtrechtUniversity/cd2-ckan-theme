@@ -49,9 +49,11 @@
             </h2>
 
             
-            {% if package.type == 'dataset' %}
+         
             <table class="table table-condensed">
             <tbody>
+              
+              {% if package.type == 'dataset' %}
               <tr class="table-package-item"><td width="30%">Study:</td><td><span class="label">{{package.organization.title}}</span></td></tr> 
               <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span>
                 {% if package.dc_mode_of_collection_sub %}
@@ -70,12 +72,14 @@
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
                       <span class="label" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_title }}</span>
-                  {% endfor %}  
-
+                  {% endfor %}        
               </td></tr>
+              {% else %}
+              <tr class="table-package-item"><td width="30%">Type:</td><td><span class="label">{{package.type}}</span></td></tr> 
+              {% endif %}
               </tbody>
               </table>
-              {% endif %}
+             
           {% endblock %}
           {% block banner %}
             {% if banner %}
