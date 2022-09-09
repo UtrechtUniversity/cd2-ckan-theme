@@ -96,54 +96,54 @@
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
                   {% if constructs.dc_construct|lower == 'physiology' %}
-                    {%set imgurl = 'devices/clinical_a'%}
+                    {%set imgurl = ''src="/icons/svg/outline/devices/clinical_a.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'mental health' %}
-                    {%set imgurl = 'people/mental_disorders'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/mental_disorders.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'cognition' %}
-                    {%set imgurl = 'body/neurology'%}
+                    {%set imgurl = ''src="/icons/svg/outline/body/neurology.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'personality' %}
-                    {%set imgurl = 'emotions/ok'%}
+                    {%set imgurl = ''src="/icons/svg/outline/emotions/ok.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'parenting' %}
-                    {%set imgurl = 'people/child_care'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/child_care.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'social and emotional development' %}
-                    {%set imgurl = 'people/child_program'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/child_program.svg"'%}
                     
                   {% elif constructs.dc_construct|lower == 'relationships' %}
-                    {%set imgurl = 'people/group_discussion_meeting'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/group_discussion_meeting.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'life history' %}
-                    {%set imgurl = 'symbols/calendar'%}
+                    {%set imgurl = ''src="/icons/svg/outline/symbols/calendar.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'lifestyle' %}
-                    {%set imgurl = 'people/wold_care'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/wold_care.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'work and school' %}
-                    {%set imgurl = 'people/travel_alt'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/travel_alt.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'demographics' %}
-                    {%set imgurl = 'people/i_groups_perspective_crowd'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/i_groups_perspective_crowd.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'social cognition and behavior' or constructs.dc_construct|lower == 'social cognition and behaviour' %}
-                    {%set imgurl = 'people/child_cognition'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/child_cognition.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'language' %}
-                    {%set imgurl = 'people/speech_language_therapy'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/speech_language_therapy.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'infancy' %}
-                    {%set imgurl = 'people/baby_0306m'%}
+                    {%set imgurl = ''src="/icons/svg/outline/people/baby_0306m.svg"'%}
 
                   {% elif constructs.dc_construct|lower == 'physical health' %}
-                    {%set imgurl = 'body/body'%}
+                    {%set imgurl = ''src="/icons/svg/outline/body/body.svg"'%}
                     
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
-                    {%set imgurl = 'symbols/i_exam_multiple_choice'%}
+                    {%set imgurl = 'src="/icons/svg/outline/symbols/i_exam_multiple_choice.svg"'%}
                   {% endif %}
-                  <img style="opacity:0.5" src="/icons/svg/outline/{{imgurl}}.svg" width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
+                  <img style="opacity:0.5" {{imgurl}} width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
               {% endfor %}
               {% endif %}
               {% endif %}
