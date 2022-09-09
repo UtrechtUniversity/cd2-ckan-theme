@@ -2,6 +2,7 @@
 <section class="additional-info">
   <table class="table table-striped table-condensed">
     <tbody>
+    {% if pkg_dict.type == 'dataset '}
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
@@ -59,7 +60,7 @@
     </tr>
 
     
-  
+      {% endif %}
       {% block package_additional_info %}
       {% endblock %}
       
@@ -67,7 +68,7 @@
   </table>
 
 
-  <div class="collapse debug" id="collapseRaw" style="display:none">
+  <div style="display:none">
     <table class="table table-striped table-condensed">
       {% for key, value in pkg_dict.items() %}
         <tr><td>{{key}}</td><td>{{value}}</td></tr>
