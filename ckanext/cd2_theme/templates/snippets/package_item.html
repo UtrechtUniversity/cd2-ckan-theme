@@ -48,6 +48,7 @@
               {% endblock %} 
             </h2>
 
+            {% if package.type = 'dataset' %}
             <table class="table table-condensed">
             <tbody>
               <tr class="table-package-item"><td width="30%">Study:</td><td><span class="label">{{package.organization.title}}</span></td></tr> 
@@ -73,6 +74,7 @@
               </td></tr>
               </tbody>
               </table>
+              {% endif %}
           {% endblock %}
           {% block banner %}
             {% if banner %}
