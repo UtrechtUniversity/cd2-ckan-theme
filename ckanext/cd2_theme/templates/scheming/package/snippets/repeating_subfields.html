@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     regpattern = new RegExp(pattern,'gi');
     $('.scheming-subfield-list').each(function() {
       $(this).find('dd').each(function() {
-        console.log(this);
         a = this;
         doiResult = regpattern.exec(a.innerText);		
         if (doiResult != null) {
