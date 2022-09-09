@@ -7,13 +7,12 @@ git pull &&
 # SOLR: search engine customization
 cp ckanext/ckan_config/schema.xml /usr/lib/ckan/default/src/ckan/ckan/config/solr/schema.xml &&
 
-# CKAN: ckanext-msl-ckan plugin: custom facets & repeating fields
+# CKAN: ckanext-msl-ckan plugin: custom facets & repeating fields flattening of SOLR indexing
 cp ckanext/ckan_config/facets.json /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/config/facets.json &&
 cp ckanext/ckan_config/msl_index_fields.json /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/config/msl_index_fields.json &&
 
 # CKAN: schema definitions
-cp ckanext/ckan_config/cd2_data.collection.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/cd2_data.collection.yml &&
-cp ckanext/ckan_config/ddi_studyunit.yml /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas/datasets/ddi_studyunit.yml &&
+cp -r ckanext/ckan_config/schemas /usr/lib/ckan/default/src/ckanext-msl-ckan/ckanext/msl_ckan/schemas
 
 # CD2: compile css styles
 lessc ckanext/cd2_theme/less/main.less ckanext/cd2_theme/fanstatic/cd2_custom.css &&
