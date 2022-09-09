@@ -2,6 +2,7 @@
     "special_index_fields": [
         "dc_construct",
         "dc_label",
-        "wave_age_range"
+        "wave_cohort",
+        "wave_median_age"
     ]
 }
