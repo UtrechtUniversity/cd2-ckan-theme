@@ -129,6 +129,7 @@ dataset_fields:
   validators: ignore_missing unicode package_version_validator
   form_placeholder: '1.0'
 
+# internal server error if omitted
 resource_fields:
 - field_name: url
   label: URL
