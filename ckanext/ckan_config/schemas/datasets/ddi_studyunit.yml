@@ -12,7 +12,7 @@ dataset_fields:
   preset: dataset_slug
   form_placeholder: eg. my-dataset
 
-- field_name: wave_title
+- field_name: title
   label: Title of the wave
   preset: title
   form_placeholder: eg. A descriptive title for the wave
