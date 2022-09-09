@@ -4,8 +4,7 @@ about: CD² cohorts are described as DDI Lifecycle 3.2 groups
 about_url: https://github.com/ckan/ckanext-scheming
 
 dataset_fields:
-
-- field_name: cohort_title
+- field_name: title
   label: Title of the cohort
   preset: title
   form_placeholder: eg. A descriptive title
