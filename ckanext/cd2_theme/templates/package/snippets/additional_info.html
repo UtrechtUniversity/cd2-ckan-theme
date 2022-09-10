@@ -1,5 +1,5 @@
 
-{% if pkg_dict.type == 'cohort' %}
+{% if pkg_dict.type == 'wave' %}
 <script>
 url = "/api/3/action/package_relationships_list?id=around-9"
   fetch(url)
@@ -10,8 +10,6 @@ url = "/api/3/action/package_relationships_list?id=around-9"
       }
     });
 </script>
-
-
 {% endif %}
 
 <section class="additional-info">
