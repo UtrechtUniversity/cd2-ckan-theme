@@ -24,23 +24,3 @@
   {% endfor %}
 {% endblock %}
 
-
-<script>
-/**document.addEventListener("DOMContentLoaded", function(event) { 
-  // get DOI and create links
-  regpatterns = ['(http[^ ]*)']
-  regpatterns.forEach(function(pattern) {
-    regpattern = new RegExp(pattern,'gi');
-    $('.scheming-subfield-list').each(function() {
-      $(this).find('dd').each(function() {
-        a = this;
-        doiResult = regpattern.exec(a.innerText);		
-        if (doiResult != null) {
-            doiURL = '<a href="' + doiResult[1] + '" target="blank">' + doiResult[1] + '</a>';
-            a.innerHTML = a.innerHTML.replace(doiResult[1], doiURL);
-        }
-      }); 
-    }); 
-  });
-});**/
-</script>
