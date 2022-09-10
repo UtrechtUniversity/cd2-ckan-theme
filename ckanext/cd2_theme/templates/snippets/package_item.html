@@ -103,7 +103,7 @@
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
                   {% if constructs.dc_construct|lower == 'physiology' %}
-                    {%set imgurl = 'src="/icons/svg/outline/devices/clinical_a.svg'%}
+                    {%set imgurl = 'src=/icons/svg/outline/body/body.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'mental health' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/mental_disorders.svg'%}
@@ -145,7 +145,7 @@
                     {%set imgurl = 'src=/icons/svg/outline/people/baby_0306m.svg'%}
 
                   {% elif constructs.dc_construct|lower == 'physical health' %}
-                    {%set imgurl = 'src=/icons/svg/outline/body/body.svg'%}
+                    {%set imgurl = 'src=/icons/svg/outline/body/arm.svg'%}
                     
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
