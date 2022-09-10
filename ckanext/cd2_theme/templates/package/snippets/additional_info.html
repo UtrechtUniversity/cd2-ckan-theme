@@ -96,15 +96,13 @@ url = "/api/3/action/package_relationships_list?id=around-9"
 {% if pkg_dict.type == 'wave' %}
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
-    // Change default behavior of link to datasets within organization
     datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
-    datasetLink.innerHTML = '<span class="fa fa-folder-o"></span> Wave'
+    datasetLink.innerHTML = '<span class="fa fa-folder-open-o"></span> Wave'
   });
 </script>
 {% elif pkg_dict.type == 'cohort' %}
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
-    // Change default behavior of link to datasets within organization
     datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
     datasetLink.innerHTML = '<span class="fa fa-folder-open-o"></span> Cohort'
   });
