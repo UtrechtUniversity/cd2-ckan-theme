@@ -36,15 +36,15 @@
 	});
 </script>
 
-<h2 id="header_{{ title.replace(' ','_') }}" class="module-heading section-heading dropshadow" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}">
+<h2 id="header_{{ title.replace(' ','_') }}" class="module-heading section-heading dropshadow" data-toggle="collapse" data-target="#parent_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="parent_{{ title }}">
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<span class="toggle-facet"><span class="fa fa-sort"></span></span>
 </h2>
 {% endblock %}
-<div style="height:300px;max-height:300px" id="section_{{ title.replace(' ','_')  }}" aria-expanded="false" class="collapsed collapse">
-<section class="{{ wrapper_class or 'module module-narrow module-shallow' }} facet-section-element"
-	style="overflow-y:scroll;overflow-x:hidden;box-shadow: rgb(187, 187, 187) 0px 0px 5px inset;">
+<div id="parent_{{ title.replace(' ','_')  }}" aria-expanded="false" class="collapsed collapse">
+<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} facet-section-element"
+	style="height:300px;max-height:300px;overflow-y:scroll;overflow-x:hidden;box-shadow: rgb(187, 187, 187) 0px 0px 5px inset;">
 	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter" style="font-size:14px;margin-top:5px;width:95%;margin-left:auto;margin-right: auto;">
 		
 	{% block facet_list_items %}
