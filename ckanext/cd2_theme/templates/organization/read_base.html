@@ -13,7 +13,7 @@
     document.addEventListener("DOMContentLoaded", function (event) {
       // Change default behavior of link to datasets within organization
       datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
-      $(datasetLink).attr('href', '/dataset/?organization={{group_dict.name}}');
+      $(datasetLink).attr('href', '/dataset/?organization={{group_dict.name}}&dataset_type=dataset');
 
       // Hide side-bar description
       document.getElementsByClassName('read-more')[0].style.display = 'none';
