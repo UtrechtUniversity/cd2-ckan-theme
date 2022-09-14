@@ -4,6 +4,6 @@
         "dc_label",
         "wave_cohort",
         "wave_median_age",
-        "wave_age_range_int"
+        "wave_age_year"
     ]
 }
