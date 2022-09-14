@@ -36,14 +36,13 @@
 	});
 </script>
 
-<h2 id="header_{{ title.replace(' ','_') }}" class="module-heading section-heading dropshadow" data-toggle="collapse" data-target="#parent_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="parent_{{ title }}">
+<h2 id="header_{{ title.replace(' ','_') }}" class="module-heading section-heading dropshadow" data-toggle="collapse" data-target="#section_{{ title.replace(' ','_') }}" aria-expanded="false" aria-controls="section_{{ title }}">
 	<i class="fa fa-filter"></i>
 	{{ title }}
 	<span class="toggle-facet"><span class="fa fa-sort"></span></span>
 </h2>
 {% endblock %}
-<div id="parent_{{ title.replace(' ','_')  }}" aria-expanded="false" class="collapsed collapse">
-<section id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} facet-section-element"
+<section aria-expanded="false" id="section_{{ title.replace(' ','_')  }}" class="{{ wrapper_class or 'module module-narrow module-shallow' }} collapsed collapse facet-section-element"
 	style="height:300px;max-height:300px;overflow-y:scroll;overflow-x:hidden;box-shadow: rgb(187, 187, 187) 0px 0px 5px inset;">
 	<input type="text" class="filter-box hide-on-mobile" id="filter_{{ title.replace(' ','_') }}" placeholder="Filter" style="font-size:14px;margin-top:5px;width:95%;margin-left:auto;margin-right: auto;">
 		
@@ -162,7 +161,6 @@
 	{% endwith %}
 	{% endblock %}
 </section>
-</div>
 
 {% if title == 'median age' %}
 <script>
@@ -177,6 +175,7 @@
 	Available median age
 	<span class="toggle-facet"><span class="fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="Shows the median age range of the measurement waves of the available datasets. The available range can be broader than the specified range."></span></span>
 </h2>
+
 <section id="section_age" class="hide-on-mobile section-range-slider {{ wrapper_class or 'module module-narrow module-shallow' }}"
 	style="height:140px;width:86%;margin-left:7%;background-color:transparent">
 	<br /><br />
