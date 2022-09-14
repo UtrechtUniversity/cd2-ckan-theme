@@ -74,6 +74,21 @@
       </ul>
       </td>
     </tr>
+      
+      {% elif pkg_dict.type == 'cohort' %}
+      <tr>
+        <th scope="row" class="dataset-label">Waves:</th>
+        <td class="dataset-details">
+        <ul class="dataset-resources list-unstyled">
+  
+
+        {% for wave in cohort_waves %}
+                <li><a href="" class="label label-info">{{wave}}</a></li>
+        {% endfor %}
+  
+        </ul>
+        </td>
+      </tr>
 
     
       {% endif %}
