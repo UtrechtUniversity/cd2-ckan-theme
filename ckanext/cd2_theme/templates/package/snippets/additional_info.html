@@ -1,20 +1,22 @@
-
-{% if pkg_dict.type == 'wave' %}
 <script>
-url = "/api/3/action/package_relationships_list?id=around-9"
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      for (const result of data.result) {
-        document.getElementsByClassName('heading')[0].innerHTML = '<a class="blank-link" href="/cohort/'+result.object+'">'+result.comment+'</a>';
-      }
-    });
-</script>
-{% endif %}
+  url = "/api/3/action/package_relationships_list?id={{pkg_dict.name}}"
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        for (const result of data.result) {
+          {% if pkg_dict.type == 'wave' %}
+          document.getElementsByClassName('heading')[0].innerHTML = '<a class="blank-link" href="/cohort/'+result.object+'">'+result.comment+'</a>';
+          {% endif %}
+          document.getElementById('relationship').innerHTML = `<th style="width: 20%" scope="row" class="dataset-label">Hierarchy</th><td class="dataset-details">`+ result.type +' '+ result.object + `</td>`
+        }
+      });
+  </script>
+
 
 <section class="additional-info">
   <table class="table table-striped table-condensed">
     <tbody>
+    <tr id="relationship"></tr>
 
     {% if pkg_dict.type == 'dataset' %}
     <tr>
