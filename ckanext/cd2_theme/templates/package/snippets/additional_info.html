@@ -5,9 +5,9 @@
       .then(data => {
         for (const result of data.result) {
           {% if pkg_dict.type == 'wave' %}
-          document.getElementsByClassName('heading')[0].innerHTML = '<a class="blank-link" href="/cohort/'+result.object+'">'+result.comment+'</a>';
+          document.getElementsByClassName('heading')[0].innerHTML = '<a class="blank-link" href="/{{pkg_dict.type}}/'+result.object+'">'+result.comment+'</a>';
           {% endif %}
-          document.getElementById('relationship').innerHTML = `<th style="width: 20%" scope="row" class="dataset-label">Hierarchy</th><td class="dataset-details">`+ result.type.replace('_',' ') +' '+ result.object + `</td>`
+          document.getElementById('relationship').innerHTML = `<th style="width: 20%" scope="row" class="dataset-label">Hierarchy</th><td class="dataset-details">`+ result.type.replace('_',' ') +' '+ '<a href="/{{pkg_dict.type}}/' + result.object + '">'+result.object+'</td>'
         }
       });
   </script>
