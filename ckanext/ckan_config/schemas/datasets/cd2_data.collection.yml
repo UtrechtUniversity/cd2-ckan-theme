@@ -57,7 +57,7 @@ dataset_fields:
   - field_name: wave_age_range 
     label: Age range
     repeating_subfields:
-    - field_name: wave_age_range_int
+    - field_name: wave_age_year
       label: Year
 
   # - field_name: wave_creators
