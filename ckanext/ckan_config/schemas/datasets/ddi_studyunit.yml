@@ -89,6 +89,10 @@ dataset_fields:
 - field_name: wave_lifestage
   label: Life stage
 
+# parent cohort
+- field_name: wave_cohort # contains identifier to a dataset of type 'cohort' (see ddi_group.yml)
+  label: Life stage
+
 # Coverage
 
 # To be discussed: at this level or at StudyUnit?
