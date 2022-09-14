@@ -708,7 +708,7 @@ section.search-result-heading {
   font-weight: bold;
   line-height: 14px;
   vertical-align: baseline;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: none;
   background-color: #999;
 }
 .pill {
@@ -2335,7 +2335,7 @@ aside.secondary .module.module-narrow .nav-aside > li {
   margin: 0;
   padding: 0;
   width: auto;
-  border-bottom: 1px dotted #cccccc;
+  border-bottom: 1px solid #e2e2e2;
 }
 aside.secondary .module.module-narrow .nav-simple > li a,
 aside.secondary .module.module-narrow .nav-aside > li a {
