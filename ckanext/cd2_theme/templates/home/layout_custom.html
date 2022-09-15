@@ -81,8 +81,11 @@ document.getElementById('site-search-wrap').style.display = 'none';
     });
 </script>
 
-
-<div role="main" class="hero">
+<script>document.addEventListener("DOMContentLoaded", function (event) {
+  $('#hero').fadeTo(200,1); 
+});
+</script>
+<div role="main" class="hero" id="hero" style="opacity:0">
   <div class="container">
     <div class="row row1">
       <div class="span12 col1">
