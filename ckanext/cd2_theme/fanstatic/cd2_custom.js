@@ -39,7 +39,9 @@ function getDebugStatus() {
 };
 document.addEventListener("DOMContentLoaded", function (event) {
     if (getDebugStatus()) {
-        document.getElementsByClassName('debug')[0].style.display = "inherit";
+        $(".debug").each( function () {
+            $(this).css("display","inherit") 
+        }); 
     }
 });
 
