@@ -83,20 +83,21 @@ function facetResize(liElements, sectionElement) {
  * Create range pill when age-range is defined
  * @param facetName {string} - backend name of facet 
  * @param facetMeasure {string} - display name of facet
+ * @param displayText {string} - display text to prepend
  * invoked on snippets/search_form.html
  */
 function createRangePill(facetName,facetMeasure,displayText) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams == null) { return; }
-    currentQuery = urlParams.get('q');
+    var currentQuery = urlParams.get('q');
     if (currentQuery == null) { return; }
     var isRangeSelect = currentQuery.match(facetName,'g');
     var currentRange = currentQuery.match(/\d+/g);
     if (isRangeSelect == null) { return; }
     filterList = document.getElementById('filter-list');
     filterList.innerHTML += `<span class="facet">`+ displayText +`: </span>
-                                            <span class="filtered pill dropshadow">` + currentRange[0] + ' to ' + currentRange[1] + ' ' + facetMeasure + ` <a onclick="removeRange(currentQuery,'` + facetName + `')" class="remove" title="Remove"><i class="fa fa-times"></i></a>
+                                            <span class="filtered pill dropshadow">` + currentRange[0] + ' to ' + currentRange[1] + ' ' + facetMeasure + ` <a onclick="removeRange('` + facetName + `')" class="remove" title="Remove"><i class="fa fa-times"></i></a>
                                             </span><input type="hidden" id="facet-range-value" value="`+ currentQuery + `"/>`
 };
 
@@ -106,7 +107,12 @@ function createRangePill(facetName,facetMeasure,displayText) {
  * @param facetName {string} - backend name of facet
  * invoked on snippets/facet_list.html
  */
-function removeRange(currentQuery,facetName) {
+function removeRange(facetName) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams == null) { return; }
+    var currentQuery = urlParams.get('q');
+    if (currentQuery == null) { return; }
     var re = new RegExp('[\\s&-]*'+ facetName +':\\[\\d+\\sTO\\s\\d+\\][\\s&-]*');
     newQuery = currentQuery.replace(re, "");
     document.getElementById('searchbox').value = newQuery;
