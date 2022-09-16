@@ -83,7 +83,7 @@ function facetResize(liElements, sectionElement) {
  * @param facetMeasure {string} - display name of facet
  * invoked on snippets/search_form.html
  */
-function createRangePill(facetName,facetMeasure) {
+function createRangePill(facetName,facetMeasure,displayText) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams == null) { return; }
@@ -93,7 +93,7 @@ function createRangePill(facetName,facetMeasure) {
     var currentRange = currentQuery.match(/\d+/g);
     if (isRangeSelect == null) { return; }
     filterList = document.getElementById('filter-list');
-    filterList.innerHTML += `<span class="facet">Median age range: </span>
+    filterList.innerHTML += `<span class="facet">`+ displayText +`: </span>
                                             <span class="filtered pill dropshadow">` + currentRange[0] + ' to ' + currentRange[1] + ' ' + facetMeasure + ` <a onclick="removeRange(currentQuery,'` + facetName + `')" class="remove" title="Remove"><i class="fa fa-times"></i></a>
                                             </span><input type="hidden" id="facet-range-value" value="`+ currentQuery + `"/>`
 };
