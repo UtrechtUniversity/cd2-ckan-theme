@@ -103,7 +103,6 @@ function createRangePill(facetName,facetMeasure,displayText) {
 
 /**  
  * Remove range in url before defining new one
- * @param currentQuery {string} - current URL
  * @param facetName {string} - backend name of facet
  * invoked on snippets/facet_list.html
  */
