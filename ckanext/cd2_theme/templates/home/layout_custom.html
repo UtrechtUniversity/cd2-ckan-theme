@@ -65,7 +65,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
-  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
+  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000"
   fetch(url)
     .then(res => res.json())
     .then(data => {
