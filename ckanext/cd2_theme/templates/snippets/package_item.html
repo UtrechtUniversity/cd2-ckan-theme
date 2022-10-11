@@ -59,6 +59,7 @@
                 {% if package.dc_mode_of_collection_sub %}
                 &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
                 {% endif %}
+                {% if wave.cohort %}
                 <tr><td>Available measurements:</td><td>
                   {% set waves_passed = [] %}
                   {% for wave in package.wave %}
@@ -74,11 +75,12 @@
                       <span class="label" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_title }}</span>
                   {% endfor %}        
               </td></tr>
-              {% else %}
-              <tr class="table-package-item"><td width="30%">Type:</td><td><span class="label">{{package.type}}</span></td></tr> 
               {% endif %}
-              </tbody>
-              </table>
+            {% else %}
+            <tr class="table-package-item"><td width="30%">Type:</td><td><span class="label">{{package.type}}</span></td></tr> 
+            {% endif %}
+            </tbody>
+            </table>
              
           {% endblock %}
           {% block banner %}
