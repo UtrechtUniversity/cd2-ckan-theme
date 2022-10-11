@@ -63,6 +63,7 @@
                 <tr><td>Available measurements:</td><td>
                   {% set waves_passed = [] %}
                   {% for wave in package.wave %}
+                    {% if 'wave_cohort' in wave %}
                       {% if wave.wave_cohort not in waves_passed %}
                         {% set splitname = wave.wave_cohort.split('-') %}
                         {% set label = splitname[1] %}
@@ -73,6 +74,7 @@
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
                       <span class="label" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_title }}</span>
+                    {% endif %}
                   {% endfor %}        
                </td></tr>
                {% endif %}
