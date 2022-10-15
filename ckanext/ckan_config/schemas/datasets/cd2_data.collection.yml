@@ -113,6 +113,11 @@ dataset_fields:
 
 # ------------------ rest of data collection level fields
 
+- field_name: measure_age_range
+  label: Age range
+  repeating_subfields:
+  - field_name: measure_age_year
+    label: Age year
 - field_name: dc_cohort # refers to a group of type cohort (cd2_cohort_yml)
   label: Cohort
 - field_name: dc_labels # e.g. "brain anatomy"
