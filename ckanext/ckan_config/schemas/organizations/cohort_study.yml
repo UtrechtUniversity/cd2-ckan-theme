@@ -26,6 +26,8 @@ fields:
   label: Identifier
   preset: dataset_slug
   form_placeholder: eg. my-dataset
+- field_name: image_url
+  label: Image
 
 ### CD² specific fields
 - field_name: cohort_study_title
