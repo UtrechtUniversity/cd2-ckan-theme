@@ -28,6 +28,7 @@ fields:
   form_placeholder: eg. my-dataset
 - field_name: image_url
   label: Image
+  form_placeholder: http://example.com/image.png 
 
 ### CD² specific fields
 - field_name: cohort_study_title

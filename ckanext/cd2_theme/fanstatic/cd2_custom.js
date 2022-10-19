@@ -117,3 +117,35 @@ function removeRange(facetName) {
     document.getElementById('searchbox').value = newQuery;
     document.getElementById('dataset-search-form').submit();
 }
+
+
+/**  
+ * Custom tooltips that float above the divs
+ */
+function tooltipGetOffset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      left: rect.left + window.scrollX,
+      top: rect.top + window.scrollY
+    };
+  }
+  function tooltipAddElement(el) {
+    offset = getOffset(el);
+    // create a new div element
+    const newDiv = document.createElement("div");
+    newDiv.className = 'tooltip';
+    newDiv.setAttribute("id", el.innerHTML + '_tooltip');
+    newDiv.style.left = offset.left;
+    newDiv.style.top = offset.top - 15;
+    const newContent = document.createTextNode(el.innerHTML);
+    newDiv.appendChild(newContent);
+    
+    const currentDiv = document.getElementsByClassName("main");
+    document.body.insertBefore(newDiv, currentDiv[0]);
+    $(newDiv).animate({'opacity':'1'}, 500);
+  }
+  function tooltipRemoveElement(el) {
+      elementID = el.innerHTML + '_tooltip';
+      toRemove = document.getElementById(elementID);
+      toRemove.remove();
+  }
