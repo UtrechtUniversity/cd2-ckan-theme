@@ -131,6 +131,7 @@ function tooltipGetOffset(el) {
   }
   function tooltipAddElement(el,text) {
     offset = tooltipGetOffset(el);
+    console.log(offset);
     // create a new div element
     const newDiv = document.createElement("div");
     newDiv.className = 'custom-tooltip';
@@ -148,5 +149,5 @@ function tooltipGetOffset(el) {
       elementID = text + '_tooltip';
       console.log(elementID)
       toRemove = document.getElementById(elementID);
-      toRemove.remove();
+      //toRemove.remove();
   }
