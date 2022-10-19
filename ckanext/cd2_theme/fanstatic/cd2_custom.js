@@ -129,27 +129,28 @@ function tooltipGetOffset(el) {
       top: rect.top + window.scrollY
     };
   }
-function tooltipAddElement(el,text) {
+  function tooltipAddElement(el,label) {
     offset = tooltipGetOffset(el);
     console.log(offset);
-
+    text = label.replace(/ /g,"_");
     if (!document.getElementById("id", text + '_tooltip')) {
         const newDiv = document.createElement("div");
         newDiv.className = 'custom-tooltip';
         newDiv.setAttribute("id", text + '_tooltip');
-        const newContent = document.createTextNode(text);
+        const newContent = document.createTextNode(label);
         newDiv.appendChild(newContent);
         const currentDiv = document.getElementsByClassName("main");
         document.body.insertBefore(newDiv, currentDiv[0]);
-        $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
+        $(newDiv).css({top: offset.top - 20, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, 500);
     }
 }
 
-
 function tooltipRemoveElement(text) {
+  if (!document.getElementById("id", text + '_tooltip')) {
     elementID = text + '_tooltip';
     console.log(elementID)
     toRemove = document.getElementById(elementID);
     toRemove.remove();
+  }
 }
