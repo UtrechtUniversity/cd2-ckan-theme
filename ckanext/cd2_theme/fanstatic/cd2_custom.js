@@ -137,7 +137,7 @@ function tooltipGetOffset(el) {
     newDiv.setAttribute("id", text + '_tooltip');
     newDiv.style.left = offset.left;
     newDiv.style.top = offset.top;
-    const newContent = text;
+    const newContent = document.createTextNode(text);
     newDiv.appendChild(newContent);
     
     const currentDiv = document.getElementsByClassName("main");
