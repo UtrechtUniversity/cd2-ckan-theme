@@ -146,6 +146,7 @@ function tooltipGetOffset(el) {
   }
   function tooltipRemoveElement(text) {
       elementID = text + '_tooltip';
+      console.log(elementID)
       toRemove = document.getElementById(elementID);
       toRemove.remove();
   }
