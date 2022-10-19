@@ -130,7 +130,7 @@ function tooltipGetOffset(el) {
     };
   }
   function tooltipAddElement(el) {
-    offset = getOffset(el);
+    offset = tooltipGetOffset(el);
     // create a new div element
     const newDiv = document.createElement("div");
     newDiv.className = 'tooltip';
