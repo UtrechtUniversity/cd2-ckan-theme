@@ -130,21 +130,19 @@ function tooltipGetOffset(el) {
     };
   }
 function tooltipAddElement(el,text) {
-    setTimeout(function() {
-        offset = tooltipGetOffset(el);
-        console.log(offset);
+    offset = tooltipGetOffset(el);
+    console.log(offset);
 
-        const newDiv = document.createElement("div");
-        newDiv.className = 'custom-tooltip';
-        newDiv.setAttribute("id", text + '_tooltip');
-        const newContent = document.createTextNode(text);
-        newDiv.appendChild(newContent);
+    const newDiv = document.createElement("div");
+    newDiv.className = 'custom-tooltip';
+    newDiv.setAttribute("id", text + '_tooltip');
+    const newContent = document.createTextNode(text);
+    newDiv.appendChild(newContent);
 
-        const currentDiv = document.getElementsByClassName("main");
-        document.body.insertBefore(newDiv, currentDiv[0]);
-        $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
-        $(newDiv).animate({'opacity':'1'}, 500);
-    }, 1000); 
+    const currentDiv = document.getElementsByClassName("main");
+    document.body.insertBefore(newDiv, currentDiv[0]);
+    $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
+    //$(newDiv).animate({'opacity':'1'}, 500);
 }
 function tooltipRemoveElement(text) {
     elementID = text + '_tooltip';
