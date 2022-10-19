@@ -139,7 +139,6 @@ function tooltipAddElement(el,text) {
         newDiv.setAttribute("id", text + '_tooltip');
         const newContent = document.createTextNode(text);
         newDiv.appendChild(newContent);
-        newDiv.onmouseleave = this.remove();
         const currentDiv = document.getElementsByClassName("main");
         document.body.insertBefore(newDiv, currentDiv[0]);
         $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
