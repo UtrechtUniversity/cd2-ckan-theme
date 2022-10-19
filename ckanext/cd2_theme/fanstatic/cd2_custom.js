@@ -131,7 +131,6 @@ function tooltipGetOffset(el) {
   }
   function tooltipAddElement(el,label) {
     offset = tooltipGetOffset(el);
-    console.log(offset);
     text = label.replace(/ /g,"_");
     if (!document.getElementById("id", text + '_tooltip')) {
         const newDiv = document.createElement("div");
@@ -149,7 +148,6 @@ function tooltipGetOffset(el) {
 function tooltipRemoveElement(text) {
   if (!document.getElementById("id", text + '_tooltip')) {
     elementID = text + '_tooltip';
-    console.log(elementID)
     toRemove = document.getElementById(elementID);
     toRemove.remove();
   }
