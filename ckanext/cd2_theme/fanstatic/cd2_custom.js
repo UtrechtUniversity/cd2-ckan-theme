@@ -129,24 +129,29 @@ function tooltipGetOffset(el) {
       top: rect.top + window.scrollY
     };
   }
-  function tooltipAddElement(el,text) {
-    offset = tooltipGetOffset(el);
-    console.log(offset);
-    // create a new div element
-    const newDiv = document.createElement("div");
-    newDiv.className = 'custom-tooltip';
-    newDiv.setAttribute("id", text + '_tooltip');
-    const newContent = document.createTextNode(text);
-    newDiv.appendChild(newContent);
-    
-    const currentDiv = document.getElementsByClassName("main");
-    document.body.insertBefore(newDiv, currentDiv[0]);
-    $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
-    $(newDiv).animate({'opacity':'1'}, 500);
-  }
-  function tooltipRemoveElement(text) {
-      elementID = text + '_tooltip';
-      console.log(elementID)
-      toRemove = document.getElementById(elementID);
-      toRemove.remove();
-  }
+function tooltipAddElement(el,text) {
+    setTimeout(function() {
+        offset = tooltipGetOffset(el);
+        console.log(offset);
+        // create a new div element
+        const newDiv = document.createElement("div");
+        newDiv.className = 'custom-tooltip';
+        newDiv.setAttribute("id", text + '_tooltip');
+        const newContent = document.createTextNode(text);
+        newDiv.appendChild(newContent);
+
+        const currentDiv = document.getElementsByClassName("main");
+        document.body.insertBefore(newDiv, currentDiv[0]);
+        $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
+        $(newDiv).animate({'opacity':'1'}, 500);
+    }, 1000); 
+}
+function tooltipRemoveElement(text) {
+    setTimeout(function() {
+        elementID = text + '_tooltip';
+        console.log(elementID)
+        toRemove = document.getElementById(elementID);
+        $(toRemove).animate({'opacity':'0'}, 500);
+        toRemove.remove();
+    }, 500); 
+}
