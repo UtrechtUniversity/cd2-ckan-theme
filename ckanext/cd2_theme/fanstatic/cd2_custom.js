@@ -136,15 +136,15 @@ function tooltipGetOffset(el) {
     newDiv.className = 'tooltip';
     newDiv.setAttribute("id", text + '_tooltip');
     newDiv.style.left = offset.left;
-    newDiv.style.top = offset.top - 15;
-    const newContent = document.createTextNode(text);
+    newDiv.style.top = offset.top;
+    const newContent = text;
     newDiv.appendChild(newContent);
     
     const currentDiv = document.getElementsByClassName("main");
     document.body.insertBefore(newDiv, currentDiv[0]);
     $(newDiv).animate({'opacity':'1'}, 500);
   }
-  function tooltipRemoveElement(el,text) {
+  function tooltipRemoveElement(text) {
       elementID = text + '_tooltip';
       toRemove = document.getElementById(elementID);
       toRemove.remove();
