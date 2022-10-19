@@ -120,7 +120,8 @@ function removeRange(facetName) {
 
 
 /**  
- * Custom tooltips that float above the divs
+ * Get position of current element
+ * @param el {object} - element
  */
 function tooltipGetOffset(el) {
     const rect = el.getBoundingClientRect();
@@ -129,7 +130,12 @@ function tooltipGetOffset(el) {
       top: rect.top + window.scrollY
     };
   }
-  function tooltipAddElement(el,label) {
+/**  
+ * Create tooltip
+ * @param el {object} - element
+ * @param label {string} - text to display and create ID
+ */
+function tooltipAddElement(el,label) {
     offset = tooltipGetOffset(el);
     text = label.replace(/ /g,"_");
     if (!document.getElementById("id", text + '_tooltip')) {
@@ -144,10 +150,13 @@ function tooltipGetOffset(el) {
         $(newDiv).animate({'opacity':'1'}, 500);
     }
 }
-
-function tooltipRemoveElement(text) {
-  if (!document.getElementById("id", text + '_tooltip')) {
-    elementID = text + '_tooltip';
+/**  
+ * Create tooltip
+ * @param label {string} - text to display and create ID
+ */
+function tooltipRemoveElement(label) {
+  elementID = label.replace(/ /g,"_") + '_tooltip';
+  if (!document.getElementById("id", elementID)) {
     toRemove = document.getElementById(elementID);
     toRemove.remove();
   }
