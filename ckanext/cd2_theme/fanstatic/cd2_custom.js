@@ -133,7 +133,7 @@ function tooltipAddElement(el,text) {
     setTimeout(function() {
         offset = tooltipGetOffset(el);
         console.log(offset);
-        // create a new div element
+
         const newDiv = document.createElement("div");
         newDiv.className = 'custom-tooltip';
         newDiv.setAttribute("id", text + '_tooltip');
@@ -147,11 +147,8 @@ function tooltipAddElement(el,text) {
     }, 1000); 
 }
 function tooltipRemoveElement(text) {
-    setTimeout(function() {
-        elementID = text + '_tooltip';
-        console.log(elementID)
-        toRemove = document.getElementById(elementID);
-        $(toRemove).animate({'opacity':'0'}, 500);
-        toRemove.remove();
-    }, 500); 
+    elementID = text + '_tooltip';
+    console.log(elementID)
+    toRemove = document.getElementById(elementID);
+    toRemove.remove();
 }
