@@ -144,6 +144,9 @@ function tooltipAddElement(el,text) {
         document.body.insertBefore(newDiv, currentDiv[0]);
         $(newDiv).css({top: offset.top, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, 500);
+        setTimeout(function() {
+            newDiv.remove();
+        }, 1000);
     }
 }
 
