@@ -134,8 +134,9 @@ function tooltipGetOffset(el) {
  * Create tooltip
  * @param el {object} - element
  * @param label {string} - text to display and create ID
+ * @param offset {int} - horizontal offset relative to parent element
  */
-function tooltipAddElement(el,label) {
+function tooltipAddElement(el,label,offset) {
     offset = tooltipGetOffset(el);
     text = label.replace(/ /g,"_");
     if (!document.getElementById("id", text + '_tooltip')) {
@@ -146,7 +147,7 @@ function tooltipAddElement(el,label) {
         newDiv.appendChild(newContent);
         const currentDiv = document.getElementsByClassName("main");
         document.body.insertBefore(newDiv, currentDiv[0]);
-        $(newDiv).css({top: offset.top - 20, left: offset.left, position:'absolute'});
+        $(newDiv).css({top: offset.top - offset, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, 500);
     }
 }
