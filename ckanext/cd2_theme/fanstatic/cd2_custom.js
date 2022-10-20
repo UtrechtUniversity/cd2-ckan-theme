@@ -132,7 +132,6 @@ function hashCode(string){
     return hash;
 }
 
-
 /**  
  * Get position of current element
  * @param el {object} - element
@@ -163,7 +162,7 @@ function tooltipAddElement(el,label,offsetVal) {
         const currentDiv = document.getElementsByClassName("main");
         document.body.insertBefore(newDiv, currentDiv[0]);
         $(newDiv).css({top: offset.top - offsetVal, left: offset.left, position:'absolute'});
-        $(newDiv).animate({'opacity':'1'}, 500);
+        $(newDiv).animate({'opacity':'1'}, 300);
     }
 }
 
