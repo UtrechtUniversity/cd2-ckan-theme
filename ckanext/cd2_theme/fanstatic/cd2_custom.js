@@ -168,7 +168,7 @@ function tooltipAddElement(el,label,offsetVal) {
 
 /**  
  * Create tooltip
- * @param label {string} - display text to create ID of tooltip element
+ * @param label {string} - text to create ID of tooltip element
  */
 function tooltipRemoveElement(label) {
   elementID = hashCode(label) + '_tooltip';
