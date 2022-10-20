@@ -118,6 +118,20 @@ function removeRange(facetName) {
     document.getElementById('dataset-search-form').submit();
 }
 
+/**  
+ * Create numerical hash of string
+ * @param string {string} - input
+ */
+function hashCode(string){
+    var hash = 0;
+    for (var i = 0; i < string.length; i++) {
+        var code = string.charCodeAt(i);
+        hash = ((hash<<5)-hash)+code;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+}
+
 
 /**  
  * Get position of current element
@@ -126,10 +140,11 @@ function removeRange(facetName) {
 function tooltipGetOffset(el) {
     const rect = el.getBoundingClientRect();
     return {
-      left: rect.left + window.scrollX,
-      top: rect.top + window.scrollY
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
     };
-  }
+}
+
 /**  
  * Create tooltip
  * @param el {object} - element
@@ -138,11 +153,10 @@ function tooltipGetOffset(el) {
  */
 function tooltipAddElement(el,label,offset) {
     offset = tooltipGetOffset(el);
-    text = label.replace(/ /g,"_");
-    if (!document.getElementById("id", text + '_tooltip')) {
+    if (!document.getElementById("id", hashCode(label) + '_tooltip')) {
         const newDiv = document.createElement("div");
         newDiv.className = 'custom-tooltip';
-        newDiv.setAttribute("id", text + '_tooltip');
+        newDiv.setAttribute("id", hashCode(label) + '_tooltip');
         const newContent = document.createTextNode(label);
         newDiv.appendChild(newContent);
         const currentDiv = document.getElementsByClassName("main");
@@ -151,12 +165,13 @@ function tooltipAddElement(el,label,offset) {
         $(newDiv).animate({'opacity':'1'}, 500);
     }
 }
+
 /**  
  * Create tooltip
- * @param label {string} - text to display and create ID
+ * @param label {string} - display text to create ID of tooltip element
  */
 function tooltipRemoveElement(label) {
-  elementID = label.replace(/ /g,"_") + '_tooltip';
+  elementID = hashCode(label) + '_tooltip';
   if (!document.getElementById("id", elementID)) {
     toRemove = document.getElementById(elementID);
     toRemove.remove();
