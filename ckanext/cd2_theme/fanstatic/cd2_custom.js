@@ -159,7 +159,7 @@ function tooltipAddElement(el,label,offsetVal) {
         const newContent = document.createTextNode(label);
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
-        const currentDiv = document.getElementsByClassName("main");
+        const currentDiv = document.getElementsByClassName('main');
         document.body.insertBefore(newDiv, currentDiv[0]);
         $(newDiv).css({top: offset.top - offsetVal, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, 300);
