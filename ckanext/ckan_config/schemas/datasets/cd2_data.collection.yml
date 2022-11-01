@@ -26,6 +26,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_identifier
     label: handle
+  - field_name: wave_cohort
+    label: Cohort
   - field_name: wave_ckan_id
     label: internal wave id
   - field_name: wave_median_age
