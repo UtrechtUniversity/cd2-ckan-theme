@@ -87,7 +87,7 @@
 				alternative_url=alternative_url) %}
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
-				{% set splitname = label.split('-') %}
+				{% set splitname = label.split(':') %}
 				{% set studyname = splitname[0] %}
 				{% set label = splitname[1] %}
 
