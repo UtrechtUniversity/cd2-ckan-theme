@@ -156,7 +156,7 @@ function tooltipAddElement(el,label,offsetVal) {
         const newDiv = document.createElement("div");
         newDiv.className = 'custom-tooltip';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
-        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n'));
+        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
