@@ -156,9 +156,9 @@ function tooltipAddElement(el,label,offsetVal) {
         const newDiv = document.createElement("div");
         newDiv.className = 'custom-tooltip';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
-        const newContent = document.createTextNode(label);
+        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n'));
         newDiv.appendChild(newContent);
-        newDiv.style = "white-space: pre; max-width: 200px; word-wrap: break-word";
+        newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
         document.body.insertBefore(newDiv, currentDiv[0]);
         $(newDiv).css({top: offset.top - offsetVal, left: offset.left, position:'absolute'});
