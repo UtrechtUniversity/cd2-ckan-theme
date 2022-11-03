@@ -159,7 +159,7 @@ function tooltipAddElement(el,label,offsetVal) {
         newDivArrow.className = 'custom-tooltip-arrow';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
         newDivArrow.setAttribute("id", hashCode(label) + '_tooltip-arrow');
-        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
+        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');

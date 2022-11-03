@@ -72,7 +72,7 @@
                         {% endif %}
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
-                      <span class="label" data-toggle="tooltip" data-original-title="{{ wave.wave_description }}">{{ wave.wave_title }}</span>
+                      <span class="label" onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40)" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')">{{ wave.wave_title }}</span>
                     {% endif %}
                   {% endfor %}        
                </td></tr>
@@ -152,7 +152,7 @@
                   {% elif constructs.dc_construct|lower == 'questionnaire' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
                   {% endif %}
-                  <img style="opacity:0.5" {{imgurl}} width="35px" data-toggle="tooltip" data-original-title="{{ constructs.dc_construct|lower }}">
+                  <img style="opacity:0.5" {{imgurl}} width="35px" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower }}',40)" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower }}')">
               {% endfor %}
               {% endif %}
               {% endif %}
