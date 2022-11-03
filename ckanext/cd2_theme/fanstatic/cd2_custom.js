@@ -165,10 +165,12 @@ function tooltipAddElement(el,label,offsetVal) {
         const currentDiv = document.getElementsByClassName('main');
         document.body.insertBefore(newDiv, currentDiv[0]);
         document.body.insertBefore(newDivArrow, currentDiv[0]);
-        $(newDiv).css({top: offset.top - offsetVal, left: offset.left, position:'absolute'});
-        $(newDivArrow).css({top: offset.top - offsetVal - 80, left: offset.left, position:'absolute'});
-        $(newDiv).animate({'opacity':'1'}, 300);
-        $(newDivArrow).animate({'opacity':'1'}, 300);
+
+        elementOffset = $(newDiv).height() - 20; 
+        $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left, position:'absolute'});
+        $(newDivArrow).css({top: offset.top - offsetVal - elementOffset - 80, left: offset.left, position:'absolute'});
+        $(newDiv).animate({'opacity':'1'}, { duration: 300, queue: false });
+        $(newDivArrow).animate({'opacity':'1'}, { duration: 300, queue: false });
     }
 }
 

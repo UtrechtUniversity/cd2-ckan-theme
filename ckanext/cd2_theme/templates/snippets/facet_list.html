@@ -103,7 +103,7 @@
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
 				<li {% if label|length > 18 %}
-					onmouseenter="tooltipAddElement(this,'{{ label }}',40)" onmouseleave="tooltipRemoveElement('{{ label }}')" 
+					onmouseenter="tooltipAddElement(this,'{{ label }}',30)" onmouseleave="tooltipRemoveElement('{{ label }}')" 
 					{% endif %}
 					class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
@@ -127,7 +127,7 @@
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 					
 				<li {% if label|length > 18 %}
-					onmouseenter="tooltipAddElement(this,'{{ label }}',40)" onmouseleave="tooltipRemoveElement('{{ label }}')" 
+					onmouseenter="tooltipAddElement(this,'{{ label }}',30)" onmouseleave="tooltipRemoveElement('{{ label }}')" 
 					{% endif %} 
 					style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}">
