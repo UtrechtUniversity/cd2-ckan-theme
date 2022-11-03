@@ -163,8 +163,8 @@ function tooltipAddElement(el,label,offsetVal) {
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
-        document.body.insertBefore(newDiv, currentDiv[0]);
-        document.body.insertBefore(newDivArrow, currentDiv[0]);
+        document.body.appendChild(newDiv);
+        document.body.appendChild(newDivArrow);
 
         elementOffset = $(newDiv).height() - 20; 
         $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left, position:'absolute'});
