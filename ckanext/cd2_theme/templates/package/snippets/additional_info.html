@@ -71,7 +71,7 @@
               <li>{{ wave.wave_cohort }}</li>&nbsp;
               {% endif %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner"><li data-toggle="tooltip" data-original-title="{{ wave.wave_description }}"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveSubjectCode }}'],20)" onmouseleave="tooltipRemoveElement(dict['{{ waveSubjectCode }}'])">{{ waveSubjectCode }}</span></span>
+              <span class="cohort-spanner"><li data-toggle="tooltip" data-original-title="{{ wave.wave_description }}"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveSubjectCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveSubjectCode }}'])">{{ waveSubjectCode }}</span></span>
       {% endfor %}
 
       </ul>

@@ -152,7 +152,6 @@ function tooltipGetOffset(el) {
  */
 function tooltipAddElement(el,label,offsetVal) {
     offset = tooltipGetOffset(el);
-    offsetVal = offsetVal - 10;
     if (!document.getElementById("id", hashCode(label) + '_tooltip')) {
         const newDiv = document.createElement("div");
         const newDivArrow = document.createElement("div");
