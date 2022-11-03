@@ -168,7 +168,7 @@ function tooltipAddElement(el,label,offsetVal) {
 
         elementOffset = $(newDiv).height() - 20; 
         $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left, position:'absolute'});
-        $(newDivArrow).css({top: offset.top - offsetVal - elementOffset - 80, left: offset.left, position:'absolute'});
+        $(newDivArrow).css({top: offset.top - offsetVal - 80, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, { duration: 300, queue: false });
         $(newDivArrow).animate({'opacity':'1'}, { duration: 300, queue: false });
     }
