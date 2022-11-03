@@ -154,15 +154,21 @@ function tooltipAddElement(el,label,offsetVal) {
     offset = tooltipGetOffset(el);
     if (!document.getElementById("id", hashCode(label) + '_tooltip')) {
         const newDiv = document.createElement("div");
+        const newDivArrow = document.createElement("div");
         newDiv.className = 'custom-tooltip';
+        newDivArrow.className = 'custom-tooltip-arrow';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
+        newDivArrow.etAttribute("id", hashCode(label) + '_tooltip-arrow');
         const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
         document.body.insertBefore(newDiv, currentDiv[0]);
+        document.body.insertBefore(newDivArrow, currentDiv[0]);
         $(newDiv).css({top: offset.top - offsetVal, left: offset.left, position:'absolute'});
+        $(newDivArrow).css({top: offset.top - offsetVal - 90, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, 300);
+        $(newDivArrow).animate({'opacity':'1'}, 300);
     }
 }
 
@@ -177,3 +183,5 @@ function tooltipRemoveElement(label) {
     toRemove.remove();
   }
 }
+
+
