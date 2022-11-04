@@ -74,7 +74,9 @@
               <span class="cohort-spanner"><li onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40)" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
-                {{ waveSubjectCodes[0] }}
+                {% for waveCode in waveSubjectCodes %}
+                <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveCode }}'])">{{ waveSubjectCode }}</span>
+                {% endfor %}
               {% else %}
                 <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveSubjectCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveSubjectCode }}'])">{{ waveSubjectCode }}</span>
               {% endif %}
