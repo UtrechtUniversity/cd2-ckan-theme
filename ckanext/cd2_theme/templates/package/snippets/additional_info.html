@@ -64,12 +64,12 @@
       {% set waves_passed = [] %}
       {% for wave in waves %}
               {% if wave.wave_cohort not in waves_passed %}
-              {% do waves_passed.append(wave.wave_cohort) %}
-              {% if waves_passed|length > 1 %}
-              </div><br />
-              {% endif %}
-              {% set splitname = wave.wave_cohort.split(':') %}
-              <div class="cohort-spanner parent-spanner"><li>{{ splitname[1] }}</li><br />
+                {% do waves_passed.append(wave.wave_cohort) %}
+                {% if waves_passed|length > 1 %}
+                  </div>
+                {% endif %}
+                {% set splitname = wave.wave_cohort.split(':') %}
+                <div class="cohort-spanner parent-spanner"><li>{{ splitname[1] }}</li><br />
               {% endif %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
               <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40)" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
