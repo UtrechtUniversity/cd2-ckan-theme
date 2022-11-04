@@ -69,7 +69,7 @@
               </span><br />
               {% endif %}
               {% set splitname = wave.wave_cohort.split(':') %}
-              <span class="cohort-spanner parent-spanner"><li>{{ splitname[1] }}</li>&nbsp;
+              <div class="cohort-spanner parent-spanner"><li>{{ splitname[1] }}</li><br />
               {% endif %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
               <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40)" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
