@@ -163,9 +163,9 @@ function tooltipAddElement(el,label,offsetVal) {
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
-        document.body.appendChild(newDiv);
-        document.body.appendChild(newDivArrow);
-
+        document.body.appendChild(newDiv); // text balloon
+        document.body.appendChild(newDivArrow); // bottom arrow
+        
         elementOffset = $(newDiv).height() - 20; 
         $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left - 10, position:'absolute'});
         $(newDivArrow).css({top: offset.top - offsetVal - 78, left: offset.left, position:'absolute'});
