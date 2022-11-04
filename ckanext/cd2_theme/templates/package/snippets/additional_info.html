@@ -75,7 +75,7 @@
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
                 {% for waveCode in waveSubjectCodes %}
-                <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveCode }}'])">{{ waveSubjectCode }}</span>
+                  <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveCode }}'])">{{ waveCode }}</span>
                 {% endfor %}
               {% else %}
                 <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveSubjectCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveSubjectCode }}'])">{{ waveSubjectCode }}</span>
