@@ -58,7 +58,7 @@
     <tr>
       <th scope="row" class="dataset-label">Available measurements:</th>
       <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
+      <div class="dataset-resources list-unstyled">
 
       {% set waves = pkg_dict.wave %}
       {% set waves_passed = [] %}
@@ -66,7 +66,7 @@
               {% if wave.wave_cohort not in waves_passed %}
               {% do waves_passed.append(wave.wave_cohort) %}
               {% if waves_passed|length > 1 %}
-              <br />
+              </div><br />
               {% endif %}
               {% set splitname = wave.wave_cohort.split(':') %}
               <div class="cohort-spanner parent-spanner"><li>{{ splitname[1] }}</li><br />
@@ -82,7 +82,6 @@
                 <span class="label" onmouseenter="tooltipAddElement(this,dict['{{ waveSubjectCode }}'],40)" onmouseleave="tooltipRemoveElement(dict['{{ waveSubjectCode }}'])">{{ waveSubjectCode }}</span>
               {% endif %}
               </span>
-              </div>  
       {% endfor %}
       </ul>
       </td>
