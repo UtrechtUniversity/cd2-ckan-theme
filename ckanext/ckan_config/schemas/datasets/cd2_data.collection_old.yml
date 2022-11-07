@@ -26,8 +26,12 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_identifier
     label: handle
+  - field_name: wave_cohort
+    label: Cohort
   - field_name: wave_ckan_id
     label: internal wave id
+  - field_name: wave_median_age
+    label: Median age of measurement
   - field_name: wave_title
     label: Short identifying title
   - field_name: wave_measurement_stages # e.g. 1 month, 3 months, etc; can we somehow harmonize these accross cohorts?

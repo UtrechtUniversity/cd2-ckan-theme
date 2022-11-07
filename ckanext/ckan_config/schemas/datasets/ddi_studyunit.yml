@@ -4,6 +4,7 @@ about: CD² waves are described as DDI Lifecycle 3.2 studyunits
 about_url: https://github.com/ckan/ckanext-scheming
 
 dataset_fields:
+
 # standard CKAN field
 # name is an internal CKAN identifier;
 # if the cohort has a DOI then possibly use hash of this
@@ -89,13 +90,16 @@ dataset_fields:
 - field_name: wave_lifestage
   label: Life stage
 
-# parent cohort
-- field_name: wave_cohort # contains identifier to a dataset of type 'cohort' (see ddi_group.yml)
-  label: Parent cohort
-
 # Coverage
 
 # To be discussed: at this level or at StudyUnit?
+
+# Dates
+
+- field_name: wave_start_date_collection
+  label: Start date wave collection
+- field_name: wave_end_date_collection
+  label: End date wave collection
 
 # Universe (text)
 - field_name: wave_universe
@@ -133,8 +137,10 @@ dataset_fields:
   validators: ignore_missing unicode package_version_validator
   form_placeholder: '1.0'
 
-# internal server error if omitted
+# zonder dit werkt het niet(?):
+
 resource_fields:
+
 - field_name: url
   label: URL
   preset: resource_url_upload
