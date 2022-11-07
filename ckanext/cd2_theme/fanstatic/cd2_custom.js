@@ -190,3 +190,35 @@ function tooltipRemoveElement(label) {
 }
 
 
+/**  
+ * Create wave subject code legend
+ * @param input {string} - subject code
+ */
+ function createLegendString(input) {
+    var dict = new Object();
+    dict['C'] = 'Child'
+    dict['F'] = 'Father (biological or non-biological)'
+    dict['M'] = 'Mother (biological or non-biological)'
+    dict['P'] = 'Parent (biological and non-biological, incl. caregivers)'
+    dict['S'] = 'Sibling (not part of multiple)'
+    dict['I'] = 'Intimate partner of target (usually the child)'
+    dict['Q'] = 'Intimate partner of sibling (not part of multiple)'
+    dict['E'] = 'Family environment in the household'
+    dict['T'] = 'Teacher/tutor'
+    dict['B'] = 'Peer of target'
+    dict['O'] = 'Observation'
+    dict['G'] = 'Extended family'
+    dict['R'] = 'Researcher'
+    dict['W'] = 'Twin pair'
+    dict['P1'] = 'Primary parent'
+    dict['P2'] = 'Other parent'
+    inputChar = input.split('');
+    if (inputChar[0] == inputChar[1]) {
+        legendString = dict[inputChar[0]] + ' on self'
+    } else {
+        legendString = dict[inputChar[0]] + ' on ' + dict[inputChar[1]]
+    }
+    return legendString
+  }
+  
+
