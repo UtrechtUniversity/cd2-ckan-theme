@@ -1,0 +1,178 @@
+scheming_version: 2
+dataset_type: dataset  # CUSTOM
+about: A reimplementation of the default CKAN dataset schema. CD² data-collections, include wave information.
+about_url: http://github.com/ckan/ckanext-scheming
+
+dataset_fields:
+
+# standard CKAN field
+- field_name: title
+  label: Title of the data collection
+  preset: title
+  form_placeholder: eg. A descriptive title
+
+# standard CKAN field
+# name is an internal CKAN identifier;
+# if the cohort has a DOI then possibly use hash of this
+- field_name: name
+  label: identifier
+  preset: dataset_slug
+  form_placeholder: eg. my-dataset
+
+# WAVE LEVEL METADATA
+
+- field_name: wave
+  label: wave
+  repeating_subfields:
+  - field_name: wave_identifier
+    label: handle
+  - field_name: wave_ckan_id
+    label: internal wave id
+  - field_name: wave_title
+    label: Short identifying title
+  - field_name: wave_measurement_stages # e.g. 1 month, 3 months, etc; can we somehow harmonize these accross cohorts?
+    label: Stage of measurement
+  - field_name: wave_subject_codes # list, e.g. ['CC', 'PC']
+    label: Subject codes
+  - field_name: wave_description  # CUSTOM
+    label: Short description of the wave
+  - field_name: wave_universe # textual description of universe; redundant with description field available?
+    label: Wave universe description
+  - field_name: wave_publisher_name
+    label: Publisher of the wave data
+    # required: true CUSTOM
+  - field_name: wave_publisher_identifier
+    label: Publiser ID
+  - field_name: wave_publisher_identifier_type
+    label: Publisher ID-type
+  - field_name: wave_lifestage
+    label: Life stage
+  - field_name: wave_geo_location # textual, no coordinates
+    label: Geographical coverage
+  - field_name: wave_start_date_collection
+    label: Start date of wave collection
+  - field_name: wave_end_date_collection
+    label: End date of wave collection
+  - field_name: dc_wave_coverage # note the prefix and see the model: this is actually a field that applies to a single measurement
+    label: Coverage percentage of the measurement for this wave
+
+  # - field_name: wave_creators
+    #   removed for wave level because these are included with the data collection itself
+    # - field_name: wave_contributors
+    #   removed for wave level because these are included with the data collection itself
+
+  # Is this actually necessary? Don't think so...:
+  # - field_name: wave_funding # can be distinct for different waves
+    #   label: Funding information
+    #   repeating_subfields:
+    #   - field_name: wave_funder
+    #     label: Funder name
+    #   - field_name: wave_grant_number
+    #     label:  Grant number
+
+  # # connection to DataCollections (measures)
+  # obsolete in new docstore structure
+
+# end of WAVE information
+
+# ----------------------- some CKAN default fields:
+
+# tags
+- field_name: tag_string
+  label: Keywords
+  preset: tag_string_autocomplete
+  form_placeholder: eg. economy, mental health, government
+
+# if applicable
+- field_name: license_id
+  label: License
+  form_snippet: license.html
+  help_text: License definitions and additional information can be found at http://opendefinition.org/
+
+# will refer to the Study that is defined as a CKAN 'organization'
+- field_name: owner_org
+  label: Study
+  preset: dataset_organization
+
+# resolves to the detail page for the data collection
+- field_name: url
+  label: Details
+  form_placeholder: http://example.com/dataset.json
+  display_property: foaf:homepage
+  display_snippet: link.html
+
+# optional?
+- field_name: version
+  label: Version
+  validators: ignore_missing unicode package_version_validator
+  form_placeholder: '1.0'
+
+# ------------------ rest of data collection level fields
+
+- field_name: dc_cohort # refers to a group of type cohort (cd2_cohort_yml)
+  label: cohort
+- field_name: dc_labels # e.g. "brain anatomy"
+  label: Labels
+  repeating_subfields:
+  - field_name: dc_label
+    label: Label
+- field_name: dc_constructs
+  label: Constructs
+  repeating_subfields:
+  - field_name: dc_construct # "physical health"
+    label: Construct
+- field_name: dc_agency # obsolete?
+  label: registered agency
+- field_name: notes # dc_description - changed: prefer to have description of measurement in abstract CUSTOM
+  label: Description
+- field_name: dc_mode_of_collection
+  label: Mode of collection
+- field_name: dc_respondent # e.g. child
+  label: Respondent
+- field_name: dc_subject # e.g. child
+  label: Subject
+- field_name: dc_instrument_name # repeatable? complex (e.g. with an identifier)?
+  # translate to complex type of repeating_fields
+  label: Instrument name
+- field_name: dc_measurement_references
+  label: Measurement reference papers
+  repeating_subfields:
+  - field_name: dc_measurements_references_citation
+    label: Citation string
+  - field_name: dc_measurements_references_doi
+    label: DOI
+  - field_name: dc_measurements_references_type
+    label: Type of reference # IsSupplementedBy, IsDocumentedBy, etc.
+- field_name: dc_analysis_unit # e.g. individual, household, family
+  label: Analysis unit
+  preset: multiple_select
+  choices:
+  - value: individual
+    label: individual
+  - value: household
+    label: household
+  - value: family
+    label: family
+- field_name: measure_age_range
+  label: Age range
+  repeating_subfields:
+  - field_name: measure_age_month
+
+resource_fields:
+
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+
+- field_name: name
+  label: Title
+  form_placeholder: Descriptive name of the resource.
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Summary explanation of file contents, purpose, origination, methods and usage guidance.
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete

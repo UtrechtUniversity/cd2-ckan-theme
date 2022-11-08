@@ -212,31 +212,35 @@ function tooltipRemoveElement(label) {
     dict['W'] = 'Twin pair'
     dict['OMC'] = 'Observation of mother-child'
     dict['OPC'] = 'Observation of parent-child'
-    dict['OFC'] = 'Observation of father-child'
+    dict['OFC'] = 'Observation of father-child' 
     dict['OC'] = 'Observation of child (by researcher-assistant)'
     dict['OP'] = 'observation of parent (by researcher-assistant)'
     dict['PS'] = 'Parent (biological or non-biological) on sibling (not part of multiple)'
     dict['P1'] = 'Primary parent'
     dict['P2'] = 'Other parent'
-    if (/\d/.test(input)) { // exception for primary and secondary parent
-        if (input.includes('P1') && input.includes('P2')) { 
-            legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
-        }
+    if (input == 'PS') {
+        legendString = dict['PS'];
     } else {
-        inputChar = input.split('');
-        if (inputChar[0]== 'O') { // observations
-            if (input.length == 3 || input.length == 2) {
-                legendString = dict[input] 
+        if (/\d/.test(input)) { // exception for primary and secondary parent
+            if (input.includes('P1') && input.includes('P2')) { 
+                legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
             }
-        } else if (input.length == 1) { // single element
-            legendString = dict[inputChar[0]]
-        } else { // subject on subject
-            if (inputChar[0] == inputChar[1]) {
-                legendString = dict[inputChar[0]] + ' on self'
-            } else {
-                legendString = dict[inputChar[0]] + ' on ' + dict[inputChar[1]]
-            }
-        } 
+        } else {
+            inputChar = input.split('');
+            if (inputChar[0]== 'O') { // observations
+                if (input.length == 3 || input.length == 2) {
+                    legendString = dict[input] 
+                }
+            } else if (input.length == 1) { // single element
+                legendString = dict[inputChar[0]]
+            } else { // subject on subject
+                if (inputChar[0] == inputChar[1]) {
+                    legendString = dict[inputChar[0]] + ' on self'
+                } else {
+                    legendString = dict[inputChar[0]] + ' on ' + dict[inputChar[1]]
+                }
+            } 
+        }
     }
     return legendString
 }
