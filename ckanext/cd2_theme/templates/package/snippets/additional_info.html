@@ -63,6 +63,7 @@
       {% set waves = pkg_dict.wave %}
       {% set waves_passed = [] %}
       {% for wave in waves %}
+              {% if wave.wave_cohort %}
               {% if wave.wave_cohort not in waves_passed %}
                 {% do waves_passed.append(wave.wave_cohort) %}
                 {% if waves_passed|length > 1 %}
@@ -82,6 +83,7 @@
                 <span class="label" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode }}'),40)" onmouseleave="tooltipRemoveElement(createLegendString('{{ waveSubjectCode }}'))">{{ waveSubjectCode }}</span>
               {% endif %}
               </span><br />
+              {% endif %}
       {% endfor %}
       </ul>
       </td>
