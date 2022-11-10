@@ -238,7 +238,8 @@
 				qstring = 'wave_median_age:[' + vals[0] + ' TO ' + vals[1] + ']';
 				$("#flash").fadeOut(200, function() { 
 					$("#flash").fadeIn(500)
-				}); 
+				});
+				convertMonthstoYears();
 			}
 		});
 	};

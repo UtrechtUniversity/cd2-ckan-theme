@@ -244,5 +244,14 @@ function tooltipRemoveElement(label) {
     }
     return legendString
 }
-  
 
+/**  
+ * Display months on slider as years
+ */
+function convertMonthstoYears() {
+    tooltips = document.getElementsByClassName('rs-tooltip');
+    for (tooltip of tooltips) {
+        newVal = tooltip.innerHTML/12
+        tooltip.innerHTML = newVal.toFixed(1)
+    }
+}
