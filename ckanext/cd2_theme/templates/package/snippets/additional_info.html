@@ -92,12 +92,12 @@
     <tr>
       <th scope="row" class="dataset-label">Age range</th>
       <td class="dataset-details">
-        {% for measure_month in pkg_dict.measure_age_range %}
-          {{ measure_month }}, 
+        {% for measure in pkg_dict.measure_age_range %}
+          {{ measure.measure_age_month }},
         {% endfor %}
       </td>
     </tr>
-      
+    
       {% elif pkg_dict.type == 'cohort' %}
       <tr>
         <th scope="row" class="dataset-label">Waves:</th>
