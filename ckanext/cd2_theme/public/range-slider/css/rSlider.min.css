@@ -114,6 +114,9 @@
     font-size:13px;
     padding:6px 10px 0
 }
+.rs-tooltip-alt {
+    top: 60px;
+}
 .rs-container.disabled .rs-tooltip{
     border-color:#ccc;
     color:#999

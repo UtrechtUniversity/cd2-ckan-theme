@@ -159,18 +159,18 @@ function tooltipAddElement(el,label,offsetVal) {
         newDivArrow.className = 'custom-tooltip-arrow';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
         newDivArrow.setAttribute("id", hashCode(label) + '_tooltip-arrow');
-        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
+        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
         newDiv.appendChild(newContent);
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
-        document.body.appendChild(newDiv);
-        document.body.appendChild(newDivArrow);
-
+        document.body.appendChild(newDiv); // text balloon
+        document.body.appendChild(newDivArrow); // bottom arrow
+        
         elementOffset = $(newDiv).height() - 20; 
         $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left - 10, position:'absolute'});
-        $(newDivArrow).css({top: offset.top - offsetVal - 80, left: offset.left, position:'absolute'});
-        $(newDiv).animate({'opacity':'1'}, { duration: 300, queue: false });
-        $(newDivArrow).animate({'opacity':'1'}, { duration: 300, queue: false });
+        $(newDivArrow).css({top: offset.top - offsetVal - 78, left: offset.left, position:'absolute'});
+        $(newDiv).animate({'opacity':'1'}, { duration: 200, queue: false });
+        $(newDivArrow).animate({'opacity':'1'}, { duration: 200, queue: false });
     }
 }
 
@@ -190,3 +190,68 @@ function tooltipRemoveElement(label) {
 }
 
 
+/**  
+ * Create wave subject code legend
+ * @param input {string} - subject code
+ */
+ function createLegendString(input) {
+    var dict = new Object();
+    dict['C'] = 'Child'
+    dict['F'] = 'Father (biological or non-biological)'
+    dict['M'] = 'Mother (biological or non-biological)'
+    dict['P'] = 'Parent (biological and non-biological, incl. caregivers)'
+    dict['S'] = 'Sibling (not part of multiple)'
+    dict['I'] = 'Intimate partner of target (usually the child)'
+    dict['Q'] = 'Intimate partner of sibling (not part of multiple)'
+    dict['E'] = 'Family environment in the household'
+    dict['T'] = 'Teacher/tutor'
+    dict['B'] = 'Peer of target'
+    dict['O'] = 'Observation'
+    dict['G'] = 'Extended family'
+    dict['R'] = 'Researcher'
+    dict['W'] = 'Twin pair'
+    dict['OMC'] = 'Observation of mother-child'
+    dict['OPC'] = 'Observation of parent-child'
+    dict['OFC'] = 'Observation of father-child' 
+    dict['OC'] = 'Observation of child (by researcher-assistant)'
+    dict['OP'] = 'observation of parent (by researcher-assistant)'
+    dict['PS'] = 'Parent (biological or non-biological) on sibling (not part of multiple)'
+    dict['P1'] = 'Primary parent'
+    dict['P2'] = 'Other parent'
+    if (input == 'PS') {
+        legendString = dict['PS'];
+    } else {
+        if (/\d/.test(input)) { // exception for primary and secondary parent
+            if (input.includes('P1') && input.includes('P2')) { 
+                legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
+            }
+        } else {
+            inputChar = input.split('');
+            if (inputChar[0]== 'O') { // observations
+                if (input.length == 3 || input.length == 2) {
+                    legendString = dict[input] 
+                }
+            } else if (input.length == 1) { // single element
+                legendString = dict[inputChar[0]]
+            } else { // subject on subject
+                if (inputChar[0] == inputChar[1]) {
+                    legendString = dict[inputChar[0]] + ' on self'
+                } else {
+                    legendString = dict[inputChar[0]] + ' on ' + dict[inputChar[1]]
+                }
+            } 
+        }
+    }
+    return legendString
+}
+
+/**  
+ * Display months on slider as years
+ */
+function convertMonthstoYears() {
+    tooltips = document.getElementsByClassName('rs-tooltip');
+    for (tooltip of tooltips) {
+        newVal = tooltip.innerHTML/12
+        tooltip.innerHTML = newVal.toFixed(1)
+    }
+}
