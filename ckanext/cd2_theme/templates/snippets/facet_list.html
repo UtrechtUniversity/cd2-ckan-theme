@@ -65,14 +65,14 @@
 		{% do measure_age_vals.append(item.name) %}
 	{% endfor %}
 	<script>
-	/** get current range from results to update slider accordingly
+	// get current range from results to update slider accordingly
 	function getCurrentRange(value) {
 		if (value == 'max') {
 			return {{ measure_age_vals | map('int') | max }};
 		} else { 
 			return {{ measure_age_vals | map('int') | min }};
 		}
-	}**/
+	}
 	</script>
 	{% endif %}
 	
@@ -198,31 +198,23 @@
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
 		// Get url parameters of current range selection and update slider accordingly
-		function getCurrentRange(value) {
-			const queryString = window.location.search;
-			const urlParams = new URLSearchParams(queryString);
-			if (urlParams) {
-				const currentQuery = urlParams.get('q');
-				if (currentQuery) { 
-					var isRangeDefined = currentQuery.match(/measure_age_month/g);
-					var currentRange = currentQuery.match(/\d+/g);
-					if (currentRange && isRangeDefined) {
-						var defMinVal = parseInt(currentRange[0]);
-						var defMaxVal = parseInt(currentRange[1]);
-						//if (defMinVal > getCurrentRange('min') || defMaxVal < getCurrentRange('max')) {
-						//	$("#rangeInfo").fadeIn(1000);
-						//}
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		if (urlParams) {
+		const currentQuery = urlParams.get('q');
+			if (currentQuery) { 
+				var isRangeDefined = currentQuery.match(/measure_age_month/g);
+				var currentRange = currentQuery.match(/\d+/g);
+				if (currentRange && isRangeDefined) {
+					var defMinVal = parseInt(currentRange[0]);
+					var defMaxVal = parseInt(currentRange[1]);
+					if (defMinVal > getCurrentRange('min') || defMaxVal < getCurrentRange('max')) {
+						$("#rangeInfo").fadeIn(1000);
 					}
 				}
-			} 
-			if (value == 'max') {
-				return defMaxVal;
-			} else { 
-				return defMinVal;
-			} 
-		}
+			}
+		} 
 		defaultRange = Array.from(Array(400).keys());
-		tempRange = defaultRange; // temp solution because CKAN does not provide more than 50 items per facet
 		// adjust available range based on results
 		if (typeof getCurrentRange === 'function') { 
 			var defaultRange = defaultRange.filter(function(item) {
@@ -235,7 +227,7 @@
 
 		var mySlider = new rSlider({
 			target: '#ageSlider',
-			values: tempRange,
+			values: defaultRange,
 			range: true,
 			tooltip: true,
 			scale: true,
