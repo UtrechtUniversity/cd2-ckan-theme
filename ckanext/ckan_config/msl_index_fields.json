@@ -3,7 +3,7 @@
         "dc_construct",
         "dc_label",
         "wave_cohort",
-        "measure_age_range",
+        "measure_age_month",
         "wave_title"
     ]
 }
