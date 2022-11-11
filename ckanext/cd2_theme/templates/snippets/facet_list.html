@@ -60,17 +60,17 @@
 	{% endif %}
 
 	{% if title == 'age range' %}
-	{% set wave_range_vals = [] %}
+	{% set measure_age_vals = [] %}
 	{% for item in items %}
-		{% do wave_range_vals.append(item.name) %}
+		{% do measure_age_vals.append(item.name) %}
 	{% endfor %}
 	<script>
 	// get current range from results to update slider accordingly
 	function getCurrentRange(value) {
 		if (value == 'max') {
-			return {{ measure_age_month | map('int') | max }};
+			return {{ measure_age_vals | map('int') | max }};
 		} else { 
-			return {{ measure_age_month | map('int') | min }};
+			return {{ measure_age_vals | map('int') | min }};
 		}
 	}
 	</script>
