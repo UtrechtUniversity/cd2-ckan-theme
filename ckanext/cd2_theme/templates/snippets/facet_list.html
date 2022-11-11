@@ -68,9 +68,9 @@
 	// get current range from results to update slider accordingly
 	function getCurrentRange(value) {
 		if (value == 'max') {
-			return {{ wave_range_vals | map('int') | max }};
+			return {{ measure_age_month | map('int') | max }};
 		} else { 
-			return {{ wave_range_vals | map('int') | min }};
+			return {{ measure_age_month | map('int') | min }};
 		}
 	}
 	</script>
