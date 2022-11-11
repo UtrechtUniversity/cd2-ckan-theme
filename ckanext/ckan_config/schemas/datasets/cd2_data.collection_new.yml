@@ -24,6 +24,8 @@ dataset_fields:
 - field_name: wave
   label: wave
   repeating_subfields:
+  - field_name: wave_cohort
+    label: Parent cohort
   - field_name: wave_identifier
     label: handle
   - field_name: wave_ckan_id
