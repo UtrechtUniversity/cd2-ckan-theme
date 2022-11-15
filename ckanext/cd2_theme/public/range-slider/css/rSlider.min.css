@@ -112,6 +112,7 @@
     font-size:13px;
     background-color: #fff;
     box-shadow: 0px 0px 3px 3px #fff;
+    top: 10px;
 }
 .rs-tooltip-alt {
     top: 60px;
