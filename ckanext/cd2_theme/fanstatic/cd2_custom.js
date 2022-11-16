@@ -215,6 +215,7 @@ function tooltipRemoveElement(label) {
     dict['OFC'] = 'Observation of father-child' 
     dict['OC'] = 'Observation of child (by researcher-assistant)'
     dict['OP'] = 'observation of parent (by researcher-assistant)'
+    dict['OE'] = 'observation of family environment'
     dict['PS'] = 'Parent (biological or non-biological) on sibling (not part of multiple)'
     dict['P1'] = 'Primary parent'
     dict['P2'] = 'Other parent'
