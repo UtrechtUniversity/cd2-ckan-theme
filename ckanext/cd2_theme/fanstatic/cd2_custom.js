@@ -223,7 +223,7 @@ function tooltipRemoveElement(label) {
         legendString = dict['PS'];
     } else {
         if (/\d/.test(input)) { // exception for primary and secondary parent
-            if (input.includes('P1') && input.includes('P2')) { 
+            if (input.includes('P1') || input.includes('P2') && input.length == 4) { 
                 legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
             } else { // primary/secondary on other
                 var re = /[P\d]+/g;
