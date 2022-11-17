@@ -104,58 +104,58 @@
               {% if package.dc_constructs is defined %}
               {% if package.dc_constructs|length > 0 %}
               {% for constructs in package.dc_constructs %}
-                  {% if constructs.dc_construct|lower == 'physiology' %}
+                  {% if constructs.dc_construct|lower|trim == 'physiology' %}
                     {%set imgurl = 'src=/icons/svg/outline/body/body.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'mental health' %}
+                  {% elif constructs.dc_construct|lower|trim == 'mental health' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/mental_disorders.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'cognition' %}
+                  {% elif constructs.dc_construct|lower|trim == 'cognition' %}
                     {%set imgurl = 'src=/icons/svg/outline/body/neurology.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'personality' %}
+                  {% elif constructs.dc_construct|lower|trim == 'personality' %}
                     {%set imgurl = 'src=/icons/svg/outline/emotions/ok.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'parenting' %}
+                  {% elif constructs.dc_construct|lower|trim == 'parenting' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/child_care.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'sociocognitive and emotional development' %}
+                  {% elif constructs.dc_construct|lower|trim == 'sociocognitive and emotional development' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/child_program.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'social and emotional development' %}
+                  {% elif constructs.dc_construct|lower|trim == 'social and emotional development' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/child_program.svg'%}
                     
-                  {% elif constructs.dc_construct|lower == 'relationships' %}
+                  {% elif constructs.dc_construct|lower|trim == 'relationships' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/group_discussion_meeting.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'life history' %}
+                  {% elif constructs.dc_construct|lower|trim == 'life history' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/calendar.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'lifestyle' %}
+                  {% elif constructs.dc_construct|lower|trim == 'lifestyle' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/wold_care.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'work and school' %}
+                  {% elif constructs.dc_construct|lower|trim == 'work and school' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/travel_alt.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'demographics' %}
+                  {% elif constructs.dc_construct|lower|trim == 'demographics' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/i_groups_perspective_crowd.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'social cognition and behavior' or constructs.dc_construct|lower == 'social cognition and behaviour' %}
+                  {% elif constructs.dc_construct|lower|trim == 'social cognition and behavior' or constructs.dc_construct|lower|trim == 'social cognition and behaviour' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/child_cognition.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'language' %}
+                  {% elif constructs.dc_construct|lower|trim == 'language' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/speech_language_therapy.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'infancy' %}
+                  {% elif constructs.dc_construct|lower|trim == 'infancy' %}
                     {%set imgurl = 'src=/icons/svg/outline/people/baby_0306m.svg'%}
 
-                  {% elif constructs.dc_construct|lower == 'physical health' %}
+                  {% elif constructs.dc_construct|lower|trim == 'physical health' %}
                     {%set imgurl = 'src=/icons/svg/outline/body/arm.svg'%}
                     
-                  {% elif constructs.dc_construct|lower == 'questionnaire' %}
+                  {% elif constructs.dc_construct|lower|trim == 'questionnaire' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
                   {% endif %}
-                  <img style="opacity:0.5" {{imgurl}} width="35px" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower }}',30)" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower }}')">
+                  <img style="opacity:0.5" {{imgurl}} width="35px" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower|trim }}',30)" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower|trim }}')">
               {% endfor %}
               {% endif %}
               {% endif %}
