@@ -27,7 +27,6 @@ dataset_fields:
 # standard CKAN field; abstract description of the wave
 - field_name: notes
   label: Abstract
-  required: true
   form_snippet: markdown.html
   form_placeholder: eg. Some useful notes about the cohort
 
@@ -37,7 +36,6 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_publisher_name
     label: Publisher name
-    required: true
   - field_name: wave_publisher_identifier
     label: Publiser ID
   - field_name: wave_publisher_identifier_type
@@ -48,10 +46,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_creator
     label:  Creator
-    required: true
   - field_name: wave_creator_affiliation
     label: Affiliation
-    required: true
   - field_name: wave_creator_pid
     label: identifier
   - field_name: wave_creator_identifier_type # ORCID, SCOPUS, etc.
@@ -62,10 +58,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_contributor
     label:  Contributor
-    required: true
   - field_name: wave_contributor_affiliation
     label: Affiliation
-    required: true
   - field_name: wave_contributor_pid
     label: identifier
   - field_name: wave_contributor_identifier_type # ORCID, SCOPUS, etc.
