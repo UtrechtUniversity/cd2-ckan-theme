@@ -26,7 +26,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
   * Javascript to fetch json from CKAN API and add content to homepage
   * Todo: TODO: combine into functions
   */
-  url = "/api/3/action/package_search"
+  url = "/api/3/action/package_search?fq=type:dataset" // recently updated
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -50,7 +50,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
-  url = "/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000"
+  url = "/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000"  // popular labels
   fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -65,7 +65,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
-  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000"
+  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000" // popular constructs
   fetch(url)
     .then(res => res.json())
     .then(data => {
