@@ -129,6 +129,8 @@ dataset_fields:
   label: Description
 - field_name: dc_mode_of_collection
   label: Mode of collection
+- field_name: dc_mode_of_collection_sub
+  label: Mode of collection sub
 - field_name: dc_respondent # e.g. child
   label: Respondent
 - field_name: dc_subject # e.g. child
