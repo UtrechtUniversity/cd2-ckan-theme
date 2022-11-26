@@ -15,11 +15,7 @@
 #}
   {% set truncate = truncate or 360 %}
   {% set truncate_title = truncate_title or 80 %}
-  {% if package.title|length == 32 %}
-    {% set title = package.dc_instrument_name %}
-  {% else %}
-    {% set title = package.title or package.name %}
-  {% end %}
+  {% set title = package.title or package.name %}
   {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 
   {% block package_item %}
