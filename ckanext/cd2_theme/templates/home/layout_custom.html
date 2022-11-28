@@ -70,16 +70,12 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(res => res.json())
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
-      conKeys = Object.keys(data.result.facets.dc_construct);
-      for (key of conKeys) {
-        ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a></li>';
-        if (conKeys.indexOf(key) == 8) {
-          ulCon.innerHTML += '<li><a onclick="fillModal(\'dc_construct\',\'All dataset constructs\');$(\'#facetModal\').modal(\'toggle\')" class="btn-light" style="padding:20px">more...</a></li>';
-          break;
-        }
+      for (let [key, value] of Object.entries(data.result.facets.dc_construct)) {
+          ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a><span class="label">'+value+'<span></li>';
       }
-    });
+    });   
 </script>
+
 
 <script>document.addEventListener("DOMContentLoaded", function (event) {
   //$('#hero').fadeTo(400,1); 
@@ -99,26 +95,21 @@ document.getElementById('site-search-wrap').style.display = 'none';
 <div role="main" id="content" class="homepage-content">
   <div class="container">
 
-    <div class="row margin-b-lg">
-      <div class="col-md-6 col-lg-6">
-        <div class="margin-b-sm">
-          <h4>Most used labels</h4>
-          <div class="row">
+    <div class="margin-b-lg">
+      <h4>Most used labels</h4>
             <ul class="menu blog-filter-menu" id="label-pit">
             </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-6">
-        <div class="margin-b-sm">
-          <h4>Most used constructs</h4>
-          <div class="row">
-            <ul class="menu blog-filter-menu" id="construct-pit">
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
+
+    <div class="margin-b-lg">
+			<h2>Datasets by construct</h2>
+				<div class="row">
+					<ul class="menu blog-filter-menu" id="construct-pit">
+						
+					</ul>
+				</div>
+			
+		</div>
 
 
     <div class="margin-b-lg">
