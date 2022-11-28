@@ -59,7 +59,6 @@ document.getElementById('site-search-wrap').style.display = 'none';
       for (key of labelKeys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
         if (labelKeys.indexOf(key) == 14) {
-          ulLabel.innerHTML += '<li><a onclick="fillModal(\'dc_label\',\'All dataset labels\');$(\'#facetModal\').modal(\'toggle\')" class="btn-light" style="padding:20px">more...</a></li>';
           break;
         }
       }
@@ -150,22 +149,3 @@ document.getElementById('site-search-wrap').style.display = 'none';
     </div>
   </div>
 </div>
-
-<script>
-// Front-page
-// // Create modal for constructs or labels on frontpage
-function fillModal(facetLabel,modalTitle) {
-        if (facetLabel == 'dc_label') { keyVal = labelKeys; } else { keyVal = conKeys; }
-        document.getElementById('modalTitle').innerHTML = modalTitle;
-        document.getElementById('modalBody').innerHTML = createFacetPills(keyVal, facetLabel);
-}
-
-// // Create styled elements from facets
-function createFacetPills(facets, facetType) {
-    var labelPit = "";
-    for (const facet of facets) {
-        labelPit += '<li><a href="{% url_for "dataset.search" %}?' + facetType + '=' + facet + '" class="category-select">' + facet + '</a></li>';
-    }
-    return labelPit;
-}
-</script>
