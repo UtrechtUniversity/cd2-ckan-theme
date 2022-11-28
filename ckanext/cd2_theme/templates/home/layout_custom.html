@@ -58,7 +58,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       labelKeys = Object.keys(data.result.facets.dc_label);
       for (key of labelKeys) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
-        if (labelKeys.indexOf(key) == 8) {
+        if (labelKeys.indexOf(key) == 14) {
           ulLabel.innerHTML += '<li><a onclick="fillModal(\'dc_label\',\'All dataset labels\');$(\'#facetModal\').modal(\'toggle\')" class="btn-light" style="padding:20px">more...</a></li>';
           break;
         }
@@ -71,7 +71,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
       for (let [key, value] of Object.entries(data.result.facets.dc_construct)) {
-          ulCon.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '</a><span class="label">'+value+'<span></li>';
+          ulCon.innerHTML += '<li style="width:33%"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '<span class="label">'+value+'<span></a></li>';
       }
     });   
 </script>
@@ -102,7 +102,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
     </div>
 
     <div class="margin-b-lg">
-			<h2>Datasets by construct</h2>
+			<h4>Datasets by construct</h4>
 				<div class="row">
 					<ul class="menu blog-filter-menu" id="construct-pit">
 						
