@@ -144,6 +144,7 @@ function tooltipGetOffset(el) {
     };
 }
 
+
 /**  
  * Create tooltip
  * @param el {object} - element
