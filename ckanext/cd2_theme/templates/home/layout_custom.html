@@ -64,13 +64,13 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
-  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000" // popular constructs
+  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000" // constructs
   fetch(url)
     .then(res => res.json())
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
       for (let [key, value] of Object.entries(data.result.facets.dc_construct)) {
-          ulCon.innerHTML += '<li class="construct-pit"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '<span class="label label-front">'+value+'</span></a></li>';
+          ulCon.innerHTML += '<li class="construct-pit" onmouseenter="tooltipAddElement(this,'{{ key }}',30)" onmouseleave="tooltipRemoveElement('{{ key }}')"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '<span class="label label-front">'+value+'</span></a></li>';
       }
     });   
 </script>
