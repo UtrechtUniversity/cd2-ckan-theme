@@ -70,7 +70,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(data => {
       var ulCon = document.getElementById('construct-pit');
       for (let [key, value] of Object.entries(data.result.facets.dc_construct)) {
-          ulCon.innerHTML += '<li class="construct-pit" onmouseenter="tooltipAddElement(this,'{{ key }}',30)" onmouseleave="tooltipRemoveElement('{{ key }}')"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '<span class="label label-front">'+value+'</span></a></li>';
+          ulCon.innerHTML += '<li class="construct-pit" onmouseenter="tooltipAddElement(this,\'{{ key }}\',30)" onmouseleave="tooltipRemoveElement(\'{{ key }}\')"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select">' + key + '<span class="label label-front">'+value+'</span></a></li>';
       }
     });   
 </script>
