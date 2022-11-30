@@ -55,8 +55,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(res => res.json())
     .then(data => {
       var ulLabel = document.getElementById('label-pit');
-      labelKeys = Object.keys(data.result.facets.dc_label);
-      for (key of labelKeys) {
+      for (let [key] of Object.entries(data.result.facets.dc_label)) {
         ulLabel.innerHTML += '<li><a href="{% url_for "dataset.search" %}?dc_label=' + key + '" class="category-select">' + key + '</a></li>';
         if (labelKeys.indexOf(key) == 14) {
           break;
@@ -75,11 +74,6 @@ document.getElementById('site-search-wrap').style.display = 'none';
     });   
 </script>
 
-
-<script>document.addEventListener("DOMContentLoaded", function (event) {
-  //$('#hero').fadeTo(400,1); 
-});
-</script>
 <div role="main" class="hero" id="hero">
   <div class="container">
     <div class="row row1">
