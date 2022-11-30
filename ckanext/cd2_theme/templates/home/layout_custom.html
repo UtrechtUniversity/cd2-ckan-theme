@@ -32,11 +32,10 @@ document.getElementById('site-search-wrap').style.display = 'none';
     .then(data => {
       var div = document.getElementById('recently-updated');
       for (const result of data.result.results) {
-        div.innerHTML += `<div class="col-sm-6 col-lg-4">
+        div.innerHTML += `<div class="col-sm-3">
                         <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
                           <span class="link-tile__header">
                             <span class="link-tile__header-text">` + result.title + `</span>
-                            <span class="link-tile__icon ri ri-arrow-right"></span>
                           </span>
                           <span class="link-tile__content">` + result.organization.title + `
                             <br>
@@ -44,7 +43,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
                           </span>
                         </a>
                         </div>`
-        if (data.result.results.indexOf(result) == 2) {
+        if (data.result.results.indexOf(result) == 3) {
           break;
         }
       }
