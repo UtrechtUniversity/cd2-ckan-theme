@@ -1,21 +1,20 @@
 
-{% if pkg_dict.type == 'wave' %}
+
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
     navTabs = document.getElementsByClassName('nav-tabs');
-    navTabs[0].innerHTML = `<ul class="nav nav-tabs">
-      <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_title={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
-      <li class="active"><a href="#"><i class="fa fa-info-circle"></i> About</a></li></ul>`  
+    {% if pkg_dict.type == 'wave' %}
+      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+        <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_title={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
+        <li class="active"><a href="#"><i class="fa fa-info-circle"></i> Wave</a></li></ul>`  
+      {% elif pkg_dict.type == 'cohort' %}
+      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+        <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
+        <li class="active"><a href="#"><i class="fa fa-info-circle"></i> Cohort</a></li></ul>`  
+      {% endif %}
   });
 </script>
-{% elif pkg_dict.type == 'cohort' %}
-<script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-    datasetLink = document.getElementsByClassName('fa fa-sitemap')[0].parentElement;
-    datasetLink.innerHTML = '<span class="fa fa-folder-open-o"></span> Cohort'
-  });
-</script>
-{% endif %}
+
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow">
     <tbody>
