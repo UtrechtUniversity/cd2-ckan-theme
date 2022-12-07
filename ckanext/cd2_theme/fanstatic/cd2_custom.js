@@ -211,45 +211,37 @@ function tooltipRemoveElement(label) {
     dict['G'] = 'Extended family'
     dict['R'] = 'Researcher'
     dict['W'] = 'Twin pair'
-    dict['OMC'] = 'Observation of mother-child'
-    dict['OPC'] = 'Observation of parent-child'
-    dict['OFC'] = 'Observation of father-child' 
-    dict['OC'] = 'Observation of child (by researcher-assistant)'
-    dict['OP'] = 'Observation of parent (by researcher-assistant)'
-    dict['OE'] = 'Observation of family environment'
-    dict['PS'] = 'Parent (biological or non-biological) on sibling (not part of multiple)'
+    dict['MC'] = 'mother-child'
+    dict['PC'] = 'parent-child'
+    dict['FC'] = 'father-child'
     dict['P1'] = 'Primary parent'
     dict['P2'] = 'Other parent'
-    if (input == 'PS') {
-        legendString = dict['PS'];
-    } else {
-        if (/\d/.test(input)) { // exception for primary and secondary parent
-            if (input.includes('P1') || input.includes('P2') && input.length == 4) { 
-                legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
-            } else { // primary/secondary on other
-                var re = /[P\d]+/g;
-                firstPair = input.match(re)
-                legendString = dict[firstPair[0]] + ' on ' + dict[input.replace(firstPair[0],'')]
+    dict['P1C'] = 'primary parent on child'
+    dict['P2C'] = 'other parent on child'
+    if (input.substring(0,1) == 'O') {
+        legendString = dict[input.substring(0,1)] + ' of '  + dict[input.substring(1)]
+    } else if (/\d/.test(input)) { // exception for primary and secondary parent
+        if (input.includes('P1') || input.includes('P2') && input.length == 4) { 
+            legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
+        } else { // primary/secondary on other
+            var re = /[P\d]+/g;
+            firstPair = input.match(re)
+            legendString = dict[firstPair[0]] + ' on ' + dict[input.replace(firstPair[0],'')]
+        }
+    } else { // if no observation and not a p1/p2 situation
+        if (input.length == 1) {
+            legendString = dict[input]; // single subject
+        } else if (input.length == 2) {
+            if (input.substring(0,1) == input.substring(1)) { // subject pair
+                legendString = dict[input.substring(0,1)] + ' on self'
+            } else {
+                legendString = dict[input.substring(0,1)] + ' on ' + dict[input.substring(1)]
             }
-        } else {
-            inputChar = input.split('');
-            if (inputChar[0]== 'O') { // observations
-                if (input.length == 3 || input.length == 2) {
-                    legendString = dict[input] 
-                }
-            } else if (input.length == 1) { // single element
-                legendString = dict[inputChar[0]]
-            } else { // subject on subject
-                if (inputChar[0] == inputChar[1]) {
-                    legendString = dict[inputChar[0]] + ' on self'
-                } else {
-                    legendString = dict[inputChar[0]] + ' on ' + dict[inputChar[1]]
-                }
-            } 
         }
     }
-    return legendString
+return legendString
 }
+
 
 /**  
  * Display months on slider as years
