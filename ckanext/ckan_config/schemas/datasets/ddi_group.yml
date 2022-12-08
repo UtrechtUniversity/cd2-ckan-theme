@@ -4,6 +4,7 @@ about: CD² cohorts are described as DDI Lifecycle 3.2 groups
 about_url: https://github.com/ckan/ckanext-scheming
 
 dataset_fields:
+
 - field_name: title
   label: Title of the cohort
   preset: title
@@ -25,16 +26,12 @@ dataset_fields:
 - field_name: notes
   label: Abstract
   required: true
-  preset: markdown
-  form_snippet: markdown.html
-  form_placeholder: eg. Some useful notes about the cohort
 
 - field_name: cohort_publisher
   label: Publisher
   repeating_subfields:
   - field_name: cohort_publisher_name
     label: Publisher name
-    required: true
   - field_name: cohort_publisher_identifier
     label: Publiser ID
   - field_name: cohort_publisher_identifier_type
@@ -45,10 +42,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: cohort_creator
     label:  Creator
-    required: true
   - field_name: cohort_creator_affiliation
     label: Affiliation
-    required: true
   - field_name: cohort_creator_pid
     label: identifier
   - field_name: cohort_creator_identifier_type # ORCID, SCOPUS, etc.
@@ -59,10 +54,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: cohort_contributor
     label:  Contributor
-    required: true
   - field_name: cohort_contributor_affiliation
     label: Affiliation
-    required: true
   - field_name: cohort_contributor_pid
     label: identifier
   - field_name: cohort_contributor_identifier_type # ORCID, SCOPUS, etc.
@@ -81,6 +74,16 @@ dataset_fields:
     label: Funder name
   - field_name: cohort_grant_number
     label:  Grant number
+
+- field_name: cohort_measurement_references
+  label: Cohort reference papers
+  repeating_subfields:
+  - field_name: cohort_measurements_references_citation
+    label: Citation string
+  - field_name: cohort_measurements_references_doi
+    label: DOI
+  - field_name: cohort_measurements_references_type
+    label: Type of reference # IsSupplementedBy, IsDocumentedBy, etc.
 
 # data classification (e.g. sensitive)
 - field_name: cohort_information_classification
@@ -121,8 +124,6 @@ dataset_fields:
     label: Identifier
   - field_name: cohort_reference_identifier_type
     label: Identifier type
-  - field_name: cohort_reference_title
-    label: Title
   - field_name: cohort_reference_citation
     label: Citation # to be harvested via e.g. DataCite API
   - field_name: cohort_reference_type
@@ -153,7 +154,6 @@ dataset_fields:
 # will refer to the Study that is defined as a CKAN 'organization'
 - field_name: owner_org
   label: Study
-  preset: dataset_organization
 
 # resolves to the detail page for the cohort
 - field_name: url

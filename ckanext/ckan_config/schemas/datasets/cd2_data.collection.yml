@@ -26,12 +26,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_identifier
     label: handle
-  - field_name: wave_cohort
-    label: Cohort
   - field_name: wave_ckan_id
     label: internal wave id
-  - field_name: wave_median_age
-    label: Median age of measurement
   - field_name: wave_title
     label: Short identifying title
   - field_name: wave_measurement_stages # e.g. 1 month, 3 months, etc; can we somehow harmonize these accross cohorts?
@@ -55,8 +51,10 @@ dataset_fields:
     label: Geographical coverage
   - field_name: wave_start_date_collection
     label: Start date of wave collection
+    preset: date
   - field_name: wave_end_date_collection
     label: End date of wave collection
+    preset: date
   - field_name: dc_wave_coverage # note the prefix and see the model: this is actually a field that applies to a single measurement
     label: Coverage percentage of the measurement for this wave
 
@@ -157,6 +155,16 @@ dataset_fields:
     label: household
   - value: family
     label: family
+- field_name: measure_age_range
+  label: Age range
+  repeating_subfields:
+  - field_name: measure_age_month
+
+# connection to (sub) cohorts
+- field_name: wave_cohort
+  label: (sub) cohort
+- field_name: wave_cohort_ckan_id
+  label: (ckan) cohort identifier
 
 resource_fields:
 

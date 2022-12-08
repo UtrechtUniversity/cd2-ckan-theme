@@ -37,7 +37,6 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_publisher_name
     label: Publisher name
-    required: true
   - field_name: wave_publisher_identifier
     label: Publiser ID
   - field_name: wave_publisher_identifier_type
@@ -48,10 +47,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_creator
     label:  Creator
-    required: true
   - field_name: wave_creator_affiliation
     label: Affiliation
-    required: true
   - field_name: wave_creator_pid
     label: identifier
   - field_name: wave_creator_identifier_type # ORCID, SCOPUS, etc.
@@ -62,10 +59,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: wave_contributor
     label:  Contributor
-    required: true
   - field_name: wave_contributor_affiliation
     label: Affiliation
-    required: true
   - field_name: wave_contributor_pid
     label: identifier
   - field_name: wave_contributor_identifier_type # ORCID, SCOPUS, etc.
@@ -86,6 +81,12 @@ dataset_fields:
   - field_name: wave_measure # contains identifier to a dataset of type 'measure' (DDI:DataCollection)
     label: Measure
 
+# connection to (sub) cohorts
+- field_name: wave_cohort
+  label: (sub) cohort
+- field_name: wave_cohort_ckan_id
+  label: (ckan) cohort identifier
+
 # LifeStage
 - field_name: wave_lifestage
   label: Life stage
@@ -98,8 +99,10 @@ dataset_fields:
 
 - field_name: wave_start_date_collection
   label: Start date wave collection
+  preset: date
 - field_name: wave_end_date_collection
   label: End date wave collection
+  preset: date
 
 # Universe (text)
 - field_name: wave_universe
