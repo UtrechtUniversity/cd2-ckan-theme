@@ -14,13 +14,6 @@ Example:
 <div class="alert alert-primary" role="alert" id="rangeInfo" style="display:none">
   <span class="fa fa-info-circle"></span> The datasets found within the selected age range also contain measurements outside of this range.
 </div> 
-<script>
-document.addEventListener("DOMContentLoaded", function (event) {
-  $(".dataset-item").each( function () {
-    $(this).fadeTo(100,1); ;
-  }); 
-});
-</script>
 {% block package_list %}
   {% if packages %}
     <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
