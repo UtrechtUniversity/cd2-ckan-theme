@@ -92,20 +92,6 @@
       </td>
     </tr>
 
-    
-    
-      {% elif pkg_dict.type == 'cohort' %}
-      <tr>
-        <th scope="row" class="dataset-label">Waves:</th>
-        <td class="dataset-details">
-        <ul class="dataset-resources list-unstyled">
-        {% for wave in pkg_dict.cohort_waves %}
-                <li><a href="/wave/{{wave.cohort_wave}}" class="label label-info">{{wave.cohort_wave}}</a></li>
-        {% endfor %}
-        </ul>
-        </td>
-      </tr>
-
       {% elif pkg_dict.type == 'wave' %}
       <tr>
         <th scope="row" class="dataset-label">Parent cohort:</th>
