@@ -25,7 +25,7 @@
   {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 
   {% block package_item %}
-    <li class="{{ item_class or "dataset-item" }}" style="display:none">
+    <li class="{{ item_class or "dataset-item" }}">
       {% block content %}
         <div class="dataset-content">
           <div class="study-label"><img src="{{ package.organization.image_url }}"></div>
