@@ -218,7 +218,7 @@ function tooltipRemoveElement(label) {
     dict['P2'] = 'Other parent'
     dict['P1C'] = 'primary parent on child'
     dict['P2C'] = 'other parent on child'
-    if (input.substring(0,1) == 'O') {
+    if (input.substring(0,1) == 'O') { // observation
         legendString = dict[input.substring(0,1)] + ' of '  + dict[input.substring(1)]
     } else if (/\d/.test(input)) { // exception for primary and secondary parent
         if (input.includes('P1') || input.includes('P2') && input.length == 4) { 
