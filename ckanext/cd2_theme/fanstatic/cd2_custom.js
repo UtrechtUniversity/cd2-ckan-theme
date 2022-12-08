@@ -118,6 +118,9 @@ function removeRange(facetName) {
     document.getElementById('dataset-search-form').submit();
 }
 
+
+
+
 /**  
  * Create numerical hash of string
  * @param string {string} - input
