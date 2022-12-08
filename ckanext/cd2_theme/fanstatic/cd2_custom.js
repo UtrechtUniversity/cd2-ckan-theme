@@ -118,7 +118,25 @@ function removeRange(facetName) {
     document.getElementById('dataset-search-form').submit();
 }
 
-
+// Add range query to field and submit search form 
+function addQueryToField(facetName,qstring) {
+    currentString = window.location.search;
+    currentParams = new URLSearchParams(currentString);
+    // Check if there is an existing query to replace or append
+    if (currentParams.get('q') != null) {
+        re = new RegExp('[&\\s]*'+facetName+':\\[\\d+\\sTO\\s\\d+\\][\\s&]*');
+        cleanQuery = currentParams.get('q').replace(re, "");
+        if (cleanQuery != "") {
+            newString = cleanQuery + ' & ' + qstring;
+        } else {
+            newString = qstring;
+        }
+    } else {
+        newString = qstring;
+    }
+    document.getElementById('searchbox').value = newString;
+    document.getElementById('dataset-search-form').submit();
+}     
 
 
 /**  
