@@ -172,6 +172,9 @@ schema. In this case the version should be set to the next CKAN version number.
     <!-- coming from IPackageController msl_search.MslIndexRepeatedFieldsPlugin::before(index) -->
     <field name="wave_title" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="wave_title_text" type="text" indexed="true" stored="false" multiValued="true"/>
+
+    <field name="wave_start_date_collection" type="tdates" indexed="true" stored="false" multiValued="true"/>
+    <field name="wave_end_date_collection" type="tdates" indexed="true" stored="false" multiValued="true"/>
     
     <field name="wave_cohort" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="wave_median_age" type="tint" indexed="true" stored="true" multiValued="true"/>
