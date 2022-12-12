@@ -3,8 +3,6 @@
   "default":
   {
     "measure_age_month": "age range",
-    "wave_start_date_collection": "date start collection",
-    "wave_end_date_collection": "date end collection",
     "dataset_type": "type",
     "organization":  "study",
     "wave_cohort": "cohort",
