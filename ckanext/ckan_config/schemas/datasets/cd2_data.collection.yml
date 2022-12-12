@@ -59,6 +59,8 @@ dataset_fields:
     preset: date
   - field_name: dc_wave_coverage # note the prefix and see the model: this is actually a field that applies to a single measurement
     label: Coverage percentage of the measurement for this wave
+  - field_name: wave_cohort_ckan_id
+    label: (ckan) cohort identifier
 
   # - field_name: wave_creators
     #   removed for wave level because these are included with the data collection itself
