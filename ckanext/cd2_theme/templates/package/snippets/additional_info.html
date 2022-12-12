@@ -12,7 +12,7 @@
       {% elif pkg_dict.type == 'cohort' %}
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li class="active"><a href="#"><i class="fa fa-info-circle"></i> Cohort</a></li>
-        <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave"><i class="fa fa-folder"></i> Waves</a></li>
+        <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-folder"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       {% endif %}
