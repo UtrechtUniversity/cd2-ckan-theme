@@ -178,7 +178,7 @@ schema. In this case the version should be set to the next CKAN version number.
     <field name="measure_age_month" type="tint" indexed="true" stored="true" multiValued="true"/>	
  	<field name="wave_age_year" type="tint" indexed="true" stored="true" multiValued="true"/>	
 
-    <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="false"/>
+    <dynamicField name="*_date" type="date" indexed="true" stored="true" multiValued="true"/>
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
     <dynamicField name="res_extras_*" type="text" indexed="true" stored="true" multiValued="true"/>
