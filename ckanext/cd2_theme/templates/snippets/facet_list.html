@@ -66,7 +66,7 @@
 	{% endfor %}
 	<script>
 	// get current range from results to update slider accordingly
-	function getCurrentRange(value) {
+	function getCurrentAgeRange(value) {
 		if (value == 'max') {
 			return {{ measure_age_vals | map('int') | max }};
 		} else { 
@@ -74,6 +74,20 @@
 		}
 	}
 	</script>
+	{% elif title == 'date start collection' %}
+		{% set measure_age_vals = [] %}
+		{% for item in items %}
+				{% do measure_age_vals.append(item.name[0:4]) %}
+		{% endfor %}
+        foobar
+        {{ measure_age_vals | map('int') | min }};
+	{% elif title == 'date end collection' %}
+		 {% set measure_age_vals = [] %}
+		 {% for item in items %}
+				 {% do measure_age_vals.append(item.name[0:4]) %}
+		 {% endfor %}
+ 		foobar
+ 	 {{ measure_age_vals | map('int') | max }};
 	{% endif %}
 	
 	<nav aria-label="{{ title }}">
@@ -206,7 +220,7 @@
 				if (currentRange && isRangeDefined) {
 					var defMinVal = parseInt(currentRange[0]);
 					var defMaxVal = parseInt(currentRange[1]);
-					if (defMinVal > getCurrentRange('min') || defMaxVal < getCurrentRange('max')) {
+					if (defMinVal > getCurrentAgeRange('min') || defMaxVal < getCurrentAgeRange('max')) {
 						$("#rangeInfo").fadeIn(1000);
 					}
 				}
@@ -214,9 +228,9 @@
 		} 
 		defaultRange = Array.from(Array(400).keys());
 		// adjust available range based on results
-		if (typeof getCurrentRange === 'function') { 
+		if (typeof getCurrentAgeRange === 'function') { 
 			var defaultRange = defaultRange.filter(function(item) {
-				return item >= getCurrentRange('min') && item <= getCurrentRange('max');
+				return item >= getCurrentAgeRange('min') && item <= getCurrentAgeRange('max');
 			}); 
 		} else {	
 			document.getElementById('header_age').style.display = 'none';
@@ -230,7 +244,7 @@
 			tooltip: true,
 			scale: true,
 			labels: false,
-			set: [getCurrentRange('min'), getCurrentRange('max')],
+			set: [getCurrentAgeRange('min'), getCurrentAgeRange('max')],
 			onChange: function (vals) {
 				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
@@ -239,7 +253,6 @@
 		});
 	};
 
-	
 </script>
 <link rel="stylesheet" href="../range-slider/css/rSlider.min.css">
 <script src="../range-slider/js/rSlider.min.js"></script>

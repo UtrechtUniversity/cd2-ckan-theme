@@ -10,12 +10,27 @@
               {{ h.scheming_language_text(subfield.label) }}
             </dt>
             <dd>
+            {% if h.scheming_language_text(subfield.label) == 'DOI' %}
+            <a href="
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
               data=field_data,
               entity_type=entity_type,
               object_type=object_type
             -%}
+            " target="blank">
+            {% endif %}
+    
+            {%- snippet 'scheming/snippets/display_field.html',
+              field=subfield,
+              data=field_data,
+              entity_type=entity_type,
+              object_type=object_type
+            -%}
+            
+            {% if h.scheming_language_text(subfield.label) == 'DOI' %}
+            </a>
+            {% endif %}
             </dd>
           {% endfor %}
         </dl>

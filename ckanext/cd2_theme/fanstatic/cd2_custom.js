@@ -102,7 +102,7 @@ function createRangePill(facetName,facetMeasure,displayText) {
 };
 
 /**  
- * Remove range in url before defining new one
+ * Remove range in url
  * @param facetName {string} - backend name of facet
  * invoked on snippets/facet_list.html
  */
@@ -118,7 +118,12 @@ function removeRange(facetName) {
     document.getElementById('dataset-search-form').submit();
 }
 
-// Add range query to field and submit search form 
+/**  
+ * Replace range in url with new one
+ * @param facetName {string} - backend name of facet
+ * @param qstring {string} - new range query string
+ * invoked on snippets/facet_list.html
+ */
 function addQueryToField(facetName,qstring) {
     currentString = window.location.search;
     currentParams = new URLSearchParams(currentString);
@@ -253,7 +258,7 @@ function tooltipRemoveElement(label) {
             firstPair = input.match(re)
             legendString = dict[firstPair[0]] + ' on ' + dict[input.replace(firstPair[0],'')]
         }
-    } else { // if no observation and not a p1/p2 situation
+    } else { // if no observation and not a P1/P2 situation
         if (input.length == 1) {
             legendString = dict[input]; // single subject
         } else if (input.length == 2) {
@@ -265,16 +270,4 @@ function tooltipRemoveElement(label) {
         }
     }
 return legendString
-}
-
-
-/**  
- * Display months on slider as years
- */
-function convertMonthstoYears() {
-    tooltips = document.getElementsByClassName('rs-tooltip');
-    for (tooltip of tooltips) {
-        newVal = tooltip.innerHTML/12
-        tooltip.innerHTML = newVal.toFixed(1)
-    }
 }
