@@ -9,9 +9,7 @@
     "dc_label": "label",
     "dc_construct": "construct",
     "dc_mode_of_collection": "mode of collection",
-    "wave_title": "wave",
-    "wave_start_date_collection": "Wave start date collection",
-    "wave_end_date_collection": "Wave end date collection"
+    "wave_title": "wave"
  },
   "cohort": {
 	  "dataset_type": "DDI block",
