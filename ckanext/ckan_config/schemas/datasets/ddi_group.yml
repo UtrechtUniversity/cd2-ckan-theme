@@ -27,6 +27,10 @@ dataset_fields:
   label: Abstract
   required: true
 
+# purpose of the cohort (text field)
+- field_name: cohort_purpose
+  label: Purpose
+
 - field_name: cohort_publisher
   label: Publisher
   repeating_subfields:
@@ -89,9 +93,6 @@ dataset_fields:
 - field_name: cohort_information_classification
   label: Classification
 
-# purpose of the cohort (text field)
-- field_name: cohort_purpose
-  label: Purpose
 
 # contact details
 - field_name: cohort_contact
