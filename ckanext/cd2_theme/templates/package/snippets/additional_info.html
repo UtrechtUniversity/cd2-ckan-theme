@@ -16,8 +16,7 @@
 
     navTabs[0].innerHTML = `<ul class="nav nav-tabs">
       <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder-open"></i> Study</a></li>
-      <!--<li><a href="/dataset/?q={{ cohort_query|join('||')|safe }}&amp;dataset_type=cohort"><i class="fa fa-folder-open"></i> Cohorts</a></li>-->
-      <li><a href="/dataset/?q={{ wave_query|join('||')|safe }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>-->
+      <!--<li><a href="/dataset/?q={{ cohort_query|join('||')|safe }}&amp;dataset_type=cohort"><i class="fa fa-folder-open"></i> Cohorts</a></li><li><a href="/dataset/?q={{ wave_query|join('||')|safe }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>-->
       <li class="active"><a href="#"><i class="fa fa-sitemap"></i> Dataset</a></li>
     </ul>`  
     {% elif pkg_dict.type == 'wave' %}
