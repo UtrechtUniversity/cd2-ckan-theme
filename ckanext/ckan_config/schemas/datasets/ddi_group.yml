@@ -45,9 +45,9 @@ dataset_fields:
   - field_name: cohort_creator_affiliation
     label: Affiliation
   - field_name: cohort_creator_pid
-    label: identifier
+    label: Identifier
   - field_name: cohort_creator_identifier_type # ORCID, SCOPUS, etc.
-    label: identifier type
+    label: Identifier type
 
 - field_name: cohort_contributors
   label: Contributors
@@ -57,9 +57,9 @@ dataset_fields:
   - field_name: cohort_contributor_affiliation
     label: Affiliation
   - field_name: cohort_contributor_pid
-    label: identifier
+    label: Identifier
   - field_name: cohort_contributor_identifier_type # ORCID, SCOPUS, etc.
-    label: identifier type
+    label: Identifier type
 
 - field_name: cohort_language
   label: Language
@@ -91,7 +91,7 @@ dataset_fields:
 
 # purpose of the cohort (text field)
 - field_name: cohort_purpose
-  label: purpose
+  label: Purpose
 
 # contact details
 - field_name: cohort_contact

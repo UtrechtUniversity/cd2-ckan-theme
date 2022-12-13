@@ -9,7 +9,7 @@ dataset_fields:
 # name is an internal CKAN identifier;
 # if the cohort has a DOI then possibly use hash of this
 - field_name: name
-  label: identifier
+  label: Identifier
   preset: dataset_slug
   form_placeholder: eg. my-dataset
 
@@ -19,7 +19,7 @@ dataset_fields:
   form_placeholder: eg. A descriptive title for the wave
 
 - field_name: wave_alternate_title
-  label:  Alternate title
+  label: Alternate title
 
 - field_name: wave_studyunit_type
   label: Type of StudyUnit # e.g. child, adolescent
@@ -46,25 +46,25 @@ dataset_fields:
   label: Creators
   repeating_subfields:
   - field_name: wave_creator
-    label:  Creator
+    label: Creator
   - field_name: wave_creator_affiliation
     label: Affiliation
   - field_name: wave_creator_pid
-    label: identifier
+    label: Identifier
   - field_name: wave_creator_identifier_type # ORCID, SCOPUS, etc.
-    label: identifier type
+    label: Identifier type
 
 - field_name: wave_contributors
   label: Contributors
   repeating_subfields:
   - field_name: wave_contributor
-    label:  Contributor
+    label: Contributor
   - field_name: wave_contributor_affiliation
     label: Affiliation
   - field_name: wave_contributor_pid
-    label: identifier
+    label: Identifier
   - field_name: wave_contributor_identifier_type # ORCID, SCOPUS, etc.
-    label: identifier type
+    label: Identifier type
 
 - field_name: wave_funding # can be distinct for different waves
   label: Funding information

@@ -128,7 +128,7 @@ dataset_fields:
   - field_name: dc_construct # "physical health"
     label: Construct
 - field_name: dc_agency # obsolete?
-  label: registered agency
+  label: Registered agency
 - field_name: notes # dc_description - changed: prefer to have description of measurement in abstract CUSTOM
   label: Description
 - field_name: dc_mode_of_collection
@@ -154,11 +154,11 @@ dataset_fields:
   preset: multiple_select
   choices:
   - value: individual
-    label: individual
+    label: Individual
   - value: household
-    label: household
+    label: Household
   - value: family
-    label: family
+    label: Family
 - field_name: measure_age_range
   label: Age range
   repeating_subfields:
