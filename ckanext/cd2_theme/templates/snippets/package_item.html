@@ -34,10 +34,10 @@
           
             <h2 class="dataset-heading">
               {% block heading_private %}
-              {% if package.private %}
+              {% if (package.type == 'wave') or (package.type == 'cohort') %}
               <span class="dataset-private label label-inverse">
-                <i class="fa fa-lock"></i>
-                {{ _('Private') }}
+                <i class="fa fa-folder-o"></i>
+                {{ package.type }}
               </span>
               {% endif %}
               {% endblock %}
