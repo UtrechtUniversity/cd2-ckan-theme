@@ -37,7 +37,7 @@ dataset_fields:
   - field_name: cohort_publisher_name
     label: Publisher name
   - field_name: cohort_publisher_identifier
-    label: Publiser ID
+    label: Publisher ID
   - field_name: cohort_publisher_identifier_type
     label: Publisher ID-type
 

@@ -23,13 +23,13 @@
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
         <li><a href="/cohort/{{pkg_dict.wave_cohort_ckan_id}}"><i class="fa fa-folder"></i> Cohort</a></li>
-        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Wave</a></li>
+        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_title={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       {% elif pkg_dict.type == 'cohort' %}
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
-        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Cohort</a></li>
+        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Cohorts</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-folder"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>` 
