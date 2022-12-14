@@ -3,12 +3,12 @@
   "default":
   {
     "measure_age_month": "age range",
-    "dataset_type": "type",
     "organization":  "study",
     "wave_cohort": "cohort",
     "dc_label": "label",
     "dc_construct": "construct",
     "dc_mode_of_collection": "mode of collection",
+    "dataset_type": "type",
     "wave_title": "wave"
  },
   "cohort": {

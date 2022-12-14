@@ -147,8 +147,8 @@ dataset_fields:
     label: Citation string
   - field_name: dc_measurements_references_doi
     label: DOI
-  - field_name: dc_measurements_references_type
-    label: Type of reference # IsSupplementedBy, IsDocumentedBy, etc.
+ # - field_name: dc_measurements_references_type
+ #   label: Type of reference # IsSupplementedBy, IsDocumentedBy, etc.
 - field_name: dc_analysis_unit # e.g. individual, household, family
   label: Analysis unit
   preset: multiple_select
