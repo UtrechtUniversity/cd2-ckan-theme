@@ -48,14 +48,3 @@
   {% endfor %}
 {% endblock %}
 
-
-<script>
-document.addEventListener("DOMContentLoaded", function (event) {
-  const el = document.getElementsByClassName('repeating-element');
-  for (const field of el) {
-    if (field.innerHTML.startsWith('http')) {
-      field.innerHTML = `<a href="`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
-    }
-  }
-}
-</script>
