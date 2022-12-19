@@ -18,14 +18,14 @@
               {% elif h.scheming_language_text(subfield.label) == 'Funder name' %} 
               <span class="fa fa-university"></span> 
               {% elif h.scheming_language_text(subfield.label) == 'Grant number' %} 
-              <span class="fa fa-hash-tag"></span> 
+              <span class="fa fa-hashtag"></span> 
               {% elif h.scheming_language_text(subfield.label) == 'Citation' %} 
               <span class="fa fa-share-alt"></span> 
               {% elif h.scheming_language_text(subfield.label) == 'Reference type' %} 
               <span class="fa fa-info-circle"></span> 
               {% elif h.scheming_language_text(subfield.label) == 'Publisher name' %} 
               <span class="fa fa-user"></span> 
-              {% elif h.scheming_language_text(subfield.label) == 'Publiser ID' %} 
+              {% elif h.scheming_language_text(subfield.label) == 'Publisher ID' %} 
               <span class="fa fa-id-card"></span> 
               {% elif h.scheming_language_text(subfield.label) == 'Publisher ID-type' %} 
               <span class="fa fa-info-circle"></span> 
@@ -33,7 +33,6 @@
               {{ h.scheming_language_text(subfield.label) }}
             </dt>
             <dd class="repeating-element">
-    
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
               data=field_data,
@@ -48,3 +47,15 @@
     </div>
   {% endfor %}
 {% endblock %}
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+  const el = document.getElementsByClassName('repeating-element');
+  for (const field of el) {
+    if (field.innerHTML.startsWith('http')) {
+      field.innerHTML = `<a href="`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
+    }
+  }
+}
+</script>
