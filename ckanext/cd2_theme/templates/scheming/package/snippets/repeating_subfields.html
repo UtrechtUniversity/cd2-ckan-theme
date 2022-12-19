@@ -33,7 +33,7 @@
               {{ h.scheming_language_text(subfield.label) }}
             </dt>
             <dd>
-            {% if (h.scheming_language_text(subfield.label) == 'DOI') OR (h.scheming_language_text(subfield.label) == 'Identifier')  %}
+            {% if (h.scheming_language_text(subfield.label) == 'DOI') or (h.scheming_language_text(subfield.label) == 'Identifier')  %}
             <a href="
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
