@@ -2,6 +2,16 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
+
+    // add hyperlinks to content
+    const elCells = document.getElementsByClassName('repeating-element');
+    for (const field of elCells) {
+      if (field.innerHTML.startsWith('http')) {
+        field.innerHTML = `<a href="`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
+      }
+    }
+
+    // replace nav-tabs with wave/cohort and study information
     navTabs = document.getElementsByClassName('nav-tabs');
     {% if pkg_dict.type == 'dataset' %}
 
