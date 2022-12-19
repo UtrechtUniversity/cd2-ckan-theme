@@ -35,15 +35,16 @@
               {% set icon = '' %}
               {% endif %}
             </dt>
-            <dd class="repeating-element">
+            <dd>
             {{ icon|safe }}
+            <span class="repeating-element">
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
               data=field_data,
               entity_type=entity_type,
               object_type=object_type
             -%}
-
+            </span>
             </dd>
           {% endfor %}
         </dl>
