@@ -7,10 +7,33 @@
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
+              {% if h.scheming_language_text(subfield.label) == 'Creator' %}
+              <span class="fa fa-user"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %} 
+              <span class="fa fa-building"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Identifier' %} 
+              <span class="fa fa-id-card"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Identifier type' %} 
+              <span class="fa fa-info-circle"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Funder name' %} 
+              <span class="fa fa-university"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Grant number' %} 
+              <span class="fa fa-hash-tag"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Citation' %} 
+              <span class="fa fa-share-alt"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Reference type' %} 
+              <span class="fa fa-info-circle"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Publisher name' %} 
+              <span class="fa fa-user"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Publiser ID' %} 
+              <span class="fa fa-id-card"></span> 
+              {% elif h.scheming_language_text(subfield.label) == 'Publisher ID-type' %} 
+              <span class="fa fa-info-circle"></span> 
+              {% endif %}
               {{ h.scheming_language_text(subfield.label) }}
             </dt>
             <dd>
-            {% if h.scheming_language_text(subfield.label) == 'DOI' %}
+            {% if (h.scheming_language_text(subfield.label) == 'DOI') OR (h.scheming_language_text(subfield.label) == 'Identifier')  %}
             <a href="
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
