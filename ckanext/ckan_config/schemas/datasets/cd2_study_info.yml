@@ -1,10 +1,11 @@
 scheming_version: 2
-dataset_type: study_dataset
+dataset_type: study_info
 about: Cohort study dataset for use with repeating subfields (overriding default organization schema)
 about_url: https://github.com/ckan/ckanext-scheming
 
-fields:
-### Standard CKAN fields
+dataset_fields:
+- field_name: cohort_study_purpose
+  label: Purpose
 - field_name: notes
   label: Abstract
   required: true
@@ -26,9 +27,11 @@ fields:
   label: Identifier
   preset: dataset_slug
   form_placeholder: eg. my-dataset
-- field_name: image_url
-  label: Image
-  form_placeholder: http://example.com/image.png 
+
+# will refer to the Study that is defined as a CKAN 'organization'
+- field_name: owner_org
+  label: Study
+  preset: dataset_organization
 
 ### CD² specific fields
 - field_name: cohort_study_title
@@ -59,13 +62,11 @@ fields:
     label: Funder name
   - field_name: cohort_study_grant_number
     label:  Grant number
-- field_name: cohort_study_purpose
-  label: purpose
 - field_name: cohort_study_contact
   label: Contact information
   repeating_subfields:
   - field_name: cohort_study_contact_name
-    label: Contact name
+    label: Name
   - field_name: cohort_study_contact_affiliation
     label: Affiliation
   - field_name: cohort_study_contact_mail
@@ -77,8 +78,6 @@ fields:
     label: Identifier
   - field_name: cohort_study_reference_identifier_type
     label: Identifier type
-  - field_name: cohort_study_reference_title
-    label: Title
   - field_name: cohort_study_reference_citation
     label: Citation # to be harvested via e.g. DataCite API
   - field_name: cohort_study_reference_type
@@ -87,3 +86,22 @@ fields:
     choices:
     - value: DocumentedBy
       label: Documented by
+
+
+resource_fields:
+- field_name: url
+  label: URL
+  preset: resource_url_upload
+
+- field_name: name
+  label: Title
+  form_placeholder: Descriptive name of the resource.
+
+- field_name: description
+  label: Description
+  form_snippet: markdown.html
+  form_placeholder: Summary explanation of file contents, purpose, origination, methods and usage guidance.
+
+- field_name: format
+  label: Format
+  preset: resource_format_autocomplete

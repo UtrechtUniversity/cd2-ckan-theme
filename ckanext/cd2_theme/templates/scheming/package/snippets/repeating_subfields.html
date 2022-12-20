@@ -9,6 +9,8 @@
             <dt class="dataset-label">
               {% if h.scheming_language_text(subfield.label) == 'Creator' %}
               {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
+              {% if h.scheming_language_text(subfield.label) == 'Name' %}
+              {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
               {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %}
               {% set icon = '<span class="tabspan fa fa-building"></span> '  %}
               {% elif h.scheming_language_text(subfield.label) == 'Identifier' %}
@@ -29,6 +31,8 @@
               {% set icon = '<span class="tabspan fa fa-id-card"></span> '  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher ID-type' %}
               {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
+              {% elif h.scheming_language_text(subfield.label) == 'Mail address' %}
+              {% set icon = '<span class="tabspan fa fa-envelope"></span> '  %}
               {% else %}
               {{ h.scheming_language_text(subfield.label) }}
               {% set icon = '' %}
