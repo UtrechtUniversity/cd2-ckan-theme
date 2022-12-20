@@ -1,5 +1,5 @@
 scheming_version: 2
-dataset_type: cohort_study
+dataset_type: study_dataset
 about: Cohort study dataset for use with repeating subfields (overriding default organization schema)
 about_url: https://github.com/ckan/ckanext-scheming
 
