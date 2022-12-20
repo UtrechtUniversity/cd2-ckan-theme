@@ -62,8 +62,8 @@
               {% if package.type == 'dataset' %}
               <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span>
                 {% if package.dc_mode_of_collection_sub %}
-                &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span></td></tr>
-                {% endif %}
+                &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span>
+                {% endif %}</td></tr>
                 <tr><td>Available measurements:</td><td>
                   {% set waves_passed = [] %}
                   {% for wave in package.wave %}

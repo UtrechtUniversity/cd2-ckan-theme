@@ -139,6 +139,15 @@
       </td>
     </tr>
 
+    <tr>
+      <th scope="row" class="dataset-label">Mode of collection:</th>
+      <td class="dataset-details">
+      <span class="label">{{ pkg_dict.dc_mode_of_collection }}</span>
+      {% if pkg_dict.dc_mode_of_collection_sub %}
+      &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ pkg_dict.dc_mode_of_collection_sub }}</span>
+      {% endif %}
+      </td>
+    </tr>
 
 
       {% elif pkg_dict.type == 'wave' %}
