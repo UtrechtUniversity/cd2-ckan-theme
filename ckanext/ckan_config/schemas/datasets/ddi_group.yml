@@ -121,12 +121,12 @@ dataset_fields:
 - field_name: cohort_references
   label: References
   repeating_subfields:
+  - field_name: cohort_reference_citation
+    label: Citation # to be harvested via e.g. DataCite API
   - field_name: cohort_reference_identifier
     label: Identifier
   - field_name: cohort_reference_identifier_type
     label: Identifier type
-  - field_name: cohort_reference_citation
-    label: Citation # to be harvested via e.g. DataCite API
   - field_name: cohort_reference_type
     label: Reference type # e.g. IsSupplementedBy, DIsDocumentedBy, Supplements, etc.
 

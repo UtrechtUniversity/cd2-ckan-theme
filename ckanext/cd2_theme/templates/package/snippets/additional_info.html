@@ -4,10 +4,15 @@
   document.addEventListener("DOMContentLoaded", function (event) {
 
     // add hyperlinks to content
+    const isORCID = (identifier) => {
+      return identifier.length > 0 && /(\d{4}-){3}\d{3}(\d|X)/.test(identifier)
+    }
     const elCells = document.getElementsByClassName('repeating-element');
     for (const field of elCells) {
-      if (field.innerHTML.startsWith('http')) {
+      if (field.innerHTML.startsWith('http')) { // is http(s)
         field.innerHTML = `<a href="`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
+      } else if (isORCID(field.innerHTML)) { // is orcid
+        field.innerHTML = `<a href="https://orcid.org/`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
       }
     }
 

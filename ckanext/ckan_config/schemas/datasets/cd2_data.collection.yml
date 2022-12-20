@@ -144,9 +144,9 @@ dataset_fields:
   label: Measurement reference papers
   repeating_subfields:
   - field_name: dc_measurements_references_citation
-    label: Citation string
+    label: Citation
   - field_name: dc_measurements_references_doi
-    label: DOI
+    label: Identifier
  # - field_name: dc_measurements_references_type
  #   label: Type of reference # IsSupplementedBy, IsDocumentedBy, etc.
 - field_name: dc_analysis_unit # e.g. individual, household, family
