@@ -7,7 +7,6 @@
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
-
               {% if h.scheming_language_text(subfield.label) == 'Creator' %}
               {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
               {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %}
