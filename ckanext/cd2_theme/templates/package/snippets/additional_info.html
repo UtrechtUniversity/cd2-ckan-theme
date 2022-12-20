@@ -54,6 +54,9 @@
       if (readmoreEl) { readmoreEl[0].style.display = 'none'; }
       var descriptionEl = document.getElementsByClassName('description')
       if (descriptionEl) { descriptionEl[0].style.display = 'none'; }
+      crumbs = document.getElementsByClassName("breadcrumbs")
+      crumbs[0].querySelector('.active').style.display = 'none'
+
       {% endif %}
   });
 </script>
