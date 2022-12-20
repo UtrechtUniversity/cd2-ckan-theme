@@ -37,6 +37,11 @@ dataset_fields:
 - field_name: cohort_study_title
   label: Title of the cohort study
   preset: title
+
+- field_name: title
+  label: Display title
+  preset: title
+
   form_placeholder: eg. A descriptive title
 - field_name: cohort_study_alternate_title
   label:  Alternate title
