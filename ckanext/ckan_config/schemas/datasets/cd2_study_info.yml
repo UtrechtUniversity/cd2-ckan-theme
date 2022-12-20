@@ -45,6 +45,25 @@ dataset_fields:
   form_placeholder: eg. A descriptive title
 - field_name: cohort_study_alternate_title
   label:  Alternate title
+
+- field_name: cohort_study_data_access
+  label: Data access information
+  repeating_subfields:
+  - field_name: cohort_study_data_access_description
+    label: Data access description
+  - field_name: cohort_study_data_access_URL
+    label: URL
+
+- field_name: cohort_study_publisher
+  label: Publisher
+  repeating_subfields:
+  - field_name: cohort_study_name
+    label: Publisher name
+  - field_name: cohort_study_identifier
+    label: Publisher ID
+  - field_name: cohort_study_identifier_type
+    label: Publisher ID-type
+
 - field_name: cohort_study_principal_investigators
   label: Principal investigators
   repeating_subfields:
@@ -57,6 +76,17 @@ dataset_fields:
   - field_name: cohort_study_pi_pid
     label: Identifier
   - field_name: cohort_study_pi_identifier_type # ORCID, SCOPUS, etc.
+    label: Identifier type
+- field_name: cohort_study_contributer
+  label: Contributers
+  repeating_subfields:
+  - field_name: cohort_study_contributer_name
+    label: Name
+  - field_name: cohort_study_contributer_affiliation
+    label: Affiliation
+  - field_name: cohort_study_contributer_pid
+    label: Identifier
+  - field_name: cohort_study_contributer_identifier_type # ORCID, SCOPUS, etc.
     label: Identifier type
 - field_name: cohort_study_international_identifier
   label: Cohort study international identifier # e.g. DOI
