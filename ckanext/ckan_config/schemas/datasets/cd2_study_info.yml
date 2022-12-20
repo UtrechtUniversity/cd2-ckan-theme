@@ -50,7 +50,7 @@ dataset_fields:
   label: Data access information
   repeating_subfields:
   - field_name: cohort_study_data_access_description
-    label: Data access description
+    label: Description
   - field_name: cohort_study_data_access_URL
     label: URL
 

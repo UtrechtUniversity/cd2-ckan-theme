@@ -33,6 +33,10 @@
               {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
               {% elif h.scheming_language_text(subfield.label) == 'Mail address' %}
               {% set icon = '<span class="tabspan fa fa-envelope"></span> '  %}
+              {% elif h.scheming_language_text(subfield.label) == 'URL' %}
+              {% set icon = '<span class="tabspan fa fa-external-link"></span> '  %}
+              {% elif h.scheming_language_text(subfield.label) == 'Description' %}
+              {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
               {% else %}
               {{ h.scheming_language_text(subfield.label) }}
               {% set icon = '' %}
@@ -41,6 +45,7 @@
             <dd>
             {{ icon|safe }}
             <span class="repeating-element">
+
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
               data=field_data,
