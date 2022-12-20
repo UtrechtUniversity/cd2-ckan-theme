@@ -1,5 +1,5 @@
 #!/bin/bash
-git pull &&
+git pull origin main &&
 
 # CKAN: ckan.ini
 # cp ckanext/ckan_config/ckan.ini /etc/ckan/default/ckan.ini &&
