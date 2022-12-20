@@ -8,44 +8,43 @@
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
               {% if h.scheming_language_text(subfield.label) == 'Creator' %}
-              {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
+              {% set icon = 'fa-user'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Name' %}
-              {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
+              {% set icon = ' fa-user'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %}
-              {% set icon = '<span class="tabspan fa fa-building"></span> '  %}
+              {% set icon = ' fa-building'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Identifier' %}
-              {% set icon = '<span class="tabspan fa fa-id-card"></span> '  %}
+              {% set icon = ' fa-info-circle'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Identifier type' %}
-              {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
+              {% set icon = ' fa-tag'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Funder name' %}
-              {% set icon = '<span class="tabspan fa fa-university"></span> '  %}
+              {% set icon = ' fa-university'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Grant number' %}
-              {% set icon = '<span class="tabspan fa fa-hashtag"></span> '  %}
+              {% set icon = ' fa-hashtag'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Citation' %}
-              {% set icon = '<span class="tabspan fa fa-share-alt"></span> '  %}
+              {% set icon = ' fa-share-alt'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Reference type' %}
-              {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
+              {% set icon = ' fa-tag'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher name' %}
-              {% set icon = '<span class="tabspan fa fa-user"></span> '  %}
+              {% set icon = ' fa-user'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher ID' %}
-              {% set icon = '<span class="tabspan fa fa-id-card"></span> '  %}
+              {% set icon = ' fa-info-circle'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher ID-type' %}
-              {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
+              {% set icon = ' fa-tag'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Mail address' %}
-              {% set icon = '<span class="tabspan fa fa-envelope"></span> '  %}
+              {% set icon = ' fa-envelope'  %}
               {% elif h.scheming_language_text(subfield.label) == 'URL' %}
-              {% set icon = '<span class="tabspan fa fa-external-link"></span> '  %}
+              {% set icon = ' fa-external-link'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Description' %}
-              {% set icon = '<span class="tabspan fa fa-info-circle"></span> '  %}
+              {% set icon = ' fa-comment'  %}
               {% else %}
               {{ h.scheming_language_text(subfield.label) }}
               {% set icon = '' %}
               {% endif %}
             </dt>
             <dd>
-            {{ icon|safe }}
+            <span class="tabspan fa {{ icon }}"></span> 
             <span class="repeating-element">
-
             {%- snippet 'scheming/snippets/display_field.html',
               field=subfield,
               data=field_data,
