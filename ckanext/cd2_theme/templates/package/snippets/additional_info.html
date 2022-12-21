@@ -57,10 +57,6 @@
         <li><a href="/dataset/?organization={{ pkg_dict.name }}&amp;dataset_type=dataset"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
 
-      // remove some redundant interface elements
-      crumbs = document.getElementsByClassName("breadcrumbs")
-      crumbs[0].querySelector('.active').style.display = 'none'
-
       {% endif %}
       // fade in tabs after they've been recreated
       $('.nav-tabs').fadeTo(300, 1);
