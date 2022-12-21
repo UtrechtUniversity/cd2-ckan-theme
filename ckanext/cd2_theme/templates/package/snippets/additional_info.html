@@ -65,7 +65,7 @@
       // fade in tabs after they've been recreated
       $('.nav-tabs').fadeTo(300, 1);
 
-      {% if pkg_type != 'study_info' %}
+      {% if pkg_dict.type != 'study_info' %}
       $('.description').fadeTo(300, 1);
       $('.read-more').fadeTo(300, 1);
       {% endif %}
