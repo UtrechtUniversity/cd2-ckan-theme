@@ -1,11 +1,10 @@
 {% ckan_extends %}
 
 {% block info %}
-  <div class="module module-narrow module-shallow context-info">
+  <div class="module module-narrow module-shallow context-info" style="background-color:#fff">
     {% if has_context_title %}
-      <h2 class="module-heading">Study</h2>
     {% endif %}
-    <section class="module-content dropshadow">
+    <section class="module-content">
       {% block inner %}
       {% block image %}
         <div class="image">
@@ -15,18 +14,13 @@
         </div>
       {% endblock %}
       {% block heading %}
-      <h1 class="heading">{{ organization.title or organization.name }}
-        {% if organization.state == 'deleted' %}
-          [{{ _('Deleted') }}]
-        {% endif %}
-      </h1>
       {% endblock %}
       {% block description %}
       {% if organization.description %}
-        <p class="description">
+        <p class="description" style="display:none">
           {{ h.markdown_extract(organization.description, 180) }}
         </p>
-        <p class="read-more">
+        <p class="read-more" style="display:none">
           {% link_for _('read more'), named_route=organization.type ~ '.about', id=organization.name %}
         </p>
       {% else %}
@@ -43,7 +37,6 @@
       </div></a>
     {% endblock %}
         {% block follow %}
-        
         {% endblock %}
       {% endif %}
       {% endblock %}

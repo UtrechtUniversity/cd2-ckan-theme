@@ -58,17 +58,14 @@
       </ul>`  
 
       // remove some redundant interface elements
-      var readmoreEl = document.getElementsByClassName('read-more');
-      if (readmoreEl) { readmoreEl[0].style.display = 'none'; }
-      var descriptionEl = document.getElementsByClassName('description')
-      if (descriptionEl) { descriptionEl[0].style.display = 'none'; }
       crumbs = document.getElementsByClassName("breadcrumbs")
       crumbs[0].querySelector('.active').style.display = 'none'
-      document.getElementsByClassName('context-info')[0].style.display = 'none' 
 
       {% endif %}
       // fade in tabs after they've been recreated
       $('.nav-tabs').fadeTo(300, 1);
+      $('.description').fadeTo(300, 1);
+      $('.read-more').fadeTo(300, 1);
   });
 </script>
 
