@@ -4,12 +4,10 @@
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
     // Automatically redirect to info dataset
-    if (getDebugStatus() == false) {
-      url = '/study_info/{{group_dict.name}}';
-      current_url = window.location.href;
-      if (current_url.includes(url) == false && current_url.includes('activity') == false) {
-          window.location.replace(url);
-      }
+    url = '/study_info/{{group_dict.name}}';
+    current_url = window.location.href;
+    if (current_url.includes(url) == false && current_url.includes('activity') == false) {
+        window.location.replace(url);
     }
     
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -19,13 +17,17 @@
       
       navTabs = document.getElementsByClassName('nav-tabs');
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
-        <li class="active"><a href="/study_info/about/{{ group_dict.name }}"><i class="fa fa-folder-open"></i> About</a></li>
+        <li class="active"><a href="/organization/about/{{ group_dict.name }}"><i class="fa fa-folder-open"></i> About</a></li>
         <li><a href="/dataset/?organization={{ group_dict.name }}&amp;dataset_type=cohort"><i class="fa fa-folder"></i> Cohorts</a></li>
         <li><a href="/dataset/?organization={{ group_dict.name }}&amp;dataset_type=wave"><i class="fa fa-folder"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ group_dict.name }}&amp;dataset_type=dataset"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       
-      $('.nav-tabs').fadeTo(300, 1);
+      // Hide side-bar description
+      var readmoreEl = document.getElementsByClassName('read-more');
+      if (readmoreEl) { readmoreEl[0].style.display = 'none'; }
+      var descriptionEl = document.getElementsByClassName('description')
+      if (descriptionEl) { descriptionEl[0].style.display = 'none'; }
     });
   </script>
   {% endblock %}
