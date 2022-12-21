@@ -36,7 +36,7 @@
               {% elif h.scheming_language_text(subfield.label) == 'URL' %}
               {% set icon = 'fa-external-link'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Description' %}
-              {% set icon = 'fa-comment'  %}
+              {% set icon = 'fa-question-circle'  %}
               {% else %}
               {{ h.scheming_language_text(subfield.label) }}
               {% set icon = '' %}
