@@ -4,7 +4,7 @@
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
     // Automatically redirect to info dataset
-    url = '/study_info/{{group_dict.name}}';
+    url = '/study/{{group_dict.name}}';
     current_url = window.location.href;
     if (current_url.includes(url) == false && current_url.includes('activity') == false) {
         window.location.replace(url);
