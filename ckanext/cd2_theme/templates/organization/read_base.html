@@ -4,7 +4,7 @@
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
     // Automatically redirect to info dataset
-    if (getDebugStatus()) {
+    if (getDebugStatus() == false) {
       url = '/study_info/{{group_dict.name}}';
       current_url = window.location.href;
       if (current_url.includes(url) == false && current_url.includes('activity') == false) {
@@ -25,11 +25,7 @@
         <li><a href="/dataset/?organization={{ group_dict.name }}&amp;dataset_type=dataset"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       
-      // Hide side-bar description
-      var readmoreEl = document.getElementsByClassName('read-more');
-      if (readmoreEl) { readmoreEl[0].style.display = 'none'; }
-      var descriptionEl = document.getElementsByClassName('description')
-      if (descriptionEl) { descriptionEl[0].style.display = 'none'; }
+      $('.nav-tabs').fadeTo(300, 1);
     });
   </script>
   {% endblock %}
