@@ -177,7 +177,7 @@ function tooltipGetOffset(el) {
  * @param label {string} - text to display and create ID
  * @param offset {int} - horizontal offset relative to parent element
  */
-function tooltipAddElement(el,label,offsetVal) {
+function tooltipAddElement(el,label,offsetVal,icon) {
     offset = tooltipGetOffset(el);
     if (!document.getElementById("id", hashCode(label) + '_tooltip')) {
         const newDiv = document.createElement("div");
@@ -186,7 +186,10 @@ function tooltipAddElement(el,label,offsetVal) {
         newDivArrow.className = 'custom-tooltip-arrow';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
         newDivArrow.setAttribute("id", hashCode(label) + '_tooltip-arrow');
-        newDiv.innerHTML = label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
+        if (icon) {
+            newDiv.innerHTML = '<span class="fa fa-'+icon+'"></span> '
+        }
+        newDiv.innerHTML += label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
         document.body.appendChild(newDiv); // text balloon
@@ -280,17 +283,17 @@ return legendString
  */
 function constructLegend(input) {
     let legend = new Object();
-    legend['Parenting'] = `Performing the role of a parent by care-giving, nurturance, and protection of the child by a natural or substitute parent. The parent supports the child by exercising authority and through consistent, empathic, appropriate behavior in response to the child's needs. PARENTING differs from CHILD REARING in that in child rearing the emphasis is on the act of training or bringing up the children and the interaction between the parent and child, while parenting emphasizes the responsibility and qualities of exemplary behavior of the parent.`
-    legend['Physiology'] = `The science of the functions of organisms, including the chemical and physical processes involved and the activities of the cells, tissues, and organs, including anatomical and structural factors.`
-    legend['Physical health'] = `The condition of your body, taking into consideration everything from the absence of disease to fitness level. Physical health is critical for overall well-being, and can be affected by lifestyle (diet, level of physical activity, and behaviour), human biology (a person's genetics and physiology may make it easier or harder to achieve good physical health), environment (our surroundings and exposure to factors such as sunlight or toxic substances), and healthcare service (good healthcare can help prevent illness, as well as detect and treat illness)`
-    legend['Mental health'] = `Emotional, psychological, and social well-being of an individual or group.`
-    legend['Demographics'] = `Demographics refers to the study of human populations and their characteristics. Demographic information is a population-based description of factors such as age, race, sex, occupation, and socioeconomic status.`
-    legend['Personality'] = `The enduring configuration of characteristics and behavior that comprises an individual's unique adjustment to life, including major traits, interests, drives, values, self-concept, abilities, and emotional patterns.`
-    legend['Cognition'] = `All forms of knowing and awareness, such as perceiving, conceiving, remembering, reasoning, judging, imagining, and problem solving.`
-    legend['Lifestyle'] = `The typical way of life or manner of living that is characteristic of an individual or group, as expressed by behaviors, attitudes, interests, and other factors.`
-    legend['Life history'] = `A history of important life events such as the birth of children, death of family members, and other significant characteristics of someone's life such as illness, jobs, moving to another place, and others.`
-    legend['Sociocognitive and emotional development'] = `Changes and growth in how children learn to understand, react to, and reflect on others as well as on themselves. Sociocognitive and emotional development includes the development trajectories of social and cognitive skills (e.g., language, emotion regulation, empathy and self-identity) that are important capabilities to function in society.`
-    legend['Relationships'] = `A continuing and often committed association between two or more people, as in a family, friendship, marriage, partnership, or other interpersonal link in which the participants have some degree of influence on each other's thoughts, feelings, and actions.`
-    legend['Work and school'] = `This category contains measures that are related to someone's occupational activities and educational activities.`
+    legend['parenting'] = `Performing the role of a parent by care-giving, nurturance, and protection of the child by a natural or substitute parent. The parent supports the child by exercising authority and through consistent, empathic, appropriate behavior in response to the child's needs. PARENTING differs from CHILD REARING in that in child rearing the emphasis is on the act of training or bringing up the children and the interaction between the parent and child, while parenting emphasizes the responsibility and qualities of exemplary behavior of the parent.`
+    legend['physiology'] = `The science of the functions of organisms, including the chemical and physical processes involved and the activities of the cells, tissues, and organs, including anatomical and structural factors.`
+    legend['physical health'] = `The condition of your body, taking into consideration everything from the absence of disease to fitness level. Physical health is critical for overall well-being, and can be affected by lifestyle (diet, level of physical activity, and behaviour), human biology (a person's genetics and physiology may make it easier or harder to achieve good physical health), environment (our surroundings and exposure to factors such as sunlight or toxic substances), and healthcare service (good healthcare can help prevent illness, as well as detect and treat illness)`
+    legend['mental health'] = `Emotional, psychological, and social well-being of an individual or group.`
+    legend['demographics'] = `Demographics refers to the study of human populations and their characteristics. Demographic information is a population-based description of factors such as age, race, sex, occupation, and socioeconomic status.`
+    legend['personality'] = `The enduring configuration of characteristics and behavior that comprises an individual's unique adjustment to life, including major traits, interests, drives, values, self-concept, abilities, and emotional patterns.`
+    legend['cognition'] = `All forms of knowing and awareness, such as perceiving, conceiving, remembering, reasoning, judging, imagining, and problem solving.`
+    legend['lifestyle'] = `The typical way of life or manner of living that is characteristic of an individual or group, as expressed by behaviors, attitudes, interests, and other factors.`
+    legend['life history'] = `A history of important life events such as the birth of children, death of family members, and other significant characteristics of someone's life such as illness, jobs, moving to another place, and others.`
+    legend['sociocognitive and emotional development'] = `Changes and growth in how children learn to understand, react to, and reflect on others as well as on themselves. Sociocognitive and emotional development includes the development trajectories of social and cognitive skills (e.g., language, emotion regulation, empathy and self-identity) that are important capabilities to function in society.`
+    legend['relationships'] = `A continuing and often committed association between two or more people, as in a family, friendship, marriage, partnership, or other interpersonal link in which the participants have some degree of influence on each other's thoughts, feelings, and actions.`
+    legend['work and school'] = `This category contains measures that are related to someone's occupational activities and educational activities.`
     return legend[input];
 }
