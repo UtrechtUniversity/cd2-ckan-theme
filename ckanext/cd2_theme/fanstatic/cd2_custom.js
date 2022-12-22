@@ -186,8 +186,7 @@ function tooltipAddElement(el,label,offsetVal) {
         newDivArrow.className = 'custom-tooltip-arrow';
         newDiv.setAttribute("id", hashCode(label) + '_tooltip');
         newDivArrow.setAttribute("id", hashCode(label) + '_tooltip-arrow');
-        const newContent = document.createTextNode(label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n')); // line endings for longer strings
-        newDiv.appendChild(newContent);
+        newDiv.innerHTML = label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
         newDiv.style = "white-space: pre;";
         const currentDiv = document.getElementsByClassName('main');
         document.body.appendChild(newDiv); // text balloon
@@ -195,7 +194,7 @@ function tooltipAddElement(el,label,offsetVal) {
         
         elementOffset = $(newDiv).height() - 20; 
         $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left - 10, position:'absolute'});
-        $(newDivArrow).css({top: offset.top - offsetVal - 74, left: offset.left, position:'absolute'});
+        $(newDivArrow).css({top: offset.top - offsetVal - 73, left: offset.left, position:'absolute'});
         $(newDiv).animate({'opacity':'1'}, { duration: 200, queue: false });
         $(newDivArrow).animate({'opacity':'1'}, { duration: 200, queue: false });
     }
