@@ -189,8 +189,9 @@ function tooltipAddElement(el,label,offsetVal,icon) {
         if (icon) {
             newDiv.innerHTML = '<span class="fa fa-'+icon+'"></span> '
         }
-        newDiv.innerHTML += label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
-        newDiv.style = "white-space: pre;";
+        //newDiv.innerHTML += label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
+        newDiv.innerHTML += label;
+        newDiv.style = "max-width: 400px; text-align: justify";
         const currentDiv = document.getElementsByClassName('main');
         document.body.appendChild(newDiv); // text balloon
         document.body.appendChild(newDivArrow); // bottom arrow
