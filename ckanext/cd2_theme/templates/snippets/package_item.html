@@ -77,7 +77,7 @@
                         {% endif %}
                       <span class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
-                      <span class="label" onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')">{{ wave.wave_title }}</span>
+                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')">{{ wave.wave_title }}</span>
                     {% endif %}
                   {% endfor %}        
                </td></tr>
@@ -160,7 +160,7 @@
                   {% elif constructs.dc_construct|lower|trim == 'questionnaire' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
                   {% endif %}
-                  <img style="opacity:0.5" {{imgurl}} width="35px" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower|trim }}',30)" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower|trim }}')">
+                  <img style="opacity:0.5" {{imgurl}} width="35px" class="info-hover" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower|trim }}',30,'tag')" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower|trim }}')">
               {% endfor %}
               {% endif %}
               {% endif %}
