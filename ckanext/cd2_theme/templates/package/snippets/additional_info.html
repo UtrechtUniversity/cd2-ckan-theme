@@ -124,7 +124,7 @@
                 <div class="cohort-spanner parent-spanner"><a href="/cohort/{{ wave.wave_cohort_ckan_id }}"><li class="label label-cohort">{{ splitname[1] }} <span class="fa fa-level-down"></span></li></a><br />
               {% endif %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info info-hover">{{wave.wave_title}}</a></li> 
+              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
                 {% for waveCode in waveSubjectCodes %}
