@@ -99,7 +99,7 @@
       {% if construct.length != 0 %}
       {% set constructname = construct["dc_construct"] %}
         <li>
-          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info" onmouseenter="tooltipAddElement(this,constructLegend('{{ construct["dc_construct"] }}').replace(/\\'/g, '\''),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ construct["dc_construct"] }}').replace(/\\'/g, '\''))">{{construct["dc_construct"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info" onmouseenter="tooltipAddElement(this,constructLegend('{{ construct["dc_construct"] }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ construct["dc_construct"] }}'))">{{construct["dc_construct"]}}</a>
           </li>
         {% endif %}
       {% endfor %}
