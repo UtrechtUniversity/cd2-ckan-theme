@@ -73,6 +73,27 @@
     <tbody>
     <tr id="relationship"></tr>
     {% if pkg_dict.type == 'dataset' %}
+
+    <tr class="similar-datasets" style="display:none">
+      <th scope="row" class="dataset-label">Similar datasets</th>
+      <td class="dataset-details" id="similar-datasets">
+      </td>
+    </tr>
+    <script>
+      // query api to find similar datasets based on CD2_ID
+      url = "/api/3/action/package_search?fq=common_id:{{ pkg_dict.common_id }}"
+        fetch(url)
+          .then(res => res.json())
+          .then(data => {
+            const div = document.getElementById('similar-datasets');
+            if (data.result.results.length > 1) {
+              div.innerHTML = `<strong><a href="/dataset/?dataset_type=dataset&amp;q=%22{{pkg_dict.common_id}}%22">View ` + (data.result.results.length-1) + ` similar  <span class="fa fa-copy"></span></a></strong>`
+              $('.similar-datasets').fadeTo(1, 1);
+            }
+          });
+    </script>
+
+
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">

@@ -7,9 +7,7 @@
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
-              {% if h.scheming_language_text(subfield.label) == 'Creator' %}
-              {% set icon = 'fa-user'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Name' %}
+              {% if h.scheming_language_text(subfield.label) == 'Creator' or  h.scheming_language_text(subfield.label) == 'Contributor' or h.scheming_language_text(subfield.label) == 'Name' %}
               {% set icon = 'fa-user'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %}
               {% set icon = 'fa-building'  %}
@@ -24,7 +22,7 @@
               {% elif h.scheming_language_text(subfield.label) == 'Citation' %}
               {% set icon = 'fa-share-alt'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Reference type' %}
-              {% set icon = 'fa-tag'  %}
+              {% set icon = 'fa-hand-o-right'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher name' %}
               {% set icon = 'fa-user'  %}
               {% elif h.scheming_language_text(subfield.label) == 'Publisher ID' %}
