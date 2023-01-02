@@ -84,8 +84,15 @@
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow">
     <tbody>
-    <tr id="relationship"></tr>
+  
     {% if pkg_dict.type == 'dataset' %}
+
+    <tr style="display:none">
+      <th scope="row" class="dataset-label">Instrument name</th>
+      <td class="dataset-details">
+        {{pkg_dict.dc_instrument_name}}
+      </td>
+    </tr>
 
     <tr class="similar-datasets" style="display:none">
       <th scope="row" class="dataset-label">Similar datasets</th>
