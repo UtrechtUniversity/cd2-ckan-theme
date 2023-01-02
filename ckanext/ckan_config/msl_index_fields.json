@@ -4,6 +4,8 @@
         "dc_label",
         "wave_cohort",
         "measure_age_month",
-        "wave_title"
+        "wave_title",
+        "wave_start_date_collection",
+        "wave_end_date_collection"
     ]
 }
