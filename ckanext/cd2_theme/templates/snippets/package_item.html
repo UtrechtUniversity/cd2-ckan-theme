@@ -34,12 +34,15 @@
           
             <h2 class="dataset-heading">
               {% block heading_private %}
-              {% if (package.type == 'wave') or (package.type == 'cohort') %}
+             
               <span class="dataset-private label label-inverse">
+                {% if (package.type == 'wave') or (package.type == 'cohort') %}
                 <i class="fa fa-folder-o"></i>
+                {% else %}
+                <i class="fa fa-suitcase"></i>
+                {% endif %}
                 {{ package.type }}
               </span>
-              {% endif %}
               {% endblock %}
               {% block heading_title %}
               {{ h.link_to(h.truncate(title, truncate_title), h.url_for('%s.read' % package.type, id=package.name)) }}
@@ -83,6 +86,9 @@
                </td></tr>
             {% elif  package.type == 'wave' %} 
             <tr class="table-package-item"><td width="30%">Parent cohort:</td><td><span class="label">{{package.wave_cohort}}</span></td></tr> 
+            <tr class="table-package-item"><td width="30%">Publisher:</td><td><span class="label">{{package.wave_publisher_name}}</span></td></tr> 
+            {% elif  package.type == 'cohort' %} 
+            <tr class="table-package-item"><td width="30%">Publisher:</td><td><span class="label">{{package.cohort_publisher_name}}</span></td></tr>    
             {% endif %}
             </tbody>
             </table>
