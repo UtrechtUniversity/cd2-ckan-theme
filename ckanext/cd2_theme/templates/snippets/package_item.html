@@ -89,14 +89,14 @@
             
             <tr class="table-package-item"><td width="30%">Publisher:</td><td>
               {% for wave_publisher in package.wave_publisher %}
-              <span class="label">{{publisher.wave_publisher_name}}</span>
+              <span class="label">{{wave_publisher.wave_publisher_name}}</span>
               {% endfor %}
             </td></tr> 
             
             {% elif  package.type == 'cohort' %} 
             <tr class="table-package-item"><td width="30%">Publisher:</td><td>  
               {% for cohort_publisher in package.cohort_publisher %}
-              <span class="label">{{publisher.cohort_publisher_name}}</span>
+              <span class="label">{{cohort_publisher.cohort_publisher_name}}</span>
               {% endfor %}            
             </td></tr>    
             
