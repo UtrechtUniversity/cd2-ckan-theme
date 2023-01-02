@@ -172,6 +172,18 @@
         </td>
       </tr>
 
+      {% if pkg_dict.wave_start_date_collection %}
+      <tr>
+        <th scope="row" class="dataset-label">Time span:</th>
+        <td class="dataset-details">
+            {{pkg_dict.wave_start_date_collection}} to 
+            {% if pkg_dict.wave_end_date_collection %} 
+            {{pkg_dict.wave_end_date_collection}} 
+            {% endif %}
+        </td>
+      </tr>
+      {% endif %}
+
       {% endif %}
 
 
