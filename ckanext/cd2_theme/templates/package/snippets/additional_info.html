@@ -39,7 +39,7 @@
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
         <li><a href="/cohort/{{pkg_dict.wave_cohort_ckan_id}}"><i class="fa fa-folder"></i> Cohort</a></li>
-        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Waves</a></li>
+        <li class="active"><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_title={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       {% elif pkg_dict.type == 'cohort' %}
@@ -179,7 +179,7 @@
             {{pkg_dict.wave_start_date_collection}} 
             {% if pkg_dict.wave_end_date_collection %} 
             to {{pkg_dict.wave_end_date_collection}} 
-            {% elif %}
+            {% else %}
             (ongoing)
             {% endif %}
         </td>
