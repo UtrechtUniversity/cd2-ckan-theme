@@ -39,13 +39,13 @@
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
         <li><a href="/cohort/{{pkg_dict.wave_cohort_ckan_id}}"><i class="fa fa-folder"></i> Cohort</a></li>
-        <li class="active"><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>
+        <li class="active pointer"><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_title={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>`  
       {% elif pkg_dict.type == 'cohort' %}
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
-        <li class="active"><a href="#"><i class="fa fa-folder-open"></i> Cohorts</a></li>
+        <li class="active pointer"><a href="/dataset/?organization={{ pkg_dict.name }}&amp;dataset_type=cohort"><i class="fa fa-folder-open"></i> Cohorts</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=wave&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-folder"></i> Waves</a></li>
         <li><a href="/dataset/?organization={{ pkg_dict.organization.name }}&amp;dataset_type=dataset&amp;wave_cohort={{ pkg_dict.title }}"><i class="fa fa-sitemap"></i> Datasets</a></li>
       </ul>` 
@@ -107,7 +107,7 @@
     </td>
     </tr>
     <tr>
-      <th scope="row" class="dataset-label">Available measurements:</th>
+      <th scope="row" class="dataset-label">Available measurements</th>
       <td class="dataset-details">
       <div class="dataset-resources list-unstyled">
 
@@ -141,7 +141,7 @@
     </tr>
 
     <tr>
-      <th scope="row" class="dataset-label">Mode of collection:</th>
+      <th scope="row" class="dataset-label">Mode of collection</th>
       <td class="dataset-details">
       <span class="label">{{ pkg_dict.dc_mode_of_collection }}</span>
       {% if pkg_dict.dc_mode_of_collection_sub %}
@@ -154,7 +154,7 @@
       {% elif pkg_dict.type == 'wave' %}
       
       <tr>
-        <th scope="row" class="dataset-label">Parent cohort:</th>
+        <th scope="row" class="dataset-label">Parent cohort</th>
         <td class="dataset-details">
         <ul class="dataset-resources list-unstyled">
         <li><a href="/cohort/{{pkg_dict.wave_cohort_ckan_id}}" class="label label-info">{{pkg_dict.wave_cohort}}</a></li>
@@ -163,7 +163,7 @@
       </tr>
 
       <tr>
-        <th scope="row" class="dataset-label">Subject age:</th>
+        <th scope="row" class="dataset-label">Subject age</th>
         <td class="dataset-details">
         <ul class="dataset-resources list-unstyled"> <li>
             {{pkg_dict.wave_universe}} months
@@ -174,7 +174,7 @@
 
       {% if pkg_dict.wave_start_date_collection %}
       <tr>
-        <th scope="row" class="dataset-label">Time span:</th>
+        <th scope="row" class="dataset-label">Time span</th>
         <td class="dataset-details">
             {{pkg_dict.wave_start_date_collection}} 
             {% if pkg_dict.wave_end_date_collection %} 
