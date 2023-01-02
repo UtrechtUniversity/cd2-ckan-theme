@@ -114,7 +114,8 @@ dataset_fields:
   form_placeholder: '1.0'
 
 # ------------------ rest of data collection level fields
-
+- field_name: common_id
+  label: common dataset ID
 - field_name: dc_cohort # refers to a group of type cohort (cd2_cohort_yml)
   label: cohort
 - field_name: dc_labels # e.g. "brain anatomy"
