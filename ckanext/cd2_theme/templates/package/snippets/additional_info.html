@@ -68,14 +68,24 @@
   });
 
   // query api to find similar datasets based on CD2_ID
-  url = "/api/3/action/package_search?fq=common_id:{{ pkg_dict.common_id }}"
-    fetch(url)
+  //url = "/api/3/action/package_search?fq=common_id:{{ pkg_dict.common_id }}"
+  url = "/api/3/action/package_search?fq=common_id:0012_CD2"
+  fetch(url)
       .then(res => res.json())
       .then(data => {
-        const div = document.getElementById('similar-datasets');
+        var divContent = '';
+        var divv = document.getElementById('similar-datasets');
         if (data.result.results.length > 1) {
-          div.innerHTML = `<strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View similar  <span class="fa fa-copy"></span></a></strong>`
-          $('.similar-datasets').fadeTo(1, 1);
+          for (item of data.result.results) {
+            divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
+            for (wave of item.wave) {
+              divContent += ` <span class="label">` + wave.wave_title + `</span>`
+            } 
+            divContent += `</div></a> `
+          }
+          divv.innerHTML += divContent + `<br><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all  <span class="fa fa-copy"></span></a></strong>`
+         
+          //$('.similar-datasets').fadeTo(1, 1);
         }
       });
 </script>
