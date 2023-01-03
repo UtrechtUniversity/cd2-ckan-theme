@@ -51,7 +51,11 @@ Example:
 
 {% if query %}
   {%- if count -%}
+    {%- if 'common_id' in query -%}
+    Similar datasets
+    {%- else -%}
     {{ text_query.format(number=h.localised_number(count), query=query, type=type) }}
+    {%- endif -%}
   {%- else -%}
     {{ text_query_none.format(query=query, type=type) }}
   {%- endif -%}
@@ -62,3 +66,5 @@ Example:
     {{ text_no_query_none.format(type=type) }}
   {%- endif -%}
 {%- endif -%}
+
+
