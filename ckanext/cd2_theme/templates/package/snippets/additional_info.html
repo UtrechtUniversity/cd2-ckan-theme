@@ -68,8 +68,8 @@
   });
 
   // query api to find similar datasets based on CD2_ID
-  //url = "/api/3/action/package_search?fq=common_id:{{ pkg_dict.common_id }}"
-  url = "/api/3/action/package_search?fq=common_id:0012_CD2"
+  url = "/api/3/action/package_search?fq=common_id:{{ pkg_dict.common_id }}"
+
   fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -85,7 +85,7 @@
           }
           divv.innerHTML += divContent + `<br><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all  <span class="fa fa-copy"></span></a></strong>`
          
-          //$('.similar-datasets').fadeTo(1, 1);
+          $('.similar-datasets').fadeTo(1, 1);
         }
       });
 </script>
