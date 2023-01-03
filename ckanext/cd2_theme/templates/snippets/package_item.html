@@ -76,9 +76,9 @@
                         {% set label = splitname[1] %}
                         {% do waves_passed.append(wave.wave_cohort) %}
                         {% if waves_passed|length > 1 %}
-                        </span><br />
+                        </div><br />
                         {% endif %}
-                      <span class="cohort-spanner">{{ label }}&nbsp;
+                      <div class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
                       <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')">{{ wave.wave_title }}</span>
                     {% endif %}
