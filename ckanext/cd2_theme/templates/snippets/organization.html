@@ -27,9 +27,9 @@
         <p class="empty">{{ 'There is no description for this organization' }}</p>
       {% endif %}
       {% endblock %}
-      <p>&nbsp;</p><div class="similar-datasets" style="display:none">
+      <p>&nbsp;</p><div class="similar-datasets dropshadow" style="display:none;background-color: #f3f3f3;">
         <h1 class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1><br>
-        <span id="similar-datasets"></span>
+        <div id="similar-datasets" style="padding:5px"></div>
       </div>
       {% if show_nums %}
       {% block nums %}
