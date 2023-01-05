@@ -28,8 +28,8 @@
       {% endif %}
       {% endblock %}
       <div class="data-access module-additional dropshadow">
-      <h1 class="heading dropshadow"><span class="fa fa-download"></span> Data access</h1>
-      <dl class="scheming-subfield-list">
+      <h1 data-toggle="collapse" aria-controls="data-access-panel" data-target="#data-access-panel" aria-expanded="false" class="pointer heading dropshadow"><span class="fa fa-download"></span> Data access</h1>
+      <dl id="data-access-panel" class="scheming-subfield-list collapse">
           <div class="panel-body" style="font-size:13px">
             <dd><span class="tabspan fa fa-question-circle"></span> 
             <span class="repeating-element" id="data-access-info"></span>
@@ -39,8 +39,8 @@
         </div></dl>
     </div>
       <div class="similar-datasets module-additional dropshadow">
-        <h1 class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1>
-        <div id="similar-datasets" style="padding:5px"></div>
+        <h1 data-toggle="collapse" aria-controls="similar-datasets" data-target="#similar-datasets" aria-expanded="false" class="heading dropshadow pointer"><span class="fa fa-copy"></span> Similar datasets</h1>
+        <div id="similar-datasets" class="collapse" style="padding:5px"></div>
       </div>
       {% if show_nums %}
       {% block nums %}
