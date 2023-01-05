@@ -89,7 +89,7 @@
       });
 
        // query api to find data access information from study info
-      url = "/api/3/action/package_show?id=youth"
+      url = "/api/3/action/package_show?id={{pkg_dict.name}}"
       fetch(url)
       .then(res => res.json())
       .then(data => {
