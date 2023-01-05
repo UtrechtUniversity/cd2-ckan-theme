@@ -17,7 +17,6 @@
   {% set truncate_title = truncate_title or 80 %}
   {% set title = package.title or package.name %}
 
-  <!-- For when cd2_name isn't specified and the default would be to display the hex string -->
   {% if (title | length == 32) and (title.replace(' ','') | length == 32) %}
   {% set title = package.dc_instrument_name %}
   {% endif %}

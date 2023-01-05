@@ -87,6 +87,22 @@
         div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
         $('.similar-datasets').fadeTo(1, 1);
       });
+
+       // query api to find data access information from study info
+      url = "/api/3/action/package_show?id=youth"
+      fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const divInfo = document.getElementById('data-access-info');
+        const divHref = document.getElementById('data-access-href');
+        if (data.result.cohort_study_data_access){
+          divInfo.innerHTML = data.result.cohort_study_data_access[0].cohort_study_data_access_description
+          divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + ` target="blank">` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`
+          $('.data-access').fadeTo(1, 1);
+        }
+      });
+
+
 </script>
 
 <section class="additional-info">

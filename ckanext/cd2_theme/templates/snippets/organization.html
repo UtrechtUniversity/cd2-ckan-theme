@@ -27,8 +27,22 @@
         <p class="empty">{{ 'There is no description for this organization' }}</p>
       {% endif %}
       {% endblock %}
-      <p>&nbsp;</p><div class="similar-datasets dropshadow" style="display:none;background-color: #f3f3f3;">
-        <h1 class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1><br>
+      <div class="data-access module-additional dropshadow">
+      <h1 class="heading dropshadow"><span class="fa fa-download"></span> Data access</h1>
+      <dl class="scheming-subfield-list">
+          <div class="panel-body" style="font-size:13px">
+            <dd><span class="tabspan fa fa-question-circle"></span> 
+            <span class="repeating-element" id="data-access-info"></span>
+            </dd><dd>
+            <span class="tabspan fa fa-external-link"></span> 
+            <span class="repeating-element" id="data-access-href"></span>
+            </dd>
+        </div></dl>
+    </div>
+      
+      
+      <div class="similar-datasets module-additional dropshadow">
+        <h1 class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1>
         <div id="similar-datasets" style="padding:5px"></div>
       </div>
       {% if show_nums %}
