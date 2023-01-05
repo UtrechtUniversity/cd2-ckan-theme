@@ -36,28 +36,6 @@
       <li class="active"><a href="#"><i class="fa fa-sitemap"></i> Dataset</a></li>
     </ul>`  
 
-    // query api to find similar datasets based on CD2_ID
-    url = "/api/3/action/package_search?fq=common_id:{{pkg_dict.common_id}}"
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        let divContent = '';
-        const currentItem = '{{ pkg_dict.name }}';
-        const div = document.getElementById('similar-datasets');
-        if (data.result.results.length <= 1) { return; }
-        for (item of data.result.results) {
-          if (item.name == currentItem) { continue; } 
-          divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
-          for (wave of item.wave) {
-            divContent += ` <span class="label">` + wave.wave_title + `</span>`
-          } 
-          divContent += `</div></a> `
-        }
-        div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
-        $('.similar-datasets').fadeTo(1, 1);
-      });
-
-
     {% elif pkg_dict.type == 'wave' %}
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
@@ -90,6 +68,28 @@
       {% endif %}
   });
 
+    {% if pkg_dict.type == 'dataset' %}
+     // query api to find similar datasets based on CD2_ID
+     url = "/api/3/action/package_search?fq=common_id:{{pkg_dict.common_id}}"
+     fetch(url)
+       .then(res => res.json())
+       .then(data => {
+         let divContent = '';
+         const currentItem = '{{ pkg_dict.name }}';
+         const div = document.getElementById('similar-datasets');
+         if (data.result.results.length <= 1) { return; }
+         for (item of data.result.results) {
+           if (item.name == currentItem) { continue; } 
+           divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
+           for (wave of item.wave) {
+             divContent += ` <span class="label">` + wave.wave_title + `</span>`
+           } 
+           divContent += `</div></a> `
+         }
+         div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
+         $('.similar-datasets').fadeTo(1, 1);
+       });
+      {% endif %}
 
        // query api to find data access information from study info
       url = "/api/3/action/package_show?id={{pkg_dict.name}}"
