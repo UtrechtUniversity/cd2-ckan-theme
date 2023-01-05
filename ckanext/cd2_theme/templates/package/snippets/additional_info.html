@@ -35,6 +35,29 @@
       <!--<li><a href="/dataset/?q={{ cohort_query|join('||')|safe }}&amp;dataset_type=cohort"><i class="fa fa-folder-open"></i> Cohorts</a></li><li><a href="/dataset/?q={{ wave_query|join('||')|safe }}&amp;dataset_type=wave"><i class="fa fa-folder-open"></i> Waves</a></li>-->
       <li class="active"><a href="#"><i class="fa fa-sitemap"></i> Dataset</a></li>
     </ul>`  
+
+    // query api to find similar datasets based on CD2_ID
+    url = "/api/3/action/package_search?fq=common_id:{{pkg_dict.common_id}}"
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        let divContent = '';
+        const currentItem = '{{ pkg_dict.name }}';
+        const div = document.getElementById('similar-datasets');
+        if (data.result.results.length <= 1) { return; }
+        for (item of data.result.results) {
+          if (item.name == currentItem) { continue; } 
+          divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
+          for (wave of item.wave) {
+            divContent += ` <span class="label">` + wave.wave_title + `</span>`
+          } 
+          divContent += `</div></a> `
+        }
+        div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
+        $('.similar-datasets').fadeTo(1, 1);
+      });
+
+
     {% elif pkg_dict.type == 'wave' %}
       navTabs[0].innerHTML = `<ul class="nav nav-tabs">
         <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder"></i> Study</a></li>
@@ -67,26 +90,6 @@
       {% endif %}
   });
 
-  // query api to find similar datasets based on CD2_ID
-  url = "/api/3/action/package_search?fq=common_id:{{pkg_dict.common_id}}"
-  fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        let divContent = '';
-        const currentItem = '{{ pkg_dict.name }}';
-        const div = document.getElementById('similar-datasets');
-        if (data.result.results.length <= 1) { return; }
-        for (item of data.result.results) {
-          if (item.name == currentItem) { continue; } 
-          divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
-          for (wave of item.wave) {
-            divContent += ` <span class="label">` + wave.wave_title + `</span>`
-          } 
-          divContent += `</div></a> `
-        }
-        div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
-        $('.similar-datasets').fadeTo(1, 1);
-      });
 
        // query api to find data access information from study info
       url = "/api/3/action/package_show?id={{pkg_dict.name}}"
@@ -97,7 +100,7 @@
         const divHref = document.getElementById('data-access-href');
         if (data.result.cohort_study_data_access){
           divInfo.innerHTML = data.result.cohort_study_data_access[0].cohort_study_data_access_description
-          divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + ` target="blank">` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`
+          divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + ` target="blank"><span class="tabspan fa fa-external-link"></span> ` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`
           $('.data-access').fadeTo(1, 1);
         }
       });
