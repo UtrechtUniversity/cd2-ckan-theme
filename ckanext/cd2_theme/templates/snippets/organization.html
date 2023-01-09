@@ -46,7 +46,7 @@
       {% block nums %}
       <a href="/dataset/?organization={{organization.name}}"><div class="nums">
         <dl>
-          <dt>{{ _('Items') }}</dt>
+          <dt>'Items'</dt>
           <script>
           url = '/api/3/action/package_search?q=organization:{{organization.name}}&fq=dataset_type:dataset'
           fetch(url)
@@ -59,6 +59,7 @@
           <dd id="nums"></dd>
         </dl>
       </div></a>
+      {% endblock %}
     {% endblock %}
     </section>
   </div>
