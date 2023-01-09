@@ -40,21 +40,26 @@
     </div>
       <div class="similar-datasets module-additional dropshadow">
         <h1 data-toggle="collapse" aria-controls="similar-datasets" data-target="#similar-datasets" aria-expanded="false" class="heading dropshadow pointer"><span class="fa fa-copy"></span> Similar datasets</h1>
-        <div id="similar-datasets" class="collapse" style="padding:5px"></div>
+        <div id="similar-datasets" class="collapse" style="padding:10px"></div>
       </div>
-      {% if show_nums %}
+
       {% block nums %}
       <a href="/dataset/?organization={{organization.name}}"><div class="nums">
         <dl>
           <dt>{{ _('Items') }}</dt>
-          <dd>{{ h.SI_number_span(organization.package_count) }}</dd>
+          <script>
+          url = '/api/3/action/package_search?q=organization:{{organization.name}}&fq=dataset_type:dataset'
+          fetch(url)
+            .then(res => res.json())
+            .then(data => {
+              var div = document.getElementById('nums');
+              div.innerHTML = data.result.count;
+            });
+          </script>
+          <dd id="nums"></dd>
         </dl>
       </div></a>
     {% endblock %}
-        {% block follow %}
-        {% endblock %}
-      {% endif %}
-      {% endblock %}
     </section>
   </div>
   {% endblock %}
