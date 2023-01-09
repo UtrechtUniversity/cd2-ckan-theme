@@ -15,6 +15,7 @@ Example:
   {% set text_heading = _('Search {type}s').format(type=type) %}
 {%- else -%}
   {% set text_heading = _('Search {type}s for <em style="font-weight:400">{query}</em>').format(type=type, query=query) %}
+  <h1>{{ text_heading }}</h1>
 {%- endif -%}
 
-<h1>{{ text_heading }}</h1>
+
