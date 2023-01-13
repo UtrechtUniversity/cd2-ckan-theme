@@ -112,12 +112,6 @@
   
     {% if pkg_dict.type == 'dataset' %}
     <tr>
-      <th scope="row" class="dataset-label">Instrument name</th>
-      <td class="dataset-details">
-        {{pkg_dict.dc_instrument_name}}
-      </td>
-    </tr>
-    <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
@@ -229,11 +223,7 @@
         </td>
       </tr>
       {% endif %}
-
       {% endif %}
-
-
-
       {% block package_additional_info %}
       {% endblock %}
       
