@@ -106,11 +106,20 @@
     });
 </script>
 
+
+{% if pkg_dict.dc_additional_info %} 
+<p><span class="fa fa-info-circle"></span> {{pkg_dict.dc_additional_info}}
+</p>
+{% endif %}
+
+
+
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow">
     <tbody>
   
     {% if pkg_dict.type == 'dataset' %}
+
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
