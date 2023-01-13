@@ -132,6 +132,8 @@ dataset_fields:
   repeating_subfields:
   - field_name: dc_construct # "physical health"
     label: Construct
+- field_name: dc_additional_info
+  label: Additional information
 - field_name: dc_agency # obsolete?
   label: Registered agency
 - field_name: notes # dc_description - changed: prefer to have description of measurement in abstract CUSTOM
