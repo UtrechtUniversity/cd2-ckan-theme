@@ -7,7 +7,10 @@
 <!--[if IE 9]> <html lang="{{ lang }}" class="ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="secondary-three" lang="{{ lang }}"> <!--<![endif]-->
 {%- endblock -%}
-
+<script>
+  heroDiv = document.getElementById('hero');
+  if (heroDiv) { heroDiv.style.backgroundImage = "url('/img/hero_dot.jpg')"; }
+</script>
 {%- block page -%}
 
   {% block skip %}

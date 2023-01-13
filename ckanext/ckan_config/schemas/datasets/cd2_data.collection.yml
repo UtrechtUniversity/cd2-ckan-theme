@@ -116,6 +116,10 @@ dataset_fields:
 # ------------------ rest of data collection level fields
 - field_name: common_id
   label: common dataset ID
+- field_name: dc_measure_name
+  label: Measure name
+- field_name: dc_alternate_name
+  label: Alternate name
 - field_name: dc_cohort # refers to a group of type cohort (cd2_cohort_yml)
   label: cohort
 - field_name: dc_labels # e.g. "brain anatomy"
