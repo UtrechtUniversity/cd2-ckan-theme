@@ -70,7 +70,7 @@
 
   {% if pkg_dict.type == 'dataset' %}
     // query api to find similar datasets based on CD2_ID
-    url = "/api/3/action/package_search?fq=common_id:{{pkg_dict.common_id}}"
+    url = "/api/3/action/package_search?fq=dc_common_id:{{pkg_dict.dc_common_id}}"
     fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -86,7 +86,7 @@
           } 
           divContent += `</div></a> `
         }
-        div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=common_id:%22{{pkg_dict.common_id}}%22">View all</a></strong></div>`
+        div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=dc_common_id:%22{{pkg_dict.dc_common_id}}%22">View all</a></strong></div>`
         $('.similar-datasets').fadeTo(1, 1);
       });
     {% endif %}
@@ -112,14 +112,10 @@
 </p>
 {% endif %}
 
-
-
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow">
-    <tbody>
-  
+    <tbody>  
     {% if pkg_dict.type == 'dataset' %}
-
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">

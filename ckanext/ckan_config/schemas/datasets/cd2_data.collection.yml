@@ -114,12 +114,8 @@ dataset_fields:
   form_placeholder: '1.0'
 
 # ------------------ rest of data collection level fields
-- field_name: common_id
+- field_name: dc_common_id
   label: common dataset ID
-- field_name: dc_measure_name
-  label: Measure name
-- field_name: dc_alternate_name
-  label: Alternate name
 - field_name: dc_cohort # refers to a group of type cohort (cd2_cohort_yml)
   label: cohort
 - field_name: dc_labels # e.g. "brain anatomy"
@@ -147,8 +143,11 @@ dataset_fields:
 - field_name: dc_subject # e.g. child
   label: Subject
 - field_name: dc_instrument_name # repeatable? complex (e.g. with an identifier)?
-  # translate to complex type of repeating_fields
   label: Instrument name
+- field_name: dc_alternate_name
+  label: Alternate name
+- field_name: dc_measure_name
+  label: Measure name
 - field_name: dc_measurement_references
   label: Measurement reference papers
   repeating_subfields:

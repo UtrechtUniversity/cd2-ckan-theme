@@ -51,7 +51,7 @@ Example:
 
 {% if query %}
   {%- if count -%}
-    {%- if 'common_id' in query -%}
+    {%- if 'dc_common_id' in query -%}
     <span class="fa fa-copy"></span> Similar datasets
     <script>getInput = document.getElementById("searchbox"); getInput.value = "";</script>
     {%- else -%}
