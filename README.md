@@ -2,7 +2,7 @@
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
     
-Theme for the CKAN CD² meta-data portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
+CKAN theme for the CD² metadata portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
 
 ![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png?raw=true)
 
@@ -46,7 +46,7 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
 
 ## Updating and testing
 
-SOLR and facet configuration files are included (and config of ckanext-msl-ckan extension), can be written to the correct location using the reload.sh script
+SOLR and facet configuration files are included in [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
 
 
 ## Specific CD² configurations
