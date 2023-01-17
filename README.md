@@ -46,7 +46,7 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
 
 ## Updating and testing
 
-SOLR and facet configuration files are included (and config of ckanext-msl-ckan extension), can be written to the correct location using the reload.sh script
+SOLR and facet configuration files are included in [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
 
 
 ## Specific CD² configurations
