@@ -193,9 +193,11 @@
       </td>
     </tr>
 
+  
+
 
       {% elif pkg_dict.type == 'wave' %}
-      
+
       <tr>
         <th scope="row" class="dataset-label">Cohort</th>
         <td class="dataset-details">
@@ -228,6 +230,12 @@
         </td>
       </tr>
       {% endif %}
+      <tr>
+        <th scope="row" class="dataset-label">Geographic location</th>
+        <td class="dataset-details">
+        <span class="label" style="line-height:2">{{ pkg_dict.wave_spatial_geographic_location }}, {{ pkg_dict.wave_spatial_country_code }}</span>
+        </td>
+      </tr>
       {% endif %}
       {% block package_additional_info %}
       {% endblock %}
