@@ -40,6 +40,11 @@
       <tr>
         <th scope="row" class="dataset-label">
             {{ h.scheming_language_text(field.label) }}
+            {% if pkg_dict.type == 'wave' %}
+            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed fields are supplement to information contained at cohort and study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement('Displayed fields supplement to information contained at cohort and study-level')"></span>
+            {% elif pkg_dict.type == 'cohort' %}
+            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed fields are supplement to information contained at study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement('Displayed fields are supplement to information contained at study-level')"></span>
+            {% endif %}
         </th>
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
