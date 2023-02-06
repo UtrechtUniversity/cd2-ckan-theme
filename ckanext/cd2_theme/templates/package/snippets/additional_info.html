@@ -4,6 +4,8 @@
   document.addEventListener("DOMContentLoaded", function (event) {
 
     // add hyperlinks to content
+
+    // find and replace ORCID
     const isORCID = (identifier) => {
       return identifier.length > 0 && /(\d{4}-){3}\d{3}(\d|X)/.test(identifier)
     }
@@ -15,6 +17,21 @@
         field.innerHTML = `<a href="https://orcid.org/`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
       }
     }
+
+    // find and replace DOI
+    function filterDoi(text) {
+      return text.replace(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/g, function(match) {
+        return '<a href="https://doi.org/' + match + '" target="blank">' + match + '</a>';
+      });
+    }
+
+    $(document).ready(function() {
+      $('body').each(function() {
+        var text = $(this).html();
+        var newText = filterDoi(text);
+        $(this).html(newText);
+      });
+    });
 
     // replace nav-tabs with wave/cohort and study information
     navTabs = document.getElementsByClassName('nav-tabs');
