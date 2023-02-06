@@ -3,11 +3,6 @@
  * 
  */
 
-// Enable tooltips site-wide
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
-
 /**  
  * Replace characters in search fields
  */
@@ -39,9 +34,10 @@ function getDebugStatus() {
 };
 document.addEventListener("DOMContentLoaded", function (event) {
     if (getDebugStatus()) {
-        $(".debug").each( function () {
-            $(this).css("display","inherit") 
-        }); 
+        const elements = document.querySelectorAll(".debug");
+        elements.forEach(function (el) {
+            el.style.display = "inherit";
+        });
     }
 });
 
@@ -51,19 +47,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
  * @param facet_element {string} - class of li elements
  * invoked on snippets/facet_list.html
  */
-function facetToggle(facet_input, facet_element,default_display) {
-    $(facet_input).on('keyup', function () {
-        var search = this.value.toLowerCase();
-        if (search.length < 2) { var showAll = true } else { showAll = false }
-        $(facet_element).each(function () {
-            a = this;
-            this.style.display = default_display;
-            if (showAll == false) {
-                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = default_display; } else { this.style.display = "none"; }
-            }
-        });
+function facetToggle(facetInputId, facetElementClass, defaultDisplay) {
+    const facetInput = document.getElementById(facetInputId);
+    const facetElements = document.getElementsByClassName(facetElementClass);
+  
+    facetInput.addEventListener("keyup", function() {
+      const search = this.value.toLowerCase();
+      const showAll = search.length < 2;
+  
+      Array.from(facetElements).forEach(function(element) {
+        element.style.display = showAll ? defaultDisplay : "none";
+        if (!showAll && element.innerText.toLowerCase().includes(search)) {
+          element.style.display = defaultDisplay;
+        }
+      });
     });
-}
+  }
 
 /**  
  * Resize facet dropdown based on number of elements
@@ -170,42 +169,51 @@ function tooltipGetOffset(el) {
     };
 }
 
-
 /**  
  * Create tooltip
  * @param el {object} - element
  * @param label {string} - text to display and create ID
- * @param offset {int} - horizontal offset relative to parent element
+ * @param offsetVal {int} - vertical offset relative to parent element
+ * @param icon {string} - (optional) font awesome icon to display
  */
-function tooltipAddElement(el,label,offsetVal,icon) {
-    offset = tooltipGetOffset(el);
-    if (!document.getElementById("id", hashCode(label) + '_tooltip')) {
-        const newDiv = document.createElement("div");
-        const newDivArrow = document.createElement("div");
-        newDiv.className = 'custom-tooltip';
-        newDivArrow.className = 'custom-tooltip-arrow';
-        newDiv.setAttribute("id", hashCode(label) + '_tooltip');
-        newDivArrow.setAttribute("id", hashCode(label) + '_tooltip-arrow');
-        if (icon) {
-            newDiv.innerHTML = '<span class="fa fa-'+icon+'"></span> '
-        }
-        //newDiv.innerHTML += label.replace(/(.*?\s.*?\s.*?\s.*?\s.*?\s.*?\s)/g, '$1'+'\n');
-        newDiv.innerHTML += label;
-        newDiv.style = "max-width: 400px; text-align: justify";
-        const currentDiv = document.getElementsByClassName('main');
-        document.body.appendChild(newDiv); // text balloon
-        document.body.appendChild(newDivArrow); // bottom arrow
-        
-        elementOffset = $(newDiv).height() - 20; 
-        $(newDiv).css({top: offset.top - offsetVal - elementOffset, left: offset.left - 10, position:'absolute'});
-        $(newDivArrow).css({top: offset.top - offsetVal - 75, left: offset.left, position:'absolute'});
-        $(newDiv).animate({'opacity':'1'}, { duration: 200, queue: false });
-        $(newDivArrow).animate({'opacity':'1'}, { duration: 200, queue: false });
+function tooltipAddElement(el, label, offsetVal, icon) {
+    const offset = tooltipGetOffset(el);
+    const tooltipId = hashCode(label) + "_tooltip";
+    const arrowId = hashCode(label) + "_tooltip-arrow";
+  
+    if (!document.getElementById(tooltipId)) {
+      const newDiv = document.createElement("div");
+      const newDivArrow = document.createElement("div");
+      newDiv.classList.add("custom-tooltip");
+      newDivArrow.classList.add("custom-tooltip-arrow");
+      newDiv.id = tooltipId;
+      newDivArrow.id = arrowId;
+  
+      if (icon) {
+        newDiv.innerHTML = `<span class="fa fa-${icon}"></span>`;
+      }
+  
+      newDiv.innerHTML += label;
+      newDiv.style.cssText = "max-width: 400px; text-align: justify";
+  
+      document.body.appendChild(newDiv); // text balloon
+      document.body.appendChild(newDivArrow); // bottom arrow
+      
+      const elementOffset = newDiv.offsetHeight - 20; 
+      newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
+      newDiv.style.left = `${offset.left - 10}px`;
+      newDiv.style.position = "absolute";
+      newDivArrow.style.top = `${offset.top - offsetVal - 75}px`;
+      newDivArrow.style.left = `${offset.left}px`;
+      newDivArrow.style.position = "absolute";
+  
+      newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
+      newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
     }
-}
+  }
 
 /**  
- * Create tooltip
+ * Remove tooltip
  * @param label {string} - text to create ID of tooltip element
  */
 function tooltipRemoveElement(label) {
@@ -219,106 +227,100 @@ function tooltipRemoveElement(label) {
   }
 }
 
-
 /**  
  * Create wave subject code legend
  * @param input {string} - subject code
  */
- function createLegendString(input) {
-    var dict = new Object();
-    dict['C'] = 'Child'
-    dict['F'] = 'Father (biological or non-biological)'
-    dict['M'] = 'Mother (biological or non-biological)'
-    dict['P'] = 'Parent (biological and non-biological, incl. caregivers)'
-    dict['S'] = 'Sibling (not part of multiple)'
-    dict['I'] = 'Intimate partner of target (usually the child)'
-    dict['Q'] = 'Intimate partner of sibling (not part of multiple)'
-    dict['E'] = 'Family environment in the household'
-    dict['T'] = 'Teacher/tutor'
-    dict['B'] = 'Peer of target'
-    dict['O'] = 'Observation'
-    dict['G'] = 'Extended family'
-    dict['R'] = 'Researcher'
-    dict['W'] = 'Twin pair'
-    dict['MC'] = 'mother-child'
-    dict['PC'] = 'parent-child'
-    dict['FC'] = 'father-child'
-    dict['P1'] = 'Primary parent'
-    dict['P2'] = 'Other parent'
-    dict['P1C'] = 'primary parent on child'
-    dict['P2C'] = 'other parent on child'
-    if (input.substring(0,1) == 'O') { // observation
-        legendString = dict[input.substring(0,1)] + ' of '  + dict[input.substring(1)]
-    } else if (/\d/.test(input)) { // exception for primary and secondary parent
-        if (input.includes('P1') || input.includes('P2') && input.length == 4) { 
-            if (input.substring(0,2) == input.substring(2)){
-                legendString = dict[input.substring(0,2)] + ' on self'
-            } else {
-                legendString = dict[input.substring(0,2)] + ' on ' + dict[input.substring(2)]
-            }
-        } else { // primary/secondary on other
-            var re = /[P\d]+/g;
-            firstPair = input.match(re)
-            legendString = dict[firstPair[0]] + ' on ' + dict[input.replace(firstPair[0],'')]
+function createLegendString(input) {
+    const dict = {
+        'C': 'Child',
+        'F': 'Father (biological or non-biological)',
+        'M': 'Mother (biological or non-biological)',
+        'P': 'Parent (biological and non-biological, incl. caregivers)',
+        'S': 'Sibling (not part of multiple)',
+        'I': 'Intimate partner of target (usually the child)',
+        'Q': 'Intimate partner of sibling (not part of multiple)',
+        'E': 'Family environment in the household',
+        'T': 'Teacher/tutor',
+        'B': 'Peer of target',
+        'O': 'Observation',
+        'G': 'Extended family',
+        'R': 'Researcher',
+        'W': 'Twin pair',
+        'MC': 'mother-child',
+        'PC': 'parent-child',
+        'FC': 'father-child',
+        'P1': 'Primary parent',
+        'P2': 'Other parent',
+        'P1C': 'primary parent on child',
+        'P2C': 'other parent on child'
+    };
+
+    let legendString;
+    if (input[0] === 'O') {
+        legendString = `${dict[input[0]]} of ${dict[input.slice(1)]}`;
+    } else if (/\d/.test(input)) {
+        if (input.includes('P1') || input.includes('P2') && input.length === 4) {
+            legendString = input[0] === input[2] ? 
+                            `${dict[input.slice(0, 2)]} on self` :
+                            `${dict[input.slice(0, 2)]} on ${dict[input.slice(2)]}`;
+        } else {
+            const [firstPair] = input.match(/[P\d]+/g);
+            legendString = `${dict[firstPair]} on ${dict[input.replace(firstPair, '')]}`;
         }
-    } else { // if no observation and not a P1/P2 situation
-        if (input.length == 1) {
-            legendString = dict[input]; // single subject
-        } else if (input.length == 2) {
-            if (input.substring(0,1) == input.substring(1)) { // subject pair
-                legendString = dict[input.substring(0,1)] + ' on self'
-            } else {
-                legendString = dict[input.substring(0,1)] + ' on ' + dict[input.substring(1)]
-            }
+    } else {
+        if (input.length === 1) {
+            legendString = dict[input];
+        } else if (input.length === 2) {
+            legendString = input[0] === input[1] ? 
+                            `${dict[input[0]]} on self` : 
+                            `${dict[input[0]]} on ${dict[input[1]]}`;
         }
     }
-return legendString
+
+    return legendString;
 }
-
-
-
 
 /**  
  * Create construct definitions
  * @param input {string} - construct
  */
 function constructLegend(input) {
-    let legend = new Object();
-    // constructs
-    legend['parenting'] = `Performing the role of a parent by care-giving, nurturance, and protection of the child by a natural or substitute parent. The parent supports the child by exercising authority and through consistent, empathic, appropriate behavior in response to the child\'s needs. PARENTING differs from CHILD REARING in that in child rearing the emphasis is on the act of training or bringing up the children and the interaction between the parent and child, while parenting emphasizes the responsibility and qualities of exemplary behavior of the parent.`
-    legend['physiology'] = `The science of the functions of organisms, including the chemical and physical processes involved and the activities of the cells, tissues, and organs, including anatomical and structural factors.`
-    legend['physical health'] = `The condition of your body, taking into consideration everything from the absence of disease to fitness level. Physical health is critical for overall well-being, and can be affected by lifestyle (diet, level of physical activity, and behaviour), human biology (a person\'s genetics and physiology may make it easier or harder to achieve good physical health), environment (our surroundings and exposure to factors such as sunlight or toxic substances), and healthcare service (good healthcare can help prevent illness, as well as detect and treat illness)`
-    legend['mental health'] = `Emotional, psychological, and social well-being of an individual or group.`
-    legend['demographics'] = `Demographics refers to the study of human populations and their characteristics. Demographic information is a population-based description of factors such as age, race, sex, occupation, and socioeconomic status.`
-    legend['personality'] = `The enduring configuration of characteristics and behavior that comprises an individual\'s unique adjustment to life, including major traits, interests, drives, values, self-concept, abilities, and emotional patterns.`
-    legend['cognition'] = `All forms of knowing and awareness, such as perceiving, conceiving, remembering, reasoning, judging, imagining, and problem solving.`
-    legend['lifestyle'] = `The typical way of life or manner of living that is characteristic of an individual or group, as expressed by behaviors, attitudes, interests, and other factors.`
-    legend['life history'] = `A history of important life events such as the birth of children, death of family members, and other significant characteristics of someone\'s life such as illness, jobs, moving to another place, and others.`
-    legend['sociocognitive and emotional development'] = `Changes and growth in how children learn to understand, react to, and reflect on others as well as on themselves. Sociocognitive and emotional development includes the development trajectories of social and cognitive skills (e.g., language, emotion regulation, empathy and self-identity) that are important capabilities to function in society.`
-    legend['relationships'] = `A continuing and often committed association between two or more people, as in a family, friendship, marriage, partnership, or other interpersonal link in which the participants have some degree of influence on each other\'s thoughts, feelings, and actions.`
-    legend['work and school'] = `This category contains measures that are related to someone\'s occupational activities and educational activities.`
+    const legend = {
+    'parenting' : `Performing the role of a parent by care-giving, nurturance, and protection of the child by a natural or substitute parent. The parent supports the child by exercising authority and through consistent, empathic, appropriate behavior in response to the child\'s needs. PARENTING differs from CHILD REARING in that in child rearing the emphasis is on the act of training or bringing up the children and the interaction between the parent and child, while parenting emphasizes the responsibility and qualities of exemplary behavior of the parent.`,
+    'physiology' : `The science of the functions of organisms, including the chemical and physical processes involved and the activities of the cells, tissues, and organs, including anatomical and structural factors.`,
+    'physical health' : `The condition of your body, taking into consideration everything from the absence of disease to fitness level. Physical health is critical for overall well-being, and can be affected by lifestyle (diet, level of physical activity, and behaviour), human biology (a person\'s genetics and physiology may make it easier or harder to achieve good physical health), environment (our surroundings and exposure to factors such as sunlight or toxic substances), and healthcare service (good healthcare can help prevent illness, as well as detect and treat illness)`,
+    'mental health' : `Emotional, psychological, and social well-being of an individual or group.`,
+    'demographics' : `Demographics refers to the study of human populations and their characteristics. Demographic information is a population-based description of factors such as age, race, sex, occupation, and socioeconomic status.`,
+    'personality' : `The enduring configuration of characteristics and behavior that comprises an individual\'s unique adjustment to life, including major traits, interests, drives, values, self-concept, abilities, and emotional patterns.`,
+    'cognition' : `All forms of knowing and awareness, such as perceiving, conceiving, remembering, reasoning, judging, imagining, and problem solving.`,
+    'lifestyle' : `The typical way of life or manner of living that is characteristic of an individual or group, as expressed by behaviors, attitudes, interests, and other factors.`,
+    'life history' : `A history of important life events such as the birth of children, death of family members, and other significant characteristics of someone\'s life such as illness, jobs, moving to another place, and others.`,
+    'sociocognitive and emotional development' : `Changes and growth in how children learn to understand, react to, and reflect on others as well as on themselves. Sociocognitive and emotional development includes the development trajectories of social and cognitive skills (e.g., language, emotion regulation, empathy and self-identity) that are important capabilities to function in society.`,
+    'relationships' : `A continuing and often committed association between two or more people, as in a family, friendship, marriage, partnership, or other interpersonal link in which the participants have some degree of influence on each other\'s thoughts, feelings, and actions.`,
+    'work and school' : `This category contains measures that are related to someone\'s occupational activities and educational activities.`,
     // mode of collection
-    legend['MRI'] =	`A technique that uses a magnetic field to create a computerized image of internal bodily structures. It is used in psychological research to measure brain structure, by exposing the brain to a magnetic field and measuring the resulting radio frequency waves to produce clear pictures of the brain.`
-    legend['EEG'] =	`Recording of electric currents developed in the brain by means of electrodes applied to the scalp, to the surface of the brain, or placed within the substance of the brain.`
-    legend['Eyetracking'] =	`Eyetracking is a technology that can measure a person's gaze direction and what they are looking at in real-time. The technology converts eye movements (e.g., fixations, saccades, smooth pursuit) into a data stream that contains information such as pupil position, the gaze vector for each eye, and gaze point.`
-    legend['Behavioral/cognitive task'] = `Behavioral/cognitive tasks are designed to measure aspects of someone's behavioral and psychological functioning. It is an umbrella term which may include a wide variety of measurements, experiments, procedures, and paradigms to study some aspect of cognitive/behavioral functioning. Cognitive/behavioral tasks are typically concerned with someone's mental processing of information (e.g., memory, attention, decision-making).`
-    legend['Biological sample/measurement'] = `Biological materials collected from living organisms, including, for example, biological specimens of human or animal organs, cells or tissues such as hair, muscle or tumor tissue, bodily fluids such as blood, urine, saliva, extracted material such as DNA and RNA, microorganisms, plant matter, etc. The source of the data are the samples themselves, and the measurements are the other tests applied to the samples.`
-    legend['Anthropometrics/Body measures'] = `The technique that deals with the measurement of the size, weight, and proportions of the human or other primate body.`
-    legend['Echo'] = `The visualization of deep structures of the body by recording the reflections or echoes of ultrasonic pulses directed into the tissues. Use of ultrasound for imaging or diagnostic purposes employs frequencies ranging from 1.6 to 10 megahertz.`
-    legend['X-ray'] = `An electromagnetic emission of short wavelength produced by bombarding a heavy metal target, such as tungsten, with high-energy electrons in a vacuum tube. X-rays are used for diagnostic purposes to visualize internal body structures: The radiation can penetrate most substances and produce images of objects on photographic film (see radiography) or can cause certain chemicals to fluoresce. Prolonged or unnecessary exposure can be extremely damaging; therefore, when X-rays are used therapeutically for diagnosis or to destroy malignant cells (see radiation therapy), great precautions are taken to limit and target exposure.`
-    legend['PET'] =	`An imaging technique using radiolabeled tracers, such as 2-deoxyglucose labeled with fluorine-18, that emit positively charged particles (positrons) as they are metabolized. Used to evaluate cerebral metabolism and blood flow as well as the binding and transport of neurotransmitter systems in the brain, PET enables documentation of functional changes that occur during the performance of mental activities. It is also used to detect damage or disease (e.g., cancer) in other organs of the body.`
-    legend['EMG'] =	`Recording of the changes in electric potential of muscle by means of surface or needle electrodes.`
-    legend['ECG'] =	`An electrocardiogram (EKG or ECG) is a printout of the electrical activity of the heart. Clinical information gained from this printout includes heart rate, rhythm, conduction abnormalities, myocardial ischemia (insufficient blood supply to the heart that may lead to a heart attack), or previous myocardial infarction (heart attack).`
-    legend['SelfAdministeredQuestionnaire'] = `Data collection method in which the respondent reads or listens to the questions, and enters the responses by him/herself; no live interviewer is present, or participates in the questionnaire administration.`
-    legend['MeasurementsAndTests'] = `Assessing specific properties (or characteristics) of beings, things, phenomena, (and/ or processes) by applying pre-established standards and/or specialized instruments or techniques.`
-    legend['Interview'] = `A pre-planned communication between two (or more) people - the interviewer(s) and the interviewee(s) - in which information is obtained by the interviewer(s) from the interviewee(s). If group interaction is part of the method, use "Focus group".`
-    legend['FocusGroup'] = `A group discussion on a particular topic, organized for research purposes. The individuals are selected with relevance to the topic, and interaction among the participants is used as part of the method.`
-    legend['SelfAdministeredWritingsAndDiaries'] =	`Narratives, stories, diaries, and written texts created by the research subject.`
-    legend['ContentCoding'] = `As a mode of secondary data collection, content coding applies coding techniques to transform qualitative data (textual, video, audio or still-image) originally produced for other purposes into quantitative data (expressed in unit-by-variable matrices) in accordance with pre-defined categorization schemes.`
-    legend['Transcription'] = `Capturing information in writing from a different source, or from a different medium, alphabet, or form of notation, like scientific formulae, or musical notes. For transcribed interviews or observations, it is recommended to document the primary mode of collection, using one of the interview or observation terms.`
-    legend['CompilationSynthesis'] = `Collecting and assembling data from multiple, often heterogeneous sources that have one or more reference points in common, and at least one of the sources was originally produced for other purposes. The data are incorporated in a new entity. For example, providing data on the number of universities in the last 150 years using a variety of available sources (e.g. finance documents, official statistics, university registers), combining survey data with information about geographical areas from official statistics (e.g. population density, doctors per capita, etc.), or using RSS to collect blog posts or tweets, etc.`
-    legend['Summary'] =	`Presentation of information in a condensed form, by reducing it to its main points. For example, abstracts of interviews or reports that are published and used as data rather than the full-length interviews or reports.`
-    legend['Aggregation'] =	`Statistics that relate to broad classes, groups, or categories. The data are averaged, totaled, or otherwise derived from individual-level data, and it is no longer possible to distinguish the characteristics of individuals within those classes, groups, or categories. For example, the number and age group of the unemployed in specific geographic regions, or national level statistics on the occurrence of specific offences, originally derived from the statistics of individual police districts.`
-    legend['Simulation'] = `Modeling or imitative representation of real-world processes, events, or systems, often using computer programs. For example, a program modeling household consumption responses to indirect tax changes; or a dataset on hypothetical patients and their drug exposure, background conditions, and known adverse events.`
+    'MRI' :	`A technique that uses a magnetic field to create a computerized image of internal bodily structures. It is used in psychological research to measure brain structure, by exposing the brain to a magnetic field and measuring the resulting radio frequency waves to produce clear pictures of the brain.`,
+    'EEG' :	`Recording of electric currents developed in the brain by means of electrodes applied to the scalp, to the surface of the brain, or placed within the substance of the brain.`,
+    'Eyetracking' :	`Eyetracking is a technology that can measure a person's gaze direction and what they are looking at in real-time. The technology converts eye movements (e.g., fixations, saccades, smooth pursuit) into a data stream that contains information such as pupil position, the gaze vector for each eye, and gaze point.`,
+    'Behavioral/cognitive task' : `Behavioral/cognitive tasks are designed to measure aspects of someone's behavioral and psychological functioning. It is an umbrella term which may include a wide variety of measurements, experiments, procedures, and paradigms to study some aspect of cognitive/behavioral functioning. Cognitive/behavioral tasks are typically concerned with someone's mental processing of information (e.g., memory, attention, decision-making).`,
+    'Biological sample/measurement' : `Biological materials collected from living organisms, including, for example, biological specimens of human or animal organs, cells or tissues such as hair, muscle or tumor tissue, bodily fluids such as blood, urine, saliva, extracted material such as DNA and RNA, microorganisms, plant matter, etc. The source of the data are the samples themselves, and the measurements are the other tests applied to the samples.`,
+    'Anthropometrics/Body measures' : `The technique that deals with the measurement of the size, weight, and proportions of the human or other primate body.`,
+    'Echo' : `The visualization of deep structures of the body by recording the reflections or echoes of ultrasonic pulses directed into the tissues. Use of ultrasound for imaging or diagnostic purposes employs frequencies ranging from 1.6 to 10 megahertz.`,
+    'X-ray' : `An electromagnetic emission of short wavelength produced by bombarding a heavy metal target, such as tungsten, with high-energy electrons in a vacuum tube. X-rays are used for diagnostic purposes to visualize internal body structures: The radiation can penetrate most substances and produce images of objects on photographic film (see radiography) or can cause certain chemicals to fluoresce. Prolonged or unnecessary exposure can be extremely damaging; therefore, when X-rays are used therapeutically for diagnosis or to destroy malignant cells (see radiation therapy), great precautions are taken to limit and target exposure.`,
+    'PET' :	`An imaging technique using radiolabeled tracers, such as 2-deoxyglucose labeled with fluorine-18, that emit positively charged particles (positrons) as they are metabolized. Used to evaluate cerebral metabolism and blood flow as well as the binding and transport of neurotransmitter systems in the brain, PET enables documentation of functional changes that occur during the performance of mental activities. It is also used to detect damage or disease (e.g., cancer) in other organs of the body.`,
+    'EMG' :	`Recording of the changes in electric potential of muscle by means of surface or needle electrodes.`,
+    'ECG' :	`An electrocardiogram (EKG or ECG) is a printout of the electrical activity of the heart. Clinical information gained from this printout includes heart rate, rhythm, conduction abnormalities, myocardial ischemia (insufficient blood supply to the heart that may lead to a heart attack), or previous myocardial infarction (heart attack).`,
+    'SelfAdministeredQuestionnaire' : `Data collection method in which the respondent reads or listens to the questions, and enters the responses by him/herself; no live interviewer is present, or participates in the questionnaire administration.`,
+    'MeasurementsAndTests' : `Assessing specific properties (or characteristics) of beings, things, phenomena, (and/ or processes) by applying pre-established standards and/or specialized instruments or techniques.`,
+    'Interview' : `A pre-planned communication between two (or more) people - the interviewer(s) and the interviewee(s) - in which information is obtained by the interviewer(s) from the interviewee(s). If group interaction is part of the method, use "Focus group".`,
+    'FocusGroup' : `A group discussion on a particular topic, organized for research purposes. The individuals are selected with relevance to the topic, and interaction among the participants is used as part of the method.`,
+    'SelfAdministeredWritingsAndDiaries' :	`Narratives, stories, diaries, and written texts created by the research subject.`,
+    'ContentCoding' : `As a mode of secondary data collection, content coding applies coding techniques to transform qualitative data (textual, video, audio or still-image) originally produced for other purposes into quantitative data (expressed in unit-by-variable matrices) in accordance with pre-defined categorization schemes.`,
+    'Transcription' : `Capturing information in writing from a different source, or from a different medium, alphabet, or form of notation, like scientific formulae, or musical notes. For transcribed interviews or observations, it is recommended to document the primary mode of collection, using one of the interview or observation terms.`,
+    'CompilationSynthesis' : `Collecting and assembling data from multiple, often heterogeneous sources that have one or more reference points in common, and at least one of the sources was originally produced for other purposes. The data are incorporated in a new entity. For example, providing data on the number of universities in the last 150 years using a variety of available sources (e.g. finance documents, official statistics, university registers), combining survey data with information about geographical areas from official statistics (e.g. population density, doctors per capita, etc.), or using RSS to collect blog posts or tweets, etc.`,
+    'Summary' :	`Presentation of information in a condensed form, by reducing it to its main points. For example, abstracts of interviews or reports that are published and used as data rather than the full-length interviews or reports.`,
+    'Aggregation' :	`Statistics that relate to broad classes, groups, or categories. The data are averaged, totaled, or otherwise derived from individual-level data, and it is no longer possible to distinguish the characteristics of individuals within those classes, groups, or categories. For example, the number and age group of the unemployed in specific geographic regions, or national level statistics on the occurrence of specific offences, originally derived from the statistics of individual police districts.`,
+    'Simulation' : `Modeling or imitative representation of real-world processes, events, or systems, often using computer programs. For example, a program modeling household consumption responses to indirect tax changes; or a dataset on hypothetical patients and their drug exposure, background conditions, and known adverse events.`}
     return legend[input];    
 }
