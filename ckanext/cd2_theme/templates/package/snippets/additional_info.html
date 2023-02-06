@@ -25,7 +25,7 @@
         text = `<a href="https://orcid.org/`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
       } else { // try for DOI
         text = filterDoi(text);
-      
+      }
       field.innerHTML = text;
     }
 
@@ -44,7 +44,7 @@
     {% set wave_query = [] %}
     {% set cohort_query = [] %}
     
-    // build querystrings to display linke waves and cohorts
+    // build querystrings to display linked waves and cohorts
     {% for wave in waves %}
       {% do wave_query.append("wave_title%3D%22" ~ wave.wave_title ~ "%22") %}
       {% do cohort_query.append("title%3D%22" ~ wave.wave_cohort ~ "%22") %}
