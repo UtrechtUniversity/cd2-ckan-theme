@@ -29,14 +29,22 @@
       field.innerHTML = text;
     }
 
+    // hide empty repeating fields
+    const repeatingElements = document.querySelectorAll('.repeating-element');
+    repeatingElements.forEach(element => {
+      if (!element.innerHTML.trim()) {
+        element.parentElement.style.display = 'none';
+      }
+    });
+
     // replace nav-tabs with wave/cohort and study information
     navTabs = document.getElementsByClassName('nav-tabs');
     {% if pkg_dict.type == 'dataset' %}
-
     {% set waves = pkg_dict.wave %}
     {% set wave_query = [] %}
     {% set cohort_query = [] %}
     
+    // build querystrings to display linke waves and cohorts
     {% for wave in waves %}
       {% do wave_query.append("wave_title%3D%22" ~ wave.wave_title ~ "%22") %}
       {% do cohort_query.append("title%3D%22" ~ wave.wave_cohort ~ "%22") %}
