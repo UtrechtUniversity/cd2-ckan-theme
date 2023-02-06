@@ -20,17 +20,18 @@
 
     // find and replace DOI
     function filterDoi(text) {
-      return text.replace(/\b((?:https?:\/\/)?(?:dx\.)?doi\.org\/)?(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/g, function(match, p1, p2) {
-        return '<a href="https://doi.org/' + (p1 || '') + p2 + '">' + p2 + '</a>';
+      return text.replace(/(?:<a[^>]*>)?\b((?:https?:\/\/)?(?:dx\.)?doi\.org\/)?(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b(?:<\/a>)?/g, function(match, p1, p2) {
+        if (!/<a[^>]*>/.test(match)) {
+          return '<a href="https://doi.org/' + (p1 || '') + p2 + '">' + p2 + '</a>';
+        } else {
+          return match;
+        }
       });
-    }
-
-    $(document).ready(function() {
-      $('body').each(function() {
-        var text = $(this).html();
-        var newText = filterDoi(text);
-        $(this).html(newText);
-      });
+    }  
+    $('body').each(function() {
+      var text = $(this).html();
+      var newText = filterDoi(text);
+      $(this).html(newText);
     });
 
     // replace nav-tabs with wave/cohort and study information
