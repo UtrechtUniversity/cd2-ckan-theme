@@ -20,8 +20,8 @@
 
     // find and replace DOI
     function filterDoi(text) {
-      return text.replace(/\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/g, function(match) {
-        return '<a href="https://doi.org/' + match + '" target="blank">' + match + '</a>';
+      return text.replace(/\b((?:https?:\/\/)?(?:dx\.)?doi\.org\/)?(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/g, function(match, p1, p2) {
+        return '<a href="https://doi.org/' + (p1 || '') + p2 + '">' + p2 + '</a>';
       });
     }
 
