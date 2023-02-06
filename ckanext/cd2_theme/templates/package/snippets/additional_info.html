@@ -120,8 +120,8 @@
       const divInfo = document.getElementById('data-access-info');
       const divHref = document.getElementById('data-access-href');
       if (data.result.cohort_study_data_access){
-        divInfo.innerHTML = data.result.cohort_study_data_access[0].cohort_study_data_access_description
-        divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`
+        divInfo.innerHTML = data.result.cohort_study_data_access[0].cohort_study_data_access_description;
+        divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`;
         $('.data-access').fadeTo(1, 1);
       }
     });
