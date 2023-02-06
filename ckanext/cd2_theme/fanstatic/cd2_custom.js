@@ -47,22 +47,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
  * @param facet_element {string} - class of li elements
  * invoked on snippets/facet_list.html
  */
-function facetToggle(facetInputId, facetElementClass, defaultDisplay) {
-    const facetInput = document.getElementById(facetInputId);
-    const facetElements = document.getElementsByClassName(facetElementClass);
-  
-    facetInput.addEventListener("keyup", function() {
-      const search = this.value.toLowerCase();
-      const showAll = search.length < 2;
-  
-      Array.from(facetElements).forEach(function(element) {
-        element.style.display = showAll ? defaultDisplay : "none";
-        if (!showAll && element.innerText.toLowerCase().includes(search)) {
-          element.style.display = defaultDisplay;
-        }
-      });
+function facetToggle(facet_input,facet_element,default_display) {
+    $(facet_input).on('keyup', function () {
+        var search = this.value.toLowerCase();
+        if (search.length < 2) { var showAll = true } else { showAll = false }
+        $(facet_element).each(function () {
+            a = this;
+            this.style.display = default_display;
+            if (showAll == false) {
+                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = default_display; } else { this.style.display = "none"; }
+            }
+        });
     });
-  }
+}
 
 /**  
  * Resize facet dropdown based on number of elements
@@ -190,7 +187,7 @@ function tooltipAddElement(el, label, offsetVal, icon) {
       newDivArrow.id = arrowId;
   
       if (icon) {
-        newDiv.innerHTML = `<span class="fa fa-${icon}"></span>`;
+        newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
       }
   
       newDiv.innerHTML += label;
@@ -203,7 +200,7 @@ function tooltipAddElement(el, label, offsetVal, icon) {
       newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
       newDiv.style.left = `${offset.left - 10}px`;
       newDiv.style.position = "absolute";
-      newDivArrow.style.top = `${offset.top - offsetVal - 75}px`;
+      newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
       newDivArrow.style.left = `${offset.left}px`;
       newDivArrow.style.position = "absolute";
   
