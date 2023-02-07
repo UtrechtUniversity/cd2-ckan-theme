@@ -163,7 +163,7 @@
       {% if construct.length != 0 %}
       {% set constructname = construct["dc_construct"] %}
         <li>
-          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info info-hover" onmouseenter="tooltipAddElement(this,constructLegend('{{ construct["dc_construct"] }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ construct["dc_construct"] }}'))">{{construct["dc_construct"]}}</a>
+          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info info-hover" onmouseenter="tooltipAddElement(this,constructLegend('{{ construct["dc_construct"] }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{construct["dc_construct"]}}</a>
           </li>
         {% endif %}
       {% endfor %}
@@ -189,14 +189,14 @@
               {% endif %}
               {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ waveDescription }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
+              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
                 {% for waveCode in waveSubjectCodes %}
-                  <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(createLegendString('{{ waveCode|trim }}'))">{{ waveCode|trim }}</span>
+                  <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveCode|trim }}</span>
                 {% endfor %}
               {% else %}
-                <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(createLegendString('{{ waveSubjectCode|trim }}'))">{{ waveSubjectCode }}</span>
+                <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
               {% endif %}
               </span><br />
               {% endif %}
@@ -208,9 +208,9 @@
     <tr>
       <th scope="row" class="dataset-label">Mode of collection</th>
       <td class="dataset-details">
-      <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ pkg_dict.dc_mode_of_collection }}'))">{{ pkg_dict.dc_mode_of_collection }}</span>
+      <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ pkg_dict.dc_mode_of_collection }}</span>
       {% if pkg_dict.dc_mode_of_collection_sub %}
-      &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection_sub }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ pkg_dict.dc_mode_of_collection_sub }}'))">{{ pkg_dict.dc_mode_of_collection_sub }}</span>
+      &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection_sub }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ pkg_dict.dc_mode_of_collection_sub }}</span>
       {% endif %}
       </td>
     </tr>

@@ -80,7 +80,7 @@
                       <div class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
                       {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
-                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ waveDescription }}')">{{ wave.wave_title }}</span>
+                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ wave.wave_title }}</span>
                     {% endif %}
                   {% endfor %}        
                </td></tr>
@@ -178,7 +178,7 @@
                   {% elif constructs.dc_construct|lower|trim == 'questionnaire' %}
                     {%set imgurl = 'src=/icons/svg/outline/symbols/i_exam_multiple_choice.svg'%}
                   {% endif %}
-                  <img style="opacity:0.5" {{imgurl}} width="35px" class="info-hover" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower|trim }}',30,'tag')" onmouseleave="tooltipRemoveElement('{{ constructs.dc_construct|lower|trim }}')">
+                  <img style="opacity:0.5" {{imgurl}} width="35px" class="info-hover" onmouseenter="tooltipAddElement(this,'{{ constructs.dc_construct|lower|trim }}',30,'tag')" onmouseleave="tooltipRemoveElement(this)">
               {% endfor %}
               {% endif %}
               {% endif %}
