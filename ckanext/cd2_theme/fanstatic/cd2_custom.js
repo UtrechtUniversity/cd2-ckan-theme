@@ -210,6 +210,42 @@ function tooltipAddElement(el, label, offsetVal, icon) {
     }
   }
 
+  function tooltipAddElementAlt(el, label, offsetVal, icon) {
+    const offset = tooltipGetOffset(el);
+    const tooltipId = hashCode(el.outerHTML) + "_tooltip";
+    const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
+  
+    if (!document.getElementById(tooltipId)) {
+      const newDiv = document.createElement("div");
+      const newDivArrow = document.createElement("div");
+      newDiv.classList.add("custom-tooltip");
+      newDivArrow.classList.add("custom-tooltip-arrow");
+      newDiv.id = tooltipId;
+      newDivArrow.id = arrowId;
+  
+      if (icon) {
+        newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
+      }
+  
+      newDiv.innerHTML += label;
+      newDiv.style.cssText = "max-width: 400px; text-align: justify";
+  
+      document.body.appendChild(newDiv); // text balloon
+      document.body.appendChild(newDivArrow); // bottom arrow
+      
+      const elementOffset = newDiv.offsetHeight - 20; 
+      newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
+      newDiv.style.left = `${offset.left - 10}px`;
+      newDiv.style.position = "absolute";
+      newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
+      newDivArrow.style.left = `${offset.left}px`;
+      newDivArrow.style.position = "absolute";
+  
+      newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
+      newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
+    }
+  }
+
 /**  
  * Remove tooltip
  * @param label {string} - text to create ID of tooltip element
@@ -221,23 +257,17 @@ function tooltipRemoveElement(label) {
       elementToRemove.remove();
       document.getElementById(`${elementID}-arrow`).remove();
     }
-}
+  }
 
-function tooltipRemoveElementAlt(element) {
-    const string = element.getAttribute('onmouseenter')
-    const startIndex = string.indexOf("'") + 1;
-    const endIndex = string.indexOf("'", startIndex);
-    const label = string.substring(startIndex, endIndex);
-    elementID = hashCode(label) + '_tooltip';
-    console.log(label)
-    elementIDArrow = hashCode(label) + '_tooltip-arrow';
-    if (!document.getElementById("id", elementID)) {
-      toRemove = document.getElementById(elementID);
-      toRemove.remove();
-      toRemoveArrow = document.getElementById(elementIDArrow);
-      toRemoveArrow.remove();
+  function tooltipRemoveElementAlt(el) {
+    const elementID = `${hashCode(el.outerHTML)}_tooltip`;
+    const elementToRemove = document.getElementById(elementID);
+    if (elementToRemove) {
+      elementToRemove.remove();
+      document.getElementById(`${elementID}-arrow`).remove();
     }
-}
+  }
+
 
 /**  
  * Create wave subject code legend
