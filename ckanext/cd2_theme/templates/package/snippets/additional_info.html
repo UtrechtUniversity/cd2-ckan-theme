@@ -189,14 +189,14 @@
               {% endif %}
               {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ waveDescription }}')"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
+              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
                 {% for waveCode in waveSubjectCodes %}
-                  <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(createLegendString('{{ waveCode|trim }}'))">{{ waveCode|trim }}</span>
+                  <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveCode|trim }}</span>
                 {% endfor %}
               {% else %}
-                <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(createLegendString('{{ waveSubjectCode|trim }}'))">{{ waveSubjectCode }}</span>
+                <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
               {% endif %}
               </span><br />
               {% endif %}
