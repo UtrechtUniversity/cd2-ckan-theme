@@ -79,7 +79,8 @@
                         {% endif %}
                       <div class="cohort-spanner">{{ label }}&nbsp;
                       {% endif %}
-                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ wave.wave_description }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ wave.wave_description }}')">{{ wave.wave_title }}</span>
+                      {% set waveDescription = wave.wave_description | replace("'","\&apos;") %}
+                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement('{{ waveDescription }}')">{{ wave.wave_title }}</span>
                     {% endif %}
                   {% endfor %}        
                </td></tr>
