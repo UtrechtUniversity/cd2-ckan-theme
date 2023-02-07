@@ -175,99 +175,53 @@ function tooltipGetOffset(el) {
  * @param icon {string} - (optional) font awesome icon to display
  */
 function tooltipAddElement(el, label, offsetVal, icon) {
-    const offset = tooltipGetOffset(el);
-    const tooltipId = hashCode(label) + "_tooltip";
-    const arrowId = hashCode(label) + "_tooltip-arrow";
-  
-    if (!document.getElementById(tooltipId)) {
-      const newDiv = document.createElement("div");
-      const newDivArrow = document.createElement("div");
-      newDiv.classList.add("custom-tooltip");
-      newDivArrow.classList.add("custom-tooltip-arrow");
-      newDiv.id = tooltipId;
-      newDivArrow.id = arrowId;
-  
-      if (icon) {
-        newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
-      }
-  
-      newDiv.innerHTML += label;
-      newDiv.style.cssText = "max-width: 400px; text-align: justify";
-  
-      document.body.appendChild(newDiv); // text balloon
-      document.body.appendChild(newDivArrow); // bottom arrow
-      
-      const elementOffset = newDiv.offsetHeight - 20; 
-      newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
-      newDiv.style.left = `${offset.left - 10}px`;
-      newDiv.style.position = "absolute";
-      newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
-      newDivArrow.style.left = `${offset.left}px`;
-      newDivArrow.style.position = "absolute";
-  
-      newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
-      newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
-    }
-  }
+const offset = tooltipGetOffset(el);
+const tooltipId = hashCode(el.outerHTML) + "_tooltip";
+const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
 
-  function tooltipAddElementAlt(el, label, offsetVal, icon) {
-    const offset = tooltipGetOffset(el);
-    const tooltipId = hashCode(el.outerHTML) + "_tooltip";
-    const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
-  
-    if (!document.getElementById(tooltipId)) {
-      const newDiv = document.createElement("div");
-      const newDivArrow = document.createElement("div");
-      newDiv.classList.add("custom-tooltip");
-      newDivArrow.classList.add("custom-tooltip-arrow");
-      newDiv.id = tooltipId;
-      newDivArrow.id = arrowId;
-  
-      if (icon) {
-        newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
-      }
-  
-      newDiv.innerHTML += label;
-      newDiv.style.cssText = "max-width: 400px; text-align: justify";
-  
-      document.body.appendChild(newDiv); // text balloon
-      document.body.appendChild(newDivArrow); // bottom arrow
-      
-      const elementOffset = newDiv.offsetHeight - 20; 
-      newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
-      newDiv.style.left = `${offset.left - 10}px`;
-      newDiv.style.position = "absolute";
-      newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
-      newDivArrow.style.left = `${offset.left}px`;
-      newDivArrow.style.position = "absolute";
-  
-      newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
-      newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
+if (!document.getElementById(tooltipId)) {
+    const newDiv = document.createElement("div");
+    const newDivArrow = document.createElement("div");
+    newDiv.classList.add("custom-tooltip");
+    newDivArrow.classList.add("custom-tooltip-arrow");
+    newDiv.id = tooltipId;
+    newDivArrow.id = arrowId;
+
+    if (icon) {
+    newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
     }
-  }
+
+    newDiv.innerHTML += label;
+    newDiv.style.cssText = "max-width: 400px; text-align: justify";
+
+    document.body.appendChild(newDiv); // text balloon
+    document.body.appendChild(newDivArrow); // bottom arrow
+    
+    const elementOffset = newDiv.offsetHeight - 20; 
+    newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
+    newDiv.style.left = `${offset.left - 10}px`;
+    newDiv.style.position = "absolute";
+    newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
+    newDivArrow.style.left = `${offset.left}px`;
+    newDivArrow.style.position = "absolute";
+
+    newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
+    newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
+}
+}
 
 /**  
  * Remove tooltip
- * @param label {string} - text to create ID of tooltip element
+ * @param el {object} - parent element
  */
-function tooltipRemoveElement(label) {
-    const elementID = `${hashCode(label)}_tooltip`;
-    const elementToRemove = document.getElementById(elementID);
-    if (elementToRemove) {
-      elementToRemove.remove();
-      document.getElementById(`${elementID}-arrow`).remove();
-    }
-  }
-
-  function tooltipRemoveElementAlt(el) {
-    const elementID = `${hashCode(el.outerHTML)}_tooltip`;
-    const elementToRemove = document.getElementById(elementID);
-    if (elementToRemove) {
-      elementToRemove.remove();
-      document.getElementById(`${elementID}-arrow`).remove();
-    }
-  }
-
+function tooltipRemoveElement(el) {
+const elementID = `${hashCode(el.outerHTML)}_tooltip`;
+const elementToRemove = document.getElementById(elementID);
+if (elementToRemove) {
+    elementToRemove.remove();
+    document.getElementById(`${elementID}-arrow`).remove();
+}
+}
 
 /**  
  * Create wave subject code legend

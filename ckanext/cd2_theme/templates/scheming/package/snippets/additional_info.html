@@ -42,9 +42,9 @@
             {{ h.scheming_language_text(field.label) }}
             <!-- temporary label for hierarchical fields supplement to study information -->
             {% if pkg_dict.type == 'wave' %}
-            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at cohort and study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement('Displayed information is supplement to information contained at cohort and study-level')"></span>
+            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at cohort and study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"></span>
             {% elif pkg_dict.type == 'cohort' %}
-            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement('Displayed information is supplement to information contained at study-level')"></span>
+            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"></span>
             {% endif %}
         </th>
         <td class="dataset-details"{%
