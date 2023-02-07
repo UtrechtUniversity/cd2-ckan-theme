@@ -212,9 +212,20 @@ function tooltipAddElement(el, label, offsetVal, icon) {
 
 /**  
  * Remove tooltip
- * @param element {object} - parent element
+ * @param label {string} - text to create ID of tooltip element
  */
-function tooltipRemoveElement(element) {
+function tooltipRemoveElement(label) {
+  elementID = hashCode(label) + '_tooltip';
+  elementIDArrow = hashCode(label) + '_tooltip-arrow';
+  if (!document.getElementById("id", elementID)) {
+    toRemove = document.getElementById(elementID);
+    toRemove.remove();
+    toRemoveArrow = document.getElementById(elementIDArrow);
+    toRemoveArrow.remove();
+  }
+}
+
+function tooltipRemoveElementAlt(element) {
     const string = element.getAttribute('onmouseenter')
     const startIndex = string.indexOf("'") + 1;
     const endIndex = string.indexOf("'", startIndex);
