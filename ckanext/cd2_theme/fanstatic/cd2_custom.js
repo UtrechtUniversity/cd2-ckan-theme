@@ -212,7 +212,6 @@ function tooltipRemoveElement(el) {
     const elementToRemove = document.getElementById(elementID);
     if (elementToRemove) {
         elementToRemove.remove();
-        document.getElementById(`${elementID}-arrow`).remove();
     }
 }
 
