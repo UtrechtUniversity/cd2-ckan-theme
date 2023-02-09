@@ -224,7 +224,7 @@ function tooltipAddElement(el, label, offsetVal, icon) {
 
         // Create text content element
         const newContent = document.createElement("div");
-        newContent.classList.add("text-content");
+        newContent.classList.add("text-balloon-content");
         
         if (icon) {
             newContent.innerHTML = `<span class="fa fa-${icon}"></span> `;
