@@ -174,7 +174,7 @@ function tooltipGetOffset(el) {
  * @param offsetVal {int} - vertical offset relative to parent element
  * @param icon {string} - (optional) font awesome icon to display
  */
-function tooltipAddElement(el, label, offsetVal, icon) {
+function tooltipAddElementOld(el, label, offsetVal, icon) {
     const offset = tooltipGetOffset(el);
     const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
     const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
@@ -209,6 +209,39 @@ function tooltipAddElement(el, label, offsetVal, icon) {
         newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
     }
 }
+
+function tooltipAddElement(el, label, offsetVal, icon) {
+    const offset = tooltipGetOffset(el);
+    const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
+
+    if (!document.getElementById(tooltipId)) {
+
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("text-balloon");
+        newDiv.id = tooltipId;
+        newDiv.style.left = `${offset.left}px`;
+        newDiv.style.top = `${offset.top}px`;
+
+        // Create text content element
+        const newContent = document.createElement("div");
+        newContent.classList.add("text-content");
+        
+        if (icon) {
+            newContent.innerHTML = `<span class="fa fa-${icon}"></span> `;
+        }
+        newContent.innerHTML += label;
+        newDiv.appendChild(newContent);
+
+        // Append text balloon element to the body
+        document.body.appendChild(newDiv);
+
+        const elementHeight = newDiv.offsetHeight;
+        newDiv.style.top = `${offset.top - elementHeight + offsetVal - 15}px`;
+
+        newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
+    }
+}
+
 
 /**  
  * Remove tooltip

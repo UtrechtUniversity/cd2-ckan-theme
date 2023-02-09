@@ -177,19 +177,25 @@
   border-radius: 5px;
   box-shadow: 0px 0px 10px #999;
   border: 2px solid #ccc;
+  z-index: 777;
+  max-width: 400px;
+  height: auto;
+  width: auto;
 }
 
 .text-balloon-content {
-  padding: 20px;
-  font-size: 16px;
-  line-height: 1.5;
+  padding: 2px 10px 1px 10px;
+  font-weight: normal;
+  border-radius: 5px;
+  font-size: 10pt;
+  text-align: justify
 }
 
 .text-balloon::after {
   content: "";
   position: absolute;
   bottom: -7px;
-  left: 20%;
+  left: 10%;
   transform: translateX(-50%);
   border-width: 7px 7px 0;
   border-style: solid;
