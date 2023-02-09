@@ -174,7 +174,7 @@ function tooltipGetOffset(el) {
  * @param offsetVal {int} - vertical offset relative to parent element
  * @param icon {string} - (optional) font awesome icon to display
  */
-function tooltipAddElementOld(el, label, offsetVal, icon) {
+function tooltipAddElement(el, label, offsetVal, icon) {
     const offset = tooltipGetOffset(el);
     const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
     const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
@@ -210,7 +210,7 @@ function tooltipAddElementOld(el, label, offsetVal, icon) {
     }
 }
 
-function tooltipAddElement(el, label, offsetVal, icon) {
+function tooltipAddElementAlt(el, label, offsetVal, icon) {
     const offset = tooltipGetOffset(el);
     const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
 
