@@ -192,7 +192,7 @@ function tooltipAddElement(el, label, offsetVal, icon) {
             newContent.innerHTML = `<span class="fa fa-${icon}"></span> `;
         }
         newContent.innerHTML += label;
-        newDiv.appendChild(newContent);e
+        newDiv.appendChild(newContent);
         document.body.appendChild(newDiv);
 
         const elementHeight = newDiv.offsetHeight;
