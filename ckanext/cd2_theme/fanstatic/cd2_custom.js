@@ -47,17 +47,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
  * @param facet_element {string} - class of li elements
  * invoked on snippets/facet_list.html
  */
-function facetToggle(facet_input,facet_element,default_display) {
-    $(facet_input).on('keyup', function () {
+function facetToggle(facetInput, facetElement, defaultDisplay) {
+    facetInput.addEventListener('keyup', function () {
         var search = this.value.toLowerCase();
-        if (search.length < 2) { var showAll = true } else { showAll = false }
-        $(facet_element).each(function () {
-            a = this;
-            this.style.display = default_display;
-            if (showAll == false) {
-                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = default_display; } else { this.style.display = "none"; }
+        var showAll = search.length < 2;
+        var elements = document.querySelectorAll(facetElement);
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            element.style.display = defaultDisplay;
+            if (!showAll && element.innerText.toLowerCase().includes(search) === -1) {
+            element.style.display = "none";
             }
-        });
+        }
     });
 }
 
@@ -174,42 +175,6 @@ function tooltipGetOffset(el) {
  * @param offsetVal {int} - vertical offset relative to parent element
  * @param icon {string} - (optional) font awesome icon to display
  */
-function tooltipAddElementOld(el, label, offsetVal, icon) {
-    const offset = tooltipGetOffset(el);
-    const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
-    const arrowId = hashCode(el.outerHTML) + "_tooltip-arrow";
-
-    if (!document.getElementById(tooltipId)) {
-        const newDiv = document.createElement("div");
-        const newDivArrow = document.createElement("div");
-        newDiv.classList.add("custom-tooltip");
-        newDivArrow.classList.add("custom-tooltip-arrow");
-        newDiv.id = tooltipId;
-        newDivArrow.id = arrowId;
-
-        if (icon) {
-        newDiv.innerHTML = `<span class="fa fa-${icon}"></span> `;
-        }
-
-        newDiv.innerHTML += label;
-        newDiv.style.cssText = "max-width: 400px; text-align: justify";
-
-        document.body.appendChild(newDiv); // text balloon
-        document.body.appendChild(newDivArrow); // bottom arrow
-        
-        const elementOffset = newDiv.offsetHeight - 20; 
-        newDiv.style.top = `${offset.top - offsetVal - elementOffset}px`;
-        newDiv.style.left = `${offset.left - 10}px`;
-        newDiv.style.position = "absolute";
-        newDivArrow.style.top = `${offset.top - offsetVal - 82}px`;
-        newDivArrow.style.left = `${offset.left}px`;
-        newDivArrow.style.position = "absolute";
-
-        newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
-        newDivArrow.animate({ opacity: 1 }, { duration: 200, queue: false });
-    }
-}
-
 function tooltipAddElement(el, label, offsetVal, icon) {
     const offset = tooltipGetOffset(el);
     const tooltipId = hashCode(el.outerHTML) + "_tooltip"; // unique reference to element by hashing outerHTML
@@ -221,7 +186,6 @@ function tooltipAddElement(el, label, offsetVal, icon) {
         newDiv.style.left = `${offset.left}px`;
         newDiv.style.top = `${offset.top}px`;   
 
-        // Create text content element
         const newContent = document.createElement("div");
         newContent.classList.add("text-balloon-content");
         
@@ -229,14 +193,11 @@ function tooltipAddElement(el, label, offsetVal, icon) {
             newContent.innerHTML = `<span class="fa fa-${icon}"></span> `;
         }
         newContent.innerHTML += label;
-        newDiv.appendChild(newContent);
-
-        // Append text balloon element to the body
+        newDiv.appendChild(newContent);e
         document.body.appendChild(newDiv);
 
         const elementHeight = newDiv.offsetHeight;
         newDiv.style.top = `${offset.top - elementHeight - offsetVal + 20}px`;
-
         newDiv.animate({ opacity: 1 }, { duration: 200, queue: false });
     }
 }
