@@ -51,13 +51,14 @@ function facetToggle(facet_input,facet_element,default_display) {
     $(facet_input).on('keyup', function () {
         var search = this.value.toLowerCase();
         if (search.length < 2) { var showAll = true } else { showAll = false }
-        $(facet_element).each(function () {
-            a = this;
-            this.style.display = default_display;
-            if (showAll == false) {
-                if (a.innerText.toLowerCase().includes(search) > 0) { this.style.display = default_display; } else { this.style.display = "none"; }
+        var elements = document.querySelectorAll(facetElement);
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            element.style.display = defaultDisplay;
+            if (!showAll && element.innerText.toLowerCase().includes(search) === -1) {
+              element.style.display = "none";
             }
-        });
+        }
     });
 }
 

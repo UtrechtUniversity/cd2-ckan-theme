@@ -55,6 +55,7 @@
 	// Show if only one label available
 	document.addEventListener("DOMContentLoaded", function (event) {
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
+		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 	});
 	</script>
 	{% endif %}
