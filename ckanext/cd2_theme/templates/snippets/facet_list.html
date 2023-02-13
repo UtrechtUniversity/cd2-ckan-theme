@@ -210,7 +210,19 @@
 		// --------------------------------------------
 		// ------------- AGE RANGE SLIDER -------------
 		// --------------------------------------------
+
+		// round values from range slider to nearest multiple of 12
+		function roundDownToNearest12(vals) {
+			return vals.map(val => {
+			  if (val > 36) {
+				return Math.floor(val / 12) * 12;
+			  }
+			  return val;
+			});
+		  }
+
 		// Get url parameters of current range selection and update slider accordingly
+
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		if (urlParams) {
@@ -249,6 +261,7 @@
 			onChange: function (vals) {
 				// Create querystring for new range selection to add to search field
 				vals = vals.split(",");
+				vals = roundDownToNearest12(vals);
 				ageQstring = 'measure_age_month:[' + vals[0] + ' TO ' + vals[1] + ']';
 			}
 		});
