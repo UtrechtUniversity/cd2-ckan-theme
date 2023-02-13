@@ -74,10 +74,14 @@
           <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span>
           </dd>
           {% elif field.field_name == 'wave_contributors' %}
+          {% if subfield.wave_contributors_pid %}
           {% if "orcid" not in subfield.wave_contributor_pid %}
               {% set wave_contributor_url = "https://orcid.org/" + subfield.wave_contributor_pid %}
           {% else %}
               {% set wave_contributor_url = subfield.wave_contributor_pid %}
+          {% endif %}
+          {% else %}
+              {% set wave_contributor_url = '#' %}
           {% endif %}
         <dd><span class="tabspan fa fa-user"></span><span
           onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
