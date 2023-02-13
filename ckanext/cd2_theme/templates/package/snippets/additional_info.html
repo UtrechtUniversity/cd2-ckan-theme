@@ -3,32 +3,6 @@
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
 
-    // add hyperlinks to content
-    const isORCID = (identifier) => {
-      return identifier.length > 0 && /(\d{4}-){3}\d{3}(\d|X)/.test(identifier)
-    }
-    function filterDoi(text) {
-      return text.replace(/(?:<a[^>]*>)?\b((?:https?:\/\/)?(?:dx\.)?doi\.org\/)?(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b(?:<\/a>)?/g, function(match, p1, p2) {
-        if (!/<a[^>]*>/.test(match)) {
-          return '<a href="https://doi.org/' + (p1 || '') + p2 + '" target="blank">' + p2 + '</a>';
-        } else {
-          return match;
-        }
-      });
-    }  
-    const elCells = document.getElementsByClassName('repeating-element');
-    for (const field of elCells) {
-      let text = field.innerHTML;
-      if (field.innerHTML.startsWith('http')) { // is http(s)
-        text = `<a href="`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
-      } else if (isORCID(field.innerHTML)) { // is orcid
-        text = `<a href="https://orcid.org/`+ field.innerHTML +`" target="blank">` + field.innerHTML + `</a>`;
-      } else { // try for DOI
-        text = filterDoi(text);
-      }
-      field.innerHTML = text;
-    }
-
     // hide empty repeating fields
     const repeatingElements = document.querySelectorAll('.repeating-element');
     repeatingElements.forEach(element => {
