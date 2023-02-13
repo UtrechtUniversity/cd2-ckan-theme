@@ -1,7 +1,35 @@
 {% set fields = data[field.field_name] %}
+{% set fields_passed = [] %}
+{# list subfields to manually style #}
+{%- set exclude_subfields = [
+  'cohort_publisher',
+  'wave_publisher'
+  ] -%}
 
 {% block subfield_display %}
   {% for field_data in fields %}
+
+  {% if field.field_name in exclude_subfields %} 
+    {% if field.field_name not in fields_passed %}
+        {% do fields_passed.append(field.field_name) %}
+        {% for subfield in fields %}
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <dl class="scheming-subfield-list">
+              <dt class="dataset-label">
+              </dt>
+              {% if field.field_name == 'cohort_publisher' %}
+              <dd><span class="tabspan fa fa-building"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_publisher_identifier_type }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.cohort_publisher_identifier}}" target="blank">{{ subfield.cohort_publisher_name }}</a></span></dd>
+              {% elif field.field_name == 'wave_publisher' %}
+              <dd><span class="tabspan fa fa-building"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.wave_publisher_identifier_type }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.wave_publisher_identifier}}" target="blank">{{ subfield.wave_publisher_name }}</a></span></dd>
+              {% endif %}
+            </dl>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% else %}
+
     <div class="panel panel-default">
       <div class="panel-body">
         <dl class="scheming-subfield-list">
@@ -56,5 +84,5 @@
       </div>
     </div>
   {% endfor %}
-
+  {% endif %}
 {% endblock %}
