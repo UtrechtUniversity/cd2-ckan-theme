@@ -24,7 +24,7 @@
           </dt>
           {% if field.field_name == 'cohort_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
-              onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_publisher_identifier_type }}',30,'info-share')"
+              onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_publisher_identifier_type }}',30,'share')"
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
                 href="{{subfield.cohort_publisher_identifier}}" target="blank">{{ subfield.cohort_publisher_name
                 }}</a></span></dd>
@@ -35,7 +35,7 @@
                 {% set cohort_creator_url = subfield.cohort_creator_pid %}
             {% endif %}
           <dd><span class="tabspan fa fa-user"></span><span
-            onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'info-share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator }}</a></span>
+            onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator }}</a></span>
           </dd>
           <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
           </dd>
@@ -46,14 +46,14 @@
               {% set cohort_contributor_url = subfield.cohort_contributor_pid %}
           {% endif %}
         <dd><span class="tabspan fa fa-user"></span><span
-          onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_contributor_identifier_type }}',30,'info-share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_contributor_url}}" target="blank">{{ subfield.cohort_contributor }}</a></span>
+          onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_contributor_url}}" target="blank">{{ subfield.cohort_contributor }}</a></span>
         </dd>
         <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_contributor_affiliation }}</span>
         </dd>
 
         {% elif field.field_name == 'wave_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
-              onmouseenter="tooltipAddElement(this,'{{ subfield.wave_publisher_identifier_type }}',30,'info-share')"
+              onmouseenter="tooltipAddElement(this,'{{ subfield.wave_publisher_identifier_type }}',30,'share')"
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
                 href="{{subfield.wave_publisher_identifier}}" target="blank">{{ subfield.wave_publisher_name }}</a></span>
           </dd>
@@ -65,7 +65,7 @@
                 {% set wave_creator_url = subfield.wave_creator_pid %}
             {% endif %}
           <dd><span class="tabspan fa fa-user"></span><span
-            onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'info-share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator }}</a></span>
+            onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator }}</a></span>
           </dd>
           <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span>
           </dd>
@@ -76,7 +76,7 @@
               {% set wave_contributor_url = subfield.wave_contributor_pid %}
           {% endif %}
         <dd><span class="tabspan fa fa-user"></span><span
-          onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'info-share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
+          onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
         </dd>
         <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_contributor_affiliation }}</span>
         </dd>
