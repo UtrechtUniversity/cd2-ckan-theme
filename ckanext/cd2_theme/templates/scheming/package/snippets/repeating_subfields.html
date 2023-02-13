@@ -59,11 +59,15 @@
           </dd>
           
           {% elif field.field_name == 'wave_creators' %}
+          {% if subfield.wave_creator_pid %}
             {% if "orcid" not in subfield.wave_creator_pid %}
                 {% set wave_creator_url = "https://orcid.org/" + subfield.wave_creator_pid %}
             {% else %}
                 {% set wave_creator_url = subfield.wave_creator_pid %}
             {% endif %}
+          {% else %}
+                {% set wave_creator_url = '#' %}
+          {% endif %}
           <dd><span class="tabspan fa fa-user"></span><span
             onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator }}</a></span>
           </dd>
