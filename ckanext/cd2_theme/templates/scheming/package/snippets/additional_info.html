@@ -40,7 +40,7 @@
       <tr>
         <th scope="row" class="dataset-label">
             {{ h.scheming_language_text(field.label) }}
-            <!-- temporary label for hierarchical fields supplement to study information -->
+            <!-- label for hierarchical fields supplement to study information -->
             {% if pkg_dict.type == 'wave' %}
             <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at cohort and study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"></span>
             {% elif pkg_dict.type == 'cohort' %}
