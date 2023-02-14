@@ -8,7 +8,8 @@
   'wave_publisher',
   'wave_creators',
   'wave_contributors',
-  'cohort_references'
+  'cohort_references',
+  'dc_measurement_references'
   ] -%}
 
 {% block subfield_display %}
@@ -91,6 +92,9 @@
           </dd>
           {% elif field.field_name == 'cohort_references' %}
           <dd><span class="tabspan fa fa-share-alt"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_reference_type }}',30,'hand-o-right')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="https://www.doi.org/{{subfield.cohort_reference_identifier}}" target="blank">{{ subfield.cohort_reference_citation }}</a></span>
+          </dd>
+          {% elif field.field_name == 'dc_measurement_references' %}
+          <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element"><a href="https://www.doi.org/{{dc_measurements_references_doi}}" target="blank">{{ subfield.dc_measurements_references_citation }}</a></span>
           </dd>
         {% endif %}
         </dl>
