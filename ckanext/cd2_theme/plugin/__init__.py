@@ -3,10 +3,6 @@ import ckan.plugins.toolkit as toolkit
 
 from ckanext.cd2_theme import helpers
 
-
-
-
-
 class CD2_ThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
