@@ -13,7 +13,8 @@
   'wave_contributors',
   'cohort_references',
   'dc_measurement_references',
-  'cohort_study_references'
+  'cohort_study_references',
+  'cohort_study_contact'
   ] -%}
 
 {% block subfield_display %}
@@ -146,10 +147,11 @@
           {% elif field.field_name == 'dc_measurement_references' %}
             <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element"><a href="{{subfield.dc_measurements_references_doi}}" target="blank">{{ subfield.dc_measurements_references_citation }}</a></span>
             </dd>
-         
-
+          {% elif field.field_name == 'cohort_study_contact' %}
+            <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.cohort_study_contact_name }}</span></dd>
+            <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_study_contact_affiliation }}</span></dd>
+            <dd><span class="tabspan fa fa-envelope"></span><span class="repeating-element"><a href="mailto:{{cohort_study_contact_mail}}">{{ subfield.cohort_study_contact_mail }}</a></span></dd>
         {% endif %}
-
         </dl>
       </div>
     </div>
@@ -162,33 +164,33 @@
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
-              {% if h.scheming_language_text(subfield.label) == 'Creator' or  h.scheming_language_text(subfield.label) == 'Contributor' or h.scheming_language_text(subfield.label) == 'Name' %}
+              {% if subfield.label == 'Creator' or  subfield.label == 'Contributor' or subfield.label == 'Name' %}
               {% set icon = 'fa-user'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Affiliation' %}
+              {% elif subfield.label == 'Affiliation' %}
               {% set icon = 'fa-building'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Identifier' %}
+              {% elif subfield.label == 'Identifier' %}
               {% set icon = 'fa-info-circle'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Identifier type' %}
+              {% elif subfield.label == 'Identifier type' %}
               {% set icon = 'fa-tag'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Funder name' %}
+              {% elif subfield.label == 'Funder name' %}
               {% set icon = 'fa-university'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Grant number' %}
+              {% elif subfield.label == 'Grant number' %}
               {% set icon = 'fa-hashtag'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Citation' %}
+              {% elif subfield.label == 'Citation' %}
               {% set icon = 'fa-share-alt'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Reference type' %}
+              {% elif subfield.label == 'Reference type' %}
               {% set icon = 'fa-hand-o-right'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Publisher name' %}
+              {% elif subfield.label == 'Publisher name' %}
               {% set icon = 'fa-building'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Publisher ID' %}
+              {% elif subfield.label == 'Publisher ID' %}
               {% set icon = 'fa-info-circle'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Publisher ID-type' %}
+              {% elif subfield.label == 'Publisher ID-type' %}
               {% set icon = 'fa-tag'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Mail address' %}
+              {% elif subfield.label == 'Mail address' %}
               {% set icon = 'fa-envelope'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'URL' %}
+              {% elif subfield.label == 'URL' %}
               {% set icon = 'fa-external-link'  %}
-              {% elif h.scheming_language_text(subfield.label) == 'Description' %}
+              {% elif subfield.label == 'Description' %}
               {% set icon = 'fa-question-circle'  %}
               {% else %}
               {{ h.scheming_language_text(subfield.label) }}
