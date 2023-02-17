@@ -48,15 +48,15 @@
           </dd>
           {% elif field.field_name == 'cohort_study_principal_investigators' %}
             {% if subfield.cohort_study_pi_pid %}
-            {% if "orcid" not in subfield.cohort_study_pi_pid %}
-                {% set cohort_study_pi_pid_url = "https://orcid.org/" + subfield.cohort_study_pi_pid %}
-            {% else %}
-                {% set cohort_study_pi_pid_url = subfield.cohort_study_pi_pid %}
-            {% endif %}
+              {% if "orcid" not in subfield.cohort_study_pi_pid %}
+                  {% set cohort_study_pi_pid_url = "https://orcid.org/" + subfield.cohort_study_pi_pid %}
+              {% else %}
+                  {% set cohort_study_pi_pid_url = subfield.cohort_study_pi_pid %}
+              {% endif %}
               <dd><span class="tabspan fa fa-user"></span><span
                 onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_study_pi_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_study_pi_pid_url}}" target="blank">{{ subfield.cohort_study_pi_name }}</a></span>
               </dd>
-              {% else %}
+            {% else %}
               <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.cohort_study_pi_name }}</span>
               </dd>
             {% endif %}
@@ -91,11 +91,11 @@
           </dd>
           {% elif field.field_name == 'cohort_study_contributer' %}
           {% if subfield.cohort_study_contributer_pid %}
-          {% if "orcid" not in subfield.cohort_contributer_pid %}
-              {% set cohort_study_contributor_url = "https://orcid.org/" + subfield.cohort_study_contributer_pid %}
-          {% else %}
-              {% set cohort_study_contributor_url = subfield.cohort_study_contributer_pid %}
-          {% endif %}
+            {% if "orcid" not in subfield.cohort_contributer_pid %}
+                {% set cohort_study_contributor_url = "https://orcid.org/" + subfield.cohort_study_contributer_pid %}
+            {% else %}
+                {% set cohort_study_contributor_url = subfield.cohort_study_contributer_pid %}
+            {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_study_contributer_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_study_contributor_url}}" target="blank">{{ subfield.cohort_study_contributer_name }}</a></span>
             </dd>
@@ -107,11 +107,11 @@
             </dd>
           {% elif field.field_name == 'cohort_contributors' %}
           {% if subfield.cohort_contributor_pid %}
-          {% if "orcid" not in subfield.cohort_contributor_pid %}
-              {% set cohort_contributor_url = "https://orcid.org/" + subfield.cohort_contributor_pid %}
-          {% else %}
-              {% set cohort_contributor_url = subfield.cohort_contributor_pid %}
-          {% endif %}
+            {% if "orcid" not in subfield.cohort_contributor_pid %}
+                {% set cohort_contributor_url = "https://orcid.org/" + subfield.cohort_contributor_pid %}
+            {% else %}
+                {% set cohort_contributor_url = subfield.cohort_contributor_pid %}
+            {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_contributor_url}}" target="blank">{{ subfield.cohort_contributor }}</a></span>
             </dd>
@@ -123,14 +123,11 @@
             </dd>
           {% elif field.field_name == 'wave_contributors' %}
             {% if subfield.wave_contributor_pid %}
-            {% if "orcid" not in subfield.wave_contributor_pid %}
-                {% set wave_contributor_url = "https://orcid.org/" + subfield.wave_contributor_pid %}
-            {% else %}
-                {% set wave_contributor_url = subfield.wave_contributor_pid %}
-            {% endif %}
-            {% else %}
-                {% set wave_contributor_url = '#' %}
-            {% endif %}
+              {% if "orcid" not in subfield.wave_contributor_pid %}
+                  {% set wave_contributor_url = "https://orcid.org/" + subfield.wave_contributor_pid %}
+              {% else %}
+                  {% set wave_contributor_url = subfield.wave_contributor_pid %}
+              {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
             </dd>
