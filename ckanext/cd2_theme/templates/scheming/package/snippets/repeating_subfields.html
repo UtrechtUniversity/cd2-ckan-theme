@@ -106,6 +106,7 @@
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_study_contributer_affiliation }}</span>
             </dd>
           {% elif field.field_name == 'cohort_contributors' %}
+          {% if subfield.cohort_contributor_pid %}
           {% if "orcid" not in subfield.cohort_contributor_pid %}
               {% set cohort_contributor_url = "https://orcid.org/" + subfield.cohort_contributor_pid %}
           {% else %}
@@ -114,10 +115,14 @@
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_contributor_url}}" target="blank">{{ subfield.cohort_contributor }}</a></span>
             </dd>
+          {% else %}
+          <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.cohort_contributor }}</span>
+          </dd>
+          {% endif %}
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_contributor_affiliation }}</span>
             </dd>
           {% elif field.field_name == 'wave_contributors' %}
-            {% if subfield.wave_contributors_pid %}
+            {% if subfield.wave_contributor_pid %}
             {% if "orcid" not in subfield.wave_contributor_pid %}
                 {% set wave_contributor_url = "https://orcid.org/" + subfield.wave_contributor_pid %}
             {% else %}
@@ -129,9 +134,13 @@
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
             </dd>
+            {% else %}
+            <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.wave_contributor }}</span>
+            </dd>
+            {% endif %}
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_contributor_affiliation }}</span>
             </dd>
-            {% elif field.field_name == 'cohort_study_references' %}
+          {% elif field.field_name == 'cohort_study_references' %}
             <dd><span class="tabspan fa fa-share-alt"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_study_reference_type }}',30,'hand-o-right')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.cohort_study_reference_identifier}}" target="blank">{{ subfield.cohort_study_reference_citation }}</a></span>
             </dd>
           {% elif field.field_name == 'cohort_references' %}
