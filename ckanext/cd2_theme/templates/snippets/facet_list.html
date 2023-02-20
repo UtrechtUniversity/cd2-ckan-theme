@@ -50,15 +50,16 @@
 	{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets, limit=1000) %}
 	{% if items %}
 
-	{% if items|length == 1 %}
 	<script>
-	// Show if only one label available
 	document.addEventListener("DOMContentLoaded", function (event) {
+	{% if items|length == 1 %} // Show if only one label available
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
-	});
-	</script>
+	{% elif items|length < 6 %} // Hide filter with few items displayed
+		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 	{% endif %}
+	 });
+	</script>
 
 	{% if title == 'age range' %}
 	{% set measure_age_vals = [] %}
