@@ -36,6 +36,9 @@
               {% if (form_id == 'dataset-search-form' or form_id == 'organization-datasets-search-form') and label == 'Last Modified' %}
                 {% set label = "Last Updated" %}
               {% endif %}
+              {% if label == 'Relevance' %}
+                {% set label = "" %}
+              {% endif %}
               {% if label and value %}
                 <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
               {% endif %}
