@@ -65,16 +65,24 @@
               </dd>
             
           {% elif field.field_name == 'cohort_creators' %}
+            {% if subfield.cohort_creator_pid %}
             {% if "orcid" not in subfield.cohort_creator_pid %}
                 {% set cohort_creator_url = "https://orcid.org/" + subfield.cohort_creator_pid %}
             {% else %}
                 {% set cohort_creator_url = subfield.cohort_creator_pid %}
             {% endif %}
-          <dd><span class="tabspan fa fa-user"></span><span
-            onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator }}</a></span>
-          </dd>
-          <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
-          </dd>
+            <dd><span class="tabspan fa fa-user"></span><span
+              onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator }}</a></span>
+            </dd>
+            <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
+            </dd>
+            {% else %}
+            <dd><span class="tabspan fa fa-user"></span><span target="blank">{{ subfield.cohort_creator }}</a></span>
+            </dd>
+            <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
+            </dd>
+            {% endif %}
+         
           {% elif field.field_name == 'wave_creators' %}
           {% if subfield.wave_creator_pid %}
             {% if "orcid" not in subfield.wave_creator_pid %}
