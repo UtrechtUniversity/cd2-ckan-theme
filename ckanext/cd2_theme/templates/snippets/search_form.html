@@ -37,7 +37,7 @@
                 {% set label = "Last Updated" %}
               {% endif %}
               {% if label == 'Relevance' %}
-                {% set label = "" %}
+                {% set label = "Default" %}
               {% endif %}
               {% if label and value %}
                 <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
