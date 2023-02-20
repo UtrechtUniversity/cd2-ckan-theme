@@ -158,7 +158,7 @@
           {% elif field.field_name == 'cohort_study_contact' %}
             <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.cohort_study_contact_name }}</span></dd>
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_study_contact_affiliation }}</span></dd>
-            <dd><span class="tabspan fa fa-envelope"></span><span class="repeating-element"><a href="mailto:{{cohort_study_contact_mail}}">{{ subfield.cohort_study_contact_mail }}</a></span></dd>
+            <dd><span class="tabspan fa fa-envelope"></span><span class="repeating-element"><a href="mailto:{{subfield.cohort_study_contact_mail}}">{{ subfield.cohort_study_contact_mail }}</a></span></dd>
         {% endif %}
         </dl>
       </div>
