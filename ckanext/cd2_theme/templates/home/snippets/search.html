@@ -229,16 +229,18 @@
       }
     });
   {% set stats = h.get_site_statistics() %}
-  url = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]"
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      if ($(window).width() < 400 ) {
-        document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
-      } else {
-        document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data.result.facets.wave_cohort).length + ` cohorts`;
-      }
-    });
+  const url1 = "/api/3/action/package_search?fq=dataset_type:dataset";
+  const url2 = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]";
+  Promise.all([
+    fetch(url1).then(res => res.json()),
+    fetch(url2).then(res => res.json())
+  ]).then(([data1, data2]) => {
+    if ($(window).width() < 400 ) {
+      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
+    } else {
+      document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
+    }
+  });
   url = "/api/3/action/package_search?facet.field=[%22dc_mode_of_collection%22]"
   fetch(url)
     .then(res => res.json())
