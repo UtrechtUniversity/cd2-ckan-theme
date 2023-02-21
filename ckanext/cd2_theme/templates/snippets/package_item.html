@@ -187,14 +187,6 @@
               </small>
             </span>
           {% endblock %}
-        <div class="debug" style="display:none" style="margin-top:20px">
-          <h5>Debug:</h5>
-          <table class="table table-striped table-condensed">
-            {% for key, value in package.items() %}
-              <tr><td>{{key}}</td><td>{{value}}</td></tr>
-            {% endfor %}
-            </table>
-        </div>
         </div>
         {% block resources %}
           {% if package.resources and not hide_resources %}
