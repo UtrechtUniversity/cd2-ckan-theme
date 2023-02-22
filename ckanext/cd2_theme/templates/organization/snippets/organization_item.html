@@ -16,14 +16,18 @@ Example:
 <li class="media-item">
   {% block item_inner %}
   {% block image %}
-    <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="img-fluid media-image">
+  <div style="height:100px">
+    <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" class="img-fluid media-image" style="max-height:80px">
+    </div>
   {% endblock %}
   {% block title %}
     <h2 class="media-heading">{{ organization.display_name }}</h2>
   {% endblock %}
   {% block description %}
     {% if organization.description %}
-      <p class="media-description">{{ h.markdown_extract(organization.description, extract_length=80) }}</p>
+    <div style="height:200px">
+      <p class="media-description" style="font-size:10pt">{{ h.markdown_extract(organization.description, extract_length=120) }}</p>
+      </div>
     {% endif %}
   {% endblock %}
   {% block datasets %}
