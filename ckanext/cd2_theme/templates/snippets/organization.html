@@ -27,6 +27,11 @@
         <p class="empty">{{ 'There is no description for this organization' }}</p>
       {% endif %}
       {% endblock %}
+      <div class="similar-datasets module-additional dropshadow">
+        <h1 aria-controls="similar-datasets" class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1>
+        <div id="similar-datasets" style="padding:10px"></div>
+      </div>
+      
       <div class="data-access module-additional dropshadow">
       <h1 class="heading dropshadow"><span class="fa fa-download"></span> Data access</h1>
       <dl id="data-access-panel" class="scheming-subfield-list">
@@ -38,10 +43,7 @@
             </dd>
         </div></dl>
     </div>
-      <div class="similar-datasets module-additional dropshadow">
-        <h1 aria-controls="similar-datasets" class="heading dropshadow"><span class="fa fa-copy"></span> Similar datasets</h1>
-        <div id="similar-datasets" style="padding:10px"></div>
-      </div>
+      
 
       {% block nums %}
       <a href="/dataset/?organization={{organization.name}}&amp;dataset_type=dataset"><div class="nums" id="block_nums" style="display:none">

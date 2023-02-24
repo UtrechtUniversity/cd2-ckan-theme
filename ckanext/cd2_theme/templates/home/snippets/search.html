@@ -115,16 +115,8 @@
         * @param fieldID {string} - ID of select object
         */
         function customDelim(fieldID) {
-          if (fieldID == '#select-construct') {
-            var operator = document.getElementById('operator-construct').value;
-            if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
-          } else if (fieldID = '#select-label') {
-            var operator = document.getElementById('operator-label').value;
-            if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
-          } else {
-            delim = '||';
-          }
-          return delim;
+          var operator = document.getElementById('operator-' + fieldID.substr(1)).value;
+          return (operator == 'OR') ? '||' : '&';
         }
 
         /**  
@@ -154,11 +146,7 @@
         * @param fieldID {string} - ID of element
         */
         function resetCheckboxes(fieldID) {
-          $(fieldID).children().each((index, element) => {
-            $(element).children().each((index, child) => {
-                $(child).children().prop( "checked", false );
-            });
-          });
+          $(fieldID + ' input[type="checkbox"]').prop('checked', false);
         }
 
         /**  
