@@ -76,7 +76,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
         const { id, title, organization, metadata_modified } = dataset;
         recentlyUpdatedDiv.innerHTML += `
           <div class="col-sm-3">
-            <a href="{% url_for 'dataset.search' %}?${id}" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
+            <a href="{% url_for 'dataset.search' %}${id}" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
               <span class="link-tile__header">
                 <span class="link-tile__header-text">${title}</span>
               </span>
