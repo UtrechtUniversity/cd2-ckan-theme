@@ -24,30 +24,35 @@
 document.getElementById('site-search-wrap').style.display = 'none';
   /**
   * Javascript to fetch json from CKAN API and add content to homepage
-  * Todo: TODO: combine into functions
   */
-  url = "/api/3/action/package_search?fq=type:dataset" // recently updated
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      var div = document.getElementById('recently-updated');
-      for (const result of data.result.results) {
-        div.innerHTML += `<div class="col-sm-3">
-                        <a href="{% url_for 'dataset.search' %}`+ result.id + `" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
-                          <span class="link-tile__header">
-                            <span class="link-tile__header-text">` + result.title + `</span>
-                          </span>
-                          <span class="link-tile__content">` + result.organization.title + `
-                            <br>
-                            <small>`+ result.metadata_modified.substr(0,10) + `</small>
-                          </span>
-                        </a>
-                        </div>`
-        if (data.result.results.indexOf(result) == 3) {
-          break;
-        }
-      }
-    });
+  const fetchRecentlyUpdatedDatasets = async () => {
+    try {
+      const response = await fetch("/api/3/action/package_search?fq=type:dataset");
+      const { result } = await response.json();
+      const recentlyUpdated = result.results.slice(0, 4);
+  
+      const recentlyUpdatedDiv = document.getElementById("recently-updated");
+      recentlyUpdated.forEach(dataset => {
+        const { id, title, organization, metadata_modified } = dataset;
+        recentlyUpdatedDiv.innerHTML += `
+          <div class="col-sm-3">
+            <a href="{% url_for 'dataset.search' %}${id}" class="link-tile dropshadow" title="" data-mh="recently-updated-tiles">
+              <span class="link-tile__header">
+                <span class="link-tile__header-text">${title}</span>
+              </span>
+              <span class="link-tile__content">${organization.title}
+                <br>
+                <small>${metadata_modified.substr(0, 10)}</small>
+              </span>
+            </a>
+          </div>
+        `;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchRecentlyUpdatedDatasets();
 
   url = "/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000"  // popular labels
   fetch(url)
@@ -63,15 +68,45 @@ document.getElementById('site-search-wrap').style.display = 'none';
       }
     });
 
-  url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000" // constructs
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      var ulCon = document.getElementById('construct-pit');
-      for (let [key, value] of Object.entries(data.result.facets.dc_construct)) {
-          ulCon.innerHTML += '<li class="construct-pit"><a href="{% url_for "dataset.search" %}?dc_construct=' + key + '" class="category-select"><span class="construct-overflow" onmouseenter="tooltipAddElement(this,constructLegend(\''+key+'\'),25,\'info-circle\')" onmouseleave="tooltipRemoveElement(this)">' + key + '</span><span class="label label-front">'+value+'</span></a></li>';
+    async function fetchPopularLabels() {
+      try {
+        const response = await fetch("/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000");
+        const data = await response.json();
+        const popularLabels = Object.keys(data.result.facets.dc_label);
+        const slicedLabels = popularLabels.slice(0, 15);
+        const labelList = slicedLabels.map(key => `
+          <li>
+            <a href="{% url_for 'dataset.search' %}dc_label=${key}" class="category-select">${key}</a>
+          </li>
+        `).join("");
+        document.getElementById('label-pit').innerHTML = labelList;
+      } catch (error) {
+        console.error(error);
       }
-    });   
+    }
+    fetchPopularLabels();
+    
+    async function fetchConstructs() {
+      try {
+        const response = await fetch("/api/3/action/package_search?facet.field=[%22dc_construct%22]&facet.limit=1000");
+        const data = await response.json();
+        const constructList = Object.entries(data.result.facets.dc_construct)
+          .map(([key, value]) => `
+            <li class="construct-pit">
+              <a href="{% url_for 'dataset.search' %}?dc_construct=${key}" class="category-select">
+                <span class="construct-overflow" onmouseenter="tooltipAddElement(this,constructLegend('${key}'),25,'info-circle')" onmouseleave="tooltipRemoveElement(this)">${key}</span>
+                <span class="label label-front">${value}</span>
+              </a>
+            </li>
+          `)
+          .join("");
+        
+        document.getElementById('construct-pit').innerHTML = constructList;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchConstructs();
 </script>
 
 <div role="main" class="hero" id="hero">
