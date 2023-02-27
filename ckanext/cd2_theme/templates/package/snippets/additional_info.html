@@ -74,12 +74,17 @@
         const div = document.getElementById('similar-datasets');
         if (data.result.results.length <= 1) { return; }
         for (item of data.result.results) {
-          if (item.name == currentItem) { continue; } 
-          divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
-          for (wave of item.wave) {
-            divContent += ` <span class="label">` + wave.wave_title + `</span>`
-          } 
-          divContent += `</div></a> `
+          try {
+            if (item.name == currentItem) { continue; } 
+            divContent += `<a href="/dataset/`+item.name+`"><div class="cohort-spanner nofunc">`+item.dc_cohort
+            for (wave of item.wave) {
+              divContent += ` <span class="label">` + wave.wave_title + `</span>`
+            } 
+            divContent += `</div></a> `
+          } catch (error) {
+            console.error('An error occurred while iterating through the results:', error);
+            return;
+          }
         }
         div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=dc_common_id:%22{{pkg_dict.dc_common_id}}%22">View all</a></strong></div>`
         $('.similar-datasets').fadeTo(1, 1);
