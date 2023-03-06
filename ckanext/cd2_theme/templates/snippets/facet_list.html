@@ -138,12 +138,12 @@
 				alternative_url=alternative_url) %}
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
-				
-				{% set label_truncated = label|truncate(20,true,'...') if not label_function else label %}
+				{% set label_full = label %}
+				{% set label_truncated = label|truncate(20,true,'...',0) if not label_function else label %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 					
-				<li {% if label|length > 20 %}
-					onmouseenter="tooltipAddElement(this,'{{ label }}',30)" onmouseleave="tooltipRemoveElement(this)" 
+				<li {% if '...' in label %}
+					onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
 					{% endif %} 
 					style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}">
