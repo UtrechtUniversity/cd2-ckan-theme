@@ -13,5 +13,12 @@
 {% asset 'cd2_theme/dia_script' %}
 {% asset 'cd2_theme/rua_script' %}
 {{ super() }}
-
+<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
+	  // exception for user pages to fade in menu bar
+	  if ((window.location.href.indexOf('/user/') > -1)  || (window.location.href.indexOf('/ckan-admin/') > -1)) {
+		$('.nav-tabs').fadeTo(100, 1);
+	  }
+	});
+</script>
 {% endblock scripts %}
