@@ -60,3 +60,5 @@ The theme contains functionality with several references to specific elements of
  - snippets/package_item.html
  - package/snippets/additional_info.html
  
+ Configuration of SOLR, schemas, facets and images is done via [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
+ 
