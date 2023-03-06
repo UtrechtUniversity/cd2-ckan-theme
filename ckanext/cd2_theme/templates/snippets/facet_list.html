@@ -114,12 +114,12 @@
 					<span class="item-label" style="color:#999">{{ studyname }}</span>
 				</li>
 				{% endif %}
-				
-				{% set label_truncated = label|truncate(20,true,'...') if not label_function else label %}
+				{% set label_full = label %}
+				{% set label = label|truncate(20,true,'...',0) %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
-				<li {% if label|length > 20 %}
-					onmouseenter="tooltipAddElement(this,'{{ label }}',30)" onmouseleave="tooltipRemoveElement(this)" 
+				<li {% if '...' in label %}
+					onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
 					{% endif %}
 					class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
