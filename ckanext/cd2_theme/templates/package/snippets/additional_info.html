@@ -61,6 +61,11 @@
       $('.description').fadeTo(300, 1);
       $('.read-more').fadeTo(300, 1);
       {% endif %}
+
+      // exception for user pages
+      if (window.location.href.indexOf('/user/') > -1) {
+        $('.nav-tabs').fadeTo(300, 1);
+      } 
   });
 
   {% if pkg_dict.type == 'dataset' %}
