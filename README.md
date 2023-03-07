@@ -46,7 +46,7 @@ Any CSS styling changes should be done in the LESS files and NOT directly in the
 
 ## Updating and testing
 
-SOLR and facet configuration files are included in [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
+Configuration of SOLR, schemas, facets and images is done via [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
 
 
 ## Specific CD² configurations
@@ -60,5 +60,5 @@ The theme contains functionality with several references to specific elements of
  - snippets/package_item.html
  - package/snippets/additional_info.html
  
- Configuration of SOLR, schemas, facets and images is done via [cd2-config](https://github.com/UtrechtUniversity/cd2-config)
+
  
