@@ -311,3 +311,93 @@ function constructLegend(input) {
     'Simulation' : `Modeling or imitative representation of real-world processes, events, or systems, often using computer programs. For example, a program modeling household consumption responses to indirect tax changes; or a dataset on hypothetical patients and their drug exposure, background conditions, and known adverse events.`}
     return legend[input];    
 }
+
+
+
+/**  
+ * Create search suggestions definitions
+ * beta!
+ */
+async function fetchPopularLabels() {
+    try {
+      const response = await fetch("/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000");
+      const data = await response.json();
+      const popularLabels = Object.keys(data.result.facets.dc_label);
+      return popularLabels;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+  
+   async function getPopularLabels() {
+    try {
+      const popularLabels = await fetchPopularLabels();
+      return popularLabels;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+  
+  async function getLabels() {
+    const searchBox = document.getElementById('searchbox');
+    const textBalloon = document.getElementById('search-balloon');         
+    if (searchBox.value.endsWith(' ')) {         
+        if (textBalloon) {
+            textBalloon.remove();
+        }
+        return;
+    };
+    const input = searchBox.value.trim().split(' ').pop();
+    if (input.length < 3) {
+        if (textBalloon) {
+            textBalloon.remove();
+        }
+      return [];
+    }
+    const labels = await getPopularLabels();
+    const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
+    
+    console.log(matchingLabels);
+    displayLabels();
+    return matchingLabels;
+  }
+    
+  const searchBox = document.getElementById('searchbox');
+  searchBox.addEventListener('input', async () => {
+    getLabels();
+  });
+
+  function showTextBalloon(searchbox, matchingLabels) {
+    let currTextBalloon = document.getElementById('search-balloon');
+    if (currTextBalloon) {
+        return;
+    }
+    const textBalloon = document.createElement('div');
+    textBalloon.classList.add('search-balloon');
+    textBalloon.innerHTML = `${matchingLabels.join('<br>')}`;
+    textBalloon.id = 'search-balloon';
+    const searchboxRect = searchbox.getBoundingClientRect();
+    const top = searchboxRect.bottom + window.pageYOffset + 5; // add 5 pixels for spacing
+    const left = searchboxRect.left + window.pageXOffset;
+  
+    textBalloon.style.position = 'absolute';
+    textBalloon.style.top = `${top}px`;
+    textBalloon.style.left = `${left}px`;
+  
+    document.body.appendChild(textBalloon);
+  }
+  
+async function displayLabels() { 
+    const matchingLabels = await getLabels();
+    if (matchingLabels.length > 0) {
+        const searchbox = document.getElementById('searchbox');
+        showTextBalloon(searchbox, matchingLabels);
+    }
+}
+
+
+
+
+
