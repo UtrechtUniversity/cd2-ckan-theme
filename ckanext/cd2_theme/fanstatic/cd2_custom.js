@@ -12,7 +12,7 @@ function replaceCharacters() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND', '&');
     var replaced_q = replaced_q.replace('NOT ', '-');
-    var replaced_q = replaced_q.replace('and ', '&');
+    var replaced_q = replaced_q.replace('and ', '& ');
     document.getElementById('searchbox').value = replaced_q;
 };
 
@@ -350,7 +350,8 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             if (matchingLabels.length == 0) { return; }
             displayLabels(matchingLabels);
         }
-        function showTextBalloon(searchbox, matchingLabels) {
+        function showTextBalloon(matchingLabels) {
+            const searchbox = document.getElementById('searchbox');
             if (!matchingLabels) { return; }
             let currTextBalloon = document.getElementById('search-balloon');
             if (currTextBalloon) {
@@ -372,8 +373,7 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             document.body.appendChild(textBalloon);
         }
         function displayLabels(matchingLabels) { 
-            const searchbox = document.getElementById('searchbox');
-            showTextBalloon(searchbox, matchingLabels);
+            showTextBalloon(matchingLabels);
             const searchSuggestions = document.querySelectorAll('.search-suggestion');
             searchSuggestions.forEach(suggestion => {
                 suggestion.addEventListener('click', () => {
