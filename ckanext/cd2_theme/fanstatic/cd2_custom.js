@@ -402,7 +402,7 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
-                textBalloon.innerHTML = links.join('<br>');
+                textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested labels</span><br>` + links.join('<br>');
     
                 textBalloon.id = 'search-balloon';
                 const searchboxRect = searchbox.getBoundingClientRect();
