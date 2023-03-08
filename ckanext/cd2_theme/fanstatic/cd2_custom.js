@@ -318,86 +318,65 @@ function constructLegend(input) {
  * Create search suggestions definitions
  * beta!
  */
-async function fetchPopularLabels() {
-    try {
-      const response = await fetch("/api/3/action/package_search?facet.field=[%22dc_label%22]&facet.limit=1000");
-      const data = await response.json();
-      const popularLabels = Object.keys(data.result.facets.dc_label);
-      return popularLabels;
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  }
-async function getPopularLabels() {
-    try {
-      const popularLabels = await fetchPopularLabels();
-      return popularLabels;
-    } catch (error) {
-      console.error(error);
-      return;
-    }
-  }
 
-const searchBox = document.getElementById('searchbox');
-searchBox.addEventListener('keyup', () => {
-getLabels();
-});
-
-async function getLabels() {
-    const searchBox = document.getElementById('searchbox');
-    const textBalloon = document.getElementById('search-balloon');       
-    if (searchBox.value.endsWith(' ')) { 
-        console.log('space')       
-        if (textBalloon) {
-            textBalloon.remove();
+url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        const popularLabels = Object.keys(data.result.facets.dc_label);
+        const searchBox = document.getElementById('searchbox');
+        searchBox.addEventListener('keyup', () => {
+            getMatchingLabels(popularLabels);
+        });
+        function getMatchingLabels(labels) {
+            const searchBox = document.getElementById('searchbox');
+            const textBalloon = document.getElementById('search-balloon');       
+            if (searchBox.value.endsWith(' ')) { 
+                console.log('space')       
+                if (textBalloon) {
+                    textBalloon.remove();
+                }
+                return;
+            };
+            const input = searchBox.value.trim().split(' ').pop();
+            if (input.length < 3) {
+                if (textBalloon) {
+                    textBalloon.remove();
+                }
+                return;
+            }
+            const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
+            if (matchingLabels !== 'undefined') {
+                displayLabels(matchingLabels);
+            }
         }
-        return;
-    };
-    const input = searchBox.value.trim().split(' ').pop();
-    if (input.length < 3) {
-        if (textBalloon) {
-            textBalloon.remove();
-        }
-      return;
-    }
-    const labels = await getPopularLabels();
-    const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-    if (matchingLabels !== 'undefined') {
-        displayLabels();
-        return matchingLabels;
-    }
-  }
-    
-function showTextBalloon(searchbox, matchingLabels) {
-    if (!matchingLabels) { return; }
-    let currTextBalloon = document.getElementById('search-balloon');
-    if (currTextBalloon) {
-        currTextBalloon.remove();
-    }
-    const textBalloon = document.createElement('div');
-    textBalloon.classList.add('search-balloon');
-    textBalloon.innerHTML = `<a class="search-suggestion">${matchingLabels.join('<a><br>')}`;
-    textBalloon.id = 'search-balloon';
-    const searchboxRect = searchbox.getBoundingClientRect();
-    const top = searchboxRect.bottom + window.pageYOffset + 5; 
-    const left = searchboxRect.left + window.pageXOffset;
-  
-    textBalloon.style.position = 'absolute';
-    textBalloon.style.top = `${top}px`;
-    textBalloon.style.left = `${left}px`;
-  
-    document.body.appendChild(textBalloon);
-  }
-  
-async function displayLabels() { 
-    const matchingLabels = await getLabels();
-    const searchbox = document.getElementById('searchbox');
-    showTextBalloon(searchbox, matchingLabels);
-    const searchSuggestions = document.querySelectorAll('.search-suggestion');
-    console.log(searchSuggestions)
-}
+        function showTextBalloon(searchbox, matchingLabels) {
+            if (!matchingLabels) { return; }
+            let currTextBalloon = document.getElementById('search-balloon');
+            if (currTextBalloon) {
+                currTextBalloon.remove();
+            }
+            const textBalloon = document.createElement('div');
+            textBalloon.classList.add('search-balloon');
+            textBalloon.innerHTML = `<a class="search-suggestion">${matchingLabels.join('<a><br>')}`;
+            textBalloon.id = 'search-balloon';
+            const searchboxRect = searchbox.getBoundingClientRect();
+            const top = searchboxRect.bottom + window.pageYOffset + 5; 
+            const left = searchboxRect.left + window.pageXOffset;
 
+            textBalloon.style.position = 'absolute';
+            textBalloon.style.top = `${top}px`;
+            textBalloon.style.left = `${left}px`;
+            document.body.appendChild(textBalloon);
+        }
+        function displayLabels(matchingLabels) { 
+            const searchbox = document.getElementById('searchbox');
+            showTextBalloon(searchbox, matchingLabels);
+            const searchSuggestions = document.querySelectorAll('.search-suggestion');
+            console.log(searchSuggestions)
+        }
+    }
+);
 
 
 
