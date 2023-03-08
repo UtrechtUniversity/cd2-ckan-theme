@@ -354,12 +354,13 @@ async function fetchPopularLabels() {
         if (textBalloon) {
             textBalloon.remove();
         }
-      return [];
+      return;
     }
     const labels = await getPopularLabels();
     const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-    
-    console.log(matchingLabels);
+    if (matchingLabels[0] == input) {
+        return;
+    }
     displayLabels();
     return matchingLabels;
   }
