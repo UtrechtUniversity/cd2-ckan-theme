@@ -383,7 +383,7 @@ Promise.all([
                     }
                     let newText;
                     if (lastSpecialCharIndex === -1) {
-                        newText = suggestion.innerText;
+                        newText = suggestion.innerText + ' ';
                     } else {
                         newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' ' + suggestion.innerText + ' ';
                     }
