@@ -358,9 +358,6 @@ async function fetchPopularLabels() {
     }
     const labels = await getPopularLabels();
     const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-    if (matchingLabels[0] == input) {
-        return;
-    }
     displayLabels();
     return matchingLabels;
   }
