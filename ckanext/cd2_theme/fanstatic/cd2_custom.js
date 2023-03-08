@@ -352,7 +352,6 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                 }
             }
             input = currentText.slice(lastSpecialCharIndex + 1).trim();
-            console.log(input)
             if (input.length < 3) {
                 if (textBalloon) {
                     textBalloon.remove();
