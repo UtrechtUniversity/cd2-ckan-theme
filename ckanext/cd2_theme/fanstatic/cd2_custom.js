@@ -346,9 +346,8 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                 return;
             }
             const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-            if (matchingLabels !== 'undefined') {
-                displayLabels(matchingLabels);
-            }
+            if (matchingLabels.length == 0) { return; }
+            displayLabels(matchingLabels);
         }
         function showTextBalloon(searchbox, matchingLabels) {
             if (!matchingLabels) { return; }
@@ -358,7 +357,9 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             }
             const textBalloon = document.createElement('div');
             textBalloon.classList.add('search-balloon');
-            textBalloon.innerHTML = `<a class="search-suggestion">${matchingLabels.join('<a><br>')}`;
+            const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
+            textBalloon.innerHTML = links.join('<br>');
+
             textBalloon.id = 'search-balloon';
             const searchboxRect = searchbox.getBoundingClientRect();
             const top = searchboxRect.bottom + window.pageYOffset + 5; 
@@ -373,7 +374,38 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             const searchbox = document.getElementById('searchbox');
             showTextBalloon(searchbox, matchingLabels);
             const searchSuggestions = document.querySelectorAll('.search-suggestion');
-            console.log(searchSuggestions)
+            searchSuggestions.forEach(suggestion => {
+                suggestion.addEventListener('click', () => {
+                    // Get the current value of the searchbox
+                    const searchbox = document.getElementById('searchbox');
+                    const currentText = searchbox.value;
+
+                    // Define the special characters you want to stop at
+                    const specialCharacters = ['&', '|'];
+
+                    // Find the last special character in the text
+                    let lastSpecialCharIndex = -1;
+                    for (let i = currentText.length - 1; i >= 0; i--) {
+                    if (specialCharacters.includes(currentText[i])) {
+                        lastSpecialCharIndex = i;
+                        break;
+                    }
+                    }
+                    // Replace the text after the last special character with the new value
+                    let newText;
+                    if (lastSpecialCharIndex === -1) {
+                        newText = suggestion.innerText;
+                    } else {
+                        newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' ' + suggestion.innerText;
+                    }
+                    searchbox.value = newText;
+                    let currTextBalloon = document.getElementById('search-balloon');
+                    searchbox.focus();
+                    if (currTextBalloon) {
+                        currTextBalloon.remove();
+                    }
+                });
+            });
         }
     }
 );
