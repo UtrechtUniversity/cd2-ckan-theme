@@ -329,21 +329,26 @@ async function fetchPopularLabels() {
       return [];
     }
   }
-  
-   async function getPopularLabels() {
+async function getPopularLabels() {
     try {
       const popularLabels = await fetchPopularLabels();
       return popularLabels;
     } catch (error) {
       console.error(error);
-      return [];
+      return;
     }
   }
-  
-  async function getLabels() {
+
+const searchBox = document.getElementById('searchbox');
+searchBox.addEventListener('keyup', () => {
+getLabels();
+});
+
+async function getLabels() {
     const searchBox = document.getElementById('searchbox');
-    const textBalloon = document.getElementById('search-balloon');         
-    if (searchBox.value.endsWith(' ')) {         
+    const textBalloon = document.getElementById('search-balloon');       
+    if (searchBox.value.endsWith(' ')) { 
+        console.log('space')       
         if (textBalloon) {
             textBalloon.remove();
         }
@@ -358,26 +363,24 @@ async function fetchPopularLabels() {
     }
     const labels = await getPopularLabels();
     const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-    displayLabels();
-    return matchingLabels;
+    if (matchingLabels !== 'undefined') {
+        displayLabels();
+        return matchingLabels;
+    }
   }
     
-  const searchBox = document.getElementById('searchbox');
-  searchBox.addEventListener('input', async () => {
-    getLabels();
-  });
-
-  function showTextBalloon(searchbox, matchingLabels) {
+function showTextBalloon(searchbox, matchingLabels) {
+    if (!matchingLabels) { return; }
     let currTextBalloon = document.getElementById('search-balloon');
     if (currTextBalloon) {
-        return;
+        currTextBalloon.remove();
     }
     const textBalloon = document.createElement('div');
     textBalloon.classList.add('search-balloon');
-    textBalloon.innerHTML = `${matchingLabels.join('<br>')}`;
+    textBalloon.innerHTML = `<a class="search-suggestion">${matchingLabels.join('<a><br>')}`;
     textBalloon.id = 'search-balloon';
     const searchboxRect = searchbox.getBoundingClientRect();
-    const top = searchboxRect.bottom + window.pageYOffset + 5; // add 5 pixels for spacing
+    const top = searchboxRect.bottom + window.pageYOffset + 5; 
     const left = searchboxRect.left + window.pageXOffset;
   
     textBalloon.style.position = 'absolute';
@@ -389,12 +392,11 @@ async function fetchPopularLabels() {
   
 async function displayLabels() { 
     const matchingLabels = await getLabels();
-    if (matchingLabels.length > 0) {
-        const searchbox = document.getElementById('searchbox');
-        showTextBalloon(searchbox, matchingLabels);
-    }
+    const searchbox = document.getElementById('searchbox');
+    showTextBalloon(searchbox, matchingLabels);
+    const searchSuggestions = document.querySelectorAll('.search-suggestion');
+    console.log(searchSuggestions)
 }
-
 
 
 
