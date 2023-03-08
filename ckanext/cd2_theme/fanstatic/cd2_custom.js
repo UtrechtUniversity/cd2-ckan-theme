@@ -327,13 +327,16 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
         const popularLabels = Object.keys(data.result.facets.dc_label);
         const searchBox = document.getElementById('searchbox');
         searchBox.addEventListener('keyup', () => {
-            getMatchingLabels(popularLabels);
+            const cursorX = searchBox.selectionStart;
+            const rect = searchBox.getBoundingClientRect();
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const cursorPixelX = rect.left + scrollLeft + (cursorX * 8); 
+            getMatchingLabels(popularLabels,cursorPixelX);
         });
-        function getMatchingLabels(labels) {
+        function getMatchingLabels(labels,cursorX) {
             const searchBox = document.getElementById('searchbox');
             const textBalloon = document.getElementById('search-balloon');       
-            if (searchBox.value.endsWith(' ')) { 
-                console.log('space')       
+            if (searchBox.value.endsWith(' ')) {   
                 if (textBalloon) {
                     textBalloon.remove();
                 }
@@ -348,42 +351,18 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             }
             const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
             if (matchingLabels.length == 0) { return; }
-            displayLabels(matchingLabels);
+            displayLabels(matchingLabels,cursorX);
         }
-        function showTextBalloon(matchingLabels) {
-            const searchbox = document.getElementById('searchbox');
-            if (!matchingLabels) { return; }
-            let currTextBalloon = document.getElementById('search-balloon');
-            if (currTextBalloon) {
-                currTextBalloon.remove();
-            }
-            const textBalloon = document.createElement('div');
-            textBalloon.classList.add('search-balloon');
-            const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
-            textBalloon.innerHTML = links.join('<br>');
-
-            textBalloon.id = 'search-balloon';
-            const searchboxRect = searchbox.getBoundingClientRect();
-            const top = searchboxRect.bottom + window.pageYOffset + 5; 
-            const left = searchboxRect.left + window.pageXOffset;
-
-            textBalloon.style.position = 'absolute';
-            textBalloon.style.top = `${top}px`;
-            textBalloon.style.left = `${left}px`;
-            document.body.appendChild(textBalloon);
-        }
-        function displayLabels(matchingLabels) { 
-            showTextBalloon(matchingLabels);
+        function displayLabels(matchingLabels,cursorX) { 
+            showTextBalloon(matchingLabels,cursorX);
             const searchSuggestions = document.querySelectorAll('.search-suggestion');
             searchSuggestions.forEach(suggestion => {
                 suggestion.addEventListener('click', () => {
                     // Get the current value of the searchbox
                     const searchbox = document.getElementById('searchbox');
                     const currentText = searchbox.value;
-
                     // Define the special characters you want to stop at
                     const specialCharacters = ['&', '|'];
-
                     // Find the last special character in the text
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
@@ -407,6 +386,28 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                     }
                 });
             });
+            function showTextBalloon(matchingLabels,cursorX) {
+                const searchbox = document.getElementById('searchbox');
+                if (!matchingLabels) { return; }
+                let currTextBalloon = document.getElementById('search-balloon');
+                if (currTextBalloon) {
+                    currTextBalloon.remove();
+                }
+                const textBalloon = document.createElement('div');
+                textBalloon.classList.add('search-balloon');
+                const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
+                textBalloon.innerHTML = links.join('<br>');
+    
+                textBalloon.id = 'search-balloon';
+                const searchboxRect = searchbox.getBoundingClientRect();
+                const top = searchboxRect.bottom + window.pageYOffset + 5; 
+                const left = cursorX;
+    
+                textBalloon.style.position = 'absolute';
+                textBalloon.style.top = `${top}px`;
+                textBalloon.style.left = `${left}px`;
+                document.body.appendChild(textBalloon);
+            }
         }
     }
 );
