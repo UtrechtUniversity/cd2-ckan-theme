@@ -330,7 +330,7 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-            const cursorPixelX = rect.left + scrollLeft + (cursorX * 8); 
+            const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
             getMatchingLabels(popularLabels,cursorPixelX);
         });
         function getMatchingLabels(labels,cursorX) {
@@ -342,7 +342,17 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                 }
                 return;
             };
-            const input = searchBox.value.trim().split(' ').pop();
+            const specialCharacters = ['&', '|'];
+            let lastSpecialCharIndex = -1;
+            let currentText = searchBox.value; 
+            for (let i = currentText.length - 1; i >= 0; i--) {
+                if (specialCharacters.includes(currentText[i])) {
+                    lastSpecialCharIndex = i;
+                    break;
+                }
+            }
+            input = currentText.slice(lastSpecialCharIndex + 1).trim();
+            console.log(input)
             if (input.length < 3) {
                 if (textBalloon) {
                     textBalloon.remove();
@@ -361,17 +371,14 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                     // Get the current value of the searchbox
                     const searchbox = document.getElementById('searchbox');
                     const currentText = searchbox.value;
-                    // Define the special characters you want to stop at
                     const specialCharacters = ['&', '|'];
-                    // Find the last special character in the text
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
-                    if (specialCharacters.includes(currentText[i])) {
-                        lastSpecialCharIndex = i;
-                        break;
+                        if (specialCharacters.includes(currentText[i])) {
+                            lastSpecialCharIndex = i;
+                            break;
+                        }
                     }
-                    }
-                    // Replace the text after the last special character with the new value
                     let newText;
                     if (lastSpecialCharIndex === -1) {
                         newText = suggestion.innerText;
