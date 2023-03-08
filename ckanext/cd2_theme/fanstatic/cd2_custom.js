@@ -319,19 +319,22 @@ function constructLegend(input) {
  * Create search suggestions definitions
  * beta!
  */
-
-url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        const popularLabels = Object.keys(data.result.facets.dc_label);
+const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
+const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
+Promise.all([
+  fetch(url1).then(res => res.json()),
+  fetch(url2).then(res => res.json())
+]).then(([data1, data2]) => {
+        let fetchData1 = Object.keys(data1.result.facets.dc_label);
+        const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
+        const uniqueKeywords = [...new Set(keywords)];
         const searchBox = document.getElementById('searchbox');
         searchBox.addEventListener('keyup', () => {
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
             const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
-            getMatchingLabels(popularLabels,cursorPixelX);
+            getMatchingLabels(uniqueKeywords,cursorPixelX);
         });
         function getMatchingLabels(labels,cursorX) {
             const searchBox = document.getElementById('searchbox');
@@ -402,7 +405,7 @@ url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
-                textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested labels</span><br>` + links.join('<br>');
+                textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested keywords</span><br>` + links.join('<br>');
     
                 textBalloon.id = 'search-balloon';
                 const searchboxRect = searchbox.getBoundingClientRect();
