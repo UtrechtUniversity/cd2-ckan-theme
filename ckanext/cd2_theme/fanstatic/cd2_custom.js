@@ -339,9 +339,7 @@ Promise.all([
             const searchBox = document.getElementById('searchbox');
             const textBalloon = document.getElementById('search-balloon');       
             if (searchBox.value.endsWith(' ')) {   
-                if (textBalloon) {
-                    textBalloon.remove();
-                }
+                if (textBalloon) { textBalloon.remove(); }
                 return;
             };
             const specialCharacters = ['&', '|', '(', ')', '[', ']'];
@@ -355,15 +353,13 @@ Promise.all([
             }
             input = currentText.slice(lastSpecialCharIndex + 1).trim();
             if (input.length < 3) {
-                if (textBalloon) {
-                    textBalloon.remove();
-                }
+                if (textBalloon) { textBalloon.remove(); }
                 return;
             }
             let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
             matchingLabels.sort();
             if (matchingLabels.length == 0) { 
-                textBalloon.remove();
+                if (textBalloon) { textBalloon.remove(); }
                 return; 
             }
             displayLabels(matchingLabels,cursorX);
@@ -385,6 +381,7 @@ Promise.all([
                         }
                     }
                     let newText;
+                    suggestion.innerText = suggestion.innerText.replace(/(-|and)/g, '*');
                     if (lastSpecialCharIndex === -1) {
                         newText = '"' + suggestion.innerText + '" ';
                     } else {
@@ -393,28 +390,22 @@ Promise.all([
                     searchbox.value = newText;
                     let currTextBalloon = document.getElementById('search-balloon');
                     searchbox.focus();
-                    if (currTextBalloon) {
-                        currTextBalloon.remove();
-                    }
+                    if (currTextBalloon) { currTextBalloon.remove(); }
                 });
             });
             function showTextBalloon(matchingLabels,cursorX) {
                 const searchbox = document.getElementById('searchbox');
                 if (!matchingLabels) { return; }
                 let currTextBalloon = document.getElementById('search-balloon');
-                if (currTextBalloon) {
-                    currTextBalloon.remove();
-                }
+                if (currTextBalloon) { currTextBalloon.remove();}
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
                 textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested keywords</span><br>` + links.join('<br>');
-    
                 textBalloon.id = 'search-balloon';
                 const searchboxRect = searchbox.getBoundingClientRect();
                 const top = searchboxRect.bottom + window.pageYOffset + 5; 
                 const left = cursorX;
-    
                 textBalloon.style.position = 'absolute';
                 textBalloon.style.top = `${top}px`;
                 textBalloon.style.left = `${left}px`;
