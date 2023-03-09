@@ -360,7 +360,8 @@ Promise.all([
                 }
                 return;
             }
-            const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
+            let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
+            matchingLabels.sort();
             if (matchingLabels.length == 0) { 
                 textBalloon.remove();
                 return; 
