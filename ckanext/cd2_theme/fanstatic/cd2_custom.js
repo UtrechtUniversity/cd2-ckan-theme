@@ -400,7 +400,7 @@ Promise.all([
                 if (currTextBalloon) { currTextBalloon.remove();}
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
-                const links = matchingLabels.map(label => `<a class="search-suggestion">${label}</a>`);
+                const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
                 textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested keywords</span><br>` + links.join('<br>');
                 textBalloon.id = 'search-balloon';
                 const searchboxRect = searchbox.getBoundingClientRect();
