@@ -11,9 +11,7 @@ if (input_q) { input_q.addEventListener('keyup', replaceCharacters); }
 function replaceCharacters() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND ', '&');
-    var replaced_q = replaced_q.replace('and ', '& ');
     var replaced_q = replaced_q.replace('NOT ', '-');
-    var replaced_q = replaced_q.replace('not ', '- ');
     document.getElementById('searchbox').value = replaced_q;
 };
 
