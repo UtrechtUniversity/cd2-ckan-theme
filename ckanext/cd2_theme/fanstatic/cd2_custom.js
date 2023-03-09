@@ -10,9 +10,10 @@ var input_q = document.getElementById('searchbox');
 if (input_q) { input_q.addEventListener('keyup', replaceCharacters); }
 function replaceCharacters() {
     var value_q = input_q.value;
-    var replaced_q = value_q.replace('AND', '&');
-    var replaced_q = replaced_q.replace('NOT ', '-');
+    var replaced_q = value_q.replace('AND ', '&');
     var replaced_q = replaced_q.replace('and ', '& ');
+    var replaced_q = replaced_q.replace('NOT ', '-');
+    var replaced_q = replaced_q.replace('not ', '- ');
     document.getElementById('searchbox').value = replaced_q;
 };
 
@@ -329,7 +330,7 @@ Promise.all([
         const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
         const uniqueKeywords = [...new Set(keywords)];
         const searchBox = document.getElementById('searchbox');
-        searchBox.addEventListener('keyup', () => {
+        searchBox.addEventListener('keydown', () => {
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -345,7 +346,7 @@ Promise.all([
                 }
                 return;
             };
-            const specialCharacters = ['&', '|'];
+            const specialCharacters = ['&', '|', '(', ')', '[', ']'];
             let lastSpecialCharIndex = -1;
             let currentText = searchBox.value; 
             for (let i = currentText.length - 1; i >= 0; i--) {
@@ -362,7 +363,10 @@ Promise.all([
                 return;
             }
             const matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-            if (matchingLabels.length == 0) { return; }
+            if (matchingLabels.length == 0) { 
+                textBalloon.remove();
+                return; 
+            }
             displayLabels(matchingLabels,cursorX);
         }
         function displayLabels(matchingLabels,cursorX) { 
@@ -373,7 +377,7 @@ Promise.all([
                     // Get the current value of the searchbox
                     const searchbox = document.getElementById('searchbox');
                     const currentText = searchbox.value;
-                    const specialCharacters = ['&', '|'];
+                    const specialCharacters = ['&', '|', '(', ')', '[', ']'];
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
                         if (specialCharacters.includes(currentText[i])) {
