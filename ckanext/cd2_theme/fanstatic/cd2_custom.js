@@ -318,6 +318,7 @@ function constructLegend(input) {
  * Create search suggestions definitions
  * beta!
  */
+
 const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
 const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
 Promise.all([
@@ -328,7 +329,12 @@ Promise.all([
         const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
         const uniqueKeywords = [...new Set(keywords)];
         const searchBox = document.getElementById('searchbox');
-        searchBox.addEventListener('keydown', () => {
+        searchBox.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Tab') {
+                console.log(event)
+                return;
+            }
+            selectedSuggestionIndex = -1;
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -410,6 +416,52 @@ Promise.all([
                 textBalloon.style.top = `${top}px`;
                 textBalloon.style.left = `${left}px`;
                 document.body.appendChild(textBalloon);
+            }
+            interactiveSuggestions();
+        }
+        function interactiveSuggestions() {
+            console.log('again')
+            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+            document.addEventListener('keydown', (event) => {
+            if (searchBox !== document.activeElement) {
+                return;
+            }
+            if (event.key === 'ArrowDown') {
+                // Move selection down
+                event.preventDefault();
+                selectedSuggestionIndex =
+                (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
+                updateSelectedSuggestion(selectedSuggestionIndex);
+            } else if (event.key === 'ArrowUp') {
+                // Move selection up
+                event.preventDefault();
+                selectedSuggestionIndex =
+                (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
+                searchSuggestionLinks.length;
+                updateSelectedSuggestion(selectedSuggestionIndex);
+            } else if (event.key === 'Tab') {
+                // Simulate a click on the selected suggestion
+                event.preventDefault();
+                if (selectedSuggestionIndex >= 0) {
+                searchSuggestionLinks[selectedSuggestionIndex].click();
+                }
+            }
+            });
+            function updateSelectedSuggestion(selectedSuggestionIndex) {
+                console.log(selectedSuggestionIndex)
+                let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+                searchSuggestionLinks.forEach((link) => {
+                    link.style.backgroundColor = '';
+                    link.style.padding = '';
+                    link.style.borderRadius = '';
+                });
+                // Add the selected class to the currently selected suggestion
+                const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
+                    selectedSuggestionLink.style.backgroundColor = '#ccc';
+                    selectedSuggestionLink.style.padding = '4px';
+                    selectedSuggestionLink.style.borderRadius = '5px';
+                    const searchBox = document.getElementById('searchbox');
+                    searchBox.focus()
             }
         }
     }
