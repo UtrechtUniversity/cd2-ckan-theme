@@ -320,299 +320,148 @@ function constructLegend(input) {
  * - Use tab-key to add suggestion to the searchbox
  */
 function interactiveSuggestions() {
-const specialCharacters = ['&', '|', '(', ')', '[', ']'];
-let selectedSuggestionIndex = -1;
-const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
-const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
-Promise.all([
-  fetch(url1).then(res => res.json()),
-  fetch(url2).then(res => res.json())
-]).then(([data1, data2]) => {
-        function handleKeyDown(event) {
-            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-            if (searchSuggestionLinks.length == 0) { return; }
-            if (searchBox !== document.activeElement) {
-                return;
-            }
-            if (event.key === 'ArrowDown') {
-                // Move selection down
-                event.preventDefault();
-                selectedSuggestionIndex =
-                    (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.key === 'ArrowUp') {
-                // Move selection up
-                event.preventDefault();
-                selectedSuggestionIndex =
-                    (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
-                    searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.keyCode === 13) {
-                // Simulate a click on the selected suggestion
-                if (selectedSuggestionIndex >= 0) {
+    const specialCharacters = ['&', '|', '(', ')', '[', ']'];
+    let selectedSuggestionIndex = -1;
+    const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
+    const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
+    Promise.all([
+      fetch(url1).then(res => res.json()),
+      fetch(url2).then(res => res.json())
+    ]).then(([data1, data2]) => {
+            function handleKeyDown(event) {
+                let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+                if (searchSuggestionLinks.length == 0) { return; }
+                if (searchBox !== document.activeElement) {
+                    return;
+                }
+                if (event.key === 'ArrowDown') {
+                    // Move selection down
                     event.preventDefault();
-                    searchSuggestionLinks[selectedSuggestionIndex].click();
-                }
-            }
-        }
-        document.addEventListener('keydown', handleKeyDown);
-        function updateSelectedSuggestion(selectedSuggestionIndex) {
-            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-            searchSuggestionLinks.forEach((link) => {
-                link.style.backgroundColor = '';
-                link.style.borderRadius = '';
-            });
-            const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
-                selectedSuggestionLink.style.backgroundColor = '#ccc';
-                selectedSuggestionLink.style.borderRadius = '5px';
-                const searchBox = document.getElementById('searchbox');
-                searchBox.focus()
-        }
-        let fetchData1 = Object.keys(data1.result.facets.dc_label);
-        const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
-        const uniqueKeywords = [...new Set(keywords)];
-        const searchBox = document.getElementById('searchbox');
-        searchBox.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.
-/**  
- * Create interactive search suggestions
- * - Display a popup with keywords based on text entered in the searchbox
- * - Create event listeners when searchbox is focussed for up and down keys to select suggestions
- * - Use tab-key to add suggestion to the searchbox
- */
-function interactiveSuggestions() {
-const specialCharacters = ['&', '|', '(', ')', '[', ']'];
-let selectedSuggestionIndex = -1;
-const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
-const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
-Promise.all([
-  fetch(url1).then(res => res.json()),
-  fetch(url2).then(res => res.json())
-]).then(([data1, data2]) => {
-        function handleKeyDown(event) {
-            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-            if (searchSuggestionLinks.length == 0) { return; }
-            if (searchBox !== document.activeElement) {
-                return;
-            }
-            if (event.key === 'ArrowDown') {
-                // Move selection down
-                event.preventDefault();
-                selectedSuggestionIndex =
-                    (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.key === 'ArrowUp') {
-                // Move selection up
-                event.preventDefault();
-                selectedSuggestionIndex =
-                    (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
-                    searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.keyCode === 13) {
-                // Simulate a click on the selected suggestion
-                if (selectedSuggestionIndex >= 0) {
+                    selectedSuggestionIndex =
+                        (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
+                    updateSelectedSuggestion(selectedSuggestionIndex);
+                } else if (event.key === 'ArrowUp') {
+                    // Move selection up
                     event.preventDefault();
-                    searchSuggestionLinks[selectedSuggestionIndex].click();
+                    selectedSuggestionIndex =
+                        (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
+                        searchSuggestionLinks.length;
+                    updateSelectedSuggestion(selectedSuggestionIndex);
+                } else if (event.key === 'Enter') {
+                    // Simulate a click on the selected suggestion
+                    if (selectedSuggestionIndex >= 0) {
+                        event.preventDefault();
+                        searchSuggestionLinks[selectedSuggestionIndex].click();
+                    }
                 }
             }
-        }
-        document.addEventListener('keydown', handleKeyDown);
-        function updateSelectedSuggestion(selectedSuggestionIndex) {
-            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-            searchSuggestionLinks.forEach((link) => {
-                link.style.backgroundColor = '';
-                link.style.borderRadius = '';
+            document.addEventListener('keydown', handleKeyDown);
+            function updateSelectedSuggestion(selectedSuggestionIndex) {
+                let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+                searchSuggestionLinks.forEach((link) => {
+                    link.style.backgroundColor = '';
+                    link.style.borderRadius = '';
+                });
+                const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
+                    selectedSuggestionLink.style.backgroundColor = '#ccc';
+                    selectedSuggestionLink.style.borderRadius = '5px';
+                    const searchBox = document.getElementById('searchbox');
+                    searchBox.focus()
+            }
+            let fetchData1 = Object.keys(data1.result.facets.dc_label);
+            const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
+            const uniqueKeywords = [...new Set(keywords)];
+            const searchBox = document.getElementById('searchbox');
+            searchBox.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
+                    return;
+                }
+                selectedSuggestionIndex = -1;
+                const cursorX = searchBox.selectionStart;
+                const rect = searchBox.getBoundingClientRect();
+                const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
+                getMatchingLabels(uniqueKeywords,cursorPixelX);
             });
-            const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
-                selectedSuggestionLink.style.backgroundColor = '#ccc';
-                selectedSuggestionLink.style.borderRadius = '5px';
+            function getMatchingLabels(labels,cursorX) {
                 const searchBox = document.getElementById('searchbox');
-                searchBox.focus()
-        }
-        let fetchData1 = Object.keys(data1.result.facets.dc_label);
-        const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
-        const uniqueKeywords = [...new Set(keywords)];
-        const searchBox = document.getElementById('searchbox');
-        searchBox.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
-                return;
-            }
-            selectedSuggestionIndex = -1;
-            const cursorX = searchBox.selectionStart;
-            const rect = searchBox.getBoundingClientRect();
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-            const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
-            getMatchingLabels(uniqueKeywords,cursorPixelX);
-        });
-        function getMatchingLabels(labels,cursorX) {
-            const searchBox = document.getElementById('searchbox');
-            const textBalloon = document.getElementById('search-balloon');       
-            if (searchBox.value.endsWith(' ')) {   
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return;
-            };
-            let lastSpecialCharIndex = -1;
-            let currentText = searchBox.value; 
-            for (let i = currentText.length - 1; i >= 0; i--) {
-                if (specialCharacters.includes(currentText[i])) {
-                    lastSpecialCharIndex = i;
-                    break;
+                const textBalloon = document.getElementById('search-balloon');       
+                if (searchBox.value.endsWith(' ')) {   
+                    if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
+                    return;
+                };
+                let lastSpecialCharIndex = -1;
+                let currentText = searchBox.value; 
+                for (let i = currentText.length - 1; i >= 0; i--) {
+                    if (specialCharacters.includes(currentText[i])) {
+                        lastSpecialCharIndex = i;
+                        break;
+                    }
                 }
-            }
-            input = currentText.slice(lastSpecialCharIndex + 1).trim();
-            if (input.length < 3) {
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return;
-            }
-            let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-            matchingLabels.sort();
-            if (matchingLabels.length == 0) { 
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return; 
-            }
-            displayLabels(matchingLabels,cursorX);
-        }
-        function displayLabels(matchingLabels,cursorX) { 
-            showTextBalloon(matchingLabels,cursorX);
-            let searchSuggestions = document.querySelectorAll('.search-suggestion');
-            searchSuggestions.forEach(suggestion => {
-                suggestion.addEventListener('click', () => {
-                    // Get the current value of the searchbox
-                    const searchbox = document.getElementById('searchbox');
-                    const currentText = searchbox.value;
-                    let lastSpecialCharIndex = -1;
-                    for (let i = currentText.length - 1; i >= 0; i--) {
-                        if (specialCharacters.includes(currentText[i])) {
-                            lastSpecialCharIndex = i;
-                            break;
-                        }
-                    }
-                    let newText;
-                    suggestion.innerText = suggestion.innerText.replace(/(-|and)/g, '*');
-                    if (lastSpecialCharIndex === -1) {
-                        newText = '"' + suggestion.innerText + '" ';
-                    } else {
-                        newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' "' + suggestion.innerText + '" ';
-                    }
-                    searchbox.value = newText;
-                    selectedSuggestionIndex = -1;
-                    let currTextBalloon = document.getElementById('search-balloon');
-                    searchbox.focus();
-                    if (currTextBalloon) { currTextBalloon.remove(); }
-                });
-            });
-            function showTextBalloon(matchingLabels,cursorX) {
-                const searchbox = document.getElementById('searchbox');
-                if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
-                let currTextBalloon = document.getElementById('search-balloon');
-                if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
-                const textBalloon = document.createElement('div');
-                textBalloon.classList.add('search-balloon');
-                const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
-                textBalloon.innerHTML = `<span>Suggested keywords</span><br><span class="small" style="color:grey"><span class="fa fa-info-circle"></span> Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>enter</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
-                textBalloon.id = 'search-balloon';
-                const searchboxRect = searchbox.getBoundingClientRect();
-                const top = searchboxRect.bottom + window.pageYOffset + 5; 
-                const left = cursorX;
-                textBalloon.style.position = 'absolute';
-                textBalloon.style.top = `${top}px`;
-                textBalloon.style.left = `${left}px`;
-                document.body.appendChild(textBalloon);
-            } 
-        }   
-    }
-);
-}
-interactiveSuggestions()
-
-') {
-                return;
-            }
-            selectedSuggestionIndex = -1;
-            const cursorX = searchBox.selectionStart;
-            const rect = searchBox.getBoundingClientRect();
-            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-            const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
-            getMatchingLabels(uniqueKeywords,cursorPixelX);
-        });
-        function getMatchingLabels(labels,cursorX) {
-            const searchBox = document.getElementById('searchbox');
-            const textBalloon = document.getElementById('search-balloon');       
-            if (searchBox.value.endsWith(' ')) {   
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return;
-            };
-            let lastSpecialCharIndex = -1;
-            let currentText = searchBox.value; 
-            for (let i = currentText.length - 1; i >= 0; i--) {
-                if (specialCharacters.includes(currentText[i])) {
-                    lastSpecialCharIndex = i;
-                    break;
+                input = currentText.slice(lastSpecialCharIndex + 1).trim();
+                if (input.length < 3) {
+                    if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
+                    return;
                 }
+                let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
+                matchingLabels.sort();
+                if (matchingLabels.length == 0) { 
+                    if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
+                    return; 
+                }
+                displayLabels(matchingLabels,cursorX);
             }
-            input = currentText.slice(lastSpecialCharIndex + 1).trim();
-            if (input.length < 3) {
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return;
-            }
-            let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
-            matchingLabels.sort();
-            if (matchingLabels.length == 0) { 
-                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
-                return; 
-            }
-            displayLabels(matchingLabels,cursorX);
-        }
-        function displayLabels(matchingLabels,cursorX) { 
-            showTextBalloon(matchingLabels,cursorX);
-            let searchSuggestions = document.querySelectorAll('.search-suggestion');
-            searchSuggestions.forEach(suggestion => {
-                suggestion.addEventListener('click', () => {
-                    // Get the current value of the searchbox
-                    const searchbox = document.getElementById('searchbox');
-                    const currentText = searchbox.value;
-                    let lastSpecialCharIndex = -1;
-                    for (let i = currentText.length - 1; i >= 0; i--) {
-                        if (specialCharacters.includes(currentText[i])) {
-                            lastSpecialCharIndex = i;
-                            break;
+            function displayLabels(matchingLabels,cursorX) { 
+                showTextBalloon(matchingLabels,cursorX);
+                let searchSuggestions = document.querySelectorAll('.search-suggestion');
+                searchSuggestions.forEach(suggestion => {
+                    suggestion.addEventListener('click', () => {
+                        // Get the current value of the searchbox
+                        const searchbox = document.getElementById('searchbox');
+                        const currentText = searchbox.value;
+                        let lastSpecialCharIndex = -1;
+                        for (let i = currentText.length - 1; i >= 0; i--) {
+                            if (specialCharacters.includes(currentText[i])) {
+                                lastSpecialCharIndex = i;
+                                break;
+                            }
                         }
-                    }
-                    let newText;
-                    suggestion.innerText = suggestion.innerText.replace(/(-|and)/g, '*');
-                    if (lastSpecialCharIndex === -1) {
-                        newText = '"' + suggestion.innerText + '" ';
-                    } else {
-                        newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' "' + suggestion.innerText + '" ';
-                    }
-                    searchbox.value = newText;
-                    selectedSuggestionIndex = -1;
-                    let currTextBalloon = document.getElementById('search-balloon');
-                    searchbox.focus();
-                    if (currTextBalloon) { currTextBalloon.remove(); }
+                        let newText;
+                        suggestion.innerText = suggestion.innerText.replace(/(-|and)/g, '*');
+                        if (lastSpecialCharIndex === -1) {
+                            newText = '"' + suggestion.innerText + '" ';
+                        } else {
+                            newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' "' + suggestion.innerText + '" ';
+                        }
+                        searchbox.value = newText;
+                        selectedSuggestionIndex = -1;
+                        let currTextBalloon = document.getElementById('search-balloon');
+                        searchbox.focus();
+                        if (currTextBalloon) { currTextBalloon.remove(); }
+                    });
                 });
-            });
-            function showTextBalloon(matchingLabels,cursorX) {
-                const searchbox = document.getElementById('searchbox');
-                if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
-                let currTextBalloon = document.getElementById('search-balloon');
-                if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
-                const textBalloon = document.createElement('div');
-                textBalloon.classList.add('search-balloon');
-                const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
-                textBalloon.innerHTML = `<span>Suggested keywords</span><br><span class="small" style="color:grey"><span class="fa fa-info-circle"></span> Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>tab</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
-                textBalloon.id = 'search-balloon';
-                const searchboxRect = searchbox.getBoundingClientRect();
-                const top = searchboxRect.bottom + window.pageYOffset + 5; 
-                const left = cursorX;
-                textBalloon.style.position = 'absolute';
-                textBalloon.style.top = `${top}px`;
-                textBalloon.style.left = `${left}px`;
-                document.body.appendChild(textBalloon);
-            } 
-        }   
+                function showTextBalloon(matchingLabels,cursorX) {
+                    const searchbox = document.getElementById('searchbox');
+                    if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
+                    let currTextBalloon = document.getElementById('search-balloon');
+                    if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
+                    const textBalloon = document.createElement('div');
+                    textBalloon.classList.add('search-balloon');
+                    const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
+                    textBalloon.innerHTML = `<span>Suggested keywords</span><br><span class="small" style="color:grey"><span class="fa fa-info-circle"></span> Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>tab</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
+                    textBalloon.id = 'search-balloon';
+                    const searchboxRect = searchbox.getBoundingClientRect();
+                    const top = searchboxRect.bottom + window.pageYOffset + 5; 
+                    const left = cursorX;
+                    textBalloon.style.position = 'absolute';
+                    textBalloon.style.top = `${top}px`;
+                    textBalloon.style.left = `${left}px`;
+                    document.body.appendChild(textBalloon);
+                } 
+            }   
+        }
+    );
     }
-);
-}
-interactiveSuggestions()
-
+    interactiveSuggestions()
+    
+    
