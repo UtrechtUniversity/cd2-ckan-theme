@@ -449,7 +449,7 @@ Promise.all([
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
-                textBalloon.innerHTML = `<span><span class="fa fa-info-circle"></span> Suggested keywords</span><br><span class="small" style="color:grey">Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>tab</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
+                textBalloon.innerHTML = `<span>Suggested keywords</span><br><span class="small" style="color:grey"><span class="fa fa-info-circle"></span> Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>tab</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
                 textBalloon.id = 'search-balloon';
                 const searchboxRect = searchbox.getBoundingClientRect();
                 const top = searchboxRect.bottom + window.pageYOffset + 5; 
