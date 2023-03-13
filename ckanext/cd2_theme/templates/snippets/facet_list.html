@@ -251,21 +251,23 @@
 			document.getElementById('section_age').style.display = 'none';
 		};
 
-		var mySlider = new rSlider({
-			target: '#ageSlider',
-			values: defaultRange,
-			range: true,
-			tooltip: true,
-			scale: true,
-			labels: false,
-			set: [getCurrentAgeRange('min'), getCurrentAgeRange('max')],
-			onChange: function (vals) {
-				// Create querystring for new range selection to add to search field
-				vals = vals.split(",");
-				vals = roundDownToNearest12(vals);
-				ageQstring = 'measure_age_month:[' + vals[0] + ' TO ' + vals[1] + ']';
-			}
-		});
+		if (typeof getCurrentAgeRange === 'function') { 
+			var mySlider = new rSlider({
+				target: '#ageSlider',
+				values: defaultRange,
+				range: true,
+				tooltip: true,
+				scale: true,
+				labels: false,
+				set: [getCurrentAgeRange('min'), getCurrentAgeRange('max')],
+				onChange: function (vals) {
+					// Create querystring for new range selection to add to search field
+					vals = vals.split(",");
+					vals = roundDownToNearest12(vals);
+					ageQstring = 'measure_age_month:[' + vals[0] + ' TO ' + vals[1] + ']';
+				}
+			});
+		}
 	};
 
 </script>

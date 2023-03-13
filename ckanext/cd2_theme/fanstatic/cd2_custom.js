@@ -465,6 +465,11 @@ function interactiveSuggestions() {
         }
     );
     }
-    interactiveSuggestions()
-    
-    
+
+    const searchBox = document.getElementById('searchbox');       
+    if (searchBox) { 
+        interactiveSuggestions();
+    }
+
+
+
