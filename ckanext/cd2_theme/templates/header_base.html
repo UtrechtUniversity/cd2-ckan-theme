@@ -16,7 +16,8 @@
                                     {% if c.userobj.sysadmin %}
                                     <script>
                                     document.addEventListener("DOMContentLoaded", function (event) {
-                                        document.getElementsByClassName('debug')[0].style.display = "inherit";
+                                        const debugElements = document.getElementsByClassName('debug');
+                                        if (debugElements.length > 0) { debugElements[0].style.display = "inherit"; }
                                     });
                                     </script>
                                         <li>
