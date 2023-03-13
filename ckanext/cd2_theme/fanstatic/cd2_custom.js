@@ -328,6 +328,9 @@ function interactiveSuggestions() {
       fetch(url1).then(res => res.json()),
       fetch(url2).then(res => res.json())
     ]).then(([data1, data2]) => {
+        let fetchData1 = Object.keys(data1.result.facets.dc_label);
+        const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
+        const uniqueKeywords = [...new Set(keywords)];
             function handleKeyDown(event) {
                 let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
                 if (searchSuggestionLinks.length == 0) { return; }
@@ -353,6 +356,9 @@ function interactiveSuggestions() {
                         event.preventDefault();
                         searchSuggestionLinks[selectedSuggestionIndex].click();
                     }
+                } else if (event.key === 'Escape' || event.key === 'Esc') {
+                    let currTextBalloon = document.getElementById('search-balloon');
+                    if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
                 }
             }
             document.addEventListener('keydown', handleKeyDown);
@@ -368,9 +374,6 @@ function interactiveSuggestions() {
                     const searchBox = document.getElementById('searchbox');
                     searchBox.focus()
             }
-            let fetchData1 = Object.keys(data1.result.facets.dc_label);
-            const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
-            const uniqueKeywords = [...new Set(keywords)];
             const searchBox = document.getElementById('searchbox');
             searchBox.addEventListener('keydown', (event) => {
                 if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
