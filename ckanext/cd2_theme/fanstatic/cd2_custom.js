@@ -242,15 +242,16 @@ function createLegendString(input) {
         'P1C': 'primary parent on child',
         'P2C': 'other parent on child'
     };
-
     let legendString;
     if (input[0] === 'O') {
         legendString = `${dict[input[0]]} of ${dict[input.slice(1)]}`;
     } else if (/\d/.test(input)) {
-        if (input.includes('P1') || input.includes('P2') && input.length === 4) {
+        if ((input.includes('P1') || input.includes('P2')) && input.length === 4) {
             legendString = input[0] === input[2] ? 
                             `${dict[input.slice(0, 2)]} on self` :
                             `${dict[input.slice(0, 2)]} on ${dict[input.slice(2)]}`;
+        } else if (input.length === 2) {
+            legendString = `${dict[input]}`;
         } else {
             const [firstPair] = input.match(/[P\d]+/g);
             legendString = `${dict[firstPair]} on ${dict[input.replace(firstPair, '')]}`;
@@ -264,7 +265,7 @@ function createLegendString(input) {
                             `${dict[input[0]]} on ${dict[input[1]]}`;
         }
     }
-
+    console.log(legendString)
     return legendString;
 }
 
@@ -313,10 +314,13 @@ function constructLegend(input) {
 }
 
 /**  
- * Create search suggestions definitions
- * beta!
+ * Create interactive search suggestions
+ * - Display a popup with keywords based on text entered in the searchbox
+ * - Create event listeners when searchbox is focussed for up and down keys to select suggestions
+ * - Use tab-key to add suggestion to the searchbox
  */
 function interactiveSuggestions() {
+const specialCharacters = ['&', '|', '(', ')', '[', ']'];
 let selectedSuggestionIndex = -1;
 const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
 const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
@@ -366,7 +370,6 @@ Promise.all([
                 const searchBox = document.getElementById('searchbox');
                 searchBox.focus()
         }
-
         let fetchData1 = Object.keys(data1.result.facets.dc_label);
         const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
         const uniqueKeywords = [...new Set(keywords)];
@@ -389,7 +392,6 @@ Promise.all([
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return;
             };
-            const specialCharacters = ['&', '|', '(', ')', '[', ']'];
             let lastSpecialCharIndex = -1;
             let currentText = searchBox.value; 
             for (let i = currentText.length - 1; i >= 0; i--) {
@@ -419,7 +421,6 @@ Promise.all([
                     // Get the current value of the searchbox
                     const searchbox = document.getElementById('searchbox');
                     const currentText = searchbox.value;
-                    const specialCharacters = ['&', '|', '(', ')', '[', ']'];
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
                         if (specialCharacters.includes(currentText[i])) {
