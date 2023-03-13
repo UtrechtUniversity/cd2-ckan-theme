@@ -360,12 +360,10 @@ Promise.all([
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             searchSuggestionLinks.forEach((link) => {
                 link.style.backgroundColor = '';
-                link.style.padding = '';
                 link.style.borderRadius = '';
             });
             const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
                 selectedSuggestionLink.style.backgroundColor = '#ccc';
-                selectedSuggestionLink.style.padding = '4px';
                 selectedSuggestionLink.style.borderRadius = '5px';
                 const searchBox = document.getElementById('searchbox');
                 searchBox.focus()
