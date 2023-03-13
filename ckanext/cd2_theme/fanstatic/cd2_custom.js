@@ -312,26 +312,67 @@ function constructLegend(input) {
     return legend[input];    
 }
 
-
-
 /**  
  * Create search suggestions definitions
  * beta!
  */
-
+function interactiveSuggestions() {
+let selectedSuggestionIndex = -1;
 const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
 const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
 Promise.all([
   fetch(url1).then(res => res.json()),
   fetch(url2).then(res => res.json())
 ]).then(([data1, data2]) => {
+        function handleKeyDown(event) {
+            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+            if (searchSuggestionLinks.length == 0) { return; }
+            if (searchBox !== document.activeElement) {
+                return;
+            }
+            if (event.key === 'ArrowDown') {
+                // Move selection down
+                event.preventDefault();
+                selectedSuggestionIndex =
+                    (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
+                updateSelectedSuggestion(selectedSuggestionIndex);
+            } else if (event.key === 'ArrowUp') {
+                // Move selection up
+                event.preventDefault();
+                selectedSuggestionIndex =
+                    (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
+                    searchSuggestionLinks.length;
+                updateSelectedSuggestion(selectedSuggestionIndex);
+            } else if (event.key === 'Tab') {
+                // Simulate a click on the selected suggestion
+                event.preventDefault();
+                if (selectedSuggestionIndex >= 0) {
+                    searchSuggestionLinks[selectedSuggestionIndex].click();
+                }
+            }
+        }
+        document.addEventListener('keydown', handleKeyDown);
+        function updateSelectedSuggestion(selectedSuggestionIndex) {
+            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
+            searchSuggestionLinks.forEach((link) => {
+                link.style.backgroundColor = '';
+                link.style.padding = '';
+                link.style.borderRadius = '';
+            });
+            const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
+                selectedSuggestionLink.style.backgroundColor = '#ccc';
+                selectedSuggestionLink.style.padding = '4px';
+                selectedSuggestionLink.style.borderRadius = '5px';
+                const searchBox = document.getElementById('searchbox');
+                searchBox.focus()
+        }
+
         let fetchData1 = Object.keys(data1.result.facets.dc_label);
         const keywords = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
         const uniqueKeywords = [...new Set(keywords)];
         const searchBox = document.getElementById('searchbox');
         searchBox.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Tab') {
-                console.log(event)
                 return;
             }
             selectedSuggestionIndex = -1;
@@ -345,7 +386,7 @@ Promise.all([
             const searchBox = document.getElementById('searchbox');
             const textBalloon = document.getElementById('search-balloon');       
             if (searchBox.value.endsWith(' ')) {   
-                if (textBalloon) { textBalloon.remove(); }
+                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return;
             };
             const specialCharacters = ['&', '|', '(', ')', '[', ']'];
@@ -359,20 +400,20 @@ Promise.all([
             }
             input = currentText.slice(lastSpecialCharIndex + 1).trim();
             if (input.length < 3) {
-                if (textBalloon) { textBalloon.remove(); }
+                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return;
             }
             let matchingLabels = labels.filter(label => label.toLowerCase().startsWith(input.toLowerCase()));
             matchingLabels.sort();
             if (matchingLabels.length == 0) { 
-                if (textBalloon) { textBalloon.remove(); }
+                if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return; 
             }
             displayLabels(matchingLabels,cursorX);
         }
         function displayLabels(matchingLabels,cursorX) { 
             showTextBalloon(matchingLabels,cursorX);
-            const searchSuggestions = document.querySelectorAll('.search-suggestion');
+            let searchSuggestions = document.querySelectorAll('.search-suggestion');
             searchSuggestions.forEach(suggestion => {
                 suggestion.addEventListener('click', () => {
                     // Get the current value of the searchbox
@@ -394,6 +435,7 @@ Promise.all([
                         newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' "' + suggestion.innerText + '" ';
                     }
                     searchbox.value = newText;
+                    selectedSuggestionIndex = -1;
                     let currTextBalloon = document.getElementById('search-balloon');
                     searchbox.focus();
                     if (currTextBalloon) { currTextBalloon.remove(); }
@@ -401,9 +443,9 @@ Promise.all([
             });
             function showTextBalloon(matchingLabels,cursorX) {
                 const searchbox = document.getElementById('searchbox');
-                if (!matchingLabels) { return; }
+                if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
                 let currTextBalloon = document.getElementById('search-balloon');
-                if (currTextBalloon) { currTextBalloon.remove();}
+                if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
                 const textBalloon = document.createElement('div');
                 textBalloon.classList.add('search-balloon');
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
@@ -416,56 +458,10 @@ Promise.all([
                 textBalloon.style.top = `${top}px`;
                 textBalloon.style.left = `${left}px`;
                 document.body.appendChild(textBalloon);
-            }
-            interactiveSuggestions();
-        }
-        function interactiveSuggestions() {
-            console.log('again')
-            let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-            document.addEventListener('keydown', (event) => {
-            if (searchBox !== document.activeElement) {
-                return;
-            }
-            if (event.key === 'ArrowDown') {
-                // Move selection down
-                event.preventDefault();
-                selectedSuggestionIndex =
-                (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.key === 'ArrowUp') {
-                // Move selection up
-                event.preventDefault();
-                selectedSuggestionIndex =
-                (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
-                searchSuggestionLinks.length;
-                updateSelectedSuggestion(selectedSuggestionIndex);
-            } else if (event.key === 'Tab') {
-                // Simulate a click on the selected suggestion
-                event.preventDefault();
-                if (selectedSuggestionIndex >= 0) {
-                searchSuggestionLinks[selectedSuggestionIndex].click();
-                }
-            }
-            });
-            function updateSelectedSuggestion(selectedSuggestionIndex) {
-                console.log(selectedSuggestionIndex)
-                let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
-                searchSuggestionLinks.forEach((link) => {
-                    link.style.backgroundColor = '';
-                    link.style.padding = '';
-                    link.style.borderRadius = '';
-                });
-                // Add the selected class to the currently selected suggestion
-                const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
-                    selectedSuggestionLink.style.backgroundColor = '#ccc';
-                    selectedSuggestionLink.style.padding = '4px';
-                    selectedSuggestionLink.style.borderRadius = '5px';
-                    const searchBox = document.getElementById('searchbox');
-                    searchBox.focus()
-            }
-        }
+            } 
+        }   
     }
 );
-
-
+}
+interactiveSuggestions()
 
