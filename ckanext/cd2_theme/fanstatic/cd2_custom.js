@@ -344,7 +344,7 @@ function interactiveSuggestions() {
 
         const uniqueKeywords = fetchData1
             .concat(fetchData2, fetchData3)
-            .map(str => str.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''))
+            .map(str => str.toLowerCase().replace(/[^\w\s]/g, ''))
             .filter((value, index, self) => self.indexOf(value) === index);
 
         function handleKeyDown(event) {
