@@ -330,9 +330,9 @@ function interactiveSuggestions() {
       fetch(url2).then(res => res.json()),
       fetch(url3).then(res => res.json())
     ]).then(([data1, data2, data3]) => {
+        // Create unique array of lowercase strings from labels, constructs and dataset titles
         const fetchData1 = Object.keys(data1.result.facets.dc_label);
         const fetchData2 = Object.keys(data2.result.facets.dc_construct);
-
         let titleSet = [];
         for (const result of data3.result.results) {
             titleSet.push(result.title)
@@ -344,10 +344,11 @@ function interactiveSuggestions() {
 
         const uniqueKeywords = fetchData1
             .concat(fetchData2, fetchData3)
-            .map(str => str.toLowerCase())
+            .map(str => str.toLowerCase().replace(/[^a-zA-Z0-9]/g, ''))
             .filter((value, index, self) => self.indexOf(value) === index);
 
         function handleKeyDown(event) {
+            // Add event listeners for selection of suggestions and entering values
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             if (searchSuggestionLinks.length == 0) { return; }
             if (searchBox !== document.activeElement) {
@@ -378,6 +379,7 @@ function interactiveSuggestions() {
             }
         }
         document.addEventListener('keydown', handleKeyDown);
+        // Change CSS styling of elements on selection
         function updateSelectedSuggestion(selectedSuggestionIndex) {
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             searchSuggestionLinks.forEach((link) => {
@@ -395,6 +397,7 @@ function interactiveSuggestions() {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
                 return;
             }
+            // Move the suggestion box relative to the cursor
             selectedSuggestionIndex = -1;
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
@@ -403,6 +406,7 @@ function interactiveSuggestions() {
             getMatchingLabels(uniqueKeywords,cursorPixelX);
         });
         function getMatchingLabels(labels,cursorX) {
+            // Get matching strings starting the the text entered
             const searchBox = document.getElementById('searchbox');
             const textBalloon = document.getElementById('search-balloon');       
             if (searchBox.value.endsWith(' ')) {   
@@ -478,10 +482,8 @@ function interactiveSuggestions() {
                 document.body.appendChild(textBalloon);
             } 
         }   
-    }
-);
+    });
 }
-
 const searchBox = document.getElementById('searchbox');       
 if (searchBox) { 
     interactiveSuggestions();
