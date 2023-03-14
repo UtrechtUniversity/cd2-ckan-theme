@@ -450,7 +450,7 @@ function interactiveSuggestions() {
                         }
                     }
                     let newText;
-                    suggestion.innerText = suggestion.innerText.replace(/(-|and)/g, '*');
+                    suggestion.innerText = suggestion.innerText.replace(/(-)/g, '*');
                     if (lastSpecialCharIndex === -1) {
                         newText = '"' + suggestion.innerText + '" ';
                     } else {
