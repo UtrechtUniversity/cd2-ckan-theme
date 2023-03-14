@@ -333,6 +333,7 @@ function interactiveSuggestions() {
         // Create unique array of lowercase strings from labels, constructs and dataset titles
         const fetchData1 = Object.keys(data1.result.facets.dc_label);
         const fetchData2 = Object.keys(data2.result.facets.dc_construct);
+        
         let titleSet = [];
         for (const result of data3.result.results) {
             titleSet.push(result.title)
@@ -345,7 +346,7 @@ function interactiveSuggestions() {
         const uniqueKeywords = fetchData1
             .concat(fetchData2, fetchData3)
             .flatMap(str => str.split('/'))
-            .map(str => str.toLowerCase().replace(/[^\w\s]/g, ''))
+            .map(str => str.toLowerCase().replace(/[^\w\s-]/g, '')) // exclude - from special character removal
             .filter((value, index, self) => self.indexOf(value) === index);
 
         function handleKeyDown(event) {
