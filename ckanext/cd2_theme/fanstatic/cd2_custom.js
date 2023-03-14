@@ -459,8 +459,10 @@ function interactiveSuggestions() {
                         newText = '"' + suggestion.innerText + '" ';
                     } else {
                         if ((currentText.charAt(lastSpecialCharIndex) == '"')) { 
+                            // check if string starts with quotes, then keep it within those quotes
                             newText = currentText.slice(0, lastSpecialCharIndex + 1) + suggestion.innerText + '" ';
                         } else {
+                            // don't add whitespace when specified a search field 
                             let addWhiteSpace = ' ';
                             if ((currentText.charAt(lastSpecialCharIndex) == ':')) { addWhiteSpace = ''; }
                             newText = currentText.slice(0, lastSpecialCharIndex + 1) + addWhiteSpace + '"' + suggestion.innerText + '" ';
