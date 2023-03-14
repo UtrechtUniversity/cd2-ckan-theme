@@ -330,6 +330,9 @@ function interactiveSuggestions() {
       fetch(url2).then(res => res.json()),
       fetch(url3).then(res => res.json())
     ]).then(([data1, data2, data3]) => {
+        const fetchData1 = Object.keys(data1.result.facets.dc_label);
+        const fetchData2 = Object.keys(data2.result.facets.dc_construct);
+
         let titleSet = [];
         for (const result of data3.result.results) {
             titleSet.push(result.title)
@@ -337,15 +340,13 @@ function interactiveSuggestions() {
         const wordsArr = titleSet
             .map(str => str.split(' '))
             .reduce((acc, val) => acc.concat(val), []);
-        const uniqueArr = [...new Set(wordsArr)];
-        const filteredArr = uniqueArr.map(str => str.replace(/[^a-zA-Z0-9]/g, ''))
-                            .filter(str => str.length >= 3);
+        const fetchData3 = [...new Set(wordsArr)];
 
-        let fetchData1 = Object.keys(data1.result.facets.dc_label);
-        let fetchData2 = fetchData1.concat(Object.keys(data2.result.facets.dc_construct));
-        let combinedKeywords = fetchData2.concat(filteredArr);
-        const uniqueKeywords = [...new Set(combinedKeywords)];
-        console.log
+        const uniqueKeywords = fetchData1
+            .concat(fetchData2, fetchData3)
+            .map(str => str.toLowerCase())
+            .filter((value, index, self) => self.indexOf(value) === index);
+
         function handleKeyDown(event) {
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             if (searchSuggestionLinks.length == 0) { return; }
