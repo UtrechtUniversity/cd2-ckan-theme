@@ -424,7 +424,7 @@ function interactiveSuggestions() {
                 }
             }
             input = currentText.slice(lastSpecialCharIndex + 1).trim();
-            if (input.length < 3) {
+            if (input.length < 4) {
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return;
             }
