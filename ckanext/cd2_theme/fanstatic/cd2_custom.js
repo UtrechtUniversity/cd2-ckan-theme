@@ -363,6 +363,7 @@ function interactiveSuggestions() {
             } else if (event.key === 'ArrowUp') {
                 // Move selection up
                 event.preventDefault();
+                if (selectedSuggestionIndex == -1) { selectedSuggestionIndex = 0}; 
                 selectedSuggestionIndex =
                     (selectedSuggestionIndex - 1 + searchSuggestionLinks.length) %
                     searchSuggestionLinks.length;
