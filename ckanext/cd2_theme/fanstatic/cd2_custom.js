@@ -320,7 +320,7 @@ function constructLegend(input) {
  * - Use tab-key to add suggestion to the searchbox
  */
 function interactiveSuggestions() {
-    const specialCharacters = ['&', '|', '(', ')', '[', ']'];
+    const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"'];
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
     const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
@@ -458,7 +458,13 @@ function interactiveSuggestions() {
                     if (lastSpecialCharIndex === -1) {
                         newText = '"' + suggestion.innerText + '" ';
                     } else {
-                        newText = currentText.slice(0, lastSpecialCharIndex + 1) + ' "' + suggestion.innerText + '" ';
+                        if ((currentText.charAt(lastSpecialCharIndex) == '"')) { 
+                            newText = currentText.slice(0, lastSpecialCharIndex + 1) + suggestion.innerText + '" ';
+                        } else {
+                            let addWhiteSpace = ' ';
+                            if ((currentText.charAt(lastSpecialCharIndex) == ':')) { addWhiteSpace = ''; }
+                            newText = currentText.slice(0, lastSpecialCharIndex + 1) + addWhiteSpace + '"' + suggestion.innerText + '" ';
+                        }
                     }
                     searchbox.value = newText;
                     selectedSuggestionIndex = -1;
@@ -488,6 +494,9 @@ function interactiveSuggestions() {
         }   
     });
 }
+interactiveSuggestions();
+
+
 const searchBox = document.getElementById('searchbox');       
 if (searchBox) { 
     interactiveSuggestions();
