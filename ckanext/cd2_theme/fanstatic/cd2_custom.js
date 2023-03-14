@@ -346,7 +346,8 @@ function interactiveSuggestions() {
         const uniqueKeywords = fetchData1
             .concat(fetchData2, fetchData3)
             .flatMap(str => str.split('/'))
-            .map(str => str.toLowerCase().replace(/[^\w\s-–]/g, '')) 
+            .map(str => str.toLowerCase().replace(/[^\w\s-–]/g, ''))
+            .filter(str => str.length > 3)
             .filter((value, index, self) => self.indexOf(value) === index);
 
         function handleKeyDown(event) {
@@ -396,7 +397,7 @@ function interactiveSuggestions() {
                 searchBox.focus()
         }
         const searchBox = document.getElementById('searchbox');
-        searchBox.addEventListener('keydown', (event) => {
+        searchBox.addEventListener('keyup', (event) => {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
                 return;
             }
