@@ -344,6 +344,7 @@ function interactiveSuggestions() {
 
         const uniqueKeywords = fetchData1
             .concat(fetchData2, fetchData3)
+            .flatMap(str => str.split('/'))
             .map(str => str.toLowerCase().replace(/[^\w\s]/g, ''))
             .filter((value, index, self) => self.indexOf(value) === index);
 
