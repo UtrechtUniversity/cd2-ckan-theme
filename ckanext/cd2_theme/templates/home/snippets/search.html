@@ -93,7 +93,7 @@
           if (inputDescr) { interactiveSuggestions(inputDescr); }
           const inputAll = document.getElementById('inputAll');       
           if (inputAll) { interactiveSuggestions(inputAll); }
-          
+
         /**  
         * Parse advanced search parameters and create new query string
         */
@@ -118,6 +118,8 @@
         function concatString(query, delim) {
           if (query.length > 0) {
             var query = query + ' ' + delim + ' ';
+          } else {
+            query = '';
           }
           return query;
         }
@@ -179,16 +181,16 @@
         function advancedSearch() {
           advancedSearchString = '';
           if (document.getElementById('inputTitle').value) {
-            advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value + '"';
+            advancedSearchString = concatString(advancedSearchString,'||');
+            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value.replace(/['"]+/g, '') + '"';
           }
           if (document.getElementById('inputDescr').value) {
-            advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value + '"';
+            advancedSearchString = concatString(advancedSearchString,'||');
+            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value.replace(/['"]+/g, '') + '"';
           }
           if (document.getElementById('inputAll').value) {
-            advancedSearchString = concatString(advancedSearchString);
-            advancedSearchString += '"' + document.getElementById('inputAll').value + '"';
+            advancedSearchString = concatString(advancedSearchString,'||');
+            advancedSearchString += '"' + document.getElementById('inputAll').value.replace(/['"]+/g, '') + '"';
           }
           advancedSearchString = facetCheckbox('#select-study', 'organization')
           advancedSearchString = facetCheckbox('#select-construct', 'dc_construct')

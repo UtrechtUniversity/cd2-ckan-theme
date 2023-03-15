@@ -493,8 +493,10 @@ function interactiveSuggestions(searchBox) {
 
         document.addEventListener("click", function(event) {
             let searchBalloon = document.getElementById("search-balloon");
-            if (event.target !== searchBox && !searchBalloon.contains(event.target)) {
-            searchBalloon.remove();
+            if (searchBalloon) {
+                if (event.target !== searchBox && !searchBalloon.contains(event.target)) {
+                searchBalloon.remove();
+                }
             }
         });
     });
