@@ -31,6 +31,14 @@
               <input type="text" class="form-control" id="inputAll" placeholder="all">
             </div>
           </div>
+          <script>
+            const inputTitle = document.getElementById('inputTitle');       
+            if (inputTitle) { interactiveSuggestions(inputTitle); }
+            const inputDescr = document.getElementById('inputDescr');       
+            if (inputDescr) { interactiveSuggestions(inputDescr); }
+            const inputAll = document.getElementById('inputAll');       
+            if (inputAll) { interactiveSuggestions(inputAll); }
+          </script>
 
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Study</label>
