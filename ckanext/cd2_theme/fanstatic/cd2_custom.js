@@ -491,13 +491,12 @@ function interactiveSuggestions(searchBox) {
             } 
         }   
 
-        const searchBalloon = document.getElementById("search-balloon");
         document.addEventListener("click", function(event) {
+            let searchBalloon = document.getElementById("search-balloon");
             if (event.target !== searchBox && !searchBalloon.contains(event.target)) {
             searchBalloon.remove();
             }
         });
-
     });
 }
 
