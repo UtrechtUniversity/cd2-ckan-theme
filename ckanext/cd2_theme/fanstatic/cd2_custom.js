@@ -380,6 +380,7 @@ function interactiveSuggestions(searchBox) {
             } else if (event.key === 'Escape' || event.key === 'Esc') {
                 let currTextBalloon = document.getElementById('search-balloon');
                 if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
+                return;
             }
         }
         document.addEventListener('keydown', handleKeyDown);
@@ -393,7 +394,6 @@ function interactiveSuggestions(searchBox) {
             const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
                 selectedSuggestionLink.style.backgroundColor = '#ccc';
                 selectedSuggestionLink.style.borderRadius = '5px';
-                const searchBox = document.getElementById('searchbox');
                 searchBox.focus()
         }
         searchBox.addEventListener('keyup', (event) => {
@@ -490,6 +490,14 @@ function interactiveSuggestions(searchBox) {
                 document.body.appendChild(textBalloon);
             } 
         }   
+
+        const searchBalloon = document.getElementById("search-balloon");
+        document.addEventListener("click", function(event) {
+            if (event.target !== searchBox && !searchBalloon.contains(event.target)) {
+            searchBalloon.remove();
+            }
+        });
+
     });
 }
 
