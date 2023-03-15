@@ -319,7 +319,7 @@ function constructLegend(input) {
  * - Create event listeners when searchbox is focussed for up and down keys to select suggestions
  * - Use tab-key to add suggestion to the searchbox
  */
-function interactiveSuggestions() {
+function interactiveSuggestions(searchBox) {
     const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"'];
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
@@ -396,7 +396,6 @@ function interactiveSuggestions() {
                 const searchBox = document.getElementById('searchbox');
                 searchBox.focus()
         }
-        const searchBox = document.getElementById('searchbox');
         searchBox.addEventListener('keyup', (event) => {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
                 return;
@@ -411,7 +410,6 @@ function interactiveSuggestions() {
         });
         function getMatchingLabels(labels,cursorX) {
             // Get matching strings starting the the text entered
-            const searchBox = document.getElementById('searchbox');
             const textBalloon = document.getElementById('search-balloon');       
             if (searchBox.value.endsWith(' ')) {   
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
@@ -444,8 +442,7 @@ function interactiveSuggestions() {
             searchSuggestions.forEach(suggestion => {
                 suggestion.addEventListener('click', () => {
                     // Get the current value of the searchbox
-                    const searchbox = document.getElementById('searchbox');
-                    const currentText = searchbox.value;
+                    const currentText = searchBox.value;
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
                         if (specialCharacters.includes(currentText[i])) {
@@ -468,15 +465,14 @@ function interactiveSuggestions() {
                             newText = currentText.slice(0, lastSpecialCharIndex + 1) + addWhiteSpace + '"' + suggestion.innerText + '" ';
                         }
                     }
-                    searchbox.value = newText;
+                    searchBox.value = newText;
                     selectedSuggestionIndex = -1;
                     let currTextBalloon = document.getElementById('search-balloon');
-                    searchbox.focus();
+                    searchBox.focus();
                     if (currTextBalloon) { currTextBalloon.remove(); }
                 });
             });
             function showTextBalloon(matchingLabels,cursorX) {
-                const searchbox = document.getElementById('searchbox');
                 if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
                 let currTextBalloon = document.getElementById('search-balloon');
                 if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
@@ -485,7 +481,7 @@ function interactiveSuggestions() {
                 const links = matchingLabels.map(label => `<a class="search-suggestion">${label.toLowerCase()}</a>`);
                 textBalloon.innerHTML = `<span style="color:grey"><em>Suggestions</em></span><br><span class="small" style="color:grey"><span class="fa fa-info-circle"></span> Use <kbd>up</kbd> <kbd>down</kbd> and <kbd>enter</kbd></span><br><hr style="border: none;height: 1px;background-color: gray;margin: 4px;">` + links.join('<br>');
                 textBalloon.id = 'search-balloon';
-                const searchboxRect = searchbox.getBoundingClientRect();
+                const searchboxRect = searchBox.getBoundingClientRect();
                 const top = searchboxRect.bottom + window.pageYOffset + 5; 
                 const left = cursorX;
                 textBalloon.style.position = 'absolute';
@@ -496,12 +492,10 @@ function interactiveSuggestions() {
         }   
     });
 }
-interactiveSuggestions();
-
 
 const searchBox = document.getElementById('searchbox');       
 if (searchBox) { 
-    interactiveSuggestions();
+    interactiveSuggestions(searchBox);
 }
 
 
