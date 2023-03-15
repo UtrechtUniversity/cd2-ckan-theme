@@ -182,15 +182,15 @@
           advancedSearchString = '';
           if (document.getElementById('inputTitle').value) {
             advancedSearchString = concatString(advancedSearchString,'||');
-            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value.replace(/['"]+/g, '') + '"';
+            advancedSearchString += 'title:"' + document.getElementById('inputTitle').value.replace(/['"]+/g, '').trim() + '"';
           }
           if (document.getElementById('inputDescr').value) {
             advancedSearchString = concatString(advancedSearchString,'||');
-            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value.replace(/['"]+/g, '') + '"';
+            advancedSearchString += 'notes:"' + document.getElementById('inputDescr').value.replace(/['"]+/g, '').trim() + '"';
           }
           if (document.getElementById('inputAll').value) {
             advancedSearchString = concatString(advancedSearchString,'||');
-            advancedSearchString += '"' + document.getElementById('inputAll').value.replace(/['"]+/g, '') + '"';
+            advancedSearchString += '"' + document.getElementById('inputAll').value.replace(/['"]+/g, '').trim() + '"';
           }
           advancedSearchString = facetCheckbox('#select-study', 'organization')
           advancedSearchString = facetCheckbox('#select-construct', 'dc_construct')
