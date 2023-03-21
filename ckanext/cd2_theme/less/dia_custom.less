@@ -755,6 +755,34 @@ body .site-footer hr {
 
 body { background-color: #fff;}
 
+.button:hover, .button:focus {
+  color: #fff;
+  background-color: #444;
+}
+
+.button {
+  outline: 0;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: box-shadow 0.3s ease, background-color 0.25s ease-out, color 0.25s ease-out;
+  font-family: inherit;
+  text-transform: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 100px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  line-height: 2.25em;
+  padding: 0 1em;
+  height: 2.5em;
+  cursor: pointer;
+  color: #fff;
+  background-color: #777 !important;
+}
+
 .site-header {
   .site-header__menu-item:focus, .site-header__menu-item:hover {
     color: #13385b; }
