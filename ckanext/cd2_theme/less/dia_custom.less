@@ -164,7 +164,7 @@ th {
   margin: 0 0 20px 0;
   font-size: 1rem;
   line-height: 1.4;
-  color: #307D99;
+  color: #000;
 }
 
 .link-tile__header-text {
@@ -712,7 +712,7 @@ body .site-footer hr {
 .hero { background: url('/img/hero_uu.jpg')!important; }
 .homepage .hero .module-search .module-content h3, .homepage .hero .module-search .tags h3 {
   color: #333; }
-.homepage .hero .module-search .search-giant input { border: solid 2px #888; border-radius: 50px;}
+.homepage .hero .module-search .search-giant input { border: solid 2px #888; }
 .homepage .hero .module-search .module-content .heading, .homepage .hero .module-search .tags .heading {
   color: #333; }
 .homepage .hero .module-search .module-content, .homepage .hero .module-search .tags {
@@ -2021,6 +2021,30 @@ aside.secondary {
   margin: -5px 0;
   padding: 5px;
 }
+
+select {
+  width: 100%;
+  margin: 0 0 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #000;
+  border-radius: 0;
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.42857;
+  color: #182B46;
+  padding: 0 0.9em;
+  height: 2.5em;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2824, 43, 70%29'></polygon></svg>");
+  background-origin: content-box;
+  background-position: right 0.45em center;
+  background-repeat: no-repeat;
+  background-size: 9px 6px;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -2041,8 +2065,8 @@ input[type="color"] {
   width: 100%;
   margin: 0 0 4px;
   padding: 0.9em;
-  border: 2px solid #c3ced8;
-  border-radius: 1.5em;
+  border: 2px solid #000;
+  border-radius: 0;
   background-color: #fff;
   -webkit-transition: border-color 0.25s ease-in-out,
     -webkit-box-shadow 0.3s ease, -webkit-box-shadow 0.5s;
