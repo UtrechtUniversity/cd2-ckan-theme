@@ -297,7 +297,11 @@ function constructLegend(input) {
         'x-ray' : `Technique that uses electromagnetic emission of short wavelength produced by bombarding a heavy metal target, such as tungsten, with high-energy electrons in a vacuum tube. It is often used to visualize internal body structures.`,
         'emg' : `Recording of the changes in electric muscle activity by means of surface or needle electrodes.`,
         'ecg' : `Recording of the changes in electric activity of the heart by means of surface or needle electrodes.` }
-    return legend[input.toLowerCase()];    
+    if (legend.hasOwnProperty(input.toLowerCase())) {
+        return legend[input.toLowerCase()];
+    } else {
+        return ''; 
+    }
 }
 
 /**  
