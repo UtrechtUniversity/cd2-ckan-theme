@@ -92,7 +92,7 @@
                   } else {
                     display_name = item.title;
                   }
-                  divContent += `<a href="/dataset/`+item.name+`"><div style="font-size:10pt" class="cohort-spanner nofunc" onmouseenter="tooltipAddElement(this,'` + display_name + `',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)">`+wave_item.wave_cohort
+                  divContent += `<a href="/dataset/`+item.name+`"><div style="font-size:10pt" class="cohort-spanner nofunc" onmouseenter="tooltipAddElement(this,'` + display_name.replace("'","\'") + `',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)">`+wave_item.wave_cohort
                   cohorts_passed.push(wave_item.wave_cohort);
                 }
                 divContent += ` <span class="label">` + wave_item.wave_title + `</span>`
