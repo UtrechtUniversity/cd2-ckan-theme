@@ -5,7 +5,7 @@
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
-<script> document.getElementById('site-search-wrap').style.display = 'none'; </script>  
+<script type='text/javascript'> document.getElementById('site-search-wrap').style.display = 'none'; </script>  
 <div class="search-form-wrap">
   <form {% if form_id %}id="{{ form_id }}" {% endif %}class="clearfix search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get" data-module="select-switch">
     {% block search_input %}
@@ -28,12 +28,14 @@
     {% endblock %}
 
     {% block search_sortby %}
-    <script>
-      const datasetSearchForm = document.getElementById("dataset-search-form");
-      const fieldOrderBy = document.getElementById("field-order-by");
-      fieldOrderBy.addEventListener("change", () => {
-        datasetSearchForm.submit();
-      });
+    <script type='text/javascript'>
+      document.addEventListener("DOMContentLoaded", function (event) {
+        const datasetSearchForm = document.getElementById("dataset-search-form");
+        const fieldOrderBy = document.getElementById("field-order-by");
+        fieldOrderBy.addEventListener("change", () => {
+          datasetSearchForm.submit();
+        });
+     });
     </script>
       {% if sorting %}
         <div class="form-select control-group control-order-by">
@@ -67,7 +69,7 @@
           {% for field in facets.fields %}
             {% set search_facets_items = facets.search.get(field)['items'] %}
             <span class="facet">{{ facets.titles.get(field) }}:</span>
-            <script>
+            <script type='text/javascript'>
               document.addEventListener("DOMContentLoaded", function (event) {
                 $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
               });
