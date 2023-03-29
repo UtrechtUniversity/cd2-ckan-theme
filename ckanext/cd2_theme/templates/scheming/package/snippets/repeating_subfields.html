@@ -154,7 +154,12 @@
             </dd>
           {% elif field.field_name == 'dc_measurement_references' %}
             {% if subfield.dc_measurements_references_doi %}
-            <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element"><a href="{{subfield.dc_measurements_references_doi}}" target="blank">{{ subfield.dc_measurements_references_citation }}</a></span>
+            {% if 'https://doi.org/' not in subfield.dc_measurements_references_doi or 'http://doi.org/' not in subfield.dc_measurements_references_doi %}
+              {% set fixed_ref = 'https://doi.org/' + subfield.dc_measurements_references_doi %}
+            {% else %}
+              {% set fixed_ref = subfield.dc_measurements_references_doi %}
+            {% endif %}
+            <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element"><a href="{{fixed_ref}}" target="blank">{{ subfield.dc_measurements_references_citation }}</a></span>
             </dd>
             {% else %}
             <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element">{{ subfield.dc_measurements_references_citation }}</span>

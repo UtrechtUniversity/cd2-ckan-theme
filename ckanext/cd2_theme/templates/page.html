@@ -108,6 +108,16 @@
 
             {% block secondary %}
               <aside class="secondary col-md-3">
+                <script>
+                  document.addEventListener("DOMContentLoaded", function (event) {
+                  const filter_div = document.getElementById("filters");
+                  if (filter_div) {
+                    console.log('bla')
+                    $('#filterText').fadeTo(300, 1);
+                  }
+                });
+                </script>
+                <h5 id="filterText" style="margin-bottom: -30px;margin-top: -10px;display:none"><span class="fa fa-caret-down"></span> Filter results</h5>
                 {#
                 The secondary_content block can be used to add content to the
                 sidebar of the page. This is the main block that is likely to be
