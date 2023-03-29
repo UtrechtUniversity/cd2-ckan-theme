@@ -66,8 +66,7 @@
 
   {% if pkg_dict.type == 'dataset' and pkg_dict.dc_common_id is defined %}
     // query api to find similar datasets based on CD2_ID
-      //url = "/api/3/action/package_search?fq=dc_common_id:{{pkg_dict.dc_common_id}}"
-      url = "/api/3/action/package_search?fq=dc_common_id:0044_CD2"
+      url = "/api/3/action/package_search?fq=dc_common_id:{{pkg_dict.dc_common_id}}"
       fetch(url)
         .then(res => res.json())
         .then(data => {
