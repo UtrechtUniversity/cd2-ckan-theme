@@ -28,6 +28,13 @@
     {% endblock %}
 
     {% block search_sortby %}
+    <script>
+      const datasetSearchForm = document.getElementById("dataset-search-form");
+      const fieldOrderBy = document.getElementById("field-order-by");
+      fieldOrderBy.addEventListener("change", () => {
+        datasetSearchForm.submit();
+      });
+    </script>
       {% if sorting %}
         <div class="form-select control-group control-order-by">
           <label for="field-order-by">{{ _('Order by') }}</label>
