@@ -4,7 +4,7 @@
     
 CKAN theme for the CD² metadata portal (cloned from [ckanext-dia_theme](https://github.com/data-govt-nz/ckanext-dia_theme))
 
-![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/img/screenshot.png?raw=true)
+![Screenshot](https://github.com/UtrechtUniversity/ckanext-cd2_theme/blob/main/ckanext/cd2_theme/public/base/images/screenshot.png?raw=true)
 
 
 ## Requirements
