@@ -317,10 +317,9 @@ function constructLegend(input) {
 function waveTimeline(timepoints,barID) {
     for (const section of timepoints) {
 
-        const barSections = document.querySelectorAll('#bar-container-main > .bar-section');
+        const barSections = document.querySelectorAll('#bar-container-'+barID+' > .bar-section');
         const barSection = barSections[section];
 
-     
       barSection.style.backgroundColor = '#444';
       barSection.className = 'bar-section highLight';
     }
