@@ -326,7 +326,7 @@ function waveTimeline(timepoints,barID) {
 
       barSection.style.backgroundColor = '#444';
       barSection.className = 'bar-section highLight';
-      if (section == 0 || timepoints.length() == 1) {
+      if (section == 0) {
         barSection.style.width = '5px';
       }
     }
