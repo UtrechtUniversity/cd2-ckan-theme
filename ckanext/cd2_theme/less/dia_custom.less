@@ -95,6 +95,10 @@
 
 // timeline
 
+.timeline-container {
+  margin-top:-20px;
+}
+
 .bar-container {
   display: flex;
   width: 360px;
@@ -117,11 +121,13 @@
 }
 
 .bar-label-main:first-child {
-  left: -15px; /* Position before the start of the container */
+  position: relative;
+  top: 20px;
+  left: -10px;
 }
 
 .bar-label-main:last-child {
-  right: -50px; /* Position after the end of the container */
+  right: -55px; /* Position after the end of the container */
 }
 
 .bar-label {
