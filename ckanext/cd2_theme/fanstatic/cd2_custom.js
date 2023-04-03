@@ -348,9 +348,11 @@ function waveTimeline(timepoints, barID) {
         const barSection = barSections[section];
 
         if (lastSection >= 0 && section - lastSection > 1) {
-        barSection.style.width = '5px';
+            barSection.style.width = '5px';
         } else if (section == 0 || section == timepoints[timepoints.length - 1]) {
-        barSection.style.width = '5px';
+            barSection.style.width = '5px';
+        } else if (section == firstSection) {
+            barSection.style.width = '5px';
         }
 
         barSection.style.backgroundColor = '#444';
