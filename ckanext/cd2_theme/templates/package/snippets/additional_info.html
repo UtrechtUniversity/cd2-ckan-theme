@@ -296,7 +296,12 @@
     </tbody>
   </table>
 
-
+  <div class="search-result-api-message message" style="background-color:#fff">
+    <span class="fa fa-lightbulb-o"></span>
+          <small>
+          You can also access this dataset using the <a href="/api/3/action/package_show?id={{pkg_dict.name}}">API</a> (see <a href="http://docs.ckan.org/en/2.9/api/">API Docs</a>).
+          </small>
+  </div>
   <div class="debug" style="display:none">
     <table class="table table-striped table-condensed">
       {% for key, value in pkg_dict.items() %}
