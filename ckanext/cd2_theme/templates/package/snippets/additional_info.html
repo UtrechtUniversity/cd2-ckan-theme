@@ -246,8 +246,8 @@
           </style>
       <div class="dataset-resources list-unstyled">
         <script>
-          function waveTimeline(timepoints) {
-            for (const section of timepointHighlight,barID) {
+          function waveTimeline(timepoints,barID) {
+            for (const section of timepointHighlight) {
               const barSection = document.querySelector(`.bar-container-` + barID + ` :nth-child(${section+1})`);
               barSection.style.backgroundColor = '#444';
               barSection.className = 'bar-section highLight';
