@@ -313,6 +313,15 @@ function constructLegend(input) {
     return legend[input];    
 }
 
+
+function waveTimeline(timepoints,barID) {
+    for (const section of timepoints) {
+      const barSection = document.querySelector(`#bar-container-` + barID + ` :nth-child(${section+1})`);
+      barSection.style.backgroundColor = '#444';
+      barSection.className = 'bar-section highLight';
+    }
+  }
+
 /**  
  * Create interactive search suggestions
  * - Display a popup with keywords based on text entered in the searchbox

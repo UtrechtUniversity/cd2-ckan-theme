@@ -93,6 +93,54 @@
 // Custom styles
 //==============================================
 
+// timeline
+
+.bar-container {
+  display: flex;
+  width: 360px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.bar-section {
+  width: 1px;
+  height: 100%;
+}
+.bar-label-main {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  width: 60px;
+}
+
+.bar-label-main:first-child {
+  left: -15px; /* Position before the start of the container */
+}
+
+.bar-label-main:last-child {
+  right: -50px; /* Position after the end of the container */
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -20px;
+  transform: translateX(-50%);
+}
+
+.bar-label-section {
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+////
+
 .hero {
   background: url('/img/hero_dot.jpg') !important;
     background-position-x: 0%;
