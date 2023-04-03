@@ -355,10 +355,6 @@ function waveTimeline(timepoints, barID) {
             barSection.style.width = '5px';
             barSection.style.borderRadius = '5px 0px 0px 5px';
         }
-
-       
-
-        barSection.style.backgroundColor = '#444';
         barSection.className = 'bar-section highLight';
 
         lastSection = section;
