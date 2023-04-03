@@ -316,6 +316,24 @@ function constructLegend(input) {
 }
 
 /**  
+ * Create timeline with sample points
+ */
+function waveTimeline(timepoints,barID) {
+    for (const section of timepoints) {
+
+        const barSections = document.querySelectorAll('#bar-container-'+barID+' > .bar-section');
+        const barSection = barSections[section];
+
+      barSection.style.backgroundColor = '#444';
+      barSection.className = 'bar-section highLight';
+      if (section == 0) {
+        barSection.style.width = '5px';
+      }
+    }
+  }
+
+
+/**  
  * Create interactive search suggestions
  * - Display a popup with keywords based on text entered in the searchbox
  * - Create event listeners when searchbox is focussed for up and down keys to select suggestions
