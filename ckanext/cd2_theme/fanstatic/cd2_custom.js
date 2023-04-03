@@ -349,12 +349,14 @@ function waveTimeline(timepoints, barID) {
 
         if (lastSection >= 0 && section - lastSection > 1) {
             barSection.style.width = '5px';
-        } else if (section == 0 || section == timepoints[timepoints.length - 1]) {
+        } else if (section == firstSection || section == timepoints[timepoints.length - 1]) {
             barSection.style.width = '5px';
-        } else if (section == firstSection) {
+        } else if (section == 0) {
             barSection.style.width = '5px';
             barSection.style.borderRadius = '5px 0px 0px 5px';
         }
+
+       
 
         barSection.style.backgroundColor = '#444';
         barSection.className = 'bar-section highLight';
