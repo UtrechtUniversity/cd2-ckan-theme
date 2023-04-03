@@ -318,20 +318,25 @@ function constructLegend(input) {
 /**  
  * Create timeline with sample points
  */
-function waveTimeline(timepoints,barID) {
+function waveTimeline(timepoints, barID) {
+    const barSections = document.querySelectorAll('#bar-container-' + barID + ' > .bar-section');
+    let lastSection = -1; // initialize to a value that is not in the array
+  
     for (const section of timepoints) {
-
-        const barSections = document.querySelectorAll('#bar-container-'+barID+' > .bar-section');
-        const barSection = barSections[section];
-
+      
+      const barSection = barSections[section];
+      if (lastSection >= 0 && section - lastSection > 1) {
+        barSection.style.width = '5px';
+      }
       barSection.style.backgroundColor = '#444';
       barSection.className = 'bar-section highLight';
       if (section == 0) {
         barSection.style.width = '5px';
       }
+  
+      lastSection = section;
     }
   }
-
 
 /**  
  * Create interactive search suggestions
