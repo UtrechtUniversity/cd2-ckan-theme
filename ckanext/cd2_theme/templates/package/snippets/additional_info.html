@@ -204,7 +204,6 @@
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled"> <li>
       {% set waves = pkg_dict.wave %}
-
       {% for wave in waves %}
       {% if wave.wave_universe.find("-") == -1 %}
         {% set value = wave.wave_universe|int %}
@@ -239,7 +238,7 @@
       <td class="dataset-details">
         {% for wave in waves %}
         {% if wave.wave_start_date_collection %}
-          From {{wave.wave_start_date_collection}} 
+          {{wave.wave_start_date_collection}} 
           {% if wave.wave_end_date_collection %} 
           to {{wave.wave_end_date_collection}},
           {% else %}
