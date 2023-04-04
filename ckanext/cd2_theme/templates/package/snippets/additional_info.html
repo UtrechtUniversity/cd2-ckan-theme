@@ -128,6 +128,59 @@
 
 
     {% elif pkg_dict.type == 'dataset' %}
+
+    <tr>
+      <th scope="row" class="dataset-label">Subject age</th>
+      <td class="dataset-details">
+      <ul class="dataset-resources list-unstyled"> <li>
+      {% set waves = pkg_dict.wave %}
+
+      {% for wave in waves %}
+      {% if wave.wave_universe.find("-") == -1 %}
+        {% set value = wave.wave_universe|int %}
+        {% if value >= 48 %}
+          {{ value/12|round }} years, 
+        {% else %}
+          {{ value }} months, 
+        {% endif %}
+      {% else %}
+        {% set parts = wave.wave_universe.split("-") %}
+        {% set start = parts[0]|int %}
+        {% set end = parts[1]|int %}
+        {% if start >= 48 %}
+          {{ start/12|round }} -
+        {% else %}
+           {{ start }} months -
+        {% endif %}
+        {% if end >= 48 %}
+         {{ end/12|round }} years, 
+        {% else %}
+         {{ end }} months, 
+        {% endif %}
+      {% endif %}
+      {% endfor %}
+      </li>
+      </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row" class="dataset-label">Time span</th>
+      <td class="dataset-details">
+        {% for wave in waves %}
+        {% if wave.wave_start_date_collection %}
+          From {{pkg_dict.wave_start_date_collection}} 
+          {% if pkg_dict.wave_end_date_collection %} 
+          to {{pkg_dict.wave_end_date_collection}},
+          {% else %}
+          (ongoing),
+          {% endif %}
+        {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+
+
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
@@ -166,7 +219,6 @@
       <td class="dataset-details">
       <div class="dataset-resources list-unstyled">
 
-      {% set waves = pkg_dict.wave %}
       {% set waves_passed = [] %}
       {% for wave in waves %}
               {% if wave.wave_cohort %}
