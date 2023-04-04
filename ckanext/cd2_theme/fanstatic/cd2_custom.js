@@ -353,7 +353,6 @@ function waveTimeline(timepoints, barID) {
             barSection.style.width = '5px';
         } else if (section == 0) {
             barSection.style.width = '5px';
-            barSection.style.borderRadius = '5px 0px 0px 5px';
         }
         barSection.className = 'bar-section highLight';
 
