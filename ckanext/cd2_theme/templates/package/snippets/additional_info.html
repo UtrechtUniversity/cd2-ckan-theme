@@ -208,9 +208,9 @@
       {% if wave.wave_universe.find("-") == -1 %}
         {% set value = wave.wave_universe|int %}
         {% if value >= 48 %}
-          {{ value/12|round }} years, 
+          {{ value/12|round }} years{% if not loop.last %},{% endif %} 
         {% else %}
-          {{ value }} months, 
+          {{ value }} months{% if not loop.last %},{% endif %} 
         {% endif %}
       {% else %}
         {% set parts = wave.wave_universe.split("-") %}
@@ -222,9 +222,9 @@
            {{ start }} months -
         {% endif %}
         {% if end >= 48 %}
-         {{ end/12|round }} years, 
+         {{ end/12|round }} years{% if not loop.last %},{% endif %} 
         {% else %}
-         {{ end }} months, 
+         {{ end }} months{% if not loop.last %},{% endif %} 
         {% endif %}
       {% endif %}
       {% endfor %}
@@ -240,11 +240,9 @@
         {% if wave.wave_start_date_collection %}
           {{wave.wave_start_date_collection}} 
           {% if wave.wave_end_date_collection %} 
-          to {{wave.wave_end_date_collection}}
-          {% if not loop.last %},{% endif %}
+          to {{wave.wave_end_date_collection}}{% if not loop.last %},{% endif %}
           {% else %}
-          (ongoing)
-          {% if not loop.last %},{% endif %}
+          (ongoing){% if not loop.last %},{% endif %}
           {% endif %}
         {% endif %}
         {% endfor %}
