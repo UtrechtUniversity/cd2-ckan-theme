@@ -209,6 +209,41 @@
               {% else %}
                 <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
               {% endif %}
+              <hr style="border:1px solid">
+              <span class="label" style="background-color:#aaa">
+                {% if wave.wave_universe.find("-") == -1 %}
+                  {% set value = wave.wave_universe|int %}
+                  {% if value >= 48 %}
+                    {{ value/12|round }} years
+                  {% else %}
+                    {{ value }} months
+                  {% endif %}
+                {% else %}
+                  {% set parts = wave.wave_universe.split("-") %}
+                  {% set start = parts[0]|int %}
+                  {% set end = parts[1]|int %}
+                  {% if start >= 48 %}
+                    {{ start/12|round }} -
+                  {% else %}
+                    {{ start }} months -
+                  {% endif %}
+                  {% if end >= 48 %}
+                    {{ end/12|round }} years
+                  {% else %}
+                    {{ end }} months
+                  {% endif %}
+                {% endif %}
+              </span>&nbsp;
+              {% if wave.wave_start_date_collection %}
+              <span class="label" style="background-color:#aaa">
+                From {{wave.wave_start_date_collection}} 
+                {% if wave.wave_end_date_collection %} 
+                to {{wave.wave_end_date_collection}} 
+                {% else %}
+                (ongoing)
+                {% endif %}
+              </span>
+              {% endif %}
               </span><br />
               {% endif %}
       {% endfor %}
