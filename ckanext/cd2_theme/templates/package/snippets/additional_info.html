@@ -217,6 +217,58 @@
     </tr>
 
     <tr>
+      <th scope="row" class="dataset-label">Subject age</th>
+      <td class="dataset-details">
+      <ul class="dataset-resources list-unstyled"> <li>
+
+      {% for wave in waves %}
+      {% if wave.wave_universe.find("-") == -1 %}
+        {% set value = wave.wave_universe|int %}
+        {% if value >= 48 %}
+          {{ value/12|round }} years, 
+        {% else %}
+          {{ value }} months, 
+        {% endif %}
+      {% else %}
+        {% set parts = wave.wave_universe.split("-") %}
+        {% set start = parts[0]|int %}
+        {% set end = parts[1]|int %}
+        {% if start >= 48 %}
+          {{ start/12|round }} -
+        {% else %}
+           {{ start }} months -
+        {% endif %}
+        {% if end >= 48 %}
+         {{ end/12|round }} years, 
+        {% else %}
+         {{ end }} months, 
+        {% endif %}
+      {% endif %}
+      {% endfor %}
+      </li>
+      </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th scope="row" class="dataset-label">Time span</th>
+      <td class="dataset-details">
+        {% for wave in waves %}
+        {% if wave.wave_start_date_collection %}
+          {{wave.wave_start_date_collection}} 
+          {% if wave.wave_end_date_collection %} 
+          to {{wave.wave_end_date_collection}},
+          {% else %}
+          (ongoing),
+          {% endif %}
+        {% endif %}
+        {% endfor %}
+      </td>
+    </tr>
+
+
+
+    <tr>
       <th scope="row" class="dataset-label">Mode of collection</th>
       <td class="dataset-details">
       <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ pkg_dict.dc_mode_of_collection }}</span>
