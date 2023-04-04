@@ -240,9 +240,11 @@
         {% if wave.wave_start_date_collection %}
           {{wave.wave_start_date_collection}} 
           {% if wave.wave_end_date_collection %} 
-          to {{wave.wave_end_date_collection}},
+          to {{wave.wave_end_date_collection}}
+          {% if not loop.last %},{% endif %}
           {% else %}
-          (ongoing),
+          (ongoing)
+          {% if not loop.last %},{% endif %}
           {% endif %}
         {% endif %}
         {% endfor %}
@@ -334,7 +336,6 @@
             to {{pkg_dict.wave_end_date_collection}} 
             {% else %}
             (ongoing)
-            {% if not loop.last %},{% endif %}
             {% endif %}
         </td>
       </tr>
