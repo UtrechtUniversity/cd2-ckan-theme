@@ -334,6 +334,7 @@
             to {{pkg_dict.wave_end_date_collection}} 
             {% else %}
             (ongoing)
+            {% if not loop.last %},{% endif %}
             {% endif %}
         </td>
       </tr>
