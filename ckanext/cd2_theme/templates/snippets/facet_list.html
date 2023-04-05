@@ -60,7 +60,7 @@
 		{% elif title == 'type' %}
 			const placeholder = document.getElementById('placeholder-type');
 			const text = placeholder.textContent;
-			const modifiedText = text.replace('item', '{{ items[0].display_name if items[0].display_name != 'dataset' else 'measures' }}');
+			const modifiedText = text.replace('item', '{{ items[0].display_name if items[0].display_name != 'dataset' else 'measure' }}');
 			placeholder.textContent = modifiedText;
 		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
