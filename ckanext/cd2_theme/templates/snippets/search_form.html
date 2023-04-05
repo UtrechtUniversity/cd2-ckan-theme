@@ -77,11 +77,15 @@
 
             {% for value in facets.fields[field] %}
               <span class="filtered pill dropshadow">
+                {% if value == 'dataset' %}
+                measure
+                {% else %}
                 {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
                   {{ facets.translated_fields[(field,value)] }}
                 {%- else -%}
                   {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
                 {%- endif %}
+                {% endif %}
                 <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
               </span>
             {% endfor %}
