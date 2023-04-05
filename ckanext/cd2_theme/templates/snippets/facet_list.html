@@ -56,7 +56,7 @@
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 		{% if title == 'study' %}
-			document.getElementById('placeholder-study').innerHTML = `<a href="/study/`+items[0]+`">within `+items[0]+`</a>`
+			document.getElementById('placeholder-study').innerHTML = `<a href="/study/{{items[0]}}">within {{items[0]}}</a>`
 		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
