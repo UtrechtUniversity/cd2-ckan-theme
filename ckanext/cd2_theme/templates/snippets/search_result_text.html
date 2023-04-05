@@ -58,13 +58,13 @@ Example:
     {{ text_query.format(number=h.localised_number(count), query=query, type=type) }}
     {%- endif -%}
   {%- else -%}
-    {{ text_query_none.format(query=query, type=type) }}
+  <span id="placeholder-type">{{ text_query_none.format(query=query, type=type) }}</span>
   {%- endif -%}
 {%- else -%}
   {%- if count -%}
     {{ text_no_query.format(number=h.localised_number(count), type=type) }}
   {%- else -%}
-    {{ text_no_query_none.format(type=type) }}
+  <span id="placeholder-type">{{ text_no_query_none.format(type=type) }}</span>
   {%- endif -%}
   &nbsp;<span id="placeholder-study"></span>
 {%- endif -%}
