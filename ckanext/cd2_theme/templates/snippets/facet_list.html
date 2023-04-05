@@ -57,7 +57,7 @@
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 		{% if title == 'study' %}
 			document.getElementById('placeholder-study').innerHTML = '<a href="/study/{{ items[0].name }}">within {{ items[0].display_name }}</a>';
-		{% else if title == 'type' %}
+		{% elif title == 'type' %}
 			const placeholder = document.getElementById('placeholder-type');
 			const text = placeholder.textContent;
 			const modifiedText = text.replace('item', '{{ items[0].display_name }}');
