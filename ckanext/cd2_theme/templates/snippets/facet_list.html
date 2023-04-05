@@ -55,6 +55,9 @@
 	{% if items|length == 1 %} // Show if only one label available
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
+		{% if title == 'study' %}
+			document.getElementById('placeholder-study').innerHTML = `<a href="/study/`+items[0]+`">within `+items[0]+`</a>`
+		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 	{% endif %}
