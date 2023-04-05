@@ -111,11 +111,11 @@ document.getElementById('site-search-wrap').style.display = 'none';
 
   
     <div class="margin-b-lg" style="border: none;border-radius: 10px;background-color: #fafafa;">
-      <p style="font-size: 12pt;color: #999;/*! font-style: italic; */"><span class="fa fa-info-circle"></span> Search for datasets collected by 6 cohort studies. Datasets are represented in a hierarchical structure, with each falling under one or more waves from a cohort. I.e.: <a href="/organization"><span class="label">Cohort Study</span></a> <span class="fa fa-caret-right"></span> <a href="/dataset/?dataset_type=cohort"><span class="label">Cohort</span></a> <span class="fa fa-caret-right"></span>  <a href="/dataset/?dataset_type=wave"><span class="label">Wave</span></a> <span class="fa fa-caret-right"></span> <a href="/dataset/?dataset_type=dataset"><span class="label">Dataset</span></a></p>
+      <p style="font-size: 12pt;color: #999;/*! font-style: italic; */"><span class="fa fa-info-circle"></span> Search for measures collected by 6 cohort studies. Measures are represented in a hierarchical structure, with each falling under one or more waves from a cohort. I.e.: <a href="/organization"><span class="label">Cohort Study</span></a> <span class="fa fa-caret-right"></span> <a href="/dataset/?dataset_type=cohort"><span class="label">Cohort</span></a> <span class="fa fa-caret-right"></span>  <a href="/dataset/?dataset_type=wave"><span class="label">Wave</span></a> <span class="fa fa-caret-right"></span> <a href="/dataset/?dataset_type=dataset"><span class="label">Dataset</span></a></p>
     </div>
 
     <div class="margin-b-lg">
-      <h4>Most used labels</h4>
+      <h4>Most used labels <span onmouseenter="tooltipAddElement(this,'Labels are uncontrolled keywords applied to measures.',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="fa fa-info-circle hover"></span></h4>
       <div class="row">
         <ul class="menu blog-filter-menu" id="label-pit">
         </ul>
@@ -123,7 +123,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
     </div>
 
     <div class="margin-b-lg">
-			<h4>Datasets by construct</h4>
+			<h4>Measures by construct <span onmouseenter="tooltipAddElement(this,'Constructs are pre-defined categories. One or more constructs can be applied to a measure.',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="fa fa-info-circle hover"></span></h4>
 				<div class="row">
 					<ul class="menu blog-filter-menu" id="construct-pit">
 						

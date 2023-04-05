@@ -40,7 +40,11 @@
                 {% else %}
                 <i class="fa fa-suitcase"></i>
                 {% endif %}
+                {% if package.type == 'dataset' %}
+                measure
+                {% else %}
                 {{ package.type }}
+                {% endif %}
               </span>
               {% endblock %}
               {% block heading_title %}

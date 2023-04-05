@@ -9,7 +9,7 @@
       </div>
       <div class='modal-body'>
         <div class="alert alert-primary" role="alert" id="rangeInfo" style="color: #555;box-shadow: 0 7px 9px -9px #555;margin-bottom:35px;">
-          <span class="fa fa-info-circle"></span> Limit searches to dataset title or description, select multiple constructs, labels and mode of collections.
+          <span class="fa fa-info-circle"></span> Limit searches to measure title or description, select multiple constructs, labels and mode of collections.
         </div> 
         <form id="advancedSearchForm">
           <div class="form-group row">
@@ -217,7 +217,7 @@
     </select>
     <input type="hidden" name="dataset_type" value="dataset">
     <div class="search-input control-group search-giant">
-      <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search datasets" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em> and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
+      <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em> and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
       <button type="submit" role="presentation" tabindex="-1">
         <i class="fa fa-search icon-search" style="color:#555;position:absolute;top:-4px;right: 0px;"></i>
         <span>{{ _('Search') }}</span>
@@ -253,9 +253,9 @@
     fetch(url2).then(res => res.json())
   ]).then(([data1, data2]) => {
     if ($(window).width() < 400 ) {
-      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} datasets`;
+      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} measures`;
     } else {
-      document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` datasets, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
+      document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` measures, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
     }
   });
   url = "/api/3/action/package_search?facet.field=[%22dc_mode_of_collection%22]"
