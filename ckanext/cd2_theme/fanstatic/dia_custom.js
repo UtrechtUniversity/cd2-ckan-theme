@@ -36,7 +36,6 @@ window.dataTargetNamespace = 'rua-';
                 $('#collapseDiv').css("height", "auto");
             }
         });
-
         // .icon-globe and .icon-filter is part of the core ckan codebase
         // instead of copying over a lot of core templates, just applied the aria-hidden here
         $( 'i.icon-globe, i.icon-filter' ).attr('aria-hidden', 'true');
