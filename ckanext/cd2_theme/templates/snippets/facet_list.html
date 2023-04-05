@@ -141,6 +141,9 @@
 				{% set label_full = label %}
 				{% set label = label|truncate(20,true,'...',0) %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+				{% if label == 'dataset' %}
+				{% set label = 'measure' %}
+				{% endif %}
 					
 				<li {% if '...' in label %}
 					onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
