@@ -63,6 +63,7 @@
 			const display_name = '{{ items[0].display_name }}';
 			const modifiedText = text.replaceAll('item', display_name !== 'dataset' ? (display_name !== 'study' ? display_name : 'studie') : 'measure');
 			placeholder.textContent = modifiedText;
+			placeholder.style.display = 'inline';
 		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';

@@ -48,7 +48,7 @@ Example:
   {% set text_no_query = ungettext(text_no_query_singular, text_no_query_plural, count) %}
   {% set text_no_query_none = _(text_no_query_none_plural) %}
 {%- endif -%}
-<span id="placeholder-type">
+<span id="placeholder-type" style="display:none">
 {% if query %}
   {%- if count -%}
     {%- if 'dc_common_id' in query -%}
