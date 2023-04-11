@@ -145,8 +145,8 @@
 
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Publication details</th>
-      <ul class="dataset-details">
-      
+      <td class="dataset-details">
+        <ul class="dataset-resources list-unstyled">
         {% for item in pkg_dict.extras %}
  
             <li>{{ item.key }}: {{ item.value }}</li>
@@ -155,6 +155,8 @@
         </ul>
       </td>
     </tr>
+
+    
    
     
     <tr>
