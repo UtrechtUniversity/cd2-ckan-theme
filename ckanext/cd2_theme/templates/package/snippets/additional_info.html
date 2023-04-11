@@ -145,13 +145,14 @@
 
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Publication details</th>
-      <tr class="dataset-details">
+      <ul class="dataset-details">
       
         {% for item in pkg_dict.extras %}
  
-            <tr><td>{{ item.key }}</td><td>{{ item.value }}</td></tr>
+            <li>{{ item.key }}: {{ item.value }}</li>
 
         {% endfor %}
+        </ul>
       </td>
     </tr>
    
