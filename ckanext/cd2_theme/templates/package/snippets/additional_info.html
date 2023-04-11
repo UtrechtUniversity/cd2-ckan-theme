@@ -147,12 +147,17 @@
       <th style="width: 20%" scope="row" class="dataset-label">Publication details</th>
       <td class="dataset-details">
       
+        {% for item in pgk_dict.extras %}
+            {{ item.key }}
+            {{ item.value }}
 
-
-        {{ pkg_dict.extras }}
+        {% endfor %}
       </td>
     </tr>
    
+
+    [{'key': 'Access type', 'value': 'Open Access'}, {'key': 'Collections', 'value': 'Corporate Networks Data'}, {'key': 'Publisher', 'value': 'Utrecht University'}, {'key': 'Year of publication', 'value': '2019'}, {'key': 'harvest_object_id', 'value': 'a19d8bd9-86be-488d-9536-0ccd2940ffc2'}, {'key': 'harvest_source_id', 'value': '431e37eb-d933-4af6-ab59-8e4953f9201f'}, {'key': 'harvest_source_title', 'value': 'Yoda-public'}]
+    
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Source</th>
       <td class="dataset-details">
