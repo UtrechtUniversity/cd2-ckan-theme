@@ -116,227 +116,32 @@
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow">
    
-    {% if pkg_dict.type == 'study' %}
+
     <tr>
-    <th style="width: 20%" scope="row" class="dataset-label">Alternative title</th>
-    <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
-       {{ pkg_dict.cohort_study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
-      </ul>
-    </td>
+      <th style="width: 20%" scope="row" class="dataset-label">Author</th>
+      <td class="dataset-details">
+      pkg_dict.author
+      </td>
     </tr>
 
+    <tr>
+      <th style="width: 20%" scope="row" class="dataset-label">License</th>
+      <td class="dataset-details">
+      pkg_dict.license_id
+      </td>
+    </tr>
 
-    {% elif pkg_dict.type == 'dataset' %}
+    <tr>
+      <th style="width: 20%" scope="row" class="dataset-label">Source</th>
+      <td class="dataset-details">
+      pkg_dict.url
+      </td>
+    </tr>
 
+ 
    
 
-
-    <tr>
-      <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
-      <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
-      {% set labels = pkg_dict.dc_labels %}
-      {% for label in labels  %}
-        {% if label.length != 0 %}
-        {% set labelname = label["dc_label"] %}
-        <li>
-          <a href="{% url_for 'dataset.search', dc_label=labelname %}" class="label label-info">{{label["dc_label"]}}</a>
-        </li>
-        {% endif %}
-      {% endfor %}
-      </ul>
-      </td>
-    </tr>
-
-    <tr>
-      <th scope="row" class="dataset-label">Constructs</th>
-      <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
-      {% set constructs = pkg_dict.dc_constructs %}
-      {% for construct in constructs  %}
-      {% if construct.length != 0 %}
-      {% set constructname = construct["dc_construct"] %}
-        <li>
-          <a href="{% url_for 'dataset.search', dc_construct=constructname %}" class="label label-info info-hover" onmouseenter="tooltipAddElement(this,constructLegend('{{ construct["dc_construct"] }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{construct["dc_construct"]}}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-    </td>
-    </tr>
-    <tr>
-      <th scope="row" class="dataset-label">Available measurements</th>
-      <td class="dataset-details">
-      <div class="dataset-resources list-unstyled">
-
-      {% set waves_passed = [] %}
-      {% for wave in waves %}
-              {% if wave.wave_cohort %}
-              {% if wave.wave_cohort not in waves_passed %}
-                {% do waves_passed.append(wave.wave_cohort) %}
-                {% if waves_passed|length > 1 %}
-                  </div>
-                {% endif %}
-                {% set splitname = wave.wave_cohort.split(':') %}
-                <div class="cohort-spanner parent-spanner"><a href="/cohort/{{ wave.wave_cohort_ckan_id }}"><li class="label label-cohort">{{ splitname[1] }} <span class="fa fa-level-down"></span></li></a><br />
-              {% endif %}
-              {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
-              {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"><a href="/wave/{{ wave.wave_ckan_id }}" class="label label-info">{{wave.wave_title}}</a></li> 
-              {% if ',' in waveSubjectCode %}
-                {% set waveSubjectCodes = waveSubjectCode.split(',') %}
-                {% for waveCode in waveSubjectCodes %}
-                  <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveCode|trim }}</span>
-                {% endfor %}
-              {% else %}
-                <span class="label info-hover" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
-              {% endif %}
-              <hr style="border:1px solid">
-              <span class="label" style="background-color:#aaa">
-
-                {% if wave.wave_universe.find("-") == -1 %}
-                  {% set value = wave.wave_universe|int %}
-                  {% if value >= 48 %}
-                    {{ value/12|round }} years
-                  {% else %}
-                    {{ value }} months
-                  {% endif %}
-                {% else %}
-                  {% set parts = wave.wave_universe.split("-") %}
-                  {% set start = parts[0]|int %}
-                  {% set end = parts[1]|int %}
-                  {% if start >= 48 %}
-                    {{ start/12|round }} -
-                  {% else %}
-                    {{ start }} months -
-                  {% endif %}
-                  {% if end >= 48 %}
-                    {{ end/12|round }} years
-                  {% else %}
-                    {{ end }} months
-                  {% endif %}
-                {% endif %}
-            
-              </span>&nbsp;
-              {% if wave.wave_start_date_collection %}
-              <span class="label" style="background-color:#aaa">
-                
-                From {{wave.wave_start_date_collection}} 
-                {% if wave.wave_end_date_collection %} 
-                to {{wave.wave_end_date_collection}} 
-                {% else %}
-                (ongoing)
-                {% endif %}
-              
-              </span>
-              {% endif %}
-              </span><br />
-              {% endif %}
-      {% endfor %}
-      </ul>
-      </td>
-    </tr>
-
-    
-
-   
-    <tr>
-      <th scope="row" class="dataset-label">Timeline</th>
-      <td class="dataset-details">
-   
-      <div class="dataset-resources list-unstyled">
-        <script>
-          document.addEventListener("DOMContentLoaded", function (event) {
-            const timepointHighlight = [
-            {% for timepoint in pkg_dict.measure_age_range %}
-              {{ timepoint.measure_age_month }},
-            {% endfor %}];
-
-            waveTimeline(timepointHighlight,'main')
-          });
-        </script>
-        <div class="timeline-container"><div class="bar-label-left">0</div>
-        <div id="bar-container-main" class="bar-container"><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-section"></div><div class="bar-label-main">30 years</div>
-      </div></div>
-
-      </td>
-    </tr>
-
-    <tr>
-      <th scope="row" class="dataset-label">Mode of collection</th>
-      <td class="dataset-details">
-      <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ pkg_dict.dc_mode_of_collection }}</span>
-      {% if pkg_dict.dc_mode_of_collection_sub %}
-      &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ pkg_dict.dc_mode_of_collection_sub }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ pkg_dict.dc_mode_of_collection_sub }}</span>
-      {% endif %}
-      </td>
-    </tr>
-
-  
-
-
-      {% elif pkg_dict.type == 'wave' %}
-
-      <tr>
-        <th scope="row" class="dataset-label">Cohort</th>
-        <td class="dataset-details">
-        <ul class="dataset-resources list-unstyled">
-        <li><a href="/cohort/{{pkg_dict.wave_cohort_ckan_id}}" class="label label-info">{{pkg_dict.wave_cohort}}</a></li>
-        </ul>
-        </td>
-      </tr>
-
-      <tr>
-        <th scope="row" class="dataset-label">Subject age</th>
-        <td class="dataset-details">
-        <ul class="dataset-resources list-unstyled"> <li>
-        {% if pkg_dict.wave_universe.find("-") == -1 %}
-          {% set value = pkg_dict.wave_universe|int %}
-          {% if value >= 48 %}
-            {{ value/12|round }} years
-          {% else %}
-            {{ value }} months
-          {% endif %}
-        {% else %}
-          {% set parts = pkg_dict.wave_universe.split("-") %}
-          {% set start = parts[0]|int %}
-          {% set end = parts[1]|int %}
-          {% if start >= 48 %}
-            {{ start/12|round }} -
-          {% else %}
-             {{ start }} months -
-          {% endif %}
-          {% if end >= 48 %}
-           {{ end/12|round }} years
-          {% else %}
-           {{ end }} months
-          {% endif %}
-        {% endif %}
-        </li>
-        </ul>
-        </td>
-      </tr>
-      {% if pkg_dict.wave_start_date_collection %}
-      <tr>
-        <th scope="row" class="dataset-label">Time span</th>
-        <td class="dataset-details">
-            From {{pkg_dict.wave_start_date_collection}} 
-            {% if pkg_dict.wave_end_date_collection %} 
-            to {{pkg_dict.wave_end_date_collection}} 
-            {% else %}
-            (ongoing)
-            {% endif %}
-        </td>
-      </tr>
-      {% endif %}
-      <tr>
-        <th scope="row" class="dataset-label">Geographic location</th>
-        <td class="dataset-details">
-        <span class="label" style="line-height:2">{{ pkg_dict.wave_spatial_geographic_location }} {{ pkg_dict.wave_spatial_country_code }}</span>
-        </td>
-      </tr>
-      {% endif %}
+     
       {% block package_additional_info %}
       {% endblock %}
       
