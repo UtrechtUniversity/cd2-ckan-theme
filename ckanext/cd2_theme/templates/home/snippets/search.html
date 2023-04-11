@@ -212,11 +212,11 @@
     <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search"><span class="fa fa-cog"></span> Advanced Search</a>
     <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
       autocomplete="off" placeholder=""
-      style="width:20%;border:none;font-size: 16px;height: 55px;margin-right: 5px;">
+      style="width:20%;border:2px solid #000;font-size: 16px;height: 55px;margin-right: 5px;">
       <option selected="" disabled="disabled">All studies</option>
     </select>
     <div class="search-input control-group search-giant">
-      <input style="height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search datasets" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em> and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
+      <input style="height:55px;border:2px solid #000" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search datasets" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em> and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
       <button type="submit" role="presentation" tabindex="-1">
         <i class="fa fa-search icon-search" style="color:#555;position:absolute;top:-4px;right: 0px;"></i>
         <span>{{ _('Search') }}</span>
