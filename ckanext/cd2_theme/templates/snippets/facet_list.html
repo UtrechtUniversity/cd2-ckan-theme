@@ -7,12 +7,7 @@
 {% if items or not hide_empty %}
 {% set hide_sub_facet = False %}
 
-{%- set exclude_fields = [
-	'Formats',
-	'Licenses',
-	'Groups',
-	'wave'
-    ] -%}
+{%- set exclude_fields = [] -%}
 
 {% if title in exclude_fields %}
 	{% set hide_sub_facet = True %}
