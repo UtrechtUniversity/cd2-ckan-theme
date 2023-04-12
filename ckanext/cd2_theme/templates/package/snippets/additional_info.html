@@ -147,9 +147,9 @@
       <td class="dataset-details">
         <ul class="dataset-resources list-unstyled">
         {% for item in pkg_dict.extras %}
- 
-            <li>{{ item.key }}: {{ item.value }}</li><br />
-
+        {% if not item.key.startswith('harvest') %}
+            <li><strong>{{ item.key }}:</strong> {{ item.value }}</li><br />
+        {% endif %}
         {% endfor %}
         </ul>
       </td>
