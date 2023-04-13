@@ -369,7 +369,7 @@ function waveTimeline(timepoints, barID) {
  * - Use tab-key to add suggestion to the searchbox
  */
 function interactiveSuggestions(searchBox) {
-    const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"'];
+    const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"','OR'];
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
     const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
