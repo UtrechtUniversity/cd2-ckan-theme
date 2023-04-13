@@ -11,7 +11,8 @@ if (input_q) { input_q.addEventListener('keyup', replaceCharacters); }
 function replaceCharacters() {
     var value_q = input_q.value;
     var replaced_q = value_q.replace('AND ', '& ');
-    var replaced_q = replaced_q.replace('NOT ', '- ');
+    var replaced_q = replaced_q.replace('NOT ', '-');
+    var replaced_q = replaced_q.replace('OR ', '|| ');
     document.getElementById('searchbox').value = replaced_q;
 };
 
@@ -369,7 +370,7 @@ function waveTimeline(timepoints, barID) {
  * - Use tab-key to add suggestion to the searchbox
  */
 function interactiveSuggestions(searchBox) {
-    const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"','OR','AND','NOT'];
+    const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"','-'];
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
     const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
