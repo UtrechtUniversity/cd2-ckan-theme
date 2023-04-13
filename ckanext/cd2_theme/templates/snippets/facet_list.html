@@ -99,6 +99,7 @@
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
 
+					{% if '-' in label %}
 					{% set splitname = label.split('-') %}
 					{% set subname = splitname[0] %}
 					{% set label = splitname[1] %}
@@ -109,7 +110,7 @@
 					<li style="padding:6px" class="element_{{ title.replace(' ','_') }} cohort_parent nav-custom {% if item.active %} active{% endif %}">
 						<span class="item-label" style="color:#999">{{ subname }}</span>
 					</li>
-		
+					{% endif %}
 				
 				{% endif %}
 				{% set label_full = label %}
