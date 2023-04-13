@@ -121,7 +121,7 @@
       document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
         event.preventDefault();
         var searchbox = document.getElementById('searchbox').value;
-        if (searchbox.includes('or') || searchbox.includes('OR') || searchbox.includes('||')) {
+        if (searchbox.includes('OR') || searchbox.includes('||')) {
             if (!searchbox.includes(':')) {
                 searchbox = 'text: ' + searchbox;
                 document.getElementById('searchbox').style.color = '#fff';
