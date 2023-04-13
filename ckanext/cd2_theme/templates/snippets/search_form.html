@@ -124,6 +124,7 @@
         if (searchbox.includes('or') || searchbox.includes('OR') || searchbox.includes('||')) {
             if (!searchbox.includes(':')) {
                 searchbox = 'text: ' + searchbox;
+                document.getElementById('searchbox').color = '#fff';
                 document.getElementById('searchbox').value = searchbox;
             }
         }
