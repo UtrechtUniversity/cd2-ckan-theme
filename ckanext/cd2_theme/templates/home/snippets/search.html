@@ -207,7 +207,7 @@
 </div>
 
 <div class="module module-search module-narrow module-shallow box">
-  <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="post"
+  <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
     action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
     <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search"><span class="fa fa-cog"></span> Advanced Search</a>
     <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
