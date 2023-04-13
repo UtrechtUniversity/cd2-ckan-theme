@@ -100,7 +100,7 @@
 				{% set margin = 'margin-left:0px' %}
 				{% set splitname = label.split('-') %}
 				{% set subname = splitname[0] %}
-				{% set label = subname[1] %}
+				{% set label = splitname[1] %}
 
 				{% if subname not in main_passed %}
 				{% do main_passed.append(subname) %}	
