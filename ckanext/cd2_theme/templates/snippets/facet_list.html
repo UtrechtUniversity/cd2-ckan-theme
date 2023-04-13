@@ -100,34 +100,38 @@
 				{% set margin = 'margin-left:0px' %}
 
 					{% if '-' in label %}
-					{% set splitname = label.split('-') %}
-					{% set subname = splitname[0] %}
-					{% set label = splitname[1] %}
+						{% set splitname = label.split('-') %}
+						{% set subname = splitname[0] %}
+						{% set label = splitname[1] %}
 
-					{% if subname not in main_passed %}
-					{% do main_passed.append(subname) %}	
+						{% if subname not in main_passed %}
+							{% do main_passed.append(subname) %}	
 
-					<li style="padding:6px" class="element_{{ title.replace(' ','_') }} cohort_parent nav-custom {% if item.active %} active{% endif %}">
-						<span class="item-label" style="color:#999">{{ subname }}</span>
-					</li>
+							<li style="padding:6px" class="element_{{ title.replace(' ','_') }} cohort_parent nav-custom {% if item.active %} active{% endif %}">
+								<span class="item-label" style="color:#999">{{ subname }}</span>
+							</li>
+						{% endif %}
+
+						{% set label_full = label %}
+						{% set label = label|truncate(20,true,'...',0) %}
+						{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+	
+						<li {% if '...' in label %}
+							onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
+							{% endif %}
+							class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
+							<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
+								<span style="margin-left:15px" class="item-label item-facet">{{ label }}</span>
+								<span class="hidden separator"> - </span>
+								<span style="margin-top:-18px;" class="item-count badge facet-badge">{{ count }}</span>
+							</a>
+						</li>
+	
+
+
 					{% endif %}
+
 				
-				{% endif %}
-				{% set label_full = label %}
-				{% set label = label|truncate(20,true,'...',0) %}
-				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
-
-				<li {% if '...' in label %}
-					onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
-					{% endif %}
-					class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-						<span style="margin-left:15px" class="item-label item-facet">{{ label }}</span>
-						<span class="hidden separator"> - </span>
-						<span style="margin-top:-18px;" class="item-count badge facet-badge">{{ count }}</span>
-					</a>
-				</li>
-
 				{% endfor %}
 				
 			{% else %}
