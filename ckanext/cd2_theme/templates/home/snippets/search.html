@@ -225,14 +225,14 @@
     </div>
   </form>
   <script>
-    window.onload = function () {
+    document.addEventListener("DOMContentLoaded", function (event) {
       var inputField = document.getElementById("searchbox");
       var inputValue = inputField.value;
       if (inputValue.startsWith("text:")) {
         inputValue = inputValue.substr(5);
         inputField.value = inputValue;
       }
-    }
+    });
     document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
       event.preventDefault();
       var searchbox = document.getElementById('searchbox').value;
