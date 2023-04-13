@@ -90,23 +90,23 @@
 	<nav aria-label="{{ title }}">
 		<ul class="{{ nav_class or 'list-unstyled nav nav-simple nav-facet' }}">
 
-			{% if title == 'cohort' %}
-				{% set cohorts_passed = [] %}
+			{% if title == 'Tags' %}
+				{% set main_passed = [] %}
 				{% for item in items|sort(attribute='name') %}
 				{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
 				item.active else h.add_url_param(new_params={name: item.name}, extras=extras,
 				alternative_url=alternative_url) %}
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
-				{% set splitname = label.split(':') %}
-				{% set studyname = splitname[0] %}
-				{% set label = splitname[1] %}
+				{% set splitname = label.split('-') %}
+				{% set subname = splitname[0] %}
+				{% set label = subname[1] %}
 
-				{% if studyname not in cohorts_passed %}
-				{% do cohorts_passed.append(studyname) %}	
+				{% if subname not in main_passed %}
+				{% do main_passed.append(subname) %}	
 
 				<li style="padding:6px" class="element_{{ title.replace(' ','_') }} cohort_parent nav-custom {% if item.active %} active{% endif %}">
-					<span class="item-label" style="color:#999">{{ studyname }}</span>
+					<span class="item-label" style="color:#999">{{ subname }}</span>
 				</li>
 				{% endif %}
 				{% set label_full = label %}
