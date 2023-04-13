@@ -225,24 +225,14 @@
   </form>
 <script>
   document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
-    // Prevent form submission
     event.preventDefault();
-
-    // Retrieve input value
     var searchbox = document.getElementById('searchbox').value;
-
-    // Check if searchbox contains 'or', 'OR', or '||'
     if (searchbox.includes('or') || searchbox.includes('OR') || searchbox.includes('||')) {
-        // Check if searchbox contains ':'
         if (!searchbox.includes(':')) {
-            // Append 'text:' to searchbox
             searchbox = 'text: ' + searchbox;
-            // Set modified value back to input field
             document.getElementById('searchbox').value = searchbox;
         }
     }
-
-    // Submit the form
     document.getElementById('dataset-search-form').submit();
 });
 </script>
