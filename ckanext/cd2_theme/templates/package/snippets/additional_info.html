@@ -223,12 +223,12 @@
                   {% set start = parts[0]|int %}
                   {% set end = parts[1]|int %}
                   {% if start >= 48 %}
-                    {{ start/12|round }} -
+                    {{ (start/12)|round(1) }} -
                   {% else %}
                     {{ start }} months -
                   {% endif %}
                   {% if end >= 48 %}
-                    {{ end/12|round }} years
+                    {{ (end/12)|round(1) }} years
                   {% else %}
                     {{ end }} months
                   {% endif %}
