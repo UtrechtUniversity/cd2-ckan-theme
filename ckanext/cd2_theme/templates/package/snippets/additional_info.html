@@ -13,7 +13,7 @@
   });
   
 
-  {% if pkg_dict.type == 'dataset' and pkg_dict.dc_common_id is defined %}
+  {% if pkg_dict.type == 'measure' and pkg_dict.dc_common_id is defined %}
     // query api to find similar datasets based on CD2_ID
       url = "/api/3/action/package_search?fq=dc_common_id:{{pkg_dict.dc_common_id}}"
       fetch(url)
@@ -96,7 +96,7 @@
     </tr>
 
 
-    {% elif pkg_dict.type == 'dataset' %}
+    {% elif pkg_dict.type == 'measure' %}
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
