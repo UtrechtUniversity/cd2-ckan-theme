@@ -182,7 +182,7 @@
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">
-              {% if subfield.label == 'Creator' or  subfield.label == 'Contributor' or subfield.label == 'Name' %}
+              {% if subfield.label == 'Creator' or  subfield.label == 'Contributor' or subfield.label == 'Name' or subfield.label == 'Creator name' or subfield.label == 'Contributor name'%}
               {% set icon = 'fa-user'  %}
               {% elif subfield.label == 'Affiliation' %}
               {% set icon = 'fa-building'  %}
