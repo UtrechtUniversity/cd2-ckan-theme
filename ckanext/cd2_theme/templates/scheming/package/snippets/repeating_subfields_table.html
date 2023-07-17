@@ -7,59 +7,36 @@
 
 {% block subfield_display %}
 
+
 {% for field_data in fields %}
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <dl class="scheming-subfield-list">
+
+<table class="table table-striped table-condensed dropshadow">
+    <td>
+  
+
+      
           {% for subfield in field.repeating_subfields %}
-            <dt class="dataset-label">
-              {% if subfield.label == 'Creator' or  subfield.label == 'Contributor' or subfield.label == 'Name' %}
-              {% set icon = 'fa-user'  %}
-              {% elif subfield.label == 'Affiliation' %}
-              {% set icon = 'fa-building'  %}
-              {% elif subfield.label == 'Identifier' %}
-              {% set icon = 'fa-info-circle'  %}
-              {% elif subfield.label == 'Identifier type' %}
-              {% set icon = 'fa-tag'  %}
-              {% elif subfield.label == 'Funder name' %}
-              {% set icon = 'fa-university'  %}
-              {% elif subfield.label == 'Grant number' %}
-              {% set icon = 'fa-hashtag'  %}
-              {% elif subfield.label == 'Citation' %}
-              {% set icon = 'fa-share-alt'  %}
-              {% elif subfield.label == 'Reference type' %}
-              {% set icon = 'fa-hand-o-right'  %}
-              {% elif subfield.label == 'Publisher name' %}
-              {% set icon = 'fa-building'  %}
-              {% elif subfield.label == 'Publisher ID' %}
-              {% set icon = 'fa-info-circle'  %}
-              {% elif subfield.label == 'Publisher ID-type' %}
-              {% set icon = 'fa-tag'  %}
-              {% elif subfield.label == 'Mail address' %}
-              {% set icon = 'fa-envelope'  %}
-              {% elif subfield.label == 'URL' %}
-              {% set icon = 'fa-external-link'  %}
-              {% elif subfield.label == 'Description' %}
-              {% set icon = 'fa-question-circle'  %}
-              {% else %}
+
+
+          <th scope="row" class="dataset-label">
               {{ h.scheming_language_text(subfield.label) }}
-              {% set icon = '' %}
-              {% endif %}
-            </dt>
-            <dd>
-            <span class="tabspan fa {{ icon }}"></span> 
+            </th>
+            <td class="dataset-details">
             <span class="repeating-element">
-            {%- snippet 'scheming/snippets/display_field.html',
-              field=subfield,
-              data=field_data,
-              entity_type=entity_type,
-              object_type=object_type
-            -%}
+
+                {%- snippet 'scheming/snippets/display_field.html',
+                field=subfield,
+                data=field_data,
+                entity_type=entity_type,
+                object_type=object_type
+                -%}
+              
             </span>
-            </dd>
+          </td>
           {% endfor %}
-        </dl>
-      </div>
-    </div>
+        
+</tr>
+  </table>
   {% endfor %}
 {% endblock %}
+

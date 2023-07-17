@@ -80,7 +80,7 @@
     {%- if field.field_name not in exclude_fields_measure
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
-      <tr>
+        <tr>
         <th scope="row" class="dataset-label">
             {{ h.scheming_language_text(field.label) }}
         </th>
@@ -99,7 +99,7 @@
     {%- if field.field_name not in exclude_fields_study
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
-            {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
     {%- endif -%}
   {%- endfor -%}
 {% endblock %}
