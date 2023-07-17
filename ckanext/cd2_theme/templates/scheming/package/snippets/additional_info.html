@@ -147,7 +147,7 @@
         </th>
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
-            {%- snippet 'scheming/snippets/display_field_repeating.html', field=field, data=pkg_dict, schema=schema -%}
+            {%- snippet 'scheming/snippets/display_field_repeat.html', field=field, data=pkg_dict, schema=schema -%}
         </td>
       </tr>
     {%- endif -%}
