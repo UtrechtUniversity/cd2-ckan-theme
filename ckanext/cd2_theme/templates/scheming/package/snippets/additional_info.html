@@ -154,34 +154,68 @@
   {%- endfor -%}
 {% endblock %}
 
-{% block package_additional_info_study %}
-  {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name not in exclude_fields_study
-        and field.display_snippet is not none
-        and pkg_dict[field.field_name]|length -%}
-          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-    {%- endif -%}
-  {%- endfor -%}
-{% endblock %}
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Cohort study
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        {% block package_additional_info_study %}
+        {%- for field in schema.dataset_fields -%}
+          {%- if field.field_name not in exclude_fields_study
+              and field.display_snippet is not none
+              and pkg_dict[field.field_name]|length -%}
+                {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {% endblock %}
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Cohorts
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">   
+      {% block package_additional_info_cohort %}
+      {%- for field in schema.dataset_fields -%}
+        {%- if field.field_name not in exclude_fields_cohort
+            and field.display_snippet is not none
+            and pkg_dict[field.field_name]|length -%}
+              {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {% endblock %}
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Waves
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      {% block package_additional_info_wave %}
+      {%- for field in schema.dataset_fields -%}  
+        {%- if field.field_name not in exclude_fields_wave
+            and field.display_snippet is not none
+            and pkg_dict[field.field_name]|length -%}
+              {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
 
 
-{% block package_additional_info_cohort %}
-  {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name not in exclude_fields_cohort
-        and field.display_snippet is not none
-        and pkg_dict[field.field_name]|length -%}
-          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-    {%- endif -%}
-  {%- endfor -%}
-{% endblock %}
-
-
-{% block package_additional_info_wave %}
-  {%- for field in schema.dataset_fields -%}  
-    {%- if field.field_name not in exclude_fields_wave
-        and field.display_snippet is not none
-        and pkg_dict[field.field_name]|length -%}
-          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-    {%- endif -%}
-  {%- endfor -%}
-{% endblock %}
