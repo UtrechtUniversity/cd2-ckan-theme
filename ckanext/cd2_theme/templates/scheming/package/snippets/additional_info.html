@@ -147,7 +147,7 @@
         </th>
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
-            {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+            {%- snippet 'scheming/snippets/display_field_repeating.html', field=field, data=pkg_dict, schema=schema -%}
         </td>
       </tr>
     {%- endif -%}
@@ -177,11 +177,13 @@
 
 
 {% block package_additional_info_wave %}
-  {%- for field in schema.dataset_fields -%}
+<table class="table table-striped table-condensed dropshadow">
+  {%- for field in schema.dataset_fields -%}  
     {%- if field.field_name not in exclude_fields_wave
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
           {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
     {%- endif -%}
   {%- endfor -%}
+</table>
 {% endblock %}
