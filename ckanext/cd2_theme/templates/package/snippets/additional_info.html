@@ -3,11 +3,14 @@
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
 
-    // hide empty repeating fields
     const repeatingElements = document.querySelectorAll('.repeating-element');
     repeatingElements.forEach(element => {
       if (!element.innerHTML.trim()) {
-       element.parentElement.style.display = 'none';
+        // Find the parent <tr> element and hide it
+        const parentTR = element.closest('tr');
+        if (parentTR) {
+          parentTR.style.display = 'none';
+        }
       }
     });
 
