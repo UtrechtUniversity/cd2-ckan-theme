@@ -10,6 +10,30 @@
        // element.parentElement.style.display = 'none';
       }
     });
+
+
+     // replace nav-tabs with wave/cohort and study information
+     navTabs = document.getElementsByClassName('nav-tabs');
+     {% if pkg_dict.type == 'measure' %}
+
+ 
+     // create new tabs based of dataset type
+     navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+       <li><a href="/organization/about/{{ pkg_dict.organization.name }}"><i class="fa fa-folder-open"></i> Study</a></li>
+       <!--<li><a href="/dataset/?q={{ cohort_query|join('||')|safe }}&amp;dataset_type=cohort"><i class="fa fa-folder-open"></i> Cohorts</a></li><li><a href="/dataset/?q={{ wave_query|join('||')|safe }}&amp;dataset_type=wave&amp;sort=wave_start_date_collection+asc"><i class="fa fa-folder-open"></i> Waves</a></li>-->
+       <li class="active"><a href="#"><i class="fa fa-sitemap"></i> Measure</a></li>
+     </ul>`  
+
+       // fade in tabs after they've been recreated
+       $('.nav-tabs').fadeTo(300, 1);
+ 
+
+       $('.description').fadeTo(300, 1);
+       $('.read-more').fadeTo(300, 1);
+      
+    {% endif %}
+
+       
   });
   
 
@@ -286,64 +310,14 @@
     </tbody>
   </table>
 
+  {% block package_additional_info_study %}
+  {% endblock %}
 
-    <div id="accordion">
+  {% block package_additional_info_cohort %}
+  {% endblock %}
 
-      <!-- Cohort Study -->
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Cohort Study
-            </button>
-          </h5>
-        </div>
-
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            {% block package_additional_info_study %}
-            {% endblock %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Cohorts -->
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Cohorts
-            </button>
-          </h5>
-        </div>
-        
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            {% block package_additional_info_cohort %}
-        {% endblock %}
-          </div>
-        </div>
-      </div>
-
-      <!-- Waves -->
-      <div class="card">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Waves
-            </button>
-          </h5>
-        </div>
-        
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-            {% block package_additional_info_wave %}
-            {% endblock %}
-          </div>
-        </div>
-      </div>
-    </div>
-
+  {% block package_additional_info_wave %}
+  {% endblock %}
 
 
   <div class="search-result-api-message message" style="margin-top:100px">
