@@ -37,6 +37,7 @@
       $("#show-measure").on("click", function(event) {
         event.preventDefault(); 
         $("#primary-info").show();
+        $("#additional-info").show();
         $("#table-measure").show();
         $("#table-study").hide();
         $("#table-cohort").hide();
@@ -45,6 +46,7 @@
       $("#show-study").on("click", function(event) {
         event.preventDefault(); 
         $("#primary-info").hide();
+        $("#additional-info").hide();
         $("#table-measure").hide();
         $("#table-study").show();
         $("#table-cohort").hide();
@@ -53,6 +55,7 @@
       $("#show-cohort").on("click", function(event) {
         event.preventDefault(); 
         $("#primary-info").hide();
+        $("#additional-info").hide();
         $("#table-measure").hide();
         $("#table-study").hide();
         $("#table-cohort").show();
@@ -61,6 +64,7 @@
       $("#show-wave").on("click", function(event) {
         event.preventDefault(); 
         $("#primary-info").hide();
+        $("#additional-info").hide();
         $("#table-measure").hide();
         $("#table-study").hide();
         $("#table-cohort").hide();
