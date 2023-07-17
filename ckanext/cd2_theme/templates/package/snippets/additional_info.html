@@ -19,10 +19,10 @@
  
      // create new tabs based of dataset type
      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
-      <li class="active"><a href="#"><i class="fa fa-sitemap"></i> Measure</a></li>
-       <li><a href="#"><i class="fa fa-folder"></i> Study</a></li>
-       <li><a href="#"><i class="fa fa-folder"></i> Cohorts</a></li>
-       <li><a href="#"><i class="fa fa-folder"></i> Waves</a></li>
+      <li class="active"><a href="#" id="show-measure"><i class="fa fa-sitemap"></i> Measure</a></li>
+       <li><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
+       <li><a href="#" id="show-cohort"><i class="fa fa-folder"></i> Cohorts</a></li>
+       <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>
      </ul>`  
 
        // fade in tabs after they've been recreated
@@ -33,7 +33,16 @@
     {% endif %}
 
 
-
+    $(document).ready(function() {
+      $("#show-study").on("click", function(event) {
+        event.preventDefault(); // Prevents the default behavior of the link
+        // Hide the element with id "primary-info"
+        $("#primary-info").hide();
+        // Hide all tables except for the one with id "table-study"
+        $("table:not(#table-study)").hide();
+      });
+    });
+    
        
   });
   
