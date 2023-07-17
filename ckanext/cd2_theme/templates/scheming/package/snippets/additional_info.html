@@ -49,6 +49,10 @@
       'dc_labels',
       'dc_constructs',
       'dc_cohort',
+      'dc_measure_name',
+      'dc_measure_name',
+      'dc_alternate_name',
+      'dc_measurement_references',
       'measure_age_range',
       'wave_universe',
       'wave_cohort_ckan_id',
@@ -95,15 +99,11 @@
     {%- if field.field_name not in exclude_fields_study
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
-      <tr>
-        <th scope="row" class="dataset-label">
-            {{ h.scheming_language_text(field.label) }}
-        </th>
-        <td class="dataset-details"{%
-          if field.display_property %} property="{{ field.display_property }}"{% endif %}>
+     
+       
             {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
-        </td>
-      </tr>
+        
+
     {%- endif -%}
   {%- endfor -%}
 {% endblock %}
