@@ -6,8 +6,9 @@
 ] -%}
 
 {% block subfield_display %}
-<table class="table table-striped table-condensed dropshadow">
+
 {% for field_data in fields %}
+<table class="table table-striped table-condensed dropshadow"></table>
           {% for subfield in field.repeating_subfields %}
           <tr>
           <th scope="row" class="dataset-label">
@@ -27,7 +28,8 @@
           </td>
         </tr>
           {% endfor %}
+        </table>
   {% endfor %}
-</table>
+
 {% endblock %}
 
