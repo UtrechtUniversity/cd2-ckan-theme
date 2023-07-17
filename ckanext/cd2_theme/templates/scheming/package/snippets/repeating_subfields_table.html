@@ -7,17 +7,12 @@
 
 {% block subfield_display %}
 
-
+<table class="table table-striped table-condensed dropshadow"></table>
 {% for field_data in fields %}
 
-<table class="table table-striped table-condensed dropshadow">
-    <td>
-  
 
-      
+    <tr>
           {% for subfield in field.repeating_subfields %}
-
-
           <th scope="row" class="dataset-label">
               {{ h.scheming_language_text(subfield.label) }}
             </th>
@@ -36,7 +31,8 @@
           {% endfor %}
         
     </tr>
-  </table>
+
   {% endfor %}
+</table>
 {% endblock %}
 
