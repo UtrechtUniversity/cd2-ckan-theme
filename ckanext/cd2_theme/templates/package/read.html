@@ -20,7 +20,7 @@
         </div>
       {% endif %}
     {% endblock %}
-    <h1>
+    <h1 class="base-info">
       {% block page_heading %}
         {{ h.dataset_display_name(pkg) }}
         {% if pkg.state.startswith('draft') %}
