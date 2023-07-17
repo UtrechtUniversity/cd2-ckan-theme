@@ -20,6 +20,7 @@
         </div>
       {% endif %}
     {% endblock %}
+    <section class="primary-element">
     <h1 class="base-info">
       {% block page_heading %}
         {{ h.dataset_display_name(pkg) }}
@@ -54,5 +55,5 @@
   {% block package_additional_info %}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
   {% endblock %}
-
+</section>
 {% endblock %}
