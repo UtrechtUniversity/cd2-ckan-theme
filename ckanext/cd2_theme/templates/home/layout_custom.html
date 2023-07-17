@@ -67,7 +67,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
   
   const fetchRecentlyUpdatedDatasets = async () => {
     try {
-      const response = await fetch("/api/3/action/package_search?fq=type:dataset");
+      const response = await fetch("/api/3/action/package_search?fq=type:measure");
       const { result } = await response.json();
       const recentlyUpdated = result.results.slice(0, 4);
   
