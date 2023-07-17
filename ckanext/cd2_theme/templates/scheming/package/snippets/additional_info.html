@@ -75,6 +75,69 @@
       'wave_spatial_geographic_location'
       ] -%}
 
+      {%- set exclude_fields_cohort = [
+        'id',
+        'title',
+        'name',
+        'notes',
+        'tag_string',
+        'license_id',
+        'owner_org',
+        'wave',
+        'cohort',
+        'dc_labels',
+        'dc_constructs',
+        'dc_cohort',
+        'dc_instrument_name',
+        'dc_measure_name',
+        'dc_alternate_name',
+        'dc_measurement_references',
+        'measure_age_range',
+        'wave_universe',
+        'wave_cohort_ckan_id',
+        'wave_cohort',
+        'wave_alternate_title',
+        'dc_mode_of_collection',
+        'dc_mode_of_collection_sub',
+        'wave_start_date_collection',
+        'wave_end_date_collection',
+        'dc_common_id',
+        'dc_additional_info',
+        'wave_spatial_lowest_reference',
+        'wave_spatial_highest_reference',
+        'wave_spatial_country_code',
+        'wave_spatial_geographic_location'
+        ] -%}
+
+        {%- set exclude_fields_wave = [
+          'id',
+          'title',
+          'name',
+          'notes',
+          'tag_string',
+          'license_id',
+          'owner_org',
+          'wave',
+          'cohort',
+          'dc_labels',
+          'dc_constructs',
+          'dc_cohort',
+          'dc_instrument_name',
+          'dc_measure_name',
+          'dc_alternate_name',
+          'dc_measurement_references',
+          'measure_age_range',
+          'cohort_alternate_title',
+          'cohort_study_title',
+          'cohort_study_alternate_title',
+          'cohort_study_data_access',
+          'cohort_language',
+          'dc_mode_of_collection',
+          'dc_mode_of_collection_sub',
+          'dc_common_id',
+          'dc_additional_info',
+          ] -%}
+
 {% block package_additional_info_measure %}
   {%- for field in schema.dataset_fields -%}
     {%- if field.field_name not in exclude_fields_measure
@@ -96,6 +159,28 @@
 {% block package_additional_info_study %}
   {%- for field in schema.dataset_fields -%}
     {%- if field.field_name not in exclude_fields_study
+        and field.display_snippet is not none
+        and pkg_dict[field.field_name]|length -%}
+          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endblock %}
+
+
+{% block package_additional_info_cohort %}
+  {%- for field in schema.dataset_fields -%}
+    {%- if field.field_name not in exclude_fields_cohort
+        and field.display_snippet is not none
+        and pkg_dict[field.field_name]|length -%}
+          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endblock %}
+
+
+{% block package_additional_info_wave %}
+  {%- for field in schema.dataset_fields -%}
+    {%- if field.field_name not in exclude_fields_wave
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
           {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
