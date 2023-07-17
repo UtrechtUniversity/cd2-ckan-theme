@@ -10,7 +10,6 @@
 <table class="table table-striped table-condensed dropshadow">
 {% for field_data in fields %}
 
-
     <tr>
           {% for subfield in field.repeating_subfields %}
           <th scope="row" class="dataset-label">
@@ -19,7 +18,7 @@
             <td class="dataset-details">
             <span class="repeating-element">
 
-                {%- snippet 'scheming/snippets/display_field.html',
+                {%- snippet 'scheming/snippets/display_field_repeat.html',
                 field=subfield,
                 data=field_data,
                 entity_type=entity_type,
