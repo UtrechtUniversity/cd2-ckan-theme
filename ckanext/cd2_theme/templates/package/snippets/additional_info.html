@@ -34,12 +34,37 @@
 
 
     $(document).ready(function() {
+      $("#show-measure").on("click", function(event) {
+        event.preventDefault(); 
+        $("#primary-info").show();
+        $("#table-measure").show();
+        $("#table-study").hide();
+        $("#table-cohort").hide();
+        $("#table-wave").hide();
+      });
       $("#show-study").on("click", function(event) {
-        event.preventDefault(); // Prevents the default behavior of the link
-        // Hide the element with id "primary-info"
+        event.preventDefault(); 
         $("#primary-info").hide();
-        // Hide all tables except for the one with id "table-study"
-        $("table:not(#table-study)").hide();
+        $("#table-measure").hide();
+        $("#table-study").show();
+        $("#table-cohort").hide();
+        $("#table-wave").hide();
+      });
+      $("#show-cohort").on("click", function(event) {
+        event.preventDefault(); 
+        $("#primary-info").hide();
+        $("#table-measure").hide();
+        $("#table-study").hide();
+        $("#table-cohort").show();
+        $("#table-wave").hide();
+      });
+      $("#show-wave").on("click", function(event) {
+        event.preventDefault(); 
+        $("#primary-info").hide();
+        $("#table-measure").hide();
+        $("#table-study").hide();
+        $("#table-cohort").hide();
+        $("#table-wave").show();
       });
     });
     
