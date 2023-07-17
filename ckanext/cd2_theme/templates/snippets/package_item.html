@@ -65,7 +65,7 @@
             <table class="table table-condensed">
             <tbody>
               <tr class="table-package-item"><td width="30%">Study:</td><td><span class="label">{{package.organization.title}}</span></td></tr> 
-              {% if package.type == 'dataset' %}
+              {% if package.type == 'measure' %}
               <tr><td>Mode of collection:</td><td><span class="label">{{ package.dc_mode_of_collection }}</span>
                 {% if package.dc_mode_of_collection_sub %}
                 &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span>
