@@ -212,6 +212,10 @@
       </td>
     </tr>
 
+
+
+
+
   
 
 
@@ -276,11 +280,18 @@
         </td>
       </tr>
       {% endif %}
-      {% block package_additional_info %}
-      {% endblock %}
+
       
     </tbody>
   </table>
+
+  <h4>Cohort Study</h4>
+  <table class="table table-striped table-condensed dropshadow">
+    {% block package_additional_info_measure %}
+      {% endblock %}
+  </table>
+
+
 
   <div class="search-result-api-message message" style="margin-top:100px">
     <span class="fa fa-lightbulb-o"></span>

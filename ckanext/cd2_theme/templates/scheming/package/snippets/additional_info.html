@@ -1,6 +1,6 @@
 {% extends "package/snippets/additional_info.html" %}
 
-{%- set exclude_fields = [
+{%- set exclude_fields_measure = [
     'id',
     'title',
     'name',
@@ -36,20 +36,49 @@
     'wave_spatial_geographic_location'
     ] -%}
 
-{% block package_additional_info %}
+    {%- set exclude_fields_study = [
+      'id',
+      'title',
+      'name',
+      'notes',
+      'tag_string',
+      'license_id',
+      'owner_org',
+      'wave',
+      'cohort',
+      'dc_labels',
+      'dc_constructs',
+      'dc_cohort',
+      'measure_age_range',
+      'wave_universe',
+      'wave_cohort_ckan_id',
+      'wave_cohort',
+      'wave_alternate_title',
+      'cohort_alternate_title',
+      'cohort_study_title',
+      'cohort_study_alternate_title',
+      'cohort_study_data_access',
+      'cohort_language',
+      'dc_mode_of_collection',
+      'dc_mode_of_collection_sub',
+      'wave_start_date_collection',
+      'wave_end_date_collection',
+      'dc_common_id',
+      'dc_additional_info',
+      'wave_spatial_lowest_reference',
+      'wave_spatial_highest_reference',
+      'wave_spatial_country_code',
+      'wave_spatial_geographic_location'
+      ] -%}
+
+{% block package_additional_info_measure %}
   {%- for field in schema.dataset_fields -%}
-    {%- if field.field_name not in exclude_fields
+    {%- if field.field_name not in exclude_fields_measure
         and field.display_snippet is not none
         and pkg_dict[field.field_name]|length -%}
       <tr>
         <th scope="row" class="dataset-label">
             {{ h.scheming_language_text(field.label) }}
-            <!-- label for hierarchical fields supplement to study information -->
-            {% if pkg_dict.type == 'wave' %}
-            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at cohort and study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"></span>
-            {% elif pkg_dict.type == 'cohort' %}
-            <span class="fa fa-info-circle info-hover" onmouseenter="tooltipAddElement(this,'Displayed information is supplement to information contained at study-level',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)"></span>
-            {% endif %}
         </th>
         <td class="dataset-details"{%
           if field.display_property %} property="{{ field.display_property }}"{% endif %}>
@@ -59,5 +88,6 @@
     {%- endif -%}
   {%- endfor -%}
 {% endblock %}
+
 
 
