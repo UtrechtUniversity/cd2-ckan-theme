@@ -103,13 +103,13 @@
 
 
 {% if pkg_dict.dc_additional_info %} 
-<p><span class="fa fa-info-circle"></span> {{pkg_dict.dc_additional_info}}
+<p><span class="fa fa-info-circle base-info"></span> {{pkg_dict.dc_additional_info}}
 </p>
 {% endif %}
 
 <section class="additional-info">
   <table class="table table-striped table-condensed dropshadow" id="table-measure">
-   
+  
     {% if pkg_dict.type == 'study' %}
     <tr>
     <th style="width: 20%" scope="row" class="dataset-label">Alternative title</th>
