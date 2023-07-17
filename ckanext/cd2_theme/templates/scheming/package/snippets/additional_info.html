@@ -177,7 +177,6 @@
 
 
 {% block package_additional_info_wave %}
-<table class="table table-striped table-condensed dropshadow">
   {%- for field in schema.dataset_fields -%}  
     {%- if field.field_name not in exclude_fields_wave
         and field.display_snippet is not none
@@ -185,5 +184,4 @@
           {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
     {%- endif -%}
   {%- endfor -%}
-</table>
 {% endblock %}
