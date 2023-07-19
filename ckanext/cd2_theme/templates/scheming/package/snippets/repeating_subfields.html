@@ -15,6 +15,9 @@
   'dc_measurement_references',
   'study_references',
   'study_contact',
+  'study_alternate_title',
+  'cohort_alternate_title',
+  'wave_alternate_title',
   ] -%}
 
 {% block subfield_display %}
@@ -29,6 +32,11 @@
         <dl class="scheming-subfield-list">
           <dt class="dataset-label">
           </dt>
+          {% if field.field_name == 'study_alternate_title' %}
+          <dd><ul class="dataset-resources list-unstyled">
+            {{ subfield.study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
+           </ul>
+          </dd>
           {% if field.field_name == 'study_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.study_publisher_identifier_type }}',30,'share')"
