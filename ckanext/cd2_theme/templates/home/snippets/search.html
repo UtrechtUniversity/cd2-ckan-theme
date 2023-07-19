@@ -208,14 +208,14 @@
 
 <div class="module module-search module-narrow module-shallow box">
   <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
-    action="{% url_for controller='dataset' if h.check_ckan_version('2.9') else 'package', action='search' %}">
+    action="{% url_for controller='measure' if h.check_ckan_version('2.9') else 'package', action='search' %}">
     <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search"><span class="fa fa-cog"></span> Advanced Search</a>
     <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
       autocomplete="off" placeholder=""
       style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
       <option selected="" disabled="disabled">All studies</option>
     </select>
-    <input type="hidden" name="dataset_type" value="dataset">
+    <input type="hidden" name="dataset_type" value="measure">
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em>, <em>OR</em>, and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
       <button type="submit" role="presentation" tabindex="-1">
