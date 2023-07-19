@@ -356,7 +356,10 @@
   </section>
 
   <script>
-    // Get all the headers
+    const section = document.getElementById('table-study');
+    const tableStudy = section.querySelector('table');
+    tableStudy.style.display = 'block';
+
     const headers = document.querySelectorAll('.collapsible-header');
   
     headers.forEach(header => {
