@@ -2,8 +2,10 @@
 {% set fields_passed = [] %}
 
 {%- set exclude_subfields = [
-  '',
-] -%}
+  'study_alternate_title',
+  'cohort_alternate_title',
+  'wave_alternate_title',
+  ] -%}
 
 {% block subfield_display %}
 {% for field_data in fields %}
@@ -28,16 +30,23 @@
               {{ h.scheming_language_text(subfield.label) }}
             </th>
             <td class="dataset-details">
-            <span class="repeating-element">
 
+              {% if subfield.field_name == 'study_alternate_title' %}
+              <dd><ul class="dataset-resources list-unstyled">
+                {{ subfield.study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
+               </ul>
+              </dd>
+
+              {% elif %}
+            <span class="repeating-element">
                 {%- snippet 'scheming/snippets/display_field_repeat.html',
                 field=subfield,
                 data=field_data,
                 entity_type=entity_type,
                 object_type=object_type
                 -%}
-              
             </span>
+            {% endif %}
           </td>
         </tr>
           {% endfor %}

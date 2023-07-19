@@ -32,12 +32,7 @@
         <dl class="scheming-subfield-list">
           <dt class="dataset-label">
           </dt>
-          {% if field.field_name == 'study_alternate_title' %}
-          <dd><ul class="dataset-resources list-unstyled">
-            {{ subfield.study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
-           </ul>
-          </dd>
-          {% elif field.field_name == 'study_publisher' %}
+          {% if field.field_name == 'study_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.study_publisher_identifier_type }}',30,'share')"
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
