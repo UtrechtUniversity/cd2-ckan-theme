@@ -8,7 +8,7 @@
 {% block subfield_display %}
 {% for field_data in fields %}
 <div class="well">
-<table class="table table-striped table-condensed dropshadow">
+<table class="table table-striped table-condensed dropshadow" style="display:none">
           {% for subfield in field.repeating_subfields %}
           {% if subfield.field_name not in exclude_subfields %}
           {% if subfield.field_name == 'study_title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
@@ -29,7 +29,6 @@
               {{ h.scheming_language_text(subfield.label) }}
             </th>
             <td class="dataset-details">
-
               {% if subfield.field_name == 'study_alternate_title' or subfield.field_name == 'cohort_alternate_title'  or subfield.field_name == 'wave_alternate_title' or subfield.field_name == 'study_alternate_title' or subfield.field_name == 'study_language' or subfield.field_name == 'cohort_language' or subfield.field_name == 'wave_language' %}
               <dd><ul class="dataset-resources list-unstyled">
                 {{ field_data[subfield.field_name] | replace('[','') | replace(']','') | replace('"','') | replace('\'','') }}
