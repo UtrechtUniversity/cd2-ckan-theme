@@ -2,16 +2,15 @@
 {% set fields_passed = [] %}
 
 {%- set exclude_subfields = [
-  'study_alternate_title',
-  'cohort_alternate_title',
-  'wave_alternate_title',
+  'wave_cohort_ckan_id',
   ] -%}
 
 {% block subfield_display %}
 {% for field_data in fields %}
 <div class="well">
 <table class="table table-striped table-condensed dropshadow">
-          {% for subfield in field.repeating_subfields %}
+          {% for  in field.repeating_subfields %}
+          {% if subfield.field_name not in exclude_subfields %}
           {% if subfield.field_name == 'study_title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
                 <h3 class="collapsible-header">{{ field_data[subfield.field_name] }}
                   <span class="label" style="float:right">
@@ -49,6 +48,7 @@
             {% endif %}
           </td>
         </tr>
+          {% endif %}
           {% endfor %}
         </table></div>
   {% endfor %}
