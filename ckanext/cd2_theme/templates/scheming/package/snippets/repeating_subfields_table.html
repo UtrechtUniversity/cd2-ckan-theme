@@ -37,15 +37,15 @@
                </ul>
               </dd>
 
-              {% elif %}
-            <span class="repeating-element">
-                {%- snippet 'scheming/snippets/display_field_repeat.html',
-                field=subfield,
-                data=field_data,
-                entity_type=entity_type,
-                object_type=object_type
-                -%}
-            </span>
+              {% else %}
+              <span class="repeating-element">
+                  {%- snippet 'scheming/snippets/display_field_repeat.html',
+                  field=subfield,
+                  data=field_data,
+                  entity_type=entity_type,
+                  object_type=object_type
+                  -%}
+              </span>
             {% endif %}
           </td>
         </tr>
