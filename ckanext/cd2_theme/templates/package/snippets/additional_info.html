@@ -84,7 +84,7 @@
         .then(data => {
           let divContent = '';
           const currentItem = '{{ pkg_dict.name }}';
-          const div = document.getElementById('similar-datasets');
+          const div = document.getElementById('similar-measures');
           if (data.result.results.length <= 1) { return; }
           for (item of data.result.results) {
             try {
@@ -104,7 +104,7 @@
                   } else {
                     display_name = item.title;
                   }
-                  divContent += `<a href=/measure/`+item.name+`"><div style="font-size:10pt" class="cohort-spanner nofunc" onmouseenter="tooltipAddElement(this,'` + display_name.replace("'","\'") + `',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)">`+wave_item.wave_cohort
+                  divContent += `<a href="/measure/`+item.name+`"><div style="font-size:10pt" class="cohort-spanner nofunc" onmouseenter="tooltipAddElement(this,'` + display_name.replace("'","\'") + `',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)">`+wave_item.wave_cohort
                   cohorts_passed.push(wave_item.wave_cohort);
                 }
                 divContent += ` <span class="label">` + wave_item.wave_title + `</span>`
@@ -125,18 +125,12 @@
     {% endif %}
 
     // query api to find data access information from study info
-    url = "/api/3/action/package_show?id={{pkg_dict.organization.name}}"
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const divInfo = document.getElementById('data-access-info');
-      const divHref = document.getElementById('data-access-href');
-      if (data.result.cohort_study_data_access){
-        divInfo.innerHTML = data.result.cohort_study_data_access[0].cohort_study_data_access_description;
-        divHref.innerHTML = `<a href="` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + data.result.cohort_study_data_access[0].cohort_study_data_access_URL + `</a>`;
+      {% if pkg_dict.study.study_data_access %}
+        divInfo.innerHTML = {{ pkg_dict.study.study_data_access.study_data_access_description }}
+        divHref.innerHTML = `<a href="` + `{{ pkg_dict.study.study_data_access.study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study.study_data_access.study_data_access_URL }}` + `</a>`;
         $('.data-access').fadeTo(1, 1);
-      }
-    });
+      {% endif %}
+  
 </script>
 
 
@@ -148,18 +142,7 @@
 <section class="additional-info" id="table-main">
   <table class="table table-striped table-condensed dropshadow" id="table-measure">
   
-    {% if pkg_dict.type == 'study' %}
-    <tr>
-    <th style="width: 20%" scope="row" class="dataset-label">Alternative title</th>
-    <td class="dataset-details">
-      <ul class="dataset-resources list-unstyled">
-       {{ pkg_dict.cohort_study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
-      </ul>
-    </td>
-    </tr>
-
-
-    {% elif pkg_dict.type == 'measure' %}
+    {% if pkg_dict.type == 'measure' %}
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Labels</th>
       <td class="dataset-details">
