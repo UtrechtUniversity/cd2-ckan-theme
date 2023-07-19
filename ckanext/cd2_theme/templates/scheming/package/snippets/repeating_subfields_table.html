@@ -9,7 +9,7 @@
 {% for field_data in fields %}
 <div class="well">
 <table class="table table-striped table-condensed dropshadow">
-          {% for  in field.repeating_subfields %}
+          {% for subfield in field.repeating_subfields %}
           {% if subfield.field_name not in exclude_subfields %}
           {% if subfield.field_name == 'study_title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
                 <h3 class="collapsible-header">{{ field_data[subfield.field_name] }}
