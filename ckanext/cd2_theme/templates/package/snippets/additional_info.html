@@ -47,29 +47,29 @@
         $("#table-wave").toggle(wave);
       }
 
-      function setActiveTab(tabId) {
+      function setActiveTab(tabElement) {
         $(".nav-tabs li").removeClass("active");
-        $(tabId).addClass("active");
+        $(tabElement).parent().addClass("active");
       }
 
       $("#show-measure").on("click", function(event) {
         toggleTables(true, true, true, false, false, false);
-        setActiveTab("#show-measure");
+        setActiveTab(this);
       });
 
       $("#show-study").on("click", function(event) {
         toggleTables(false, false, false, true, false, false);
-        setActiveTab("#show-study");
+        setActiveTab(this);
       });
 
       $("#show-cohort").on("click", function(event) {
         toggleTables(false, false, false, false, true, false);
-        setActiveTab("#show-cohort");
+        setActiveTab(this);
       });
 
       $("#show-wave").on("click", function(event) {
         toggleTables(false, false, false, false, false, true);
-        setActiveTab("#show-wave");
+        setActiveTab(this);
       });
     });
        
