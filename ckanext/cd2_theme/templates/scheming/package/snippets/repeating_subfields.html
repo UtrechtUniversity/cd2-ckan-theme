@@ -37,7 +37,7 @@
             {{ subfield.study_alternate_title | replace('{','') | replace('}','') | replace('"','') | replace(',',', ') }}
            </ul>
           </dd>
-          {% if field.field_name == 'study_publisher' %}
+          {% elif field.field_name == 'study_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.study_publisher_identifier_type }}',30,'share')"
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
