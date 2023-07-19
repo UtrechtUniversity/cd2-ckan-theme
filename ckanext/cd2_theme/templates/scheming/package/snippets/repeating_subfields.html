@@ -31,9 +31,9 @@
           </dt>
           {% if field.field_name == 'study_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
-              onmouseenter="tooltipAddElement(this,'{{ subfield.study_identifier_type }}',30,'share')"
+              onmouseenter="tooltipAddElement(this,'{{ subfield.study_publisher_identifier_type }}',30,'share')"
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
-                href="{{subfield.study_identifier}}" target="blank">{{ subfield.study_name }}</a></span>
+                href="{{subfield.study_publisher_identifier}}" target="blank">{{ subfield.study_publisher_name }}</a></span>
           </dd>
           {% elif field.field_name == 'cohort_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
@@ -100,11 +100,7 @@
           </dd>
           {% elif field.field_name == 'study_contributor' %}
           {% if subfield.study_contributor_pid %}
-            {% if "orcid" not in subfield.cohort_contributer_pid %}
-                {% set study_contributor_url = "https://orcid.org/" + subfield.study_contributor_pid %}
-            {% else %}
                 {% set study_contributor_url = subfield.study_contributor_pid %}
-            {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.study_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{study_contributor_url}}" target="blank">{{ subfield.study_contributor_name }}</a></span>
             </dd>
