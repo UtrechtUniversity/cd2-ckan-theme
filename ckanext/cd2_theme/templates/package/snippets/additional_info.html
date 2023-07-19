@@ -72,6 +72,12 @@
         setActiveTab(this);
       });
     });
+
+    const divInfo = document.getElementById('data-access-info');
+    const divHref = document.getElementById('data-access-href');
+    divInfo.innerHTML = {{ pkg_dict.study[0].study_data_access[0].study_data_access_description }}
+    divHref.innerHTML = `<a href="` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `</a>`;
+    $('.data-access').fadeTo(1, 1);
        
   });
   
@@ -124,12 +130,7 @@
         });
     {% endif %}
 
-    // query api to find data access information from study info
-      {% if pkg_dict.study.study_data_access %}
-        divInfo.innerHTML = {{ pkg_dict.study.study_data_access.study_data_access_description }}
-        divHref.innerHTML = `<a href="` + `{{ pkg_dict.study.study_data_access.study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study.study_data_access.study_data_access_URL }}` + `</a>`;
-        $('.data-access').fadeTo(1, 1);
-      {% endif %}
+    
   
 </script>
 
