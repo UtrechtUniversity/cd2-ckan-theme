@@ -37,44 +37,32 @@
 
 
     $(document).ready(function() {
+      function toggleTables(primary, additional, measure, study, cohort, wave) {
+        event.preventDefault();
+        $("#primary-info").toggle(primary);
+        $("#additional-info").toggle(additional);
+        $("#table-measure").toggle(measure);
+        $("#table-study").toggle(study);
+        $("#table-cohort").toggle(cohort);
+        $("#table-wave").toggle(wave);
+      }
+
       $("#show-measure").on("click", function(event) {
-        event.preventDefault(); 
-        $("#primary-info").show();
-        $("#additional-info").show();
-        $("#table-measure").show();
-        $("#table-study").hide();
-        $("#table-cohort").hide();
-        $("#table-wave").hide();
+        toggleTables(true, true, true, false, false, false);
       });
+
       $("#show-study").on("click", function(event) {
-        event.preventDefault(); 
-        $("#primary-info").hide();
-        $("#additional-info").hide();
-        $("#table-measure").hide();
-        $("#table-study").show();
-        $("#table-cohort").hide();
-        $("#table-wave").hide();
+        toggleTables(false, false, false, true, false, false);
       });
+
       $("#show-cohort").on("click", function(event) {
-        event.preventDefault(); 
-        $("#primary-info").hide();
-        $("#additional-info").hide();
-        $("#table-measure").hide();
-        $("#table-study").hide();
-        $("#table-cohort").show();
-        $("#table-wave").hide();
+        toggleTables(false, false, false, false, true, false);
       });
+
       $("#show-wave").on("click", function(event) {
-        event.preventDefault(); 
-        $("#primary-info").hide();
-        $("#additional-info").hide();
-        $("#table-measure").hide();
-        $("#table-study").hide();
-        $("#table-cohort").hide();
-        $("#table-wave").show();
+        toggleTables(false, false, false, false, false, true);
       });
     });
-    
        
   });
   
@@ -353,6 +341,7 @@
   </table>
 </section>
 
+
   <section class="additional_content" id="table-study" style="display:none">
   {% block package_additional_info_study %}
   {% endblock %}
@@ -366,7 +355,25 @@
   {% endblock %}
   </section>
 
-
+  <script>
+    // Get all the headers
+    const headers = document.querySelectorAll('.collapsible-header');
+    
+    // Add a click event listener to each header
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        // Get the next element, which should be the table
+        const table = header.nextElementSibling;
+        
+        // Toggle the display property of the table between 'block' and 'none'
+        if (table.style.display === 'none') {
+          table.style.display = 'block';
+        } else {
+          table.style.display = 'none';
+        }
+      });
+    });
+    </script>
 
 
 
