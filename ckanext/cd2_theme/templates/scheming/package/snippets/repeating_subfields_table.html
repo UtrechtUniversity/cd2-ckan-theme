@@ -14,12 +14,12 @@
                 <h3 class="collapsible-header">{{ field_data[subfield.field_name] }}
                   <span class="label" style="float:right">
                   {% if subfield.field_name == 'study_title' %}
-                  Cohort study
+                    Cohort study
                   {% elif subfield.field_name == 'cohort_title' %} 
-                  Cohort
+                    Cohort
                   {% elif subfield.field_name == 'wave_title' %} 
-                  Wave
-                  {% end %}
+                    Wave
+                  {% endif %}
                 </span>
                 </h3>
           {% endif %}
