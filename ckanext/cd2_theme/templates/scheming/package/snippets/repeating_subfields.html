@@ -138,7 +138,7 @@
                   {% set wave_contributor_url = subfield.wave_contributor_pid %}
               {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
-              onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor }}</a></span>
+              onmouseenter="tooltipAddElement(this,'{{ subfield.wave_contributor_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_contributor_url}}" target="blank">{{ subfield.wave_contributor_name }}</a></span>
             </dd>
             {% else %}
             <dd><span class="tabspan fa fa-user"></span><span class="repeating-element">{{ subfield.wave_contributor_name }}</span>
