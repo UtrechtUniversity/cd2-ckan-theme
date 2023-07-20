@@ -11,11 +11,12 @@ Example:
   {% snippet 'snippets/search_result_text.html', query=query, count=count, type='dataset' %}
 
 #}
+{% set type = 'measure' %}
 {% if type == 'measure' %}
-  {% set text_query = ungettext('{number} item found', '{number} items found', count) %}
-  {% set text_query_none = _('No items found') %}
-  {% set text_no_query = ungettext('{number} items found', '{number} items found', count) %}
-  {% set text_no_query_none = _('No items found') %}
+  {% set text_query = ungettext('{number} measure found', '{number} measures found', count) %}
+  {% set text_query_none = _('No measures found') %}
+  {% set text_no_query = ungettext('{number} measures found', '{number} measures found', count) %}
+  {% set text_no_query_none = _('No measures found') %}
 
 {% elif type == 'group' %}
   {% set text_query = ungettext('{number} group found for "{query}"', '{number} groups found for "{query}"', count) %}
