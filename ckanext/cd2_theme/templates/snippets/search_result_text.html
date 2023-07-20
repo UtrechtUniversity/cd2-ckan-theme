@@ -11,7 +11,7 @@ Example:
   {% snippet 'snippets/search_result_text.html', query=query, count=count, type='dataset' %}
 
 #}
-{% if type == 'dataset' %}
+{% if type == 'measure' %}
   {% set text_query = ungettext('{number} item found', '{number} items found', count) %}
   {% set text_query_none = _('No items found') %}
   {% set text_no_query = ungettext('{number} items found', '{number} items found', count) %}
