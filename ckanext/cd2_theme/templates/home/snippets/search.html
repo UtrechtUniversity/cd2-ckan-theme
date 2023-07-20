@@ -215,7 +215,6 @@
       style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
       <option selected="" disabled="disabled">All studies</option>
     </select>
-    <input type="hidden" name="dataset_type" value="measure">
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em>, <em>OR</em>, and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
       <button type="submit" role="presentation" tabindex="-1">
@@ -246,7 +245,7 @@
       }
     });
   {% set stats = h.get_site_statistics() %}
-  const url1 = "/api/3/action/package_search?fq=dataset_type:measure";
+  const url1 = "/api/3/action/package_search";
   const url2 = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]";
   Promise.all([
     fetch(url1).then(res => res.json()),
