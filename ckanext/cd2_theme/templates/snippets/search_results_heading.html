@@ -10,13 +10,10 @@ Example:
   {% snippet 'snippets/search_results_heading.html', query=query, type='dataset' %}
 
 #}
-
+{% set type = 'measure' %}
 {% if query == '' %}
   {% set text_heading = _('Search {type}s').format(type=type) %}
 {%- else -%}
-  {% if query.startswith('text:') %}
-      {% set query = query.replace('text:', '') %}
-  {% endif %}
   {% set text_heading = _('Search {type}s for <em style="font-weight:400">{query}</em>').format(type=type, query=query) %}
   <h1>{{ text_heading }}</h1>
 {%- endif -%}
