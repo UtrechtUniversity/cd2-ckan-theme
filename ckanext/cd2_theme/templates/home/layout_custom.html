@@ -50,7 +50,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       const constructList = Object.entries(data.result.facets.dc_construct)
         .map(([key, value]) => `
           <li class="construct-pit">
-            <a href="{% url_for 'dataset.search' %}?dc_construct=${key}" class="category-select">
+            <a href="{% url_for controller='measure', action='search' %}?dc_construct=${key}" class="category-select">
               <span class="construct-overflow" onmouseenter="tooltipAddElement(this,constructLegend('${key}'),25,'info-circle')" onmouseleave="tooltipRemoveElement(this)">${key}</span>
               <span class="label label-front">${value}</span>
             </a>
