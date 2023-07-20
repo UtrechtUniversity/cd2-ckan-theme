@@ -52,7 +52,7 @@ Example:
 {% if query %}
   {%- if count -%}
     {%- if 'dc_common_id' in query -%}
-    <span class="fa fa-copy"></span> Similar datasets
+    <span class="fa fa-copy"></span> Similar measures
     {%- else -%}
     {{ text_query.format(number=h.localised_number(count), query=query, type=type) }}
     {%- endif -%}

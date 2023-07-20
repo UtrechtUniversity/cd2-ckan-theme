@@ -33,7 +33,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
       const slicedLabels = popularLabels.slice(0, 15);
       const labelList = slicedLabels.map(key => `
         <li>
-          <a href="{% url_for 'dataset.search' %}?dc_label=${key}" class="category-select">${key}</a>
+          <a href="{% url_for controller='measure', action='search' %}?dc_label=${key}" class="category-select">${key}</a>
         </li>
       `).join("");
       document.getElementById('label-pit').innerHTML = labelList;
