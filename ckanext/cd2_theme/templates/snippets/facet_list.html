@@ -65,8 +65,8 @@
 			placeholder.textContent = modifiedText;
 			placeholder.style.display = 'inline';
 			// hide confusing 'type' facet
-			document.getElementById('header-type').style.display = "none";
-			document.getElementById('section-type').style.display = "none";
+			document.getElementById('header_type').style.display = "none";
+			document.getElementById('section_type').style.display = "none";
 		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
