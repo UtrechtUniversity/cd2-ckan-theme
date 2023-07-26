@@ -3,6 +3,11 @@ rua_script:
   contents:
     - rua/js/rua.js
 
+rua_map:
+  output: cd2_theme/rua.js.map
+  contents:
+    - rua/js/rua.js.map
+
 rua_style:
   output: cd2_theme/rua.css
   contents:
