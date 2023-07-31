@@ -195,7 +195,7 @@
               {% endif %}
               {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
               {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nsbp;<span class="fa fa-caret-right"></span>
+              <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nbsp;<span class="fa fa-caret-right"></span>
               {% if ',' in waveSubjectCode %}
                 {% set waveSubjectCodes = waveSubjectCode.split(',') %}
                 {% for waveCode in waveSubjectCodes %}
