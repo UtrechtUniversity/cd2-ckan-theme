@@ -9,6 +9,15 @@
 {% endblock %}
 
 {% block scripts %}
+</script>
+$(document).ajaxSend(function(event, xhr, settings) {
+    if (settings.url.endsWith('/api/i18n')) {
+        // Prevent the request from being sent
+        xhr.abort();
+        console.log('XHR request to /api/i18n was prevented.');
+    }
+});
+</script>
 <script src="/range-slider/js/rSlider.min.js"></script>
 {% asset 'cd2_theme/cd2_script' %}
 {% asset 'cd2_theme/dia_script' %}
