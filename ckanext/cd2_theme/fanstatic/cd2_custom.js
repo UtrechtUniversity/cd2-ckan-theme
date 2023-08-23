@@ -235,6 +235,7 @@ function createLegendString(input) {
         'G': 'Extended family',
         'R': 'Researcher',
         'W': 'Twin pair',
+        'V': 'Intimate partner',
         'MC': 'mother-child',
         'PC': 'parent-child',
         'FC': 'father-child',
