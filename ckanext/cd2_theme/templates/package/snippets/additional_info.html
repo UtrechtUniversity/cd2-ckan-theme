@@ -123,7 +123,7 @@
               return;
             }
           }
-          div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/dataset/?dataset_type=dataset&amp;q=dc_common_id:%22{{pkg_dict.dc_common_id}}%22">View all</a></strong></div>`
+          div.innerHTML += divContent + `<div style="margin:10px 5px"><strong><a href="/measure/?dataset_type=measure&amp;q=dc_common_id:%22{{pkg_dict.dc_common_id}}%22">View all</a></strong></div>`
           $('.similar-measures').fadeTo(1, 1);
         });
     {% endif %}
