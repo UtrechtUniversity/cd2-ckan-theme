@@ -377,8 +377,7 @@ function interactiveSuggestions(searchBox) {
     //const url3 = "/api/3/action/package_search?rows=1000";
     Promise.all([
       fetch(url1).then(res => res.json()),
-      fetch(url2).then(res => res.json()),
-      fetch(url3).then(res => res.json())
+      fetch(url2).then(res => res.json())
     ]).then(([data1, data2]) => {
         // Create unique array of lowercase strings from labels, constructs and dataset titles
         const fetchData1 = Object.keys(data1.result.facets.dc_label);
