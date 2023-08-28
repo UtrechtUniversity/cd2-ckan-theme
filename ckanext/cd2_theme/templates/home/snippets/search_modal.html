@@ -132,10 +132,10 @@
           function customDelim(fieldID) {
             if (fieldID == '#select-construct') {
               var operator = document.getElementById('operator-construct').value;
-              if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
+              if (operator == 'OR') { var delim = '||' } else { var delim = '&&' }
             } else if (fieldID = '#select-label') {
               var operator = document.getElementById('operator-label').value;
-              if (operator == 'OR') { var delim = '||' } else { var delim = '&' }
+              if (operator == 'OR') { var delim = '||' } else { var delim = '&&' }
             } else {
               delim = '||';
             }
@@ -159,7 +159,7 @@
               });
             });
             if (tmpString.length > 0) {
-              advancedSearchString = concatString(advancedSearchString, '&') + '(' + tmpString + ')'
+              advancedSearchString = concatString(advancedSearchString, '&&') + '(' + tmpString + ')'
             }
             return advancedSearchString;
           }
@@ -198,7 +198,7 @@
             advancedSearchString = facetCheckbox('#select-label', 'dc_label')
             advancedSearchString = facetCheckbox('#select-mode_of_collection', 'dc_mode_of_collection')
   
-            document.getElementById('searchbox').value = advancedSearchString;
+            document.getElementById('searchbox').value = document.getElementById('searchbox').value + " && " + advancedSearchString;
             document.getElementById('dataset-search-form').submit();
           }
         </script>
