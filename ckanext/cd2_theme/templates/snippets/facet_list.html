@@ -57,13 +57,19 @@
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 		{% if title == 'study' %}
 			document.getElementById('placeholder-study').innerHTML = 'within {{ items[0].display_name }}';
-			url = "/api/3/action/organization_show?id={{ items[0].name }}"
-			fetch(url)
-				.then(res => res.json())
-				.then(data => {
-				document.getElementById("placeholder-about-text").innerHTML = data.result.description;
-				document.getElementById("placeholder-about-p").style.display = 'inherit';
+
+			var currentUrl = window.location.href;
+			var urlParams = new URLSearchParams(currentUrl);
+			if (urlParams.has('description') && urlParams.get('description') === 'true') {
+				url = "/api/3/action/organization_show?id={{ items[0].name }}"
+				fetch(url)
+					.then(res => res.json())
+					.then(data => {
+					document.getElementById("placeholder-about-text").innerHTML = data.result.description;
+					document.getElementById("placeholder-about-p").style.display = 'inherit';
 				});
+			} 
+			
 		{% elif title == 'type' %}
 			const placeholder = document.getElementById('placeholder-type');
 			const text = placeholder.textContent;
