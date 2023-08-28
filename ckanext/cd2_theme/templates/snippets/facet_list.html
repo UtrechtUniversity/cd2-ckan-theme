@@ -60,7 +60,7 @@
 
 			var currentUrl = window.location.href;
 			var urlParams = new URLSearchParams(currentUrl);
-			if (urlParams.has('description') && urlParams.get('description') === 'true') {
+			if (urlParams.has('description')) {
 				url = "/api/3/action/organization_show?id={{ items[0].name }}"
 				fetch(url)
 					.then(res => res.json())
