@@ -34,4 +34,14 @@
       document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` measures, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
     }
   });
+  url = "/api/3/action/organization_list?all_fields=true"
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        var div = document.getElementById('search-dropdown');
+        var divDropdown = document.getElementById('select-study');
+        for (const result of data.result) {
+          div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
+        }
+      });
 </script>
