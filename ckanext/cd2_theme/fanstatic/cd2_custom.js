@@ -363,7 +363,6 @@ function waveTimeline(timepoints, barID) {
 }
   
   
-  
 /**  
  * Create interactive search suggestions
  * - Display a popup with keywords based on text entered in the searchbox
@@ -375,27 +374,27 @@ function interactiveSuggestions(searchBox) {
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
     const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
-    const url3 = "/api/3/action/package_search?rows=1000";
+    //const url3 = "/api/3/action/package_search?rows=1000";
     Promise.all([
       fetch(url1).then(res => res.json()),
       fetch(url2).then(res => res.json()),
       fetch(url3).then(res => res.json())
-    ]).then(([data1, data2, data3]) => {
+    ]).then(([data1, data2]) => {
         // Create unique array of lowercase strings from labels, constructs and dataset titles
         const fetchData1 = Object.keys(data1.result.facets.dc_label);
         const fetchData2 = Object.keys(data2.result.facets.dc_construct);
         
-        let titleSet = [];
+        /*let titleSet = [];
         for (const result of data3.result.results) {
             titleSet.push(result.title)
         }
         const wordsArr = titleSet
             .map(str => str.split(' '))
             .reduce((acc, val) => acc.concat(val), []);
-        const fetchData3 = [...new Set(wordsArr)];
+        const fetchData3 = [...new Set(wordsArr)];*/
 
         const uniqueKeywords = fetchData1
-            .concat(fetchData2, fetchData3)
+            .concat(fetchData2)
             .flatMap(str => str.split('/'))
             .map(str => str.toLowerCase().replace(/[^\w\s-–]/g, ''))
             .filter(str => str.length > 3)
