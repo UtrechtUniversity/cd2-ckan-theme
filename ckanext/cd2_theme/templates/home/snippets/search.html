@@ -8,7 +8,7 @@
     <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
       autocomplete="off" placeholder=""
       style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
-      <option value="" selected disabled>All studies</option>
+      <option value="" selected>All studies</option>
     </select>
     <div class="search-input control-group search-giant">
       <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em>, <em>OR</em>, and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
@@ -19,6 +19,18 @@
     </div>
   </form>
 </div>
+<script>
+  // Get a reference to the dropdown element
+var dropdown = document.getElementById('search-dropdown');
+
+// Add a change event listener to the dropdown
+dropdown.addEventListener('change', function() {
+    if (dropdown.selectedIndex === 0) {
+        // If the user selects the placeholder option, reset the dropdown value
+        dropdown.value = '';
+    }
+});
+</script>
 
 <script>
   {% set stats = h.get_site_statistics() %}
