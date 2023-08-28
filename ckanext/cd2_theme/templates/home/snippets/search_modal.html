@@ -36,7 +36,7 @@
               <label class="col-sm-2 col-form-label">Study</label>
               <div class="col-sm-10">
                 <div class="well search-well" style="height:70px">
-                  <ul class="menu blog-filter-menu" id="select-study">
+                  <ul class="menu blog-filter-menu" id="select-organization">
                   </ul>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                 <div class="well search-well">
                   <div class="search-toolbar"><select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple constructs',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-construct" class="select-operator"><option>OR</option><option>AND</option></select>
                     <a class="btn btn-reset" style="box-shadow:none!important" onclick="resetCheckboxes('#select-construct')"><span class="fa fa-undo" style="margin-top:3px;"></span> Reset</a></div>
-                  <ul class="menu blog-filter-menu" id="select-construct">
+                  <ul class="menu blog-filter-menu" id="select-dc_construct">
                   </ul>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                     <select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple labels',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-label" class="select-operator"><option>OR</option><option>AND</option></select>
                     <a class="btn btn-reset" style="box-shadow:none!important" onclick="resetCheckboxes('#select-label')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
                     <input id="filter_labels" placeholder="filter" type="text" class="label-filter"></div>
-                  <ul class="menu blog-filter-menu" id="select-label">
+                  <ul class="menu blog-filter-menu" id="select-dc_label">
                   </ul>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                       <a class="btn btn-reset" style="left:3px;box-shadow:none!important" onclick="resetCheckboxes('#select-mode_of_collection')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
                       </div>
   
-                    <ul class="menu blog-filter-menu" id="select-mode_of_collection">
+                    <ul class="menu blog-filter-menu" id="select-dc_mode_of_collection">
                     </ul>
                   </div>
                 </div>
@@ -193,10 +193,10 @@
               advancedSearchString = concatString(advancedSearchString,'||');
               advancedSearchString += '"' + document.getElementById('inputAll').value.replace(/['"]+/g, '').trim() + '"';
             }
-            advancedSearchString = facetCheckbox('#select-study', 'organization')
-            advancedSearchString = facetCheckbox('#select-construct', 'dc_construct')
-            advancedSearchString = facetCheckbox('#select-label', 'dc_label')
-            advancedSearchString = facetCheckbox('#select-mode_of_collection', 'dc_mode_of_collection')
+            advancedSearchString = facetCheckbox('#select-organization', 'organization')
+            advancedSearchString = facetCheckbox('#select-dc_construct', 'dc_construct')
+            advancedSearchString = facetCheckbox('#select-dc_label', 'dc_label')
+            advancedSearchString = facetCheckbox('#select-dc_mode_of_collection', 'dc_mode_of_collection')
             
             if (document.getElementById('searchbox').value.length > 0) {
                 document.getElementById('searchbox').value = document.getElementById('searchbox').value + " && " + advancedSearchString;
