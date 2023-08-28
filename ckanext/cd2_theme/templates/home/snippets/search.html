@@ -205,50 +205,6 @@
     </div>
   </div>
 </div>
-
-<div class="module module-search module-narrow module-shallow box">
-  <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
-    action="{% url_for controller='measure' if h.check_ckan_version('2.9') else 'package', action='search' %}">
-    <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search"><span class="fa fa-cog"></span> Advanced Search</a>
-    <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
-      autocomplete="off" placeholder=""
-      style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
-      <option selected="" disabled="disabled">All studies</option>
-    </select>
-    <div class="search-input control-group search-giant">
-      <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em>, <em>OR</em>, and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
-      <button type="submit" role="presentation" tabindex="-1">
-        <i class="fa fa-search icon-search" style="color:#555;position:absolute;top:-4px;right: 0px;"></i>
-        <span>{{ _('Search') }}</span>
-      </button>
-    </div>
-  </form>
-</div>
-
-<script>
-   /** Patch for faulty search functionality where 'OR' is not interpreted properly
-  document.addEventListener("DOMContentLoaded", function (event) {
-    var inputField = document.getElementById("searchbox");
-    var inputValue = inputField.value;
-    if (inputValue.startsWith("text:")) {
-      inputValue = inputValue.substr(5);
-      inputField.value = inputValue;
-    }
-  });
-  document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    var searchbox = document.getElementById('searchbox').value;
-    if (searchbox.includes('OR') || searchbox.includes('||')) {
-        if (!searchbox.includes(':')) {
-            searchbox = 'text: ' + searchbox;
-            document.getElementById('searchbox').style.color = '#fff';
-            document.getElementById('searchbox').value = searchbox;
-        }
-    }
-    document.getElementById('dataset-search-form').submit();
-});**/
-</script>
-
 <script>
   document.getElementById('site-search-wrap').style.display = 'none';
   /**  
@@ -267,19 +223,6 @@
         divDropdown.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
       }
     });
-  {% set stats = h.get_site_statistics() %}
-  const url1 = "/api/3/action/package_search";
-  const url2 = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]";
-  Promise.all([
-    fetch(url1).then(res => res.json()),
-    fetch(url2).then(res => res.json())
-  ]).then(([data1, data2]) => {
-    if ($(window).width() < 400 ) {
-      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} measures`;
-    } else {
-      document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` measures, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
-    }
-  });
   url = "/api/3/action/package_search?facet.field=[%22dc_mode_of_collection%22]"
   fetch(url)
     .then(res => res.json())
@@ -312,4 +255,39 @@
     });
   }
   fillSearchModal();
+</script>
+
+<div class="module module-search module-narrow module-shallow box">
+  <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
+    action="{% url_for controller='measure' if h.check_ckan_version('2.9') else 'package', action='search' %}">
+    <a onclick="$('#searchModal').modal('toggle')" class="btn btn-advanced-search"><span class="fa fa-cog"></span> Advanced Search</a>
+    <select id="search-dropdown" type="text" class="dropshadow search-dropdown search search-giant" name="organization" value=""
+      autocomplete="off" placeholder=""
+      style="width:20%;/*! padding: 15px; */font-size: 16px;height: 55px;margin-right: 5px;border-radius: 50px 0px 0px 50px;border: none;">
+      <option selected="" disabled="disabled">All studies</option>
+    </select>
+    <div class="search-input control-group search-giant">
+      <input style="border-radius: 0px 50px 50px 0px; height:55px" id="searchbox" type="text" class="dropshadow search" name="q" value="" autocomplete="off" placeholder="Search measures" data-html="true" onmouseenter="tooltipAddElement(this,'Capitalize <em>AND</em>, <em>OR</em>, and <em>NOT</em> to create specific search queries',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)"/>
+      <button type="submit" role="presentation" tabindex="-1">
+        <i class="fa fa-search icon-search" style="color:#555;position:absolute;top:-4px;right: 0px;"></i>
+        <span>{{ _('Search') }}</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  {% set stats = h.get_site_statistics() %}
+  const url1 = "/api/3/action/package_search";
+  const url2 = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]";
+  Promise.all([
+    fetch(url1).then(res => res.json()),
+    fetch(url2).then(res => res.json())
+  ]).then(([data1, data2]) => {
+    if ($(window).width() < 400 ) {
+      document.getElementById('searchbox').placeholder = `Search {{stats.dataset_count}} measures`;
+    } else {
+      document.getElementById('searchbox').placeholder = `Search ` + data1.result.count + ` measures, from {{stats.organization_count}} studies, and ` + Object.keys(data2.result.facets.wave_cohort).length + ` cohorts`;
+    }
+  });
 </script>
