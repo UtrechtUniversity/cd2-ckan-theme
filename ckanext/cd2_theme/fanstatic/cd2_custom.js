@@ -129,7 +129,7 @@ function addQueryToField(facetName,qstring) {
         re = new RegExp('[&\\s]*'+facetName+':\\[\\d+\\sTO\\s\\d+\\][\\s&]*');
         cleanQuery = currentParams.get('q').replace(re, "");
         if (cleanQuery != "") {
-            newString = cleanQuery + ' & ' + qstring;
+            newString = cleanQuery + ' && ' + qstring;
         } else {
             newString = qstring;
         }
