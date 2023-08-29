@@ -201,11 +201,7 @@
             advancedSearchString = facetCheckbox('#select-dc_label', 'dc_label')
             advancedSearchString = facetCheckbox('#select-dc_mode_of_collection', 'dc_mode_of_collection')
             
-            if (document.getElementById('searchbox').value.length > 0) {
-                document.getElementById('searchbox').value = document.getElementById('searchbox').value + " && " + advancedSearchString;
-            } else {
-                document.getElementById('searchbox').value = advancedSearchString;
-            }
+            document.getElementById('searchbox').value = advancedSearchString;
             document.getElementById('dataset-search-form').submit();
           }
         </script>
