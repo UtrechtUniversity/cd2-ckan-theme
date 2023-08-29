@@ -259,7 +259,7 @@
     }
     fillSearchModal();
 
-    // Patch for faulty search functionality where 'OR' is not interpreted properly
+    /** Patch for faulty search functionality where 'OR' is not interpreted properly
     document.addEventListener("DOMContentLoaded", function (event) {
       var inputField = document.getElementById("searchbox");
       var inputValue = inputField.value;
@@ -281,5 +281,5 @@
         document.getElementById('dataset-search-form').submit();
       });
     });
-   
+   **/
   </script>
