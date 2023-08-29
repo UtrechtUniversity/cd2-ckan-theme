@@ -1,5 +1,4 @@
 {% snippet 'home/snippets/search_modal.html' %}
-<script> window.onload = function () { facetToggle('#filter_labels', '.label-select','flex'); };</script>
 {% import 'macros/form.html' as form %}
 {% set placeholder = placeholder if placeholder else _('Search measures...') %}
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}

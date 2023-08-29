@@ -87,6 +87,10 @@
           <button type='button' class='btn btn-primary' data-dismiss='modal' onclick="advancedSearch()">Search</button>
         </form>
         <script>
+          document.addEventListener("DOMContentLoaded", function (event) {
+            facetToggle('#filter_labels', '.label-select','flex');
+          });
+
           window.onload = function () {
             const inputTitle = document.getElementById('inputTitle');       
             if (inputTitle) { interactiveSuggestions(inputTitle); }
@@ -98,7 +102,6 @@
           /**  
           * Parse advanced search parameters and create new query string
           */
-          facetToggle('#filter_labels', '.label-select','flex');
   
           // Submit form with enter
           $('#advancedSearchForm').each(function () {
