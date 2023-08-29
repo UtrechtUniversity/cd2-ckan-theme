@@ -267,17 +267,19 @@
         inputValue = inputValue.substr(5);
         inputField.value = inputValue;
       }
+
+      document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var searchbox = document.getElementById('searchbox').value;
+        if (searchbox.includes('OR') || searchbox.includes('||')) {
+            if (!searchbox.includes(':')) {
+                searchbox = 'text: ' + searchbox;
+                document.getElementById('searchbox').style.color = '#fff';
+                document.getElementById('searchbox').value = searchbox;
+            }
+        }
+        document.getElementById('dataset-search-form').submit();
+      });
     });
-    document.getElementById('dataset-search-form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      var searchbox = document.getElementById('searchbox').value;
-      if (searchbox.includes('OR') || searchbox.includes('||')) {
-          if (!searchbox.includes(':')) {
-              searchbox = 'text: ' + searchbox;
-              document.getElementById('searchbox').style.color = '#fff';
-              document.getElementById('searchbox').value = searchbox;
-          }
-      }
-      document.getElementById('dataset-search-form').submit();
-  });
+   
   </script>
