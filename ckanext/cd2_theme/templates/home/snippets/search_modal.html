@@ -222,7 +222,7 @@
       .then(res => res.json())
       .then(data => {
         var div = document.getElementById('search-dropdown');
-        var divDropdown = document.getElementById('select-study');
+        var divDropdown = document.getElementById('select-organization');
         for (const result of data.result) {
           divDropdown.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
         }
@@ -231,7 +231,7 @@
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        var dropdownEl = document.getElementById('select-mode_of_collection');
+        var dropdownEl = document.getElementById('select-dc_mode_of_collection');
         let keys = Object.keys(data.result.facets.dc_mode_of_collection);
         for (collection of keys) {
           dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+collection+`">` + collection + `</input></label></li>`;
@@ -241,7 +241,7 @@
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        var dropdownEl = document.getElementById('select-construct');
+        var dropdownEl = document.getElementById('select-dc_construct');
         let keys = Object.keys(data.result.facets.dc_construct);
         for (construct of keys) {
           dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+construct+`">` + construct + `</input></label></li>`;
@@ -251,7 +251,7 @@
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        var dropdownEl = document.getElementById('select-label');
+        var dropdownEl = document.getElementById('select-dc_label');
         let keys = Object.keys(data.result.facets.dc_label);
         for (label of keys) {
           dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + label + `</input></label></li>`;
