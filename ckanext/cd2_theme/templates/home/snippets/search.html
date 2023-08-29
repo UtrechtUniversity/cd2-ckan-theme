@@ -1,6 +1,6 @@
 
 {% snippet 'home/snippets/search_modal.html' %}
-<script>facetToggle('#filter_labels', '.label-select','flex');</script>
+<script> window.onload = function () { facetToggle('#filter_labels', '.label-select','flex'); };</script>
 <div class="module module-search module-narrow module-shallow box">
   <form id="dataset-search-form" style="padding: 20px" class="module-content search-form" method="get"
     action="{% url_for controller='measure' if h.check_ckan_version('2.9') else 'package', action='search' %}">
