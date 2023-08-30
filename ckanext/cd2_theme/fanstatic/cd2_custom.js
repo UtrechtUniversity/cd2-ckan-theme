@@ -328,12 +328,12 @@ function waveTimeline(timepoints, barID) {
       
       const barSection = barSections[section];
       if (lastSection >= 0 && section - lastSection > 1) {
-        barSection.style.width = '5px';
+        barSection.style.width = '500%';
       }
       barSection.style.backgroundColor = '#444';
       barSection.className = 'bar-section highLight';
       if (section == 0) {
-        barSection.style.width = '5px';
+        barSection.style.width = '500%';
       }
   
       lastSection = section;
