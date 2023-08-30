@@ -152,12 +152,20 @@
           */
           function facetCheckbox(elID, facet) {
             var tmpString = '';
+            var firstPass = true; 
+            
             $(elID).children().each((index, element) => {
               $(element).children().each((index, child) => {
                 var subEl = $(child).children();
                 if (subEl[0].checked == true) {
                   tmpString = concatString(tmpString, customDelim(elID));
-                  tmpString += facet + ':("' + subEl[0].id + '"'
+          
+                  if (firstPass) { 
+                    tmpString += facet + ':("' + subEl[0].id + '"';
+                    firstPass = false; 
+                  } else {
+                    tmpString += '"' + subEl[0].id + '"';
+                  }
                 }
               });
             });
@@ -166,7 +174,8 @@
             }
             return advancedSearchString;
           }
-  
+
+
           /**  
           * Reset checkboxes when button clicked
           * @param fieldID {string} - ID of element
