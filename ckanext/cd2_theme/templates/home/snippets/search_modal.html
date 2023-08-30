@@ -157,12 +157,12 @@
                 var subEl = $(child).children();
                 if (subEl[0].checked == true) {
                   tmpString = concatString(tmpString, customDelim(elID));
-                  tmpString += facet + ':"' + subEl[0].id + '"'
+                  tmpString += facet + ':("' + subEl[0].id + '"'
                 }
               });
             });
             if (tmpString.length > 0) {
-              advancedSearchString = concatString(advancedSearchString, '&&') + '(' + tmpString + ')'
+              advancedSearchString = concatString(advancedSearchString, '&&') + tmpString + ')'
             }
             return advancedSearchString;
           }
