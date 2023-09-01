@@ -252,7 +252,7 @@
       <td class="dataset-details">
 
         {% for modes in pkg_dict.dc_modes_of_collection%}
-        <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ modes.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(constructLegend('{{ modes.dc_mode_of_collection }}'))">{{ modes.dc_mode_of_collection }}</span>
+        <span class="label info-hover" style="line-height:2" onmouseenter="tooltipAddElement(this,constructLegend('{{ modes.dc_mode_of_collection }}'),40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ modes.dc_mode_of_collection }}</span>
       {% endfor %}
 
       {% if pkg_dict.dc_mode_of_collection_sub %}
