@@ -204,7 +204,7 @@
                 <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
               {% endif %}
               <hr style="border:0.5px solid">
-              <span class="label" style="background-color:#aaa">
+              <span class="label" style="background-color:#aaa" onmouseenter="tooltipAddElement(this,'Subject age range',40,'info-o')" onmouseleave="tooltipRemoveElement(this)">
                 {% if wave.wave_universe.find("-") == -1 %}
                   {% set value = wave.wave_universe|int %}
                   {% if value >= 48 %}
@@ -229,7 +229,7 @@
                 {% endif %}
               </span>&nbsp;
               {% if wave.wave_start_date_collection %}
-              <span class="label" style="background-color:#aaa">
+              <span class="label" style="background-color:#aaa" onmouseenter="tooltipAddElement(this,'Date collection range',40,'info-o')" onmouseleave="tooltipRemoveElement(this)">
                 From {{wave.wave_start_date_collection}} 
                 {% if wave.wave_end_date_collection %} 
                 to {{wave.wave_end_date_collection}} 
