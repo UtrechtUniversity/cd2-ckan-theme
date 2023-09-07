@@ -176,7 +176,7 @@
     </td>
     </tr>
     <tr>
-      <th scope="row" class="dataset-label">Waves <span onmouseenter="tooltipAddElement(this,'Displays the waves in each cohort, and the subjects of the collected measure',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="fa fa-info-circle info-hover"></span></th>
+      <th scope="row" class="dataset-label">Waves <span onmouseenter="tooltipAddElement(this,'Displays the waves in each cohort, the subjects of the collected measure, the subject age range and the timespan data collection',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)" class="fa fa-info-circle info-hover"></span></th>
       <td class="dataset-details">
       <div class="dataset-resources list-unstyled">
 
@@ -204,7 +204,7 @@
                 <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
               {% endif %}
               <hr style="border:0.5px solid">
-              <span class="label info-hover" style="background-color:#aaa" onmouseenter="tooltipAddElement(this,'Subjectage range',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">
+              <span class="label info-hover" style="background-color:#aaa" onmouseenter="tooltipAddElement(this,'Subject age range',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">
                 {% if wave.wave_universe.find("-") == -1 %}
                   {% set value = wave.wave_universe|int %}
                   {% if value >= 48 %}
