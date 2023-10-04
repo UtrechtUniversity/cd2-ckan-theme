@@ -56,6 +56,7 @@
 		// hide subtype facet filter, only show later on when main type is selected
         document.getElementById('header_subtype').style.display = 'none';
         document.getElementById('section_subtype').style.display = 'none';
+		document.getElementById('filter_subtype').style.display = "none";
     {% endif %}
 	{% if items|length == 1 %} // Show if only one label available
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
