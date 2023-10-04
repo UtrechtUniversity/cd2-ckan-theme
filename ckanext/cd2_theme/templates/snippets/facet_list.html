@@ -80,6 +80,8 @@
 			// hide confusing 'type' facet
 			document.getElementById('header_type').style.display = "none";
 			document.getElementById('section_type').style.display = "none";
+		{% elif title == 'subtype' %}
+			document.getElementById('header_subtype').style.display = 'none';
 		{% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
