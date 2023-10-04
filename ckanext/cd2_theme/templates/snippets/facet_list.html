@@ -52,6 +52,11 @@
 
 	<script>
 	document.addEventListener("DOMContentLoaded", function (event) {
+	{% if title == 'subtype' %}
+		// hide subtype facet filter, only show later on when main type is selected
+        document.getElementById('header_subtype').style.display = 'none';
+        document.getElementById('section_subtype').style.display = 'none';
+    {% endif %}
 	{% if items|length == 1 %} // Show if only one label available
 		$('#section_{{ title.replace(' ','_') }}').collapse('show')
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
@@ -80,9 +85,12 @@
 			// hide confusing 'type' facet
 			document.getElementById('header_type').style.display = "none";
 			document.getElementById('section_type').style.display = "none";
-		{% elif title == 'subtype' %}
-			document.getElementById('header_subtype').style.display = 'none';
-		{% endif %}
+			{% elif title == 'mode of collection' %}
+				{% if items[0].display_name == 'MeasurementsAndTests' %}
+                    $('#section_subtype').collapse('show');
+                     document.getElementById('section_subtype').style.display = 'block';
+                {% endif %}
+            {% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 	{% endif %}
