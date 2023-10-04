@@ -52,7 +52,7 @@
 
 	<script>
 	document.addEventListener("DOMContentLoaded", function (event) {
-	{% if title == 'subtype' %}
+	{% if title == 'mode of collection' %}
 		// hide subtype facet filter, only show later on when main type is selected
         document.getElementById('header_subtype').style.display = 'none';
         document.getElementById('section_subtype').style.display = 'none';
@@ -74,7 +74,6 @@
 					document.getElementById("placeholder-about-p").style.display = 'inherit';
 				});
 			} 
-			
 		{% elif title == 'type' %}
 			const placeholder = document.getElementById('placeholder-type');
 			const text = placeholder.textContent;
@@ -85,12 +84,12 @@
 			// hide confusing 'type' facet
 			document.getElementById('header_type').style.display = "none";
 			document.getElementById('section_type').style.display = "none";
-			{% elif title == 'mode of collection' %}
+		{% elif title == 'mode of collection' %}
 				{% if items[0].display_name == 'MeasurementsAndTests' %}
                     $('#section_subtype').collapse('show');
-                     document.getElementById('section_subtype').style.display = 'block';
-                {% endif %}
+	                document.getElementById('section_subtype').style.display = 'block';
             {% endif %}
+        {% endif %}
 	{% elif items|length < 8 %} // Hide filter with few items displayed
 		document.getElementById('filter_{{ title.replace(' ','_') }}').style.display = 'none';
 	{% endif %}
