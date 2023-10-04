@@ -73,7 +73,12 @@
                 {% endfor %}
               
                 {% if package.dc_mode_of_collection_sub %}
-                &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;<span class="label">{{ package.dc_mode_of_collection_sub }}</span>
+                &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;
+                
+                {% for submodes in package.dc_modes_of_collection_sub %}
+                <span class="label">{{ submodes.dc_mode_of_collection_sub }}</span>
+                {% endfor %}
+         
                 {% endif %}</td></tr>
                 <tr><td>Available measurements:</td><td>
                   {% set waves_passed = [] %}
