@@ -33,7 +33,7 @@
        $('.description').fadeTo(300, 1);
        $('.read-more').fadeTo(300, 1);
       
-    {% endif %}
+    
 
     $(document).ready(function() {
       function toggleTables(primary, additional, measure, study, cohort, wave) {
@@ -77,7 +77,7 @@
     divInfo.innerHTML = `{{ pkg_dict.study[0].study_data_access[0].study_data_access_description }}`
     divHref.innerHTML = `<a href="` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `</a>`;
     $('.data-access').fadeTo(1, 1);
-       
+    {% endif %}
   });
   
 
