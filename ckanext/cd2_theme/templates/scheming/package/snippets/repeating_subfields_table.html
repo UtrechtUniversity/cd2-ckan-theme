@@ -31,7 +31,7 @@
               {{ h.scheming_language_text(subfield.label) }}
             </th>
             <td class="dataset-details">
-              {% if subfield.field_name == 'study_alternate_title' or subfield.field_name == 'cohort_alternate_title'  or subfield.field_name == 'wave_alternate_title' or subfield.field_name == 'study_alternate_title' or subfield.field_name == 'study_language' or subfield.field_name == 'cohort_language' or subfield.field_name == 'wave_language' %}
+              {% if subfield.field_name == 'cohort_study_alternate_title' or subfield.field_name == 'cohort_alternate_title'  or subfield.field_name == 'wave_alternate_title' or subfield.field_name == 'cohort_study_language' or subfield.field_name == 'cohort_language' or subfield.field_name == 'wave_language' %}
               <dd><ul class="dataset-resources list-unstyled">
                 {{ field_data[subfield.field_name] | replace('[','') | replace(']','') | replace('"','') | replace('\'','') }}
                </ul>
