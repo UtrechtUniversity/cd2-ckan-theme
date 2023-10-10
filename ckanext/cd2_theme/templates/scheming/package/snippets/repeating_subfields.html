@@ -13,6 +13,7 @@
   'wave_contributor',
   'cohort_references',
   'dc_measurement_references',
+  'cohort_study_references',
   'study_references',
   'study_contact',
   'study_alternate_title',
@@ -166,6 +167,19 @@
             </dd>
             {% else %}
             <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element">{{ subfield.dc_measurements_references_citation }}</span>
+            </dd>
+            {% endif %}
+          {% elif field.field_name == 'cohort_study_references' %}
+            {% if subfield.cohort_study_references_doi %}
+            {% if 'https://doi.org/' not in subfield.cohort_study_references_doi or 'http://doi.org/' not in subfield.cohort_study_references_doi %}
+              {% set fixed_ref = 'https://doi.org/' + subfield.dc_measurements_references_doi %}
+            {% else %}
+              {% set fixed_ref = subfield.cohort_study_references_doi %}
+            {% endif %}
+            <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element"><a href="{{fixed_ref}}" target="blank">{{ subfield.cohort_study_references_citation }}</a></span>
+            </dd>
+            {% else %}
+            <dd><span class="tabspan fa fa-share-alt"></span><span class="repeating-element">{{ subfield.cohort_study_references_citation }}</span>
             </dd>
             {% endif %}
           {% elif field.field_name == 'study_contact' %}
