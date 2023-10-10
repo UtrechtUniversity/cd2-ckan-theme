@@ -38,6 +38,11 @@
               onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a
                 href="{{subfield.cohort_study_publisher_identifier}}" target="blank">{{ subfield.cohort_study_publisher_name }}</a></span>
           </dd>
+          {% if subfield.field_name == 'study_alternate_title' or subfield.field_name == 'cohort_alternate_title'  or subfield.field_name == 'wave_alternate_title' or subfield.field_name == 'study_alternate_title' or subfield.field_name == 'study_language' or subfield.field_name == 'cohort_language' or subfield.field_name == 'wave_language' %}
+          <dd><ul class="dataset-resources list-unstyled">
+            {{ field_data[subfield.field_name] | replace('[','') | replace(']','') | replace('"','') | replace('\'','') }}
+           </ul>
+          </dd>
           {% elif field.field_name == 'cohort_publisher' %}
           <dd><span class="tabspan fa fa-building"></span><span
               onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_publisher_identifier_type }}',30,'share')"
