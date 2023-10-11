@@ -14,6 +14,26 @@
       }
     });
 
+    function pulsate(element) {
+      $(element).animate(
+        { opacity: 0.2 },
+        500,
+        function() {
+          $(this).animate({ opacity: 1 }, 500);
+        }
+      );
+    }
+
+    function scrollToAndPulsate(targetScroll, targetPulsate) {
+      // Scroll to the target with 200px above it
+      $('html, body').animate({
+        scrollTop: $(targetScroll).offset().top - 200
+      }, 1000).promise().done(function() {
+        // Start pulsating after scrolling
+        pulsate(targetPulsate);
+      });
+    }
+
 
      // replace nav-tabs with wave/cohort and study information
      navTabs = document.getElementsByClassName('nav-tabs');
@@ -21,11 +41,17 @@
 
  
      // create new tabs based of dataset type
-     navTabs[0].innerHTML = `
+     navTabs[0].innerHTML = `<ul class="nav nav-tabs">
       <li class="active"><a href="#" id="show-measure"><i class="fa fa-sitemap"></i> Measure</a></li>
        <li><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
        <li><a href="#" id="show-cohort"><i class="fa fa-folder"></i> Cohorts</a></li>
-       <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>`  
+       <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>
+     </ul>
+     <ul style="list-style:none;">
+      <li style="margin-left: auto;">
+      <a href="#" style="float: right;margin-top: 10px;" id="show-access">
+        <i class="fa fa-download"></i> Access data</a></li>
+      </ul>`
 
        // fade in tabs after they've been recreated
        $('.nav-tabs').fadeTo(300, 1);
@@ -79,9 +105,10 @@
     {% elif pkg_dict.type == 'study' %}
 
       // create new tabs based of dataset type
-      navTabs[0].innerHTML = `
-         <li class="active"><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
-         <li><a href="http://test.data.individualdevelopment.nl/dataset/?dataset_type=measure&sort=title_string+asc&organization={{ pkg_dict.name }}"><i class="fa fa-folder"></i> Measures</a></li>`  
+      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+         <li class="active"><a href="#" onclick="scrollToAndPulsate('#data-access-main', '.data-access');" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
+         <li><a href="http://test.data.individualdevelopment.nl/dataset/?dataset_type=measure&sort=title_string+asc&organization={{ pkg_dict.name }}"><i class="fa fa-folder"></i> Measures</a></li>
+       </ul>`  
   
          // fade in tabs after they've been recreated
          $('.nav-tabs').fadeTo(300, 1);
