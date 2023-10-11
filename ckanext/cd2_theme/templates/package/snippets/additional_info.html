@@ -21,12 +21,11 @@
 
  
      // create new tabs based of dataset type
-     navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+     navTabs[0].innerHTML = `
       <li class="active"><a href="#" id="show-measure"><i class="fa fa-sitemap"></i> Measure</a></li>
        <li><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
        <li><a href="#" id="show-cohort"><i class="fa fa-folder"></i> Cohorts</a></li>
-       <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>
-     </ul>`  
+       <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>`  
 
        // fade in tabs after they've been recreated
        $('.nav-tabs').fadeTo(300, 1);
@@ -80,10 +79,9 @@
     {% elif pkg_dict.type == 'study' %}
 
       // create new tabs based of dataset type
-      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+      navTabs[0].innerHTML = `
          <li class="active"><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
-         <li><a href="http://test.data.individualdevelopment.nl/dataset/?dataset_type=measure&sort=title_string+asc&organization={{ pkg_dict.name }}"><i class="fa fa-folder"></i> Measures</a></li>
-       </ul>`  
+         <li><a href="http://test.data.individualdevelopment.nl/dataset/?dataset_type=measure&sort=title_string+asc&organization={{ pkg_dict.name }}"><i class="fa fa-folder"></i> Measures</a></li>`  
   
          // fade in tabs after they've been recreated
          $('.nav-tabs').fadeTo(300, 1);
