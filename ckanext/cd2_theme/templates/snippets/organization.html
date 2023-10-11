@@ -46,11 +46,11 @@
       
 
       {% block nums %}
-      <a href="/dataset/?organization={{organization.name}}&amp;dataset_type=measures"><div class="nums" id="block_nums" style="display:none">
+      <a href="/dataset/?organization={{organization.name}}&amp;dataset_type=measure"><div class="nums" id="block_nums" style="">
         <dl>
           <dt>Datasets</dt>
           <script>
-          url = '/api/3/action/package_search?q=organization:{{organization.name}}&fq=dataset_type:measures'
+          url = '/api/3/action/package_search?q=organization:{{organization.name}}&fq=dataset_type:measure'
           fetch(url)
             .then(res => res.json())
             .then(data => {
