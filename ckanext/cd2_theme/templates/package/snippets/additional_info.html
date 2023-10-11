@@ -77,6 +77,17 @@
     divInfo.innerHTML = `{{ pkg_dict.study[0].study_data_access[0].study_data_access_description }}`
     divHref.innerHTML = `<a href="` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `</a>`;
     $('.data-access').fadeTo(1, 1);
+    {% elif pkg_dict.type == 'measure' %}
+
+      // create new tabs based of dataset type
+      navTabs[0].innerHTML = `<ul class="nav nav-tabs">
+         <li class="active"><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
+         <li><a href="http://test.data.individualdevelopment.nl/dataset/?dataset_type=measure&sort=title_string+asc&organization={{ pkg_dict.name }}"><i class="fa fa-folder"></i> Cohorts</a></li>
+       </ul>`  
+  
+         // fade in tabs after they've been recreated
+         $('.nav-tabs').fadeTo(300, 1);
+
     {% endif %}
   });
   
