@@ -1,20 +1,7 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-
-    const repeatingElements = document.querySelectorAll('.repeating-element');
-    repeatingElements.forEach(element => {
-      if (!element.innerHTML.trim()) {
-        // Find the parent <tr> element and hide it
-        const parentTR = element.closest('tr');
-        if (parentTR) {
-          parentTR.style.display = 'none';
-        }
-      }
-    });
-
-    function pulsate(element) {
+  function pulsate(element) {
       $(element).animate(
         { opacity: 0.2 },
         500,
@@ -34,6 +21,18 @@
       });
     }
 
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    const repeatingElements = document.querySelectorAll('.repeating-element');
+    repeatingElements.forEach(element => {
+      if (!element.innerHTML.trim()) {
+        // Find the parent <tr> element and hide it
+        const parentTR = element.closest('tr');
+        if (parentTR) {
+          parentTR.style.display = 'none';
+        }
+      }
+    });
 
      // replace nav-tabs with wave/cohort and study information
      navTabs = document.getElementsByClassName('nav-tabs');
@@ -46,12 +45,10 @@
        <li><a href="#" id="show-study"><i class="fa fa-folder"></i> Study</a></li>
        <li><a href="#" id="show-cohort"><i class="fa fa-folder"></i> Cohorts</a></li>
        <li><a href="#" id="show-wave"><i class="fa fa-folder"></i> Waves</a></li>
-     </ul>
-     <ul style="list-style:none;">
-      <li style="margin-left: auto;">
-      <a href="#" style="float: right;margin-top: 10px;" id="show-access">
-        <i class="fa fa-download"></i> Access data</a></li>
-      </ul>`
+       <li style="margin-left: auto;">
+        <a href="#" onclick="scrollToAndPulsate('#data-access-main', '.data-access');" style="float: right;margin-top: 10px;" id="show-access">
+          <i class="fa fa-download"></i> Access data</a></li>
+     </ul>`
 
        // fade in tabs after they've been recreated
        $('.nav-tabs').fadeTo(300, 1);
