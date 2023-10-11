@@ -278,10 +278,10 @@
 
     {% elif pkg_dict.type == 'study' %}
     <tr>
-      <th scope="row" class="dataset-label">Alternate name</th>
+      <th scope="row" class="dataset-label">Alternate title</th>
       <td class="dataset-details">
       <ul class="dataset-resources list-unstyled">
-        {{ pkg_dict.study_alternate_name | replace('[','') | replace(']','') | replace('"','') | replace('\'','') | replace('{','') | replace('}','') }}  
+        {{ pkg_dict.study_alternate_title | replace('[','') | replace(']','') | replace('"','') | replace('\'','') | replace('{','') | replace('}','') }}  
       </ul>
     </td>
     </tr>
