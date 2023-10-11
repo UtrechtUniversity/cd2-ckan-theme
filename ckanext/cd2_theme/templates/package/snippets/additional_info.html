@@ -54,7 +54,7 @@
        $('.nav-tabs').fadeTo(300, 1);
        $('.description').fadeTo(300, 1);
        $('.read-more').fadeTo(300, 1);
-      
+       $('.data-access').fadeTo(300, 1);
     
 
     $(document).ready(function() {
@@ -98,7 +98,7 @@
     const divHref = document.getElementById('data-access-href');
     divInfo.innerHTML = `{{ pkg_dict.study[0].study_data_access[0].study_data_access_description }}`
     divHref.innerHTML = `<a href="` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `</a>`;
-    $('.data-access').fadeTo(1, 1);
+  
     {% elif pkg_dict.type == 'study' %}
 
       // create new tabs based of dataset type
@@ -109,6 +109,8 @@
   
          // fade in tabs after they've been recreated
          $('.nav-tabs').fadeTo(300, 1);
+         $('.data-access').fadeTo(300, 1);
+         $('#block_nums').fadeTo(300, 1);
 
     {% endif %}
   });
