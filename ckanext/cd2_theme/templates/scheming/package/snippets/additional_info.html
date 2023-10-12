@@ -1,4 +1,5 @@
 {% extends "package/snippets/additional_info.html" %}
+<!-- exclude single fields from table -->
 {%- set exclude_fields_measure = [
 'id',
 'title',
@@ -18,7 +19,8 @@
 'dc_modes_of_collection_sub',
 'dc_common_id',
 'dc_additional_info',
-'study_alternate_title'
+'study_alternate_title',
+'study_title'
 ] -%}
 
 {%- set exclude_fields_study = [

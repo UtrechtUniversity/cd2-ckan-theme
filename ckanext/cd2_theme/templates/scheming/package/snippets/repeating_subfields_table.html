@@ -1,6 +1,7 @@
 {% set fields = data[field.field_name] %}
 {% set fields_passed = [] %}
 
+<!-- exclude non-repeating fields from tables -->
 {%- set exclude_subfields = [
   'wave_cohort_ckan_id',
   'wave_subject_codes'

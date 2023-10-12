@@ -1,6 +1,7 @@
 {% set fields = data[field.field_name] %}
 {% set fields_passed = [] %}
 
+<!-- exclude repeating fields -->
 {%- set exclude_subfields = [
   'study_publisher',
   'study_principal_investigators',
@@ -15,10 +16,6 @@
   'dc_measurement_references',
   'study_references',
   'study_contact',
-  'study_language',
-  'study_alternate_title',
-  'cohort_alternate_title',
-  'wave_alternate_title',
   ] -%}
 
 {% block subfield_display %}
