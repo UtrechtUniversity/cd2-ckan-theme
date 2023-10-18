@@ -299,6 +299,17 @@
       </td>
     </tr>
 
+
+    <tr>
+      <th scope="row" class="dataset-label">Analysis unit</th>
+      <td class="dataset-details">
+
+        {{ pkg_dict.dc_analysis_unit | replace('{','') | replace('}','') | replace(',',', ') }}
+      
+      </td>
+    </tr>
+
+
     {% elif pkg_dict.type == 'study' %}
     <tr>
       <th scope="row" class="dataset-label">Alternate title</th>
