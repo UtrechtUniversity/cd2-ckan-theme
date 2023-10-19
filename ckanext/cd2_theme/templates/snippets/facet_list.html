@@ -175,11 +175,20 @@
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
 				{% set label_full = label %}
+				{% if label == 'MeasurementsAndTests' && if item.active %}
+					<script>
+						$('#section_subtype').collapse('show');
+	                	document.getElementById('section_subtype').style.display = 'block';
+					</script>
+				{% endif %}
+
 				{% set label = label|truncate(20,true,'...',0) %}
 				{% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 				{% if label == 'dataset' %}
 				{% set label = 'measure' %}
 				{% endif %}
+
+		
 					
 				<li {% if '...' in label %}
 					onmouseenter="tooltipAddElement(this,'{{ label_full }}',30)" onmouseleave="tooltipRemoveElement(this)" 
