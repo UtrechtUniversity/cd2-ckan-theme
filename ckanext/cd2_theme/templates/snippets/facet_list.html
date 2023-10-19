@@ -178,8 +178,10 @@
 				{% if label == 'MeasurementsAndTests' %}
 					{% if item.active %}
 					<script>
-						$('#section_subtype').collapse('show');
-	                	document.getElementById('section_subtype').style.display = 'block';
+						document.addEventListener("DOMContentLoaded", function (event) {
+							$('#section_subtype').collapse('show');
+	                		document.getElementById('section_subtype').style.display = 'block';
+						});
 					</script>
 					{% endif %}
 				{% endif %}
