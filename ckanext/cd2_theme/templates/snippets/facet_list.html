@@ -175,7 +175,7 @@
 				{% set label = label_function(item) if label_function else item.display_name %}
 				{% set margin = 'margin-left:0px' %}
 				{% set label_full = label %}
-				{% if label == 'MeasurementsAndTests' && if item.active %}
+				{% if label == 'MeasurementsAndTests' and if item.active %}
 					<script>
 						$('#section_subtype').collapse('show');
 	                	document.getElementById('section_subtype').style.display = 'block';
