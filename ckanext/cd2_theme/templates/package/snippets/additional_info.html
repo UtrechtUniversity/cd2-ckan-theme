@@ -299,7 +299,7 @@
       </td>
     </tr>
 
-
+    {% if pkg_dict.dc_analysis_unit %}
     <tr>
       <th scope="row" class="dataset-label">Analysis unit</th>
       <td class="dataset-details">
@@ -308,6 +308,7 @@
       
       </td>
     </tr>
+    {% endif %}
 
 
     {% elif pkg_dict.type == 'study' %}
