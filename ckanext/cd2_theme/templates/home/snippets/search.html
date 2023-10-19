@@ -33,7 +33,7 @@ dropdown.addEventListener('change', function() {
 
 <script>
   {% set stats = h.get_site_statistics() %}
-  const url1 = "/api/3/action/package_search";
+  const url1 = "/api/3/action/package_search?fq=type:measure";
   const url2 = "/api/3/action/package_search?facet.field=[%22wave_cohort%22]";
   Promise.all([
     fetch(url1).then(res => res.json()),
