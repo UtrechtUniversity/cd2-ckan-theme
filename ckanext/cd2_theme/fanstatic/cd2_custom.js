@@ -507,8 +507,14 @@ function interactiveSuggestions(searchBox) {
                     }
                     let newText;
                     suggestion.innerText = suggestion.innerText.replace(/(-)/g, '*');
+                    suggestionWords = suggestion.innerText.split(/\s+/);
                     if (lastSpecialCharIndex === -1) {
-                        newText = '"' + suggestion.innerText + '" ';
+                        if (suggestionWords.length == 1) {
+                            newText = '"' + suggestion.innerText + '" ';
+                        } else {
+                            newText = suggestion.innerText + '~ ';
+                        }
+                        
                     } else {
                         if ((currentText.charAt(lastSpecialCharIndex) == '"')) { 
                             // check if string starts with quotes, then keep it within those quotes
