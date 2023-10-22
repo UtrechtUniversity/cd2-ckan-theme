@@ -509,7 +509,7 @@ function interactiveSuggestions(searchBox) {
                     suggestion.innerText = suggestion.innerText.replace(/(-)/g, '*');
                     suggestionWords = suggestion.innerText.split(/\s+/);
                     if (lastSpecialCharIndex === -1) {
-                        if (suggestionWords.length == 1) {
+                        if (suggestionWords.length > 1) {
                             newText = '"' + suggestion.innerText + '" ';
                         } else {
                             newText = suggestion.innerText + '~ ';
