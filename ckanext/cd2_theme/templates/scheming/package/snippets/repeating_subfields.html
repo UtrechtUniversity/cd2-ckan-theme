@@ -155,7 +155,7 @@
             <dd><span class="tabspan fa fa-share-alt"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_reference_type }}',30,'hand-o-right')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.cohort_reference_identifier}}" target="blank">{{ subfield.cohort_reference_citation }}</a></span>
             </dd>
           {% elif field.field_name == 'wave_references' %}
-            <dd><span class="tabspan fa fa-share-alt"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.wave_reference_type }}',30,'hand-o-right')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.wave_reference_identifier}}" target="blank">{{ subfield.wave_reference_citation }}</a></span>
+            <dd><span class="tabspan fa fa-share-alt"></span><span onmouseenter="tooltipAddElement(this,'{{ subfield.wave_references_type }}',30,'hand-o-right')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{subfield.wave_references_identifier}}" target="blank">{{ subfield.wave_references_citation }}</a></span>
             </dd>
           {% elif field.field_name == 'dc_measurement_references' %}
             {% if subfield.dc_measurements_references_doi %}
