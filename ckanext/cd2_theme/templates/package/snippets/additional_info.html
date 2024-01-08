@@ -227,16 +227,17 @@
                 <div class="cohort-spanner parent-spanner"><li class="label label-cohort">{{ splitname[1] }} <span class="fa fa-level-down"></span></li><br />
               {% endif %}
               {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
-              {% set waveSubjectCode = wave.wave_subject_codes | replace("[","") | replace("]","") | replace("'","") %}
-              <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nbsp;<span class="fa fa-caret-right"></span>
-              {% if ',' in waveSubjectCode %}
-                {% set waveSubjectCodes = waveSubjectCode.split(',') %}
-                {% for waveCode in waveSubjectCodes %}
-                  <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveCode|trim }}</span>
-                {% endfor %}
-              {% else %}
-                <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCode|trim }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCode }}</span>
-              {% endif %}
+              
+              {% for waveSubjectCodes in wave.wave_subject_codes %}
+
+                <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nbsp;<span class="fa fa-caret-right"></span>
+                
+                  <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,createLegendString('{{ waveSubjectCodes.wave_subject_code_translated }}'),40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCodes.wave_subject_code }}</span>
+           
+
+              {% endfor %}
+
+
               <hr style="border:0.5px solid">
               <span class="label info-hover" style="background-color:#aaa" onmouseenter="tooltipAddElement(this,'Subject age range',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">
                 {% if wave.wave_universe.find("-") == -1 %}
