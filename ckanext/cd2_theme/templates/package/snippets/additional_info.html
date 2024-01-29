@@ -228,9 +228,11 @@
               {% endif %}
               {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
               
+              <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nbsp;<span class="fa fa-caret-right"></span>
+
               {% for waveSubjectCodes in wave.wave_subject_codes %}
 
-                <span class="cohort-spanner wave-spanner"><span class="label info-hover"><li onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{wave.wave_title}}</li></span>&nbsp;<span class="fa fa-caret-right"></span>
+                
                 
                   <span class="label info-hover label-participant" onmouseenter="tooltipAddElement(this,'{{ waveSubjectCodes.wave_subject_code_translated }}',40,'user-o')" onmouseleave="tooltipRemoveElement(this)">{{ waveSubjectCodes.wave_subject_code }}</span>
            
