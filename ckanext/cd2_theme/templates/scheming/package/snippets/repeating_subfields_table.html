@@ -13,11 +13,11 @@
 <table class="table table-striped table-condensed dropshadow" style="display:none">
           {% for subfield in field.repeating_subfields %}
           {% if subfield.field_name not in exclude_subfields %}
-          {% if subfield.field_name == 'study_title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
+          {% if subfield.field_name == 'title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
                 <h3 class="collapsible-header">
                   {{ field_data[subfield.field_name] }}
                   <span class="label" style="float:right">
-                  {% if subfield.field_name == 'study_title' %}
+                  {% if subfield.field_name == 'title' %}
                     Cohort study
                   {% elif subfield.field_name == 'cohort_title' %} 
                     Cohort
