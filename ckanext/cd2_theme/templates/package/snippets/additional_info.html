@@ -96,9 +96,18 @@
 
     const divInfo = document.getElementById('data-access-info');
     const divHref = document.getElementById('data-access-href');
-    divInfo.innerHTML = `{{ pkg_dict.study[0].study_data_access[0].study_data_access_description }}`
-    divHref.innerHTML = `<a href="` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `" target="blank"><span class="tabspan fa fa-external-link"></span> ` + `{{ pkg_dict.study[0].study_data_access[0].study_data_access_URL }}` + `</a>`;
   
+    {% if pkg_dict.study and pkg_dict.study[0].study_data_access and pkg_dict.study[0].study_data_access[0] %}
+    {% set study_access = pkg_dict.study[0].study_data_access[0] %}
+    {% if study_access.study_data_access_description %}
+        divInfo.innerHTML = `{{ study_access.study_data_access_description|safe }}`;
+    {% endif %}
+    {% if study_access.study_data_access_URL %}
+        divHref.innerHTML = `<a href="{{ study_access.study_data_access_URL|safe }}" target="blank"><span class="tabspan fa fa-external-link"></span> {{ study_access.study_data_access_URL|safe }}</a>`;
+    {% endif %}
+    {% endif %}
+
+
     {% elif pkg_dict.type == 'study' %}
 
       // create new tabs based of dataset type
