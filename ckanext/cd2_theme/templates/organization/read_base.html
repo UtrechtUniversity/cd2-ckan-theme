@@ -3,10 +3,16 @@
   <li>{% link_for  _('Studies'), named_route=group_type+'.index' %}</li>
   <li class="active">{% link_for group_dict.display_name|truncate(35), named_route=group_type+'.read', id=group_dict.name %}</li>
   <script>
-    // Automatically redirect to info dataset
-    // url = '/dataset/?dataset_type=measure&sort=title_string+asc&organization={{group_dict.name}}&description';
-    url = '/study/{{ group_dict.name }}';
+  // debug mode option to visit/edit organization page and prevent redirect
+  function isDebugMode() {
+    return window.location.search.includes('?debug=true');
+  }
+
+  // Automatically redirect to info dataset if not in debug mode
+  if (!isDebugMode()) {
+    const url = '/study/{{ group_dict.name }}';
     window.location.replace(url);
+  }
   </script>
   {% endblock %}
 
