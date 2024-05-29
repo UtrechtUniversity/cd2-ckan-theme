@@ -192,8 +192,8 @@
       <th scope="row" class="dataset-label">Citation</th>
       <td class="dataset-details">
 
-        <a href="#" class="citation-link" data-doi="10.00012/FDS2-GM63">10.00012/FDS2-GM63</a>
-        
+        <span class="citationCell" data-doi="10.00012/FDS2-GM63">Loading citation... <span class="fa fa-copy copy-icon pointer"></span></span>
+
       </td>
     </tr>
     
@@ -224,12 +224,28 @@
           for (const cell of citationCells) {
               const doiSuffix = cell.getAttribute('data-doi');
               const citation = await fetchCitation(doiSuffix);
-              cell.textContent = citation;
+              cell.childNodes[0].nodeValue = citation + ' ';
           }
       }
 
-      // Load citations on page load
-      window.addEventListener('load', loadCitations);
+      function addCopyEventListeners() {
+          document.querySelectorAll('.copy-icon').forEach(icon => {
+              icon.addEventListener('click', function() {
+                  const citationText = icon.parentElement.childNodes[0].nodeValue;
+                  navigator.clipboard.writeText(citationText).then(() => {
+                      alert('Citation copied to clipboard');
+                  }).catch(err => {
+                      console.error('Error copying text: ', err);
+                  });
+              });
+          });
+      }
+
+      // Load citations and add copy event listeners on page load
+      window.addEventListener('load', async () => {
+          await loadCitations();
+          addCopyEventListeners();
+      });
 
       document.getElementById('generateCitation').addEventListener('click', async function() {
           const doiSuffix = document.getElementById('doiSuffix').value;
