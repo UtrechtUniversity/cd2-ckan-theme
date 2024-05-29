@@ -219,33 +219,22 @@
           }
       }
 
-      function addCitationLinks() {
-          document.querySelectorAll('.citation-link').forEach(link => {
-              link.addEventListener('click', async function(event) {
-                  event.preventDefault();
-                  const doiSuffix = event.target.getAttribute('data-doi');
-                  const citation = await fetchCitation(doiSuffix);
-                  const parentTd = event.target.closest('td');
-                  parentTd.textContent = citation;
-              });
-          });
+      async function loadCitations() {
+          const citationCells = document.querySelectorAll('.citationCell');
+          for (const cell of citationCells) {
+              const doiSuffix = cell.getAttribute('data-doi');
+              const citation = await fetchCitation(doiSuffix);
+              cell.textContent = citation;
+          }
       }
-
-      // Generate citation links on page load
-      window.addEventListener('load', () => {
-          const citationTable = document.getElementById('citationTable');
-          // Add event listeners to generated citation links
-          addCitationLinks();
-      });
+      // Load citations on page load
+      window.addEventListener('load', loadCitations);
 
       document.getElementById('generateCitation').addEventListener('click', async function() {
           const doiSuffix = document.getElementById('doiSuffix').value;
-
           if (!doiSuffix) {
-              alert('Please enter a valid DOI suffix');
               return;
           }
-
           const citation = await fetchCitation(doiSuffix);
           document.getElementById('citation').textContent = citation;
       });
