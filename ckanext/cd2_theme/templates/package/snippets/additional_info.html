@@ -185,6 +185,74 @@
   <table class="table table-striped table-condensed dropshadow" id="table-measure">
   
     {% if pkg_dict.type == 'measure' %}
+
+
+    {% if pkg_dict.name == "2411ae2d90246101b42938376cc64427" %}
+    <tr>
+      <th scope="row" class="dataset-label">Citation</th>
+      <td class="dataset-details">
+
+        <a href="#" class="citation-link" data-doi="10.00012/FDS2-GM63">10.00012/FDS2-GM63</a>
+        
+      </td>
+    </tr>
+    
+    <script>
+      async function fetchCitation(doiSuffix) {
+          const baseUrl = 'https://api.test.datacite.org/dois/';
+          const url = baseUrl + doiSuffix;
+
+          try {
+              const response = await fetch(url);
+              const data = await response.json();
+
+              const creator = data.data.attributes.creators[0].name;
+              const year = data.data.attributes.publicationYear;
+              const title = data.data.attributes.titles[0].title;
+              const publisher = data.data.attributes.publisher;
+              const doi = data.data.attributes.doi;
+
+              return `${creator}. (${year}). ${title} [Data set]. ${publisher}. https://doi.org/${doi}`;
+          } catch (error) {
+              console.error('Error fetching or processing data:', error);
+              return 'Error generating citation';
+          }
+      }
+
+      function addCitationLinks() {
+          document.querySelectorAll('.citation-link').forEach(link => {
+              link.addEventListener('click', async function(event) {
+                  event.preventDefault();
+                  const doiSuffix = event.target.getAttribute('data-doi');
+                  const citation = await fetchCitation(doiSuffix);
+                  const parentTd = event.target.closest('td');
+                  parentTd.textContent = citation;
+              });
+          });
+      }
+
+      // Generate citation links on page load
+      window.addEventListener('load', () => {
+          const citationTable = document.getElementById('citationTable');
+          // Add event listeners to generated citation links
+          addCitationLinks();
+      });
+
+      document.getElementById('generateCitation').addEventListener('click', async function() {
+          const doiSuffix = document.getElementById('doiSuffix').value;
+
+          if (!doiSuffix) {
+              alert('Please enter a valid DOI suffix');
+              return;
+          }
+
+          const citation = await fetchCitation(doiSuffix);
+          document.getElementById('citation').textContent = citation;
+      });
+  </script>
+  {% endif %}
+
+
     <tr>
       <th style="width: 20%" scope="row" class="dataset-label">Keywords</th>
       <td class="dataset-details">
@@ -311,54 +379,7 @@
       </td>
     </tr>
 
-    <tr>
-      <th scope="row" class="dataset-label">Measure DOI</th>
-      <td class="dataset-details">
-
-        <a href="#" class="citation-link" data-doi="10.00012/FDS2-GM63">10.00012/FDS2-GM63</a>
-        
-      </td>
-    </tr>
-    
-    <script>
-      async function fetchCitation(doiSuffix) {
-          const baseUrl = 'https://api.test.datacite.org/dois/';
-          const url = baseUrl + doiSuffix;
-
-          try {
-              const response = await fetch(url);
-              const data = await response.json();
-
-              const creator = data.data.attributes.creators[0].name;
-              const year = data.data.attributes.publicationYear;
-              const title = data.data.attributes.titles[0].title;
-              const publisher = data.data.attributes.publisher;
-              const doi = data.data.attributes.doi;
-
-              return `${creator}. (${year}). ${title} [Data set]. ${publisher}. https://doi.org/${doi}`;
-          } catch (error) {
-              console.error('Error fetching or processing data:', error);
-              return 'Error generating citation';
-          }
-      }
-
-      document.querySelectorAll('.citation-link').forEach(link => {
-          link.addEventListener('click', async function(event) {
-              event.preventDefault();
-              const doiSuffix = event.target.getAttribute('data-doi');
-              const citation = await fetchCitation(doiSuffix);
-              const parentTd = event.target.closest('td');
-              parentTd.textContent = citation;
-          });
-      });
-
-      document.getElementById('generateCitation').addEventListener('click', async function() {
-          const doiSuffix = document.getElementById('doiSuffix').value;
-          const citation = await fetchCitation(doiSuffix);
-          document.getElementById('citation').textContent = citation;
-      });
-  </script>
-
+  
     {% if pkg_dict.dc_analysis_unit %}
     <tr>
       <th scope="row" class="dataset-label">Analysis unit</th>
