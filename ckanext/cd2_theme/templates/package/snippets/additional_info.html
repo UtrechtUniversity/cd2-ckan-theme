@@ -186,20 +186,18 @@
   
     {% if pkg_dict.type == 'measure' %}
 
-
-    {% if pkg_dict.name == "2411ae2d90246101b42938376cc64427" %}
     <tr>
       <th scope="row" class="dataset-label">Citation</th>
       <td class="dataset-details">
 
-        <span class="citationCell" data-doi="10.00012/FDS2-GM63">Loading citation... <span class="fa fa-copy copy-icon pointer"></span></span>
+        <span class="citationCell" data-doi="{{ pkg_dict.dc_DOI.0.dc_pid }}">Loading citation... <span class="fa fa-copy copy-icon pointer"></span></span>
 
       </td>
     </tr>
     
     <script>
       async function fetchCitation(doiSuffix) {
-          const baseUrl = 'https://api.test.datacite.org/dois/';
+          const baseUrl = 'https://api.datacite.org/dois/';
           const url = baseUrl + doiSuffix;
 
           try {
@@ -258,7 +256,6 @@
           document.getElementById('citation').textContent = citation;
       });
   </script>
-  {% endif %}
 
 
     <tr>
