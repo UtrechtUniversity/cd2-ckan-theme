@@ -375,28 +375,23 @@ function waveTimeline(timepoints, barID) {
  * - Create event listeners when searchbox is focussed for up and down keys to select suggestions
  * - Use tab-key to add suggestion to the searchbox
  */
-function interactiveSuggestions(searchBox) {
+async function interactiveSuggestions(searchBox) {
     const specialCharacters = ['&', '|', '(', ')', '[', ']',':','"','-'];
     let selectedSuggestionIndex = -1;
     const url1 = "/api/3/action/package_search?facet.field=[%22dc_label%22]";
     const url2 = "/api/3/action/package_search?facet.field=[%22dc_construct%22]";
-    //const url3 = "/api/3/action/package_search?rows=1000";
-    Promise.all([
-      fetch(url1).then(res => res.json()),
-      fetch(url2).then(res => res.json())
-    ]).then(([data1, data2]) => {
-        // Create unique array of lowercase strings from labels, constructs and dataset titles
+
+    try {
+        const [response1, response2] = await Promise.all([
+            fetch(url1),
+            fetch(url2)
+        ]);
+        
+        const data1 = await response1.json();
+        const data2 = await response2.json();
+
         const fetchData1 = Object.keys(data1.result.facets.dc_label);
         const fetchData2 = Object.keys(data2.result.facets.dc_construct);
-        
-        /*let titleSet = [];
-        for (const result of data3.result.results) {
-            titleSet.push(result.title)
-        }
-        const wordsArr = titleSet
-            .map(str => str.split(' '))
-            .reduce((acc, val) => acc.concat(val), []);
-        const fetchData3 = [...new Set(wordsArr)];*/
 
         const uniqueKeywords = fetchData1
             .concat(fetchData2)
@@ -406,20 +401,17 @@ function interactiveSuggestions(searchBox) {
             .filter((value, index, self) => self.indexOf(value) === index);
 
         function handleKeyDown(event) {
-            // Add event listeners for selection of suggestions and entering values
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             if (searchSuggestionLinks.length == 0) { return; }
             if (searchBox !== document.activeElement) {
                 return;
             }
             if (event.key === 'ArrowDown') {
-                // Move selection down
                 event.preventDefault();
                 selectedSuggestionIndex =
                     (selectedSuggestionIndex + 1) % searchSuggestionLinks.length;
                 updateSelectedSuggestion(selectedSuggestionIndex);
             } else if (event.key === 'ArrowUp') {
-                // Move selection up
                 event.preventDefault();
                 if (selectedSuggestionIndex == -1) { selectedSuggestionIndex = 0}; 
                 selectedSuggestionIndex =
@@ -427,7 +419,6 @@ function interactiveSuggestions(searchBox) {
                     searchSuggestionLinks.length;
                 updateSelectedSuggestion(selectedSuggestionIndex);
             } else if (event.key === 'Enter') {
-                // Simulate a click on the selected suggestion
                 if (selectedSuggestionIndex >= 0) {
                     event.preventDefault();
                     searchSuggestionLinks[selectedSuggestionIndex].click();
@@ -439,7 +430,7 @@ function interactiveSuggestions(searchBox) {
             }
         }
         document.addEventListener('keydown', handleKeyDown);
-        // Change CSS styling of elements on selection
+
         function updateSelectedSuggestion(selectedSuggestionIndex) {
             let searchSuggestionLinks = document.querySelectorAll('a.search-suggestion');
             searchSuggestionLinks.forEach((link) => {
@@ -449,22 +440,22 @@ function interactiveSuggestions(searchBox) {
             const selectedSuggestionLink = searchSuggestionLinks[selectedSuggestionIndex];
                 selectedSuggestionLink.style.backgroundColor = '#ccc';
                 selectedSuggestionLink.style.borderRadius = '5px';
-                searchBox.focus()
+                searchBox.focus();
         }
+
         searchBox.addEventListener('keyup', (event) => {
             if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Enter') {
                 return;
             }
-            // Move the suggestion box relative to the cursor
             selectedSuggestionIndex = -1;
             const cursorX = searchBox.selectionStart;
             const rect = searchBox.getBoundingClientRect();
             const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
             const cursorPixelX = rect.left + scrollLeft + (cursorX * 6); 
-            getMatchingLabels(uniqueKeywords,cursorPixelX);
+            getMatchingLabels(uniqueKeywords, cursorPixelX);
         });
-        function getMatchingLabels(labels,cursorX) {
-            // Get matching strings starting the the text entered
+
+        function getMatchingLabels(labels, cursorX) {
             const textBalloon = document.getElementById('search-balloon');       
             if (searchBox.value.endsWith(' ')) {   
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
@@ -478,7 +469,7 @@ function interactiveSuggestions(searchBox) {
                     break;
                 }
             }
-            input = currentText.slice(lastSpecialCharIndex + 1).trim();
+            let input = currentText.slice(lastSpecialCharIndex + 1).trim();
             if (input.length < 3) {
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return;
@@ -489,14 +480,14 @@ function interactiveSuggestions(searchBox) {
                 if (textBalloon) { textBalloon.remove(); selectedSuggestionIndex = -1; }
                 return; 
             }
-            displayLabels(matchingLabels,cursorX);
+            displayLabels(matchingLabels, cursorX);
         }
-        function displayLabels(matchingLabels,cursorX) { 
-            showTextBalloon(matchingLabels,cursorX);
+
+        function displayLabels(matchingLabels, cursorX) { 
+            showTextBalloon(matchingLabels, cursorX);
             let searchSuggestions = document.querySelectorAll('.search-suggestion');
             searchSuggestions.forEach(suggestion => {
                 suggestion.addEventListener('click', () => {
-                    // Get the current value of the searchbox
                     const currentText = searchBox.value;
                     let lastSpecialCharIndex = -1;
                     for (let i = currentText.length - 1; i >= 0; i--) {
@@ -507,21 +498,13 @@ function interactiveSuggestions(searchBox) {
                     }
                     let newText;
                     suggestion.innerText = suggestion.innerText.replace(/(-)/g, '*');
-                    suggestionWords = suggestion.innerText.split(/\s+/);
+                    let suggestionWords = suggestion.innerText.split(/\s+/);
                     if (lastSpecialCharIndex === -1) {
-                        //if (suggestionWords.length > 1) {
-                            newText = '"' + suggestion.innerText + '" ';
-                        //} else {
-                            // for single keywords, search with fuzzy logic
-                        //    newText = suggestion.innerText + '~ ';
-                        //}
-                        
+                        newText = '"' + suggestion.innerText + '" ';
                     } else {
                         if ((currentText.charAt(lastSpecialCharIndex) == '"')) { 
-                            // check if string starts with quotes, then keep it within those quotes
                             newText = currentText.slice(0, lastSpecialCharIndex + 1) + suggestion.innerText + '" ';
                         } else {
-                            // don't add whitespace when specified a search field 
                             let addWhiteSpace = ' ';
                             if ((currentText.charAt(lastSpecialCharIndex) == ':')) { addWhiteSpace = ''; }
                             newText = currentText.slice(0, lastSpecialCharIndex + 1) + addWhiteSpace + '"' + suggestion.innerText + '" ';
@@ -534,8 +517,8 @@ function interactiveSuggestions(searchBox) {
                     if (currTextBalloon) { currTextBalloon.remove(); }
                 });
             });
-            function showTextBalloon(matchingLabels,cursorX) {
-                if (!matchingLabels) {selectedSuggestionIndex = -1; return;  }
+            function showTextBalloon(matchingLabels, cursorX) {
+                if (!matchingLabels) { selectedSuggestionIndex = -1; return; }
                 let currTextBalloon = document.getElementById('search-balloon');
                 if (currTextBalloon) { currTextBalloon.remove(); selectedSuggestionIndex = -1; }
                 const textBalloon = document.createElement('div');
@@ -551,17 +534,19 @@ function interactiveSuggestions(searchBox) {
                 textBalloon.style.left = `${left}px`;
                 document.body.appendChild(textBalloon);
             } 
-        }   
+        }
 
         document.addEventListener("click", function(event) {
             let searchBalloon = document.getElementById("search-balloon");
             if (searchBalloon) {
                 if (event.target !== searchBox && !searchBalloon.contains(event.target)) {
-                searchBalloon.remove();
+                    searchBalloon.remove();
                 }
             }
         });
-    });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
 
 const searchBox = document.getElementById('searchbox');       
