@@ -75,12 +75,12 @@
                 {% set cohort_creator_url = subfield.cohort_creator_pid %}
             {% endif %}
             <dd><span class="tabspan fa fa-user"></span><span
-              onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator }}</a></span>
+              onmouseenter="tooltipAddElement(this,'{{ subfield.cohort_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{cohort_creator_url}}" target="blank">{{ subfield.cohort_creator_name }}</a></span>
             </dd>
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
             </dd>
             {% else %}
-            <dd><span class="tabspan fa fa-user"></span><span target="blank">{{ subfield.cohort_creator }}</a></span>
+            <dd><span class="tabspan fa fa-user"></span><span target="blank">{{ subfield.cohort_creator_name }}</a></span>
             </dd>
             <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.cohort_creator_affiliation }}</span>
             </dd>
@@ -97,7 +97,7 @@
                 {% set wave_creator_url = '#' %}
           {% endif %}
           <dd><span class="tabspan fa fa-user"></span><span
-            onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator }}</a></span>
+            onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator_name }}</a></span>
           </dd>
           <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span>
           </dd>
