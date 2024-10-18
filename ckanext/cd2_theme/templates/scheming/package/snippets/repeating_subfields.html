@@ -93,14 +93,16 @@
             {% else %}
                 {% set wave_creator_url = subfield.wave_creator_pid %}
             {% endif %}
+            <dd><span class="tabspan fa fa-user"></span><span
+              onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator_name }}</a></span>
+            </dd>
+            <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span>
+            </dd>
           {% else %}
-                {% set wave_creator_url = '#' %}
+          <dd><span class="tabspan fa fa-user"></span>{{ subfield.wave_creator_name }}</a></span></dd>
+          <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span></dd>
           {% endif %}
-          <dd><span class="tabspan fa fa-user"></span><span
-            onmouseenter="tooltipAddElement(this,'{{ subfield.wave_creator_identifier_type }}',30,'share')" onmouseleave="tooltipRemoveElement(this)" class="repeating-element"><a href="{{wave_creator_url}}" target="blank">{{ subfield.wave_creator_name }}</a></span>
-          </dd>
-          <dd><span class="tabspan fa fa-building"></span><span class="repeating-element">{{ subfield.wave_creator_affiliation }}</span>
-          </dd>
+        
           {% elif field.field_name == 'study_contributor' %}
           {% if subfield.study_contributor_pid %}
           {% if subfield.study_contributor_identifier_type == 'ORCID' %}
