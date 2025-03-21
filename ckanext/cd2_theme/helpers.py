@@ -1,6 +1,7 @@
 from ckan.common import config
 import ckan.plugins.toolkit as toolkit
-import urllib.request, json 
+import urllib.request
+import json 
 
 def parent_site_url():
     """
@@ -9,7 +10,7 @@ def parent_site_url():
     ckan.parent_site_url, or value of h.url('home') if that
     setting is missing
     """
-    return config.get('ckan.parent_site_url', toolkit.h.url('home'))
+    return config.get('ckan.parent_site_url', toolkit.h.url_for('home'))
 
 
 def modify_geojson(geojson_string):
