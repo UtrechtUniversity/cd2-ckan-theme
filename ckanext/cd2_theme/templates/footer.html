@@ -73,12 +73,6 @@
 		<span class="footer-text" style="padding:10px;float:right;"><a href="https://ckan.org/" target="blank">powered by CKAN</a>
 		</span>
 	</div>
-
-	{% block footer_debug %}
-		{% if g.debug %}
-			{% include 'snippets/debug.html' %}
-		{% endif %}
-	{% endblock %}
 </footer>
 <script>
 	document.addEventListener("DOMContentLoaded", function (event) {
