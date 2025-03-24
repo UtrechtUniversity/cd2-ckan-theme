@@ -10,14 +10,14 @@
 {% block content %}
 
 
-  <div class="homepage">
-    <div class="container">
-      {{ self.flash() }}
-    </div>
-    {% block primary_content %}
-    
-      {% snippet "home/layout_custom.html" %}
-     
-    {% endblock %}
+<div class="homepage">
+  <div id="content" class="container">
+    {{ self.flash() }}
   </div>
+  {% block primary_content %}
+  
+    {% snippet "home/layout_custom.html" %}
+    
+  {% endblock %}
+</div>
 {% endblock %}

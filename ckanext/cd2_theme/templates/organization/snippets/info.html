@@ -1,10 +1,11 @@
 {% ckan_extends %}
 
 {% block info %}
-  <div class="module module-narrow module-shallow context-info" style="background-color:#fff">
+  <section id="organization-info" class="module module-narrow" style="background-color:#fff">
+    <div class="module context-info">
     {% if has_context_title %}
     {% endif %}
-    <section class="module-content">
+    <div class="module-content">
       {% block inner %}
       {% block image %}
         <div class="image">
@@ -24,7 +25,7 @@
           {% link_for _('read more'), named_route=organization.type ~ '.about', id=organization.name %}
         </p>
       {% else %}
-        <p class="empty">{{ 'There is no description for this organization' }}</p>
+        <p class="empty">{{ h.humanize_entity_type('organization', organization.type, 'no description') or _('There is no description for this organization') }}</p>
       {% endif %}
       {% endblock %}
 
@@ -68,6 +69,7 @@
       </div></a>
       {% endblock %}
     {% endblock %}
-    </section>
-  </div>
+    </div>
+    </div>
+  </section>
   {% endblock %}

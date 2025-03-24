@@ -1,7 +1,9 @@
 from ckan.common import config
+import ckan.logic as logic
 import ckan.plugins.toolkit as toolkit
 import urllib.request
 import json 
+
 
 def parent_site_url():
     """
@@ -10,7 +12,7 @@ def parent_site_url():
     ckan.parent_site_url, or value of h.url('home') if that
     setting is missing
     """
-    return config.get('ckan.parent_site_url', toolkit.h.url_for('home'))
+    return config.get('ckan.parent_site_url', toolkit.h.url_for('home.index'))
 
 
 def modify_geojson(geojson_string):
@@ -49,3 +51,16 @@ def _modify(coord):
         lat = lat + 360
     return [lat, long]
 
+
+def get_site_statistics():
+    # TODO this was copied from ckan core helpers. It will be added back
+    # in a future version of ckan 2.11, at which time we should remove
+    # this helper again and use that one.
+    # see: https://github.com/ckan/ckan/issues/8522
+    stats = {}
+    stats['dataset_count'] = logic.get_action('package_search')(
+        {}, {"rows": 1})['count']
+    stats['group_count'] = len(logic.get_action('group_list')({}, {}))
+    stats['organization_count'] = len(
+        logic.get_action('organization_list')({}, {}))
+    return stats
