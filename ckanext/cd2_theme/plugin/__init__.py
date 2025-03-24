@@ -3,6 +3,7 @@ import ckan.plugins.toolkit as toolkit
 
 from ckanext.cd2_theme import helpers
 
+
 class CD2_ThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
@@ -20,4 +21,5 @@ class CD2_ThemePlugin(plugins.SingletonPlugin):
             'parent_site_url': helpers.parent_site_url,
             'modify_geojson': helpers.modify_geojson,
             'check_ckan_version': toolkit.check_ckan_version,
+            'get_site_statistics': helpers.get_site_statistics
         }
