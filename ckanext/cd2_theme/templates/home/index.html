@@ -1,6 +1,5 @@
 {% extends "page.html" %}
 {% block bodytag %} class="home"{% endblock %}
-{% set homepage_style = ( g.homepage_style or '1' ) %}
 
 {% block subtitle %}{{ _("Welcome") }}{% endblock %}
 
@@ -11,13 +10,13 @@
 {% block content %}
 
 
-  <div class="homepage layout-{{ homepage_style }}">
+  <div class="homepage">
     <div class="container">
       {{ self.flash() }}
     </div>
     {% block primary_content %}
     
-      {% snippet "home/layout_custom.html".format(homepage_style) %}
+      {% snippet "home/layout_custom.html" %}
      
     {% endblock %}
   </div>
