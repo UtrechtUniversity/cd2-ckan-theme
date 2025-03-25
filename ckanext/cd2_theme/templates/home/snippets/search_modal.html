@@ -1,4 +1,4 @@
-<!-- advanded search snippet -->
+<!-- advanced search snippet -->
 <div class='modal fade' id='searchModal' tabindex='-1' role='dialog' aria-hidden='true'>
     <div class='modal-dialog modal-lg' role='document'>
       <div class='modal-content'>
@@ -10,54 +10,61 @@
           <div class="alert alert-primary" role="alert" style="color: #555;box-shadow: 0 7px 9px -9px #555;margin-bottom:35px;">
             <span class="fa fa-info-circle"></span> Limit searches to measure title or description, select multiple constructs, labels and mode of collections.
           </div> 
-          <form id="advancedSearchForm">
-            <div class="form-group row">
+          <form id="advancedSearchForm" class="row g-4">
+            <div>
               <label class="col-sm-2 col-form-label">Title</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputTitle" placeholder="title">
               </div>
             </div>
-            <div class="form-group row">
+            <div>
               <label class="col-sm-2 col-form-label">Description</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputDescr" placeholder="description">
               </div>
             </div>
   
-            <div class="form-group row">
+            <div>
               <label class="col-sm-2 col-form-label">All fields</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="inputAll" placeholder="all">
               </div>
             </div>
-            <div class="form-group row">
+            <div>
               <label class="col-sm-2 col-form-label">Study</label>
               <div class="col-sm-10">
-                <div class="well search-well" style="height:70px">
-                  <ul class="menu blog-filter-menu" id="select-organization">
-                  </ul>
+                <div class="search-well p-3" style="height:70px">
+                  <div id="select-organization">
+                  </div>
                 </div>
               </div>
             </div>
   
-            <div class="form-group row">
+            <div>
               <label class="col-sm-2 col-form-label">Construct</label>
               <div class="col-sm-10">
-                <div class="well search-well">
-                  <div class="search-toolbar"><select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple constructs',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-construct" class="select-operator"><option>OR</option><option>AND</option></select>
-                    <a class="btn btn-reset" style="box-shadow:none!important" onclick="resetCheckboxes('#select-construct')"><span class="fa fa-undo" style="margin-top:3px;"></span> Reset</a></div>
+                <div class="search-well">
+                  <div class="search-toolbar container">
+                    <div class="row">
+                      <select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple constructs',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-construct" class="select-operator col-1">
+                        <option>OR</option>
+                        <option>AND</option>
+                      </select>
+                      <a class="btn col-1" type="reset" role="button" style="box-shadow:none!important" onclick="resetCheckboxes('#select-construct')"><span class="fa fa-undo" style="margin-top:3px;"></span> Reset</a>
+                    </div>
+                  </div>
                   <ul class="menu blog-filter-menu" id="select-dc_construct">
                   </ul>
                 </div>
               </div>
             </div>
   
-            <div class="form-group row">
+            <div>
                 <label class="col-sm-2 col-form-label">Mode of collection</label>
                 <div class="col-sm-10">
-                  <div class="well search-well" style="height:140px">
+                  <div class="search-well" style="height:140px">
                     <div class="search-toolbar"> 
-                      <a class="btn btn-reset" style="left:3px;box-shadow:none!important" onclick="resetCheckboxes('#select-mode_of_collection')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
+                      <a class="btn" type="reset" role="button" style="left:3px;box-shadow:none!important" onclick="resetCheckboxes('#select-mode_of_collection')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
                       </div>
   
                     <ul class="menu blog-filter-menu" id="select-dc_mode_of_collection">
@@ -66,25 +73,28 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+            <div>
                 <label class="col-sm-2 col-form-label">Keyword</label>
-                 <div class="col-sm-10">
-                   <div class="well search-well">
-                     <div class="search-toolbar"> 
-                       <select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple keywords',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-label" class="select-operator"><option>OR</option><option>AND</option></select>
-                       <a class="btn btn-reset" style="box-shadow:none!important" onclick="resetCheckboxes('#select-label')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
-                       <input id="filter_labels" placeholder="filter" type="text" class="label-filter"></div>
-                     <ul class="menu blog-filter-menu" id="select-dc_label">
-                     </ul>
-                   </div>
-                 </div>
+                <div class="col-sm-10">
+                  <div class="search-well">
+                    <div class="search-toolbar container"> 
+                      <div class="row">
+                          <select onmouseenter="tooltipAddElement(this,'Choose operator when selecting multiple keywords',30,'info-circle')" onmouseleave="tooltipRemoveElement(this)" id="operator-label" class="select-operator col-1"><option>OR</option><option>AND</option></select>
+                          <a class="btn col-1" type="reset" role="button" style="box-shadow:none!important" onclick="resetCheckboxes('#select-label')"><span class="fa fa-undo" style="margin-top: 3px;"></span> Reset</a>
+                          <input id="filter_labels" placeholder="filter" type="text" class="label-filter col">
+                      </div>
+                    </div>
+                    <ul class="menu blog-filter-menu" id="select-dc_label">
+                    </ul>
+                  </div>
+                </div>
                </div>
   
                
         </div>
         <div class='modal-footer'>
-          <button type='button' class='btn' data-dismiss='modal'>Close</button>
-          <button type='button' class='btn btn-primary' data-dismiss='modal' onclick="advancedSearch()">Search</button>
+          <button type='button' class='btn' data-bs-dismiss='modal'>Close</button>
+          <button type='button' class='btn btn-primary' data-bs-dismiss='modal' onclick="advancedSearch()">Search</button>
         </form>
         <script>
           document.addEventListener("DOMContentLoaded", function (event) {
@@ -232,7 +242,10 @@
         var div = document.getElementById('search-dropdown');
         var divDropdown = document.getElementById('select-organization');
         for (const result of data.result) {
-          divDropdown.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+result.name+`">` + result.title + `</input></label></li>`; 
+          divDropdown.innerHTML += `<div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="${result.name}"></input>
+            <label class="form-check-label" for="${result.name}">${result.title}</label>
+            </div>`; 
         }
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_mode_of_collection%22]"
@@ -242,7 +255,10 @@
         var dropdownEl = document.getElementById('select-dc_mode_of_collection');
         let keys = Object.keys(data.result.facets.dc_mode_of_collection);
         for (collection of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+collection+`">` + collection + `</input></label></li>`;
+          divDropdown.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="${collection}"></input>
+            <label class="form-check-label" for="${collection}">${collection}</label>
+            </li>`;
         }
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
@@ -252,7 +268,10 @@
         var dropdownEl = document.getElementById('select-dc_construct');
         let keys = Object.keys(data.result.facets.dc_construct);
         for (construct of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select"><label class="checkbox"><input type="checkbox" id="`+construct+`">` + construct + `</input></label></li>`;
+          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="${construct}"></input>
+            <label class="form-check-label" for="${construct}">${construct}</label>
+            </li>`;
         }
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
@@ -262,7 +281,10 @@
         var dropdownEl = document.getElementById('select-dc_label');
         let keys = Object.keys(data.result.facets.dc_label);
         for (label of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select label-select"><label class="checkbox"><input type="checkbox" id="`+label+`">` + label + `</input></label></li>`;
+          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="${label}"></input>
+            <label class="form-check-label" for="${label}">${label}</label>
+            </li>`;
         }
       });
     }

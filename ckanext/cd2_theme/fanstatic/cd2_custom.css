@@ -1019,9 +1019,6 @@ ins {
 .btn-reset:hover {
   opacity: 0.6;
 }
-.modal-header .close {
-  margin-top: -28px !important;
-}
 .search-well {
   height: 200px;
   padding: 0px;
@@ -1038,7 +1035,6 @@ ins {
   top: 0px;
   height: 40px;
   box-shadow: 0px 0px 8px #888;
-  padding: 2px;
   z-index: 999;
 }
 .label-filter {
@@ -2274,23 +2270,6 @@ header.account-masthead .account ul li a:hover {
 }
 .simple-input .field .btn-search .icon-search {
   font-size: 20px;
-}
-.btn-secondary {
-  color: #333;
-  background-color: #ffc645;
-  background-image: -moz-linear-gradient(top, #ffc645, #e8a200);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffc645), to(#e8a200));
-  background-image: linear-gradient(to bottom, #ffc645, #e8a200);
-  text-shadow: none;
-}
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active,
-.btn-secondary.active,
-.btn-secondary.disabled,
-.btn-secondary[disabled] {
-  background-color: #ffb100;
-  color: #333;
 }
 .toolbar {
   background-color: #ffb100;
