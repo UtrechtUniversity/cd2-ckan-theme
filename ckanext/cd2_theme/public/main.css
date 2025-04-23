@@ -6242,8 +6242,7 @@ label:after {
   content: ":";
 }
 label.radio:after,
-label.checkbox:after,
-label.form-check-label:after {
+label.checkbox:after {
   content: "";
 }
 input[type=radio],
