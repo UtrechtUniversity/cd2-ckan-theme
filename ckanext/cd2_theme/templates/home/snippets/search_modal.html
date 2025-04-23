@@ -162,23 +162,20 @@
           */
           function facetCheckbox(elID, facet) {
             var tmpString = '';
-            var firstPass = true; 
+            var firstPass = true;
             
-            $(elID).children().each((index, element) => {
-              $(element).children().each((index, child) => {
-                var subEl = $(child).children();
-                if (subEl[0].checked == true) {
-                  tmpString = concatString(tmpString, customDelim(elID));
-          
-                  if (firstPass) { 
-                    tmpString += facet + ':("' + subEl[0].id + '"';
-                    firstPass = false; 
-                  } else {
-                    tmpString += '"' + subEl[0].id + '"';
-                  }
+            $(elID).find('input[type="checkbox"]').each(function () {
+              if (this.checked) {
+                tmpString = concatString(tmpString, customDelim(elID));
+                if (firstPass) {
+                  tmpString += facet + ':("' + this.id + '"';
+                  firstPass = false;
+                } else {
+                  tmpString += '"' + this.id + '"';
                 }
-              });
+              }
             });
+
             if (tmpString.length > 0) {
               advancedSearchString = concatString(advancedSearchString, '&&') + tmpString + ')'
             }
@@ -191,11 +188,7 @@
           * @param fieldID {string} - ID of element
           */
           function resetCheckboxes(fieldID) {
-            $(fieldID).children().each((index, element) => {
-              $(element).children().each((index, child) => {
-                  $(child).children().prop( "checked", false );
-              });
-            });
+            $(fieldID).find('input[type="checkbox"]').prop("checked", false);
           }
   
           /**  
