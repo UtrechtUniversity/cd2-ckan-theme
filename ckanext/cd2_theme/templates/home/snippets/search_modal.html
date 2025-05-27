@@ -248,7 +248,7 @@
         var dropdownEl = document.getElementById('select-dc_mode_of_collection');
         let keys = Object.keys(data.result.facets.dc_mode_of_collection);
         for (collection of keys) {
-          divDropdown.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="${collection}"></input>
             <label class="form-check-label" for="${collection}">${collection}</label>
             </li>`;

@@ -21,5 +21,8 @@
 </div>
 <script>
 // don't need search functionality here
-  document.getElementById('organization-search-form').style.display = 'none'
+  var searchEl = document.getElementById('organization-search-form')
+  if (typeof searchEl !== 'undefined' && searchEl !== null) {
+    searchEl.style.display = 'none'
+  }
 </script>
