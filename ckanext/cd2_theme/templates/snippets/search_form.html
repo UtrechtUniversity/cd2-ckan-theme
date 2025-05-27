@@ -72,7 +72,7 @@
             <span class="facet">{{ facets.titles.get(field) }}:</span>
             <script type='text/javascript'>
               document.addEventListener("DOMContentLoaded", function (event) {
-                $('#section_{{ facets.titles.get(field).replace(' ','_') }}').collapse('show')
+                $('#section_{{ facets.titles.get(field).replace(' ','_') }}').addClass('show')
               });
             </script>
 
