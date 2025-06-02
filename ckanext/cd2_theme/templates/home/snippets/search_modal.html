@@ -234,25 +234,26 @@
       .then(data => {
         var div = document.getElementById('search-dropdown');
         var divDropdown = document.getElementById('select-organization');
-        for (const result of data.result) {
-          divDropdown.innerHTML += `<div class="form-check form-check-inline">
+        const newInnerHTML = data.result.map(result => `
+          <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="${result.name}"></input>
             <label class="form-check-label" for="${result.name}">${result.title}</label>
-            </div>`; 
-        }
+          </div>
+        `).join("");
+        divDropdown.innerHTML += newInnerHTML;
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_mode_of_collection%22]"
     fetch(url)
       .then(res => res.json())
       .then(data => {
         var dropdownEl = document.getElementById('select-dc_mode_of_collection');
-        let keys = Object.keys(data.result.facets.dc_mode_of_collection);
-        for (collection of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+        const newInnerHTML = Object.keys(data.result.facets.dc_mode_of_collection).map(collection => 
+          `<li class="category-select search-select form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="${collection}"></input>
             <label class="form-check-label" for="${collection}">${collection}</label>
-            </li>`;
-        }
+            </li>`
+        ).join("");
+        dropdownEl.innerHTML += newInnerHTML;
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_construct%22]"
     fetch(url)
@@ -260,12 +261,13 @@
       .then(data => {
         var dropdownEl = document.getElementById('select-dc_construct');
         let keys = Object.keys(data.result.facets.dc_construct);
-        for (construct of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+        const newInnerHTML = keys.map(construct => 
+          `<li class="category-select search-select form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="${construct}"></input>
             <label class="form-check-label" for="${construct}">${construct}</label>
-            </li>`;
-        }
+            </li>`
+        ).join("");
+        dropdownEl.innerHTML += newInnerHTML;
       });
     url = "/api/3/action/package_search?facet.field=[%22dc_label%22]"
     fetch(url)
@@ -273,12 +275,13 @@
       .then(data => {
         var dropdownEl = document.getElementById('select-dc_label');
         let keys = Object.keys(data.result.facets.dc_label);
-        for (label of keys) {
-          dropdownEl.innerHTML += `<li class="category-select search-select form-check form-check-inline">
+        const newInnerHTML = keys.map(label => 
+          `<li class="category-select search-select form-check form-check-inline">
             <input class="form-check-input" type="checkbox" value="" id="${label}"></input>
             <label class="form-check-label" for="${label}">${label}</label>
-            </li>`;
-        }
+            </li>`
+        ).join("");
+        dropdownEl.innerHTML += newInnerHTML;
       });
     }
     fillSearchModal();

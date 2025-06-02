@@ -51,8 +51,9 @@ dropdown.addEventListener('change', function() {
       .then(data => {
         var div = document.getElementById('search-dropdown');
         var divDropdown = document.getElementById('select-study');
-        for (const result of data.result) {
-          div.innerHTML += `<option value=` + result.name + `>` + result.title + `</option>`
-        }
+        const newInnerHTML = data.result.map(result => 
+          `<option value=${result.name}>${result.title}</option>`
+        ).join("");
+        div.innerHTML += newInnerHTML;
       });
 </script>
