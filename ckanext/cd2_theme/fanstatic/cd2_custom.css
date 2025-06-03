@@ -787,7 +787,7 @@ ol {
   content: none;
 }
 .form-check-label {
-  font-size: 1rem;
+  font-size: 13px;
   color: #333;
   cursor: pointer;
   line-height: 1.4;
@@ -1044,7 +1044,7 @@ ins {
   opacity: 0.6;
 }
 .search-well {
-  height: 200px;
+  max-height: 200px;
   padding: 0px;
   overflow: scroll;
   position: relative;
