@@ -938,6 +938,8 @@ h8 {
 }
 .info-hover {
   cursor: help;
+  color: #fff;
+  background-color: #6e6e6e;
 }
 .pointer {
   cursor: pointer!important;
@@ -1252,8 +1254,8 @@ a:active {
   white-space: nowrap;
 }
 .cohort-spanner {
-  background-color: #ddd;
-  color: #000;
+  background-color: #ccc;
+  color: #fff;
   padding: 0px 5px;
   border-radius: 5px;
   line-height: 200%;
@@ -1428,6 +1430,8 @@ body .site-footer hr {
 }
 .label-info {
   line-height: 24px;
+  color: #fff;
+  background-color: #117799!important;
 }
 body {
   background-color: #fff;
