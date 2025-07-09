@@ -50,7 +50,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
           <li class="construct-pit">
             <a href="{% url_for controller='measure', action='search' %}?dc_construct=${key}" class="category-select">
               <span class="construct-overflow" onmouseenter="tooltipAddElement(this,'<strong>' + '${key}' + '</strong>: ' + constructLegend('${key}'),25,'info-circle')" onmouseleave="tooltipRemoveElement(this)">${key}</span>
-              <span class="label label-front">${value}</span>
+              <span class="badge label-front">${value}</span>
             </a>
           </li>
         `)
@@ -107,7 +107,7 @@ document.getElementById('site-search-wrap').style.display = 'none';
 <div role="main" id="content" class="homepage-content">
   <div class="container">
 
-    <div style="border: none;border-radius: 10px;background-color: #fafafa;padding: 10px 20px;" class="margin-b-lg dropshadow">
+    <div style="border: none;border-radius: 10px;background-color: #fafafa;padding: 10px 20px;" class="margin-b-lg mt-3 dropshadow">
       <h4>Welcome to the Individual Development Data Catalogue</h4>
          <p style="padding: 0px;">This portal serves as a centralized metadata repository for six Dutch developmental cohort studies, collectively organized under the Consortium on Individual Development (CID). The platform provides access to metadata that covers various measures related to child development. Be aware that data availability and procedural guidelines may differ across individual cohort studies.</div>
 

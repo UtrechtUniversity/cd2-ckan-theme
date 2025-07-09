@@ -34,7 +34,7 @@
             <h2 class="dataset-heading">
               {% block heading_private %}
              
-              <span class="dataset-private label label-inverse">
+              <span class="dataset-private badge">
                 {% if (package.type == 'wave') or (package.type == 'cohort') %}
                 <i class="fa fa-folder-o"></i>
                 {% else %}
@@ -52,9 +52,9 @@
               {% endblock %}
               {% block heading_meta %}
               {% if package.get('state', '').startswith('draft') %}
-              <span class="label label-info">{{ _('Draft') }}</span>
+              <span class="badge label-info">{{ _('Draft') }}</span>
               {% elif package.get('state', '').startswith('deleted') %}
-              <span class="label label-danger">{{ _('Deleted') }}</span>
+              <span class="badge label-danger">{{ _('Deleted') }}</span>
               {% endif %}
               {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
               {% endblock %} 
@@ -62,21 +62,21 @@
 
             
          
-            <table class="table table-condensed">
+            <table class="table table-striped table-condensed-bs5">
             <tbody>
-              <tr class="table-package-item"><td width="30%">Study:</td><td><span class="label">{{package.organization.title}}</span></td></tr> 
+              <tr class="table-package-item"><td width="30%">Study:</td><td><span class="badge">{{package.organization.title}}</span></td></tr> 
               {% if package.type == 'measure' %}
               <tr><td>Mode of collection:</td><td>
                 
                 {% for modes in package.dc_modes_of_collection%}
-                <span class="label">{{ modes.dc_mode_of_collection }}</span>
+                <span class="badge">{{ modes.dc_mode_of_collection }}</span>
                 {% endfor %}
               
                 {% if package.dc_modes_of_collection_sub %}
                 &nbsp;<i class="fa fa-chevron-right" aria-hidden="true" style="color:#777"></i>&nbsp;
                 
                 {% for submodes in package.dc_modes_of_collection_sub %}
-                <span class="label">{{ submodes.dc_mode_of_collection_sub }}</span>
+                <span class="badge">{{ submodes.dc_mode_of_collection_sub }}</span>
                 {% endfor %}
          
                 {% endif %}</td></tr>
@@ -96,7 +96,7 @@
                       {% endif %}
                       {% set waveDescription = wave.wave_description | replace("'","\&apos;") | replace('\n', '') %}
                       {% do waves_ages.append(wave.wave_universe) %}
-                      <span class="label info-hover" onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ wave.wave_title }}</span>
+                      <span class="badge info-hover" onmouseenter="tooltipAddElement(this,'{{ waveDescription }}',40,'info-circle')" onmouseleave="tooltipRemoveElement(this)">{{ wave.wave_title }}</span>
                     {% endif %}
                   {% endfor %}        
                </td></tr>
@@ -118,18 +118,18 @@
               </div><div class="bar-label-right">years</div></div>   
                 </td>
             {% elif  package.type == 'wave' %} 
-            <tr class="table-package-item"><td width="30%">Parent cohort:</td><td><span class="label">{{package.wave_cohort}}</span></td></tr> 
+            <tr class="table-package-item"><td width="30%">Parent cohort:</td><td><span class="badge">{{package.wave_cohort}}</span></td></tr> 
             
             <tr class="table-package-item"><td width="30%">Publisher:</td><td>
               {% for wave_publisher in package.wave_publisher %}
-              <span class="label">{{wave_publisher.wave_publisher_name}}</span>
+              <span class="badge">{{wave_publisher.wave_publisher_name}}</span>
               {% endfor %}
             </td></tr> 
             
             {% elif  package.type == 'cohort' %} 
             <tr class="table-package-item"><td width="30%">Publisher:</td><td>  
               {% for cohort_publisher in package.cohort_publisher %}
-              <span class="label">{{cohort_publisher.cohort_publisher_name}}</span>
+              <span class="badge">{{cohort_publisher.cohort_publisher_name}}</span>
               {% endfor %}            
             </td></tr>    
             
@@ -228,7 +228,7 @@
                 {% block resources_inner %}
                   {% for resource in h.dict_list_reduce(package.resources, 'format') %}
                   <li>
-                    <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}#dataset-resources" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                    <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}#dataset-resources" class="badge" data-format="{{ resource.lower() }}">{{ resource }}</a>
                   </li>
                   {% endfor %}
                 {% endblock %}

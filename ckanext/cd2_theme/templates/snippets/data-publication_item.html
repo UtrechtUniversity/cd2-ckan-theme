@@ -34,7 +34,7 @@ Example:
             {% endblock %}
             {% block heading_meta %}
               {% if package.get('state', '').startswith('draft') %}
-                <span class="badge badge-info">{{ _('Draft') }}</span>
+                <span class="badge label-info">{{ _('Draft') }}</span>
               {% elif package.get('state', '').startswith('deleted') %}
                 <span class="badge badge-danger">{{ _('Deleted') }}</span>
               {% endif %}
