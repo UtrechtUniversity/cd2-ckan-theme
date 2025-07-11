@@ -329,28 +329,6 @@ function constructLegend(input) {
 function waveTimeline(timepoints, barID) {
     const barSections = document.querySelectorAll('#bar-container-' + barID + ' > .bar-section');
     let lastSection = -1; // initialize to a value that is not in the array
-  
-    for (const section of timepoints) {
-      if (section in barSections) {
-        const barSection = barSections[section];
-        if (lastSection >= 0 && section - lastSection > 1) {
-            barSection.style.width = '500%';
-        }
-        barSection.style.backgroundColor = '#444';
-        barSection.className = 'bar-section highLight';
-        if (section == 0) {
-            barSection.style.width = '500%';
-        }
-      }
-  
-      lastSection = section;
-    }
-  }
-
-
-function waveTimeline(timepoints, barID) {
-    const barSections = document.querySelectorAll('#bar-container-' + barID + ' > .bar-section');
-    let lastSection = -1; // initialize to a value that is not in the array
     let firstSection = timepoints[0]; // initialize to the first section in the array
 
     for (const section of timepoints) {
@@ -368,7 +346,6 @@ function waveTimeline(timepoints, barID) {
         lastSection = section;
     }
 }
-  
   
 /**  
  * Create interactive search suggestions
