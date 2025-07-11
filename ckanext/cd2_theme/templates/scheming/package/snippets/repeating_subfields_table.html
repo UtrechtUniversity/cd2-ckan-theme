@@ -11,7 +11,7 @@
 {% block subfield_display %}
 {% for field_data in fields %}
 <div class="bs5-well">
-<table class="table table-striped table-condensed-bs5 shadow-sm" style="display:none">
+<table class="table table-striped table-condensed shadow-sm" style="display:none">
           {% for subfield in field.repeating_subfields %}
           {% if subfield.field_name not in exclude_subfields %}
           {% if subfield.field_name == 'title' or subfield.field_name == 'cohort_title' or subfield.field_name == 'wave_title'%}
