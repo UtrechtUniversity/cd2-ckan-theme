@@ -27,8 +27,8 @@
   {% if field.field_name not in fields_passed %}
     {% do fields_passed.append(field.field_name) %}
     {% for subfield in fields %}
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="card panel-default">
+      <div class="card-body">
         <dl class="scheming-subfield-list">
           <dt class="dataset-label">
           </dt>
@@ -185,8 +185,8 @@
   {% endif %}
 {% else %}
 
-    <div class="panel panel-default">
-      <div class="panel-body">
+    <div class="card border-secondary mb-3">
+      <div class="card-body">
         <dl class="scheming-subfield-list">
           {% for subfield in field.repeating_subfields %}
             <dt class="dataset-label">

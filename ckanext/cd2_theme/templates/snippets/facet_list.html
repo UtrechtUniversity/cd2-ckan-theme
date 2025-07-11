@@ -160,7 +160,7 @@
 					class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
 						<span style="margin-left:15px" class="item-label item-facet">{{ label }}</span>
-						<span class="hidden separator"> - </span>
+						<span class="d-none separator"> - </span>
 						<span style="margin-top:-18px;" class="item-count badge facet-badge">{{ count }}</span>
 					</a>
 				</li>
@@ -200,7 +200,7 @@
 					style="{{ margin }}" class="element_{{ title.replace(' ','_') }} nav-custom {{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
 					<a href="{{ href }}">
 						<span class="item-label item-facet">{{ label }}</span>
-						<span class="hidden separator"> - </span>
+						<span class="d-none separator"> - </span>
 						<span style="margin-top:-18px;" class="item-count badge facet-badge">{{ count }}</span>
 					</a>
 				</li>
