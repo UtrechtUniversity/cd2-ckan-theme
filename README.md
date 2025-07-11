@@ -9,7 +9,7 @@ CKAN theme for the CD² metadata portal (cloned from [ckanext-dia_theme](https:/
 
 ## Requirements
 
-CKAN 2.9.x
+CKAN 2.11.x
 
 
 ## Installation
