@@ -62,7 +62,7 @@
 
             
          
-            <table class="table table-striped table-condensed-bs5">
+            <table class="table table-condensed">
             <tbody>
               <tr class="table-package-item"><td width="30%">Study:</td><td><span class="badge">{{package.organization.title}}</span></td></tr> 
               {% if package.type == 'measure' %}
@@ -80,7 +80,7 @@
                 {% endfor %}
          
                 {% endif %}</td></tr>
-                <tr><td>Available measurements:</td><td>
+                <tr class="table-package-item"><td>Available measurements:</td><td>
                   {% set waves_passed = [] %}
                   {% set waves_ages = [] %}
                   {% for wave in package.wave %}
