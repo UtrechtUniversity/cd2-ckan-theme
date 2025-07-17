@@ -796,7 +796,8 @@ ol {
   line-height: 1.4;
 }
 .form-check-label:hover {
-  color: #0d6efd;
+  color: #666c7f;
+  text-decoration: underline #666c7f;
 }
 .timeline-container {
   margin-top: -36px;
@@ -1054,6 +1055,7 @@ ins {
   box-shadow: 0 7px 9px -9px #555;
   border: none;
   background-color: #eee;
+  border-radius: 8px;
 }
 .search-toolbar {
   position: sticky;
@@ -2577,7 +2579,7 @@ aside.secondary .module.module-narrow .context-info:after {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 10px 0 10px 15px;
+  border-width: 10px 0 10px 15.5px;
   border-color: transparent transparent transparent #004a61;
   display: block;
   top: 5px;
@@ -2970,4 +2972,13 @@ header textarea:focus,
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+}
+/* remove the narrow-triangle pseudo elements inside organization-info */
+#organization-info.module-narrow .context-info::before,
+#organization-info.module-narrow .context-info::after,
+#organization-info.module-narrow .module-content::before,
+#organization-info.module-narrow .module-content::after {
+  content: none !important;
+  border: none !important;
+  background: none !important;
 }
