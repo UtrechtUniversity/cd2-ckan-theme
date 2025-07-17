@@ -528,11 +528,10 @@ header .debug {
 .pagination li a {
   border-top: none;
   border-bottom: none;
-  border-radius: 0;
   border-left-width: 0px;
   border-right-width: 1px;
   width: auto;
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 
 .pagination li:first-child a {
@@ -552,6 +551,9 @@ header .debug {
   border-bottom: none;
   border-left-width: 0px;
   border-right-width: 1px;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
 }
 
 .pagination > li > a:hover,
@@ -918,5 +920,6 @@ ol {
   line-height: 1.4;
 }
 .form-check-label:hover {
-  color: #0d6efd;
+  color: #666c7f;
+  text-decoration: underline #666c7f;
 }

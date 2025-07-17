@@ -38,7 +38,7 @@
      });
     </script>
       {% if sorting %}
-        <div class="form-select control-group control-order-by">
+        <div class="control-group control-order-by">
           <label for="field-order-by">{{ _('Order by') }}</label>
           <select id="field-order-by" name="sort">
             {% for label, value in sorting %}
@@ -56,7 +56,7 @@
           {% block search_sortby_button %}
           <button class="button js-hide" type="submit">{{ _('Go') }}</button>
           {% endblock %}
-          <span id="searchText"><a onclick="$('#searchModal').modal('toggle')" style="border: 2px solid #C3CED8;padding: 10px;border-radius: 1.5em;"><span class="fa fa-cog"></span> Advanced Search</a></span>
+          <span id="searchText"><a onclick="$('#searchModal').modal('toggle')" style="border: 2px solid #C3CED8;padding: 10px;border-radius: 1.5em;color: #0e536a;"><span class="fa fa-cog"></span> Advanced Search</a></span>
         </div>
       {% endif %}
     {% endblock %}
